@@ -174,7 +174,7 @@ of the transitions does not represent the number of unique sites required
 to build the reactors. All cores modeled are assumed to be equilibrium cores, 
 this work does not consider start-up cores or the transition to equilibrium. 
 
-\section{Once-through fuel cycle}
+\section{Once-through fuel cycle} \label{sec:once-through-methods}
 Figure \ref{fig:once-through_fuel_cycle} shows the flow of material through 
 the modeled once-through fuel cycles. The once-through fuel cycle models 
 material from the mine to final disposal in a repository (the 
@@ -279,11 +279,102 @@ minimize power oversupply, and mimic a realistic deployment strategy.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.6, trim=50 180 60 0,clip]{Deployment_noCF.pdf}
+    \includegraphics[scale=0.6, trim=50 100 60 0,clip]{Deployment_Scheme.pdf}
     \caption{Example of how advanced reactors are deployed in Scenario 7 
     to meet a demand of 480 MWe.}
     \label{fig:AR_deployment}
 \end{figure}
+
+\section{Recycling fuel cycle}
+Transition scenarios with a closed fuel cycle were created
+to investigate how this type of \gls{NFC} affects the material requirements 
+and how the recycling scheme impacts them. 
+The scenarios investigated in this analysis vary by the 
+energy demand of the scenario and the recycling scheme (Table 
+\ref{tab:scenarios_recycle}). Energy demands vary 
+between a no growth and a 1\% growth model, the same as the variation in this 
+parameter in the once-through fuel cycle models. Variations in the recycling 
+scheme include either a limited or a continuous recycle. Limited recycle 
+scenarios assume that \gls{SNF} is recycled once and disposed of after a 
+second pass through the reactor. Continuous recycling assumes that all 
+\gls{SNF} is recycled an unlimited number of times until all fissile 
+material has been used. Both recycling schemes were considered in the 
+\acrfull{ES} \cite{wigeland_nuclear_2014}, which is why they are both 
+considered in this work.  
+
+All of the scenarios with recycling model the transition from the 
+current fleet of \glspl{LWR} to the X-energy Xe-100, \gls{USNC} \gls{MMR}, 
+and the NuScale VOYGR, the same as in scenarios 7 and 13. This combination 
+of reactors is considered for this step of the work, and not all of the 
+combinations considered for the once-through scenarios, to limit the scope 
+of the work while providing some amount of comparison between the 
+once-through and recycle transition scenarios. 
+
+\begin{table}[ht]
+    \centering
+    \caption{Summary of the recycle fuel cycle transition scenarios.}
+    \label{tab:scenarios_recycle}
+    \begin{tabular}{l l l}
+            \hline
+            Scenario number & Energy growth model & Recycle scheme\\\hline
+            14 & No growth & Limited \\
+            15 & No growth & Continuous \\
+            16 & 1\% growth & Limited \\
+            17 & 1\% growth & Continuous \\
+            \hline
+    \end{tabular}
+\end{table}
+
+Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
+for the scenarios with limited recycling (Scenarios 14 and 16). This fuel 
+cycle assumes that \gls{SNF}
+from the \glspl{LWR} and advanced reactors can undergo separation and be 
+recycled. A separations facility is defined to be deployed 5 years before 
+the transition 
+begins (i.e. in 2020), as this strategy is commonly used for modeling 
+transitions with recycling \cite{passerini_systematic_2014,richards_application_2021}
+to ensure that enough fuel can be separated and 
+processed in time for use in advanced reactors. Although this is a 
+non-physical time to begin recycling in the US, using this timeline ensures 
+that there will be enough reprocessed fuel to fuel all of the advanced 
+reactors. The deployment time of the separation facility will be adjusted 
+to determine if a more physical deployment timeline is possible. Additionally, 
+by using this timeline, specifically ensuring that advanced reactors 
+are deployed at the same time as when they are deployed in the once-through 
+transition to provide an even comparison between these fuel cycle options. 
+
+\input{limited-recycling-flow}
+
+Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
+flow for the continuous recycle fuel cycle. Continuous recycle 
+requires a fast reactor, and all of the reactors considered in this 
+work have a thermal neutron energy spectrum. Therefore, a fast reactor 
+facility 
+must be added into the transition. To accomplish this, two different 
+transitions are included in these scenarios: the transition from 
+\glspl{LWR} to the advanced reactors and the transition from the 
+advanced reactors to the fast reactor. The first transition will begin 
+in 2025, and the second transition will begin in 2090, and the deployment 
+rate of each reactor type will be based on the energy demand of the 
+scenario. Because of the lifetime of the advanced reactors, these scenarios 
+will be extended out to 2155 to assume that advanced reactors would not 
+be prematurely decommissioned to facilitate this transition. These 
+scenarios will consist of a longer time period than the once-through 
+and limited recycle scenarios, which leads to uneven comparisons. Therefore, 
+the results of the continuous recycle scenarios will focus on the 
+material requirements after 2090, to provide a consistent 65 year 
+time period for comparison. 
+The fast reactor will be modeled 
+based on the fast reactor technology used in the \gls{ES} 
+\cite{wigeland_nuclear_2014} to provide a generic representation of 
+a fast reactor and not any specific commercial design of fast reactor 
+technology. 
+
+\input{continuous-recycling-flow}
+
+Advanced reactors in these scenarios are deployed in the same manner 
+as they are deployed in the once-through scenarios, as described in 
+Section \ref{sec:once-through-methods}. 
  
 
 \section{Calculation of results} \label{sec:results_calc}
