@@ -3,13 +3,13 @@
     \begin{tikzpicture}[node distance=1.5cm]
         \node (mine) [facility] {Uranium Mine};
         \node (enrichment) [facility, below of=mine]{Enrichment};
-        \node (reactor) [facility, below of=enrichment]{Reactor};
+        \node (reactor) [facility, below of=enrichment]{LWR};
         \node (adv_reactor) [transition, right of=reactor, xshift=3cm]{Advanced Reactor};
         \node (wetstorage) [facility, below of=reactor]{Cooling Pool};
         %\node (drystorage) [facility, below of=wetstorage]{Dry Storage};
         \node (cooling) [transition, below of=adv_reactor]{Cooling Pool};
-        \node (sinkhlw) [facility, below of=wetstorage, xshift=2.5cm]{HLW Sink};
-        \node (sinkllw) [facility, left of=enrichment, xshift=-3cm]{LLW Sink};
+        \node (sinkhlw) [facility, below of=wetstorage, xshift=2.5cm]{Repository};
+        \node (sinkllw) [facility, left of=enrichment, xshift=-3cm]{Tails Sink};
 
         \draw [arrow] (mine) -- node[anchor=east]{Natural U} (enrichment);  
         \draw [arrow] (enrichment) -- node[anchor=south]{Tails}(sinkllw);

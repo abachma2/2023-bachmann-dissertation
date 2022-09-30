@@ -1,25 +1,39 @@
-\section{Methdology}
 Recovery and downblending of \gls{HEU} to produce \gls{HALEU} means that 
-the fuel is likely to contain impurities present in the original
+the fuel contains impurities present in the original
 \gls{HEU}. Known impurities in potential \gls{HEU}
 supplies to create \gls{HALEU} include $^{232}$U and $^{236}$U
 \cite{vaden_isotopic_2018,nelson_foreign_2010},  
 which are parasitic neutron absorbers and have the potential to affect 
 reactor physics and reactor operation. To investigate the magnitude of this 
-effect, this step will model the use of 
-impure \gls{HALEU} fuel in a reactor and compare it to the use of pure 
+effect, this chapter presents models of the use of 
+impure \gls{HALEU} fuel in a reactor and compares it to the use of pure 
 \gls{HALEU} (only $^{235}$U and $^{238}$U)
-to understand how the impurities affect the performance of the reactor. 
+to understand how the impurities affect the performance of the reactor.
+This chapter of work explores how the fuel affects the reactors, while 
+the other chapters explore how the reactors affect the fuel cycle. 
 
-Full core models of the Xe-100 and \gls{MMR} will be created in Serpent 
+\section{Methodology}
+Full core models of the Xe-100 and \gls{MMR} were created in Serpent 
 \cite{leppanen_serpent_2014} to model the neutronics and depletion of 
-each reactor 
-design. The fresh fuel composition for each core will be varied to provide 
+each reactor design. The model for the Xe-100 was obtained from 
+\hl{Zoe's work}, an Xe-100-like model that has been used for multiple 
+things. The \gls{MMR} model was built based on open source information 
+about the core design. 
+
+Each model was run with various burnup steps, and used the JEFF 3.12 
+cross section library \cite{koning_status_2011}. Each burnup step 
+used XX active cycles and YY inactive cycles, with ZZ particles per 
+cycle. 
+
+
+
+
+The fresh fuel composition for each core was varied to provide 
 a comparison of pure and impure fuel.
-Material compositions of impure fuel will be modeled based on the 
+Material compositions of impure fuel were modeled based on the 
 known compositions of \gls{HALEU} from the \gls{EBR} stockpile 
 \cite{vaden_isotopic_2018} and the Y-12 stockpile \cite{nelson_foreign_2010}.
-Each core will be modeled three times: once modeling pure \gls{HALEU}, 
+Each core was modeled three times: once modeling pure \gls{HALEU}, 
 once modeling impure \gls{HALEU} from the \gls{EBR} stockpile, and once 
 modeling impure \gls{HALEU} from the Y-12 stockpile.
 By modeling the core composition to be entirely composed of impure fuel 
@@ -30,6 +44,7 @@ these reactors exclusively for initial reactor core loadings, or if
 infrastructure for enriching natural uranium must be established to 
 produce \gls{HALEU} for initial core loadings. 
 
+\section{Results}
 Results of each simulation to be compared include the neutron flux at 
 \gls{BOL}, mid-cycle, and \gls{EOL}, $k_{eff}$ as a function of burnup, 
 fuel temperature reactivity coefficient, and 
@@ -40,3 +55,7 @@ poisons required, control rod worth, and the cycle time. Investigating
 each of these results helps to determine if the impurities potentially 
 present in \gls{HALEU} will prevent any of the design criteria of the 
 reactors from being met. 
+
+\subsection{Xe-100 reactor}
+
+\subsection{MMR reactor}
