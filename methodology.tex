@@ -99,6 +99,7 @@ to only the VOYGR.
         \hline
         Reactor type & Modular HTGR & Modular HTGR & SMR\\
         Power Output (MWth) & 15 & 200  & 250 \\
+        Capacity Factor & 100\% & 95\% & 95\% \\
         Enrichment (\% $^{235}U$) & 19.75 & 15.5 & <4.95 \\
         Cycle Length (yrs) & 20 & online refuel & 1.5\\
         Number of cycles & 1 & 6 & 3\\
@@ -173,6 +174,17 @@ on a single unit basis. Therefore, the number of reactors built in each
 of the transitions does not represent the number of unique sites required 
 to build the reactors. All cores modeled are assumed to be equilibrium cores, 
 this work does not consider start-up cores or the transition to equilibrium. 
+
+To properly account for the capacity factor of each reactor, the power output 
+(in MWe) of each reactor was multiplied by the capacity factor and explicit 
+modeling of outages was removed. This methodology was applied to the 
+advanced reactors and the current fleet of \glspl{LWR}, which were assumed 
+to operate with a 92.66\% capacity factor based on the last five years of 
+fleet-averaged capacity factors \cite{noauthor_electric_2022}. By removing 
+explicit modeling of outages, the outages do not artificially affect 
+the capacity factors. The operating cycle of the \glspl{LWR} and VOYGRs 
+was extended by 1 time step, to ensure that these facilities received fuel 
+on the same schedule as if the outages were explicitly modeled. 
 
 \section{Once-through fuel cycle} \label{sec:once-through-methods}
 Figure \ref{fig:once-through_fuel_cycle} shows the flow of material through 
