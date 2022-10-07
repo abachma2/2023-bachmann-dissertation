@@ -70,7 +70,33 @@ and the \gls{LWR} lifetimes \cite{chee_sensitivity_2019,feng_sensitivity_2020},
 which forms the basis for why these input parameters were selected for this 
 work.
 
-\hl{Figure out how to vary the burnup}
+Variations of the discharge burnup of each \gls{HALEU}-fueled reactor (the 
+Xe-100 and \gls{MMR}) were carried out slightly differently. Variation 
+of this parameter is being done because these reactors are aiming to achieve 
+burnups that are much higher than what the NRC has approved fuel for 
+\hl{Citation?}. Therefore, inclusion of this variable explores the impact 
+on resource needs for if these reactors are not able to achieve their 
+reported burnups. This analysis is not performed for the VOYGR because this 
+design aims to achieve a burnup that the NRC is comfortable with. 
+
+To vary the burnup of the Xe-100, two different systems were enacted. The 
+first was to vary the number of passes each pebbles goes through the core
+while keeping the length of each pass and the total mass of uranium 
+in the core constant. Varying the number of passes between two and six 
+results in discharge burnups of 56, 84, 112, 140, and 168 MWd/kgU, 
+using Eq. \ref{eq:fuel_mass}. The second system was to vary the length 
+of each pass while keeping the number of passes and the total mass of uranium 
+constant. The goal of the second system is to cause a small change in the 
+discharge burnup to examine how a smaller change in the burnup affects 
+the resource needs. This system results in burnups of 151 and 185 MWd/kgU, 
+which are about $\pm$10\% of the stated discharge burnup of 168 MWd/kgU. 
+
+To vary the burnup of the \gls{MMR} the cycle time, and thus lifetime, of 
+the reactor was varied while the total mass of uranium was held constant. 
+Cycle times of 10, 15, and 20 years were considered, resulting in burnup 
+values of 41, 62, and 82 MWd/kgU. Additionally, the lifetime was varied to 
+result in burnups $\pm$10\% and $\pm$5\% around the stated burnup of 
+82 MWd/kg, resulting in burnups of 74, 78, 86, and 90 MWd/kgU. 
 
 The output metrics of 
 interest for this analysis include the amount of waste generated that 
@@ -91,6 +117,22 @@ capacity required, and natural uranium requirements
 This section discusses the results of the \gls{OAT} sensitivity analysis 
 as applied to Scenario 7. Many of these results are discussed in 
 \hl{cite ANS paper}. 
+
+Delays in the transition start time generally decrease all of the output 
+metrics, as shown in Figure \ref{fig:ts_scenario7}. This results matches 
+expectations, because if the advanced reactors are deployed for less time, 
+then they require fewer resources. However, there are some increases in 
+the output metrics between individual time steps. For example, a transition 
+start time of October 2029 increases the fuel mass and \gls{SNF} mass 
+relative to July 2029. This increase is the result of changes in the number 
+of each advanced reactor deployed, because of differences in the gap 
+between energy produced and energy demand that must initially be filled when 
+advanced reactors are deployed. By waiting until October 2029, more VOYGRs 
+are deployed than when the transition starts in July 2029. As discussed in 
+Chapter \ref{ch:once_through_results}, the VOYGR needs a larger fuel mass, 
+and thus discharges more \gls{SNF} than the Xe-100 and \gls{MMR}. Therefore, 
+these two metrics increase for this particular transition start time. 
+
 \begin{figure}
     \centering
     \includegraphics{ts.pdf}

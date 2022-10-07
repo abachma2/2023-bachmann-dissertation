@@ -15,13 +15,68 @@ the other chapters explore how the reactors affect the fuel cycle.
 \section{Methodology}
 Full core models of the Xe-100 and \gls{MMR} were created in Serpent 
 \cite{leppanen_serpent_2014} to model the neutronics and depletion of 
-each reactor design. The model for the Xe-100 was obtained from 
-\hl{Zoe's work}, an Xe-100-like model that has been used for multiple 
-things. The \gls{MMR} model was built based on open source information 
-about the core design. 
+each reactor design. Each model was run using the JEFF 3.12 cross section 
+library \cite{koning_status_2011}.
 
-Each model was run with various burnup steps, and used the JEFF 3.12 
-cross section library \cite{koning_status_2011}. Each burnup step 
+The model for the Xe-100 was obtained from 
+\cite{richter_phlox_2021}, an Xe-100-like model that has been used for 
+multiple things. The model is available at \cite{richter_zoerichterphlox_2022}
+The model was adapted slightly to include control rod systems in the 
+graphite moderator. Figure \hl{Xe-100 core figure} shows the axial and 
+radial view of the core.
+
+\begin{figure}
+    \centering 
+    \begin{subfigure}{0.45\textwidth}
+        \centering 
+        \includegraphics[scale=0.03]{htgr-mr-full-core.inp_geom1.png}
+        \caption{Radial view of Xe-100 core model.}
+        \label{fig:xe100_core_radial}        
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering 
+        \includegraphics[scale=0.12]{htgr-mr-full-core.inp_geom3.png}
+        \caption{Axial view of Xe-100 core model.}
+        \label{fig:xe100_core_axial}        
+    \end{subfigure}
+    \caption{Xe-100 core model made in serpent.}
+    \label{fig:xe100_core}
+\end{figure}
+
+
+The \gls{MMR} model was built based on open source information 
+about the core design. The model was primarily built based on 
+information in \cite{hawari_development_2018}, with adaptations to 
+better match published information from \gls{USNC} found in 
+\cite{noauthor_usnc_2021}. Figure \ref{fig:mmr_core} shows the radial 
+and axial view of the model created. This model was run with XX active 
+cycles, YY inactive cycles, and ZZ particles per cycle. The burnup steps
+were \hl{figure this out}.
+
+\begin{figure}
+    \centering 
+    \begin{subfigure}{0.45\textwidth}
+        \centering 
+        \includegraphics[scale=0.1]{bachmann-mmr_geom1.png}
+        \caption{Radial view of MMR core model.}
+        \label{fig:mmr_core_radial}        
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering 
+        \includegraphics[scale=0.12]{bachmann-mmr_geom3.png}
+        \caption{Axial view of MMR core model.}
+        \label{fig:mmr_core_axial}        
+    \end{subfigure}
+    \caption{MMR core model made in serpent. The bright pink is the 
+    graphite in the core, light blue is helium cooling channels, 
+    dark blue is the FCM. The outer two rings are the 
+    beryllium oxide reflector and metal for the RPV.}
+    \label{fig:mmr_core}
+\end{figure}
+
+ Each burnup step 
 used XX active cycles and YY inactive cycles, with ZZ particles per 
 cycle. 
 
