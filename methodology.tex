@@ -18,7 +18,7 @@ database each year. Reactors still operating in December 2020
 lack an end date in the \gls{PRIS} database and are assumed to operate 
 until 
 their current operating license expiration date, obtained from 
-\cite{nei_us_2021}. This work considers only 
+\cite{nuclear_energy_institute_us_2021}. This work considers only 
 reactors in the \gls{PRIS} database with a power level above 400 MWe 
 to avoid including prototype and research reactors present in the database. 
 Approximate masses for fuel used in the cores of the \glspl{LWR} were obtained 
@@ -180,7 +180,8 @@ To properly account for the capacity factor of each reactor, the power output
 modeling of outages was removed. This methodology was applied to the 
 advanced reactors and the current fleet of \glspl{LWR}, which were assumed 
 to operate with a 92.66\% capacity factor based on the last five years of 
-fleet-averaged capacity factors \cite{noauthor_electric_2022}. By removing 
+fleet-averaged capacity factors \cite{us_energy_information_administration_electric_2022}. 
+By removing 
 explicit modeling of outages, the outages do not artificially affect 
 the capacity factors. The operating cycle of the \glspl{LWR} and VOYGRs 
 was extended by 1 time step, to ensure that these facilities received fuel 
@@ -222,7 +223,7 @@ demand (Scenarios 8-13) is less than what Dixon et al. \cite{dixon_estimated_202
 modeled
 (1.2\%-2\%) but more than the average growth between 2020-2050 in the 
 reference case of the 2022 \gls{EIA} Annual Energy Outlook 
-\cite{energy_information_administration_annual_2022} (0.82\%), and 
+\cite{us_energy_information_administration_annual_2022} (0.82\%), and 
 provides a middle-ground estimate on material requirements for a growing 
 energy demand. 
 
@@ -296,6 +297,15 @@ minimize power oversupply, and mimic a realistic deployment strategy.
     to meet a demand of 480 MWe.}
     \label{fig:AR_deployment}
 \end{figure}
+
+This deployment scheme for advanced reactors applies when there is an 
+unmet demand in energy from the decommissioning of \gls{LWR} or 
+when the demand increases (such as in the 1\% growth scenarios). When 
+there is unmet demand from the decommissioning of advanced reactors, the 
+advanced reactors are redeployed on almost a one-to-one basis. A slightly
+smaller number of advanced reactors may be redeployed if there is an 
+oversupply of power greater than the power output of the reactor to be 
+redeployed. 
 
 \section{Recycling fuel cycle}
 Transition scenarios with a closed fuel cycle were created
