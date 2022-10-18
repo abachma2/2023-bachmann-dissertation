@@ -16,7 +16,7 @@ metrics for both a once-through and recycle fuel cycle.
 
 \Cyclus was coupled to Dakota \cite{adams_dakota_2019},
 and Dakota is the driver for the analysis. This coupling mirrors  
-the scripts in the \texttt{dcwrapper} GitHub repository \cite{chee_arfc/dcwrapper_2019}.
+the scripts in the \texttt{dcwrapper} GitHub repository \cite{chee_arfcdcwrapper_2019}.
 Three different types 
 of sensitivity analysis were performed: \acrfull{OAT}, synergistic, 
 and global. \gls{OAT} analysis varies a single input parameter to 
@@ -114,6 +114,7 @@ capacity required, and natural uranium requirements
 
 \subsection{One-at-a-time}
 \subsubsection{Scenario 7}
+\hl{Need to downselect these results and put the rest in an appendix}
 This section discusses the results of the \gls{OAT} sensitivity analysis 
 as applied to Scenario 7. Many of these results are discussed in 
 \hl{cite ANS paper}. 
@@ -231,3 +232,25 @@ the opposite of what happens with an increasing Xe-100 build share.
 \subsubsection{Scenario 14}
 
 \section{Optimization}
+
+Optimization for this work means minimizing certain material requirements, 
+specifically the \gls{HALEU} mass and the \hl{???}. This work performs three 
+different optimization problems: minimize the \gls{HALEU} mass, minimize the 
+\hl{???}, and minimizing both. 
+
+\cite{andrianov_optimization_2019} minimized total discounted costs using 
+the MESSAGE energy planning software. 
+
+I get a general sense that a lot of work has been done to optimize fuel cycles 
+for cost, unf management, or proliferation risk. Not seeing a whole lot on 
+material requirements. 
+Methods I'm seeing: genetic algorithms, linear programming, stochastic linear 
+programming (same thing?)
+
+Can I minimize the difference between average and maximum SWU capacity needed?
+Set that difference as the objective function. Would want to look for global 
+optimization. Do I need linear or non-linear methods?
+
+I want to run a genetic algorithm optimization case in Dakota, see how all of 
+that works, then develop my method (whatever that is). Compare the results, have 
+that be a paper. 
