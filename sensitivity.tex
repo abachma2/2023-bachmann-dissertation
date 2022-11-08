@@ -1,4 +1,3 @@
-\section{Sensitivity Analysis}
 Sensitivity analysis identifies how the variation of model input
 parameters affect select performance 
 metrics of the fuel cycle. Additionally, it reveals the combined effect 
@@ -9,7 +8,7 @@ will affect the results the most, and how these parameters should be
 changed to obtain desired results (e.g., minimizing \gls{HALEU} requirements
 of a transition). 
 
-\subsection{Methodology}
+\section{Methodology}
 The analysis was performed on Scenario 7 and Scenario 
 14 to provide insight into how the input parameters affect the output 
 metrics for both a once-through and recycle fuel cycle. 
@@ -112,8 +111,8 @@ capacity required, and natural uranium requirements
 \cite{richards_application_2021,feng_sensitivity_2020} 
 
 
-\subsection{One-at-a-time}
-\subsubsection{Scenario 7}
+\section{One-at-a-time}
+\subsection{Scenario 7}
 This section discusses the results of the \gls{OAT} sensitivity analysis 
 as applied to Scenario 7. A subsection of this analysis is presented 
 in \hl{Cite ANS Paper}, but the analysis presented here has an expanded scope. 
@@ -179,7 +178,7 @@ average, and maximum value for each metric is provided in Table
 \end{table}
 
 
-
+\subsubsection{Transition start time}
 Delays in the transition start time generally decrease all of the output 
 metrics, as shown in Figure \ref{fig:ts_scenario7}. This results matches 
 expectations, because if the advanced reactors are deployed for less time, 
@@ -217,6 +216,7 @@ GWe-yr, when reactors are deployed starting in January 2040. This difference
 between energy supplied and energy demand is a disadvantage of delaying 
 the start time to reduce material requirements. 
 
+\subsubsection{LWR lifetimes}
 The next metric varied is the percent of the \glspl{LWR} that operate for 
 80 years, reflecting a license extension. As the percent of the \gls{LWR} 
 fleet operating for 80 years increases all of the metrics decrease, as 
@@ -252,6 +252,7 @@ which suggests that extending the lifetimes of the \glspl{LWR} is a better
 parameter to vary if one wishes to decrease material requirements of this 
 transition. 
 
+\subsubsection{Xe-100 build share}
 As the Xe-100 build share increases, the \gls{HALEU}-related metrics 
 increase while the total \gls{SNF} and total fuel mass decrease and the 
 total \gls{SWU} capacity stays relatively constant (Figure \ref{fig:xe100_scenario7}).
@@ -299,6 +300,8 @@ The \gls{HALEU}-related metrics increase to up to 538.2\% of the mass required
 for a 0\% Xe-100 build share. The total fuel mass and \gls{SNF} mass decrease 
 to up to 44.11\% of the mass required for 1 0\% Xe-100 build share. 
 
+
+\subsubsection{MMR build share}
 As the \gls{MMR} build share increases all of the metrics increase, as shown 
 in Figure \ref{fig:mmr_scenario7}. As Figure \ref{fig:mmr_reactors_s7} shows, 
 as the \gls{MMR} build share increases, the number of Xe-100s decreases, the 
@@ -332,6 +335,8 @@ produce \gls{HALEU} experience the greatest relative increase as the
 because the increase in the product assay is compounded with the increase 
 in the product mass when calculating these three metrics. 
 
+
+\subsubsection{VOYGR build share}
 When varying VOYGR build share, the impact on the metrics was 
 opposite that of when varying the Xe-100 build share (Figure 
 \ref{fig:voygr_scenario7}). The total fuel mass and \gls{SNF} mass 
@@ -358,42 +363,26 @@ for a 0\% VOYGR build share. While the trends from varying the VOYGR build share
 mirrors the trends from varying the Xe-100 build share, the magnitude of the 
 changes are not the same. This magnitude difference is because of 
 
-\subsubsection{Scenario 14}
+\subsubsection{Xe-100 burnup}
 
-\subsection{Synergistic}
+\subsubsection{MMR burnup}
+
+
+
+\subsection{Scenario 14}
+
+\section{Synergistic}
 The synergistic analysis in this work varied two parameters at a time to 
 investigate some of the combined effects of the input parameters. The
 results presented here are only a small subsection of the analysis performed, 
 with the remaining results in Appendix \hl{create appendix}.
-\subsubsection{Scenario 7}
+\subsection{Scenario 7}
 
-\subsubsection{Scenario 14}
+\subsection{Scenario 14}
 
-\subsection{Global}
-\subsubsection{Scenario 7}
+\section{Global}
+\subsection{Scenario 7}
 
-\subsubsection{Scenario 14}
+\subsection{Scenario 14}
 
-\section{Optimization}
 
-Optimization for this work means minimizing certain material requirements, 
-specifically the \gls{HALEU} mass and the \hl{???}. This work performs three 
-different optimization problems: minimize the \gls{HALEU} mass, minimize the 
-\hl{???}, and minimizing both. 
-
-\cite{andrianov_optimization_2019} minimized total discounted costs using 
-the MESSAGE energy planning software. 
-
-I get a general sense that a lot of work has been done to optimize fuel cycles 
-for cost, unf management, or proliferation risk. Not seeing a whole lot on 
-material requirements. 
-Methods I'm seeing: genetic algorithms, linear programming, stochastic linear 
-programming (same thing?)
-
-Can I minimize the difference between average and maximum SWU capacity needed?
-Set that difference as the objective function. Would want to look for global 
-optimization. Do I need linear or non-linear methods?
-
-I want to run a genetic algorithm optimization case in Dakota, see how all of 
-that works, then develop my method (whatever that is). Compare the results, have 
-that be a paper. 
