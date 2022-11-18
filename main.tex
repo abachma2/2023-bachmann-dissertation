@@ -5,6 +5,8 @@
 \usepackage[acronym,toc]{glossaries}
 \input{acros}
 
+\usepackage[toc, titletoc, title]{appendix}
+
 \usepackage{xspace}
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -163,8 +165,15 @@
 \chapter{Conclusions} \label{ch:conclusions}
 \input{conclusions.tex}
 
-%\chapter*{Appendix}
-%\input{appendix}
+%\mainmatterWithoutReset
+%\appendix
+%\chapter{}
+\begin{appendices}
+\chapter*{Appendices}
+\renewcommand{\thesection}{\Alph{section}}
+\input{synergistic}
+
+\end{appendices}
 
 \backmatter
 
