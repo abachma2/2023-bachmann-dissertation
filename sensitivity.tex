@@ -196,7 +196,7 @@ these two metrics increase for this particular transition start time.
 
 \begin{figure}
     \centering
-    \includegraphics{ts.pdf}
+    \includegraphics[scale=0.8]{ts.pdf}
     \caption{Change in each metric as a function of transition start 
     time, relative to a transition start in January 2025.}
     \label{fig:ts_scenario7}
@@ -228,7 +228,7 @@ than the other metrics across this parameter space, ranging between
 
 \begin{figure}
     \centering
-    \includegraphics{lwr.pdf}
+    \includegraphics[scale=0.8]{lwr.pdf}
     \caption{Change in each metric as a function of percent of LWR fleet  
     operating for 80 years, relative to 0\%.}
     \label{fig:lwr_scenario7}
@@ -267,7 +267,7 @@ the Xe-100 build share is 0\%.
 
 \begin{figure}
     \centering
-    \includegraphics{xe100.pdf}
+    \includegraphics[scale=0.8]{xe100.pdf}
     \caption{Change in each metric as a function of Xe-100 build share, 
     relative to a build share of 0\%.}
     \label{fig:xe100_scenario7}
@@ -311,7 +311,7 @@ deploying \glspl{MMR} over the Xe-100.
 
 \begin{figure}
     \centering
-    \includegraphics{mmr.pdf}
+    \includegraphics[scale=0.8]{mmr.pdf}
     \caption{Change in each metric as a function of MMR build share, 
     relative to a build share of 0\%.}
     \label{fig:mmr_scenario7}
@@ -348,7 +348,7 @@ the opposite of what happens with an increasing Xe-100 build share.
 
 \begin{figure}
     \centering
-    \includegraphics{voygr.pdf}
+    \includegraphics[scale=0.8]{voygr.pdf}
     \caption{Change in each metric as a function of VOYGR build share, 
     relative to a build share of 0\%.}
     \label{fig:voygr_scenario7}
@@ -361,23 +361,73 @@ up to 313.9\% of the mass required for a 0\% VOYGR build share, and the
 \gls{HALEU}-related metrics decrease to 49.77\% of the mass required 
 for a 0\% VOYGR build share. While the trends from varying the VOYGR build share 
 mirrors the trends from varying the Xe-100 build share, the magnitude of the 
-changes are not the same. This magnitude difference is because of 
+changes are not the same. This magnitude difference is because the variations 
+in these parameters does covers adjacent but not overlapping design spaces. 
 
 \subsubsection{Xe-100 burnup}
+When varying the burnup of fuel discharged from Xe-100s, the metrics decrease 
+as the burnup increases (Figure \ref{fig:xe100_bu_s7}). This decrease in material requirements because as 
+the burnup is increased the fuel is going through the core more times or the 
+length of each pass is longer. Therefore, the Xe-100s in the simulation are receiving 
+less fuel at each refueling or receiving fuel less often as the burnup increases. 
+Varying the burnup of the Xe-100 has a large impact on the metrics, up to fives times 
+the material requirements compared with a burnup of 168 MWd/kgU, because most of 
+the energy produced in these scenarios comes from Xe-100s and many more Xe-100s are 
+deployed than \glspl{MMR} or VOYGRs. Therefore, changes to the Xe-100 refueling is 
+magnified because of the greater number of the reactor deployed. 
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{xe100_bu.pdf}
+    \caption{Change in metrics from varying the burnup of fuel 
+    discharged from Xe-100, relative to a burnup of 168 MWd/kgU.}
+    \label{fig:xe100_bu_s7}
+\end{figure}
 
 \subsubsection{MMR burnup}
+When the \gls{MMR} discharge burnup is varied the metrics all decrease, similar 
+to what was observed by varying the Xe-100 discharge burnup. One difference in 
+the trends observed between varying these two parameters is the magnitude of 
+the relative changes. Varying the \gls{MMR} burnup has a smaller relative effect 
+on the metrics than varying the Xe-100 burnup because there are fewer \glspl{MMR} 
+deployed in the transition. Therefore the impact on the cumulative metrics 
+(what is reported here) is smaller. Another difference is that the total 
+\gls{SWU}, \gls{HALEU} \gls{SWU}, and \gls{HALEU} feed increase the most 
+when the \gls{MMR} burnup is low, compared with the \gls{SNF} having the 
+greatest relative increase with the Xe-100 burnup is low. 
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{mmr_bu.pdf}
+    \caption{Change in metrics from varying the burnup of fuel 
+    discharged from the MMR, relative to a burnup of 82 MWd/kgU.}
+    \label{fig:mmr_bu_s7}
+\end{figure}
 
+\subsubsection{Burnup variations with a common build share}
+To better investigate the effect of varying the discharge burnup of the Xe-100 
+and \gls{MMR} without the influence of the deployment scheme preferentially
+deploying Xe-100s, we repeated each set of analysis using a constant 20\% 
+build share for the Xe-100 and \gls{MMR}. Using a constant build share for 
+both reactors means that they each will supply the same fraction of the energy demand.
+However, because of the different power output for each reactor a constant build 
+share does not mean that the same number of each reactor is built. 
 
 \subsection{Scenario 14}
 
 \section{Synergistic}
 The synergistic analysis in this work varied two parameters at a time to 
-investigate some of the combined effects of the input parameters. The
+investigate some of the combined effects of the input parameters. Synergistic 
+sensitivity analysis helps to identify if the combined effect of two parameters 
+has a greater impact on the metrics that when varying a single parameter. 
+
+\subsection{Scenario 7}
+We ran synergistic 
+analysis on all combinations of two input parameters studied in the \gls{OAT} 
+analysis, except combinations of two specified build shares. The
 results presented here are only a small subsection of the analysis performed, 
 with the remaining results in Appendix \hl{create appendix}.
-\subsection{Scenario 7}
-
+\subsubsection{}
 \subsection{Scenario 14}
 
 \section{Global}
