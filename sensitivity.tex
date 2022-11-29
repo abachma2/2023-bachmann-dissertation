@@ -72,30 +72,30 @@ work.
 Variations of the discharge burnup of each \gls{HALEU}-fueled reactor (the 
 Xe-100 and \gls{MMR}) were carried out slightly differently. Variation 
 of this parameter is being done because these reactors are aiming to achieve 
-burnups that are much higher than what the NRC has approved fuel for 
+burnup values that are much higher than what the NRC has approved fuel for 
 \hl{Citation?}. Therefore, inclusion of this variable explores the impact 
 on resource needs for if these reactors are not able to achieve their 
-reported burnups. This analysis is not performed for the VOYGR because this 
+reported burnup values. This analysis is not performed for the VOYGR because this 
 design aims to achieve a burnup that the NRC is comfortable with. 
 
 To vary the burnup of the Xe-100, two different systems were enacted. The 
 first was to vary the number of passes each pebbles goes through the core
 while keeping the length of each pass and the total mass of uranium 
 in the core constant. Varying the number of passes between two and six 
-results in discharge burnups of 56, 84, 112, 140, and 168 MWd/kgU, 
+results in discharge burnup values of 56, 84, 112, 140, and 168 MWd/kgU, 
 using Eq. \ref{eq:fuel_mass}. The second system was to vary the length 
 of each pass while keeping the number of passes and the total mass of uranium 
 constant. The goal of the second system is to cause a small change in the 
 discharge burnup to examine how a smaller change in the burnup affects 
-the resource needs. This system results in burnups of 151 and 185 MWd/kgU, 
+the resource needs. This system results in burnup values of 151 and 185 MWd/kgU, 
 which are about $\pm$10\% of the stated discharge burnup of 168 MWd/kgU. 
 
 To vary the burnup of the \gls{MMR} the cycle time, and thus lifetime, of 
 the reactor was varied while the total mass of uranium was held constant. 
 Cycle times of 10, 15, and 20 years were considered, resulting in burnup 
 values of 41, 62, and 82 MWd/kgU. Additionally, the lifetime was varied to 
-result in burnups $\pm$10\% and $\pm$5\% around the stated burnup of 
-82 MWd/kg, resulting in burnups of 74, 78, 86, and 90 MWd/kgU. 
+result in burnup values $\pm$10\% and $\pm$5\% around the stated burnup of 
+82 MWd/kg, resulting in burnup values of 74, 78, 86, and 90 MWd/kgU. 
 
 The output metrics of 
 interest for this analysis include the amount of waste generated that 
@@ -421,7 +421,7 @@ investigate some of the combined effects of the input parameters. Synergistic
 sensitivity analysis helps to identify if the combined effect of two parameters 
 has a greater impact on the metrics that when varying a single parameter. 
 
-\subsection{Scenario 7}
+\subsection{Scenario 7}\label{sec:s7_synergistic}
 We ran synergistic 
 analysis on all combinations of two input parameters studied in the \gls{OAT} 
 analysis, except combinations of two specified build shares. The
@@ -534,7 +534,16 @@ considered in this work.
 
 
 \subsubsection{Transition start and Xe-100 build share}
-
+As Figure \ref{fig:ts_xe100_share_enr_u} shows, as the Xe-100 build 
+share increases the total fuel mass decreases. However, there is little 
+effect in the total fuel mass as the transition start time is delayed. This 
+observation occurs because the magnitude of the effect on the fuel mass 
+from varying the Xe-100 build share is greater than the magnitude of 
+the effect from varying the transition start time. This is consistent 
+with the results from the \gls{OAT} analysis, and is observed for five 
+of the metrics considered in this work. This result suggests that the 
+transition start time is not as important as the other parameters when 
+trying to minimize or maximize certain metrics. 
 
 \begin{figure}[b]
     \centering
@@ -543,6 +552,16 @@ considered in this work.
     on total fuel mass.}
     \label{fig:ts_xe100_share_enr_u}
 \end{figure}
+
+The effect of varying these two parameters is the opposite when the total 
+\gls{SWU} capacity is considered: varying the transition start time has 
+a greater impact on the metric than varying the Xe-100 build share. This 
+result stems from the similar \gls{SWU} capacities needed for the Xe-100 
+and VOYGR leading to little change in the total \gls{SWU} capacity when 
+varying the Xe-100 build share. Therefore, the transition start time has 
+more impact on this metric than the Xe-100 build share, and there is little 
+of a combined effect observed because of the small impact from each parameter 
+on this metric. 
 
 \begin{figure}[b]
     \centering
