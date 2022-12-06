@@ -7,16 +7,38 @@ and VOYGR) and 14 (no growth, limited recycling transition to the
 \gls{MMR}, Xe-100, and VOYGR): minimizing the \gls{SWU} capacity to 
 produce \gls{HALEU}, minimizing the mass of \gls{SNF} for disposal, 
 and minimizing both the \gls{HALEU} \gls{SWU} and the \gls{SNF} 
-mass. 
+mass. To optimize these transitions, we consider six different 
+variables: percent of \glspl{LWR} operating for 80 years, the build share 
+of Xe-100s, the build share of \glspl{MMR}, the build share of VOYGRs, 
+the discharge burnup of the Xe-100, and the discharge burnup of the 
+\gls{MMR}. All of these variables were considered in the sensitivity 
+analysis. The transition start time was also considered in the sensitivity 
+analysis. However, that analysis showed that the transition start time has
+a much smaller impact on each of the metrics and delaying the transition 
+can lead to unfulfilled energy demand. Therefore, this parameter is 
+not considered in the optimization of each scenario. 
+
+For this work, the percent of \glspl{LWR} operating for 80 years 
+was constrained to between 0-50\% of the current \gls{LWR} fleet. 
+The build share of each advanced reactor was allowed to range between 
+0-100\%, but the three parameters had to sum to 100\%. The discharge burnups 
+are restricted to the values considered in the sensitivity analysis.
+
+We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota 
+\cite{adams_dakota_2019} to perform this optimization. For the 
+single-objective problems, we used the ``soga'' solve method in 
+Dakota, which is a single-objective genetic algorithm. For the 
+multi-objective problems we used the ``moga'' solve method in 
+Dakota, which is a multi-objective genetic algorithm. Genetic algorithms
+have previously been used to optimize fuel cycle transitions 
+\cite{passerini_systematic_2014}, which led to the decision to use 
+them for this work.
 
 \section{Once-through optimization}
 
 \section{Recycling optimization}
 
-Optimization for this work means minimizing certain material requirements, 
-specifically the \gls{HALEU} mass and the \hl{???}. This work performs three 
-different optimization problems: minimize the \gls{HALEU} mass, minimize the 
-\hl{???}, and minimizing both. 
+
 
 \cite{andrianov_optimization_2019} minimized total discounted costs using 
 the MESSAGE energy planning software. 
