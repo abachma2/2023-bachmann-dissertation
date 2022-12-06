@@ -303,11 +303,25 @@ to up to 44.11\% of the mass required for 1 0\% Xe-100 build share.
 
 \subsubsection{MMR build share}
 As the \gls{MMR} build share increases all of the metrics increase, as shown 
-in Figure \ref{fig:mmr_scenario7}. As Figure \ref{fig:mmr_reactors_s7} shows, 
-as the \gls{MMR} build share increases, the number of Xe-100s decreases, the 
-number of \glspl{MMR} increases, and the number of VOYGRs is relatively constant. 
-Therefore, variation in the \gls{MMR} build share highlights the results of 
-deploying \glspl{MMR} over the Xe-100. 
+in Figure \ref{fig:mmr_scenario7}. The total \gls{SWU}, \gls{HALEU} \gls{SWU}, 
+and \gls{HALEU} feed have the greatest relative increase because more of the 
+advanced reactor fleet uses the highest enrichment level of the three 
+advanced reactors as the \gls{MMR} build share increases. The \gls{HALEU} mass 
+increases with the \gls{MMR} build share because of the replacement of Xe-100s 
+with \glspl{MMR} with increasing build share (see Figure \ref{fig:mmr_reactors_s7}).
+The \gls{MMR} requires a greater fuel mass than the Xe-100, causing the increase 
+in the \gls{HALEU} mass. The larger fuel mass required by the \gls{MMR}, compared 
+with the Xe-100, compounds with the higher enrichment required by the \gls{MMR} 
+to cause the greater relative increase in the total \gls{SWU}, \gls{HALEU} \gls{SWU}, 
+and \gls{HALEU} feed. 
+
+The \gls{SNF} mass does not experience the same 
+relative increase as the total fuel mass because any fuel that is still in a 
+reactor core at the end of the simulation is not accounted for in the 
+\gls{SNF} mass. 
+Based on the replacement of Xe-100s with \glspl{MMR} as the \gls{MMR} 
+build share increases, these results highlight the effects of deploying the
+\gls{MMR} over the Xe-100. 
 
 \begin{figure}
     \centering
@@ -327,14 +341,6 @@ deploying \glspl{MMR} over the Xe-100.
     \label{fig:mmr_reactors_s7}
 \end{figure}
 
-All of the metrics increase because the \gls{MMR} requires more fuel and 
-a higher product assay than the Xe-100. 
-The total \gls{SWU}, \gls{SWU} to produce \gls{HALEU}, and feed to 
-produce \gls{HALEU} experience the greatest relative increase as the 
-\gls{MMR} build share increases. These metrics all increase the most 
-because the increase in the product assay is compounded with the increase 
-in the product mass when calculating these three metrics. 
-
 
 \subsubsection{VOYGR build share}
 When varying VOYGR build share, the impact on the metrics was 
@@ -343,7 +349,7 @@ opposite that of when varying the Xe-100 build share (Figure
 increase, the \gls{HALEU}-related metrics decrease, and the total 
 \gls{SWU} capacity remains relatively constant. This reversal 
 of trends occurs because there is a replacement of Xe-100s with VOYGRs
-with increasing build share, 
+with increasing build share (Figure \ref{fig:voygr_reactors_s7}), 
 the opposite of what happens with an increasing Xe-100 build share. 
 
 \begin{figure}
@@ -354,15 +360,30 @@ the opposite of what happens with an increasing Xe-100 build share.
     \label{fig:voygr_scenario7}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.7]{voygr_combined_reactors.pdf}
+    \caption{Number of Xe-100s (top left), MMRs (top right), and 
+    VOYGRs (bottom left) deployed as a function of time and 
+    VOYGR build share.}
+    \label{fig:voygr_reactors_s7}
+\end{figure}
+
 The total \gls{SWU} capacity required varies between 99.6\%-101.2\% of the 
 \gls{SWU} capacity needed for a 0\% VOYGR build share, a range of 1.077$\times 10^9$
-- 1.092$\times 10^9$ kg-SWU. The total fuel mass and \gls{SNF} mass increase 
+- 1.092$\times 10^9$ kg-SWU (Table \ref{tab:oat_values}). The total fuel mass 
+and \gls{SNF} mass increase 
 up to 313.9\% of the mass required for a 0\% VOYGR build share, and the 
 \gls{HALEU}-related metrics decrease to 49.77\% of the mass required 
-for a 0\% VOYGR build share. While the trends from varying the VOYGR build share 
+for a 0\% VOYGR build share. The \gls{SNF} and total fuel masses increase 
+because the VOYGR requires more fuel than the Xe-100, largely stemming from 
+the difference in discharge burnup of these two reactors. The \gls{HALEU}-related 
+metrics all decrease because the VOYGR does not require \gls{HALEU}, so as the 
+VOYGR build share increases a smaller portion of the advanced reactor fleet 
+requires \gls{HALEU}. While the trends from varying the VOYGR build share 
 mirrors the trends from varying the Xe-100 build share, the magnitude of the 
-changes are not the same. This magnitude difference is because the variations 
-in these parameters does covers adjacent but not overlapping design spaces. 
+changes are not the same. The magnitude difference occurs because these 
+parameter variations cover adjacent but not overlapping design spaces. 
 
 \subsubsection{Xe-100 burnup}
 When varying the burnup of fuel discharged from Xe-100s, the metrics decrease 
@@ -408,10 +429,57 @@ greatest relative increase with the Xe-100 burnup is low.
 To better investigate the effect of varying the discharge burnup of the Xe-100 
 and \gls{MMR} without the influence of the deployment scheme preferentially
 deploying Xe-100s, we repeated each set of analysis using a constant 20\% 
-build share for the Xe-100 and \gls{MMR}. Using a constant build share for 
+build share for both the Xe-100 and \gls{MMR} (VOYGRs met the remaining 60\%). 
+Using a constant build share for 
 both reactors means that they each will supply the same fraction of the energy demand.
 However, because of the different power output for each reactor a constant build 
 share does not mean that the same number of each reactor is built. 
+
+Figure \ref{fig:bu_constant} shows the relative change in each metric as a result 
+of varying the \gls{MMR} (Figure \ref{fig:mmr_bu_constant}) and Xe-100 
+(Figure \ref{fig:xe100_bu_constant}) discharge burnup with the constant build 
+share. Changing the \gls{MMR} burnup has a greater impact with the specified 20\% 
+build share then when the build share was not specified. This change is because 
+more \glspl{MMR} are deployed with a 20\% build share than when the build share is 
+not specified. Conversely, the Xe-100 burnup has a smaller impact on the metrics 
+with a 20\% build share than when a build share isn't specified because fewer 
+Xe-100s are deployed. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{mmr_bu_constant.pdf}
+        \caption{Change in metrics when varying the MMR discharge burnup, 
+        assuming a constant 20\% build share for the MMR and Xe-100.}
+        \label{fig:mmr_bu_constant}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{xe100_bu_constant.pdf}
+        \caption{Change in metrics when varying the Xe-100 discharge burnup, 
+        assuming a constant 20\% build share for the MMR and Xe-100.}
+        \label{fig:xe100_bu_constant}
+    \end{subfigure}
+    \caption{Relative changes in the metrics caused by changes in the discharge 
+    burnup of the HALEU-fueled advanced reactors, assuming a constant 
+    20\% build share for the Xe-100 and MMR.}
+    \label{fig:bu_constant}
+\end{figure}
+
+By applying a constant build share, variations in these parameters lead to 
+more variation in the effect on the metrics than when a build share was not 
+specified. In these scenarios, varying the discharge burnup of either reactor 
+leads to the greatest impact on the \gls{HALEU}-related metrics while the  
+total fuel mass and \gls{SNF} mass are affected the least. 
+The \gls{HALEU}-related metrics are affected the most because most of the reactors 
+in these scenarios are VOYGRs, which do not require \gls{HALEU}. Therefore, 
+small increases in the each of the \gls{HALEU}-related metrics led to larger 
+relative changes. Conversely, the total fuel mass and \gls{SNF} masses are 
+affected less by changes in these parameters because the fuel and \gls{SNF} 
+for the VOYGRs are constant and increase these values such that the changes 
+observed cause a smaller relative change. 
 
 \subsection{Scenario 14}
 
