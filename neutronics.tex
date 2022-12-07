@@ -13,18 +13,37 @@ This chapter of work explores how the fuel affects the reactors, while
 the other chapters explore how the reactors affect the fuel cycle. 
 
 \section{Methodology}
-Full core models of the Xe-100 and \gls{MMR} were created in Serpent 
+Full core models of Xe-100-like and \gls{MMR}-like were created in Serpent 
 \cite{leppanen_serpent_2014} to model the neutronics and depletion of 
-each reactor design. Each model was run using the ENDF 7.1 library
-\hl{citation}.
+each reactor design. Each model was run using the ENDF VII.1 library
+\cite{chadwick_endfb-vii1_2011}. The core geometries used are not 
+the exact geometries used for each reactor, but are replications based 
+on publicly-available information. 
 
-The model for the Xe-100 was obtained from work by Richter 
-\cite{richter_phlox_2021}, and is an Xe-100-like model that has been used for 
-multiple things. The model is available at \cite{richter_zoerichterphlox_2022}
-The model was adapted slightly to include control rod systems in the 
-graphite moderator. Figure \hl{Xe-100 core figure} shows the axial and 
-radial view of the core. This model was run with 70,000 particles per cycle, 
-150 active cycles, and 50 active cycles. 
+We used the Sanagmon200 model from \cite{richter_isotopic_2022}, shown in 
+Figure \ref{fig:xe100_core}, to serve as an Xe-100-like 
+core model. The model itself can be found at \cite{richter_zoerichterphlox_2022}.
+The Sangamon200 model is a pebble-bed, \gls{HTGR}-style reactor core model 
+initially created to characterize the isotopic compositions and 
+reactor physics of a pebble-bed, \gls{HTGR}. While this reactor model 
+is very similar to current published data for the Xe-energy Xe-100
+\cite{mulder_overview_2021}, there are some notable differences that affect 
+the reactor physics. The first difference is that the \gls{TRISO} particles 
+in the Sangamon200 are modeled as a blended mix of the \gls{TRISO} 
+materials, not the explicit layers. Using a homogenized \gls{TRISO} particle 
+decreases the \keff of the core by 4.45\%, but it does not reduce the 
+neutron flux outside of error \cite{richter_isotopic_2022}. Despite 
+the effect on \keff of this modeling decision, we continued to use the 
+homogenized model of the \gls{TRISO} pebbles to be consistent with the 
+published results of the Sanagamon200 \cite{richter_isotopic_2022}. 
+
+The second 
+notable difference is the reactor vessel shape. The Sanagmon200 is a simple 
+cylinder, while the Xe-100 is a cylinder with a cone at the bottom to funnel 
+the pebbles to a single point as they come out of the core. We do not account 
+for any pebble movement within the core, so the geometry difference between 
+the two cores should produce a negligible effect on the performance of the 
+core as a whole.
 
 \begin{figure}
     \centering 
@@ -45,61 +64,114 @@ radial view of the core. This model was run with 70,000 particles per cycle,
     \label{fig:xe100_core}
 \end{figure}
 
+Each \gls{TRISO} pebble in the core goes through multiple passes, an average 
+of six passes per pebble. To account for the different burnup of 
+the pebbles in an equilibrium core, the \gls{TRISO} pebble compositions are 
+varied to reflect the composition of a pebble after it has gone through 
+each number of passes. Each composition is stagnant, 
+but the variations in 
+compositions within a single pass would likely not cause significant 
+changes in the isotopic composition of the fuel. 
 
-The \gls{MMR} model was built based on open source information 
-about the core design. The model was primarily built based on 
-information in \cite{hawari_development_2018}, with adaptations to 
-better match published information from \gls{USNC} found in 
-\cite{noauthor_usnc_2021}. Figure \ref{fig:mmr_core} shows the radial 
-and axial view of the model created. This model was run with XX active 
-cycles, YY inactive cycles, and ZZ particles per cycle. The burnup steps
-were every two years.
+The Sangamon200 is modeled an an isothermal state at 800 K \cite{richter_isotopic_2022}.
+This model was run with 70,000 particles per cycle, 50 inactive cycles, 
+and 150 active cycles. We did not perform depletion on the Sangamon200 model 
+because our model 
+does not capture the continuous refueling scheme used by the Xe-100 or 
+any pebble movement. Performing depletion without modeling pebble movement 
+would create non-physical differences from the equilibrium condition of 
+this reactor model. Therefore, the results of this model will be comparisons
+of the different uranium compositions for a single burnup step.
+
+We created an \gls{MMR}-like model primarily based on information in 
+\cite{hawari_development_2018}, and supplemented or modified based on 
+information published by \gls{USNC}. Information about the \gls{TRISO} 
+particle and \gls{FCM} pellets was found in \cite{noauthor_usnc_2021}
+and information about the graphite block dimensions and configuration 
+was found via visual inspection of figures in \cite{venneri_micro_2019}. 
+The final core configuration 
+is different than what is modeled in \cite{hawari_development_2018} 
+because the model by Hawari and Venneri is only meant to operate 
+for 10 years, while the \gls{MMR} is meant to operate for 20 years. We 
+selected this core configuration after modeling some of the other core 
+configurations found in literature, and determining that this core 
+configuration can operate the longest before going subcritical. 
+
+Figure \ref{fig:mmr_core} shows the radial and axial geometry of the 
+\gls{MMR} model. The fuel channels have a radius of 1.15 cm, the same
+size as the \gls{FCM} pellets, the coolant channels have a radius of 
+3 cm, arbitrarily chosen because no specific information was found, 
+and the control rod channels have a radius of 6 cm, obtained from 
+\cite{hawari_development_2018}. The \gls{TRISO} particles are modeled 
+with a 40\% packing fraction in the \gls{FCM} particles
+Control rods and burnable poisons are not included in this model, or 
+the Sangamon200 model, so the control rod locations are modeled as 
+filled with helium. There are five layers of the graphite compacts 
+stacked to form the entire core, to approximate the number of 
+fuel blocks described in \cite{noauthor_usnc_2021}. The entire core 
+is assumed to be in an isothermal state at 800 K. There is a 20 cm 
+thick graphite reflector above and below the stacks of graphite, 
+and a 10 cm beryllium-oxide reflector on the outside of the 
+graphite blocks of the core. Both of these reflectors are specified 
+in \cite{hawari_development_2018}, with the thickness of the 
+beryllium-oxide reflector given. However, the thickness of the graphite 
+reflectors above and below the core was not specified, so we selected 
+20 cm to prove 3-5 mean free paths of material. 
+The input files for this model can be found at \textbf{create zenodo 
+object}.
 
 \begin{figure}
-    \centering 
-    \begin{subfigure}{0.45\textwidth}
-        \centering 
-        \includegraphics[scale=0.1]{bachmann-mmr_geom1.png}
-        \caption{Radial view of MMR core model.}
-        \label{fig:mmr_core_radial}        
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}{0.45\textwidth}
-        \centering 
-        \includegraphics[scale=0.12]{bachmann-mmr_geom3.png}
-        \caption{Axial view of MMR core model.}
-        \label{fig:mmr_core_axial}        
-    \end{subfigure}
-    \caption{MMR core model made in serpent. The bright pink is the 
-    graphite in the core, light blue is helium cooling channels, 
-    dark blue is the FCM. The outer two rings are the 
-    beryllium oxide reflector and metal for the RPV.}
-    \label{fig:mmr_core}
+        \begin{subfigure}{0.48\textwidth}
+                \centering
+                \includegraphics[scale=0.1]{bachmann-mmr_geom1.png}
+                \caption{Radial view of the USNC MMR model.}
+                \label{fig:mmr_radial}
+        \end{subfigure}
+        \hfill 
+        \begin{subfigure}{0.48\textwidth}
+                \centering
+                \includegraphics[scale=0.1]{bachmann-mmr_geom3.png}
+                \caption{Axial view of the USNC MMR model.}
+                \label{fig:mmr_axial}
+        \end{subfigure}
+        \caption{Geometry of USNC MMR-like core model in Serpent. The 
+        light blue is helium, dark blue are fuel channels with TRISO particles, 
+        and the bright pink is graphite in the core.}
+        \label{fig:mmr_core}
 \end{figure}
 
-The fresh fuel composition for each core was varied to provide 
-a comparison of pure and impure fuel. For this work, pure fuel, 
-or the base case, refers to fuel that only contains the 235 and 
-238 isotopes of uranium. 
-Material compositions of impure fuel were modeled based on the 
-known compositions of \gls{HALEU} from the \gls{EBR} stockpile 
-\cite{vaden_isotopic_2018} and the Y-12 stockpile \cite{nelson_foreign_2010}.
-Each core was modeled three times: once modeling pure \gls{HALEU}, 
-once modeling impure \gls{HALEU} from the \gls{EBR} stockpile, and once 
-modeling impure \gls{HALEU} from the Y-12 stockpile.
-By modeling the core composition to be entirely composed of impure fuel 
-this work reports the most extreme effect that these impurities can 
-have on reactor performance. Understanding the limitations of using only 
-impure \gls{HALEU} informs on if downblended \gls{HEU} can be used in 
-these reactors exclusively for initial reactor core loadings, or if 
-infrastructure for enriching natural uranium must be established to 
-produce \gls{HALEU} for initial core loadings. 
+For the \gls{MMR}-like model we modeled depletion of the core across the 
+expected 20 year lifetime of the \gls{MMR}, because the core is not 
+meant to undergo refueling during those 20 years. Because we modeled 
+depletion for this model, the flux, \keff, and temperature feedback coefficients
+are compared at the \gls{BOL}, mid-cycle, and \gls{EOL} for the \gls{MMR}-like 
+model. 
+
+For both reactor models, we varied the fuel, coolant, and moderator temperatures 
+between 750 K, 800 K, and 850 K to calculate the fuel, coolant, moderator, and 
+total temperature feedback coefficients. We assumed a linear relationship between 
+\keff and temperature to calculate the feedback coefficients. When varying the 
+temperatures, we also varied the density of the materials. We calculated the 
+density of the UO$_2$ by using the empirical relationship between density and 
+temperature defined in \cite{fink_thermophysical_2000}. We calculated the 
+graphite density by linearly extrapolating from the data available in 
+\cite{mceligot_thermal_nodate}. We calculated the density of the helium 
+by interpolating on the data available in \cite{petersen_properties_nodate}, 
+assuming the 3 MPa coolant pressure in the \gls{MMR}-like model as defined 
+by \cite{noauthor_usnc_2021}. 
 
 \section{Results}
-Results of each simulation to be compared include the neutron flux at 
-\gls{BOL}, mid-cycle, and \gls{EOL}, $k_{eff}$ as a function of burnup, 
-fuel temperature reactivity coefficient, and 
-$\beta_{eff}$ as a function of burnup. Each parameter provides a 
+The points of comparison for this work include:
+\begin{itemize}
+        \item Neutron flux 
+        \item \keff 
+        \item \betaEff
+        \item Temperature feedback coefficients
+\end{itemize}
+
+For the Sangamon200, these metrics are only compared for the initial 
+state of the reactor. For the \gls{MMR}-like reactor these metrics 
+are compared at \gls{BOL}, mid-cycle, and \gls{EOL}. Each metric provides a 
 measurement of the performance of 
 the reactor, such as the materials degradation rate, amount of burnable 
 poisons required, control rod worth, and the cycle time. Investigating 
