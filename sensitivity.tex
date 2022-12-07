@@ -642,6 +642,32 @@ on this metric.
 \subsection{Scenario 14}
 
 \section{Global}
+In each calculation of the global sensitivity analysis, the transition start 
+time, percent of \glspl{LWR} operating for 80 years, the Xe-100 discharge 
+burnup, \gls{MMR} burnup, and build share of one advanced reactor were 
+varied. We decided to perform this analysis three separate times instead of 
+once varying all seven variables to prevent unwanted combinations of the 
+advanced reactor build shares that result in large oversupplies or 
+undersupplies of power. 
+
+All of the variables included in this work can physically take any non-negative 
+real value. However, the discharge burnup values used in this work are specific 
+integer values. To reconcile the use of specific values when others are physical, 
+we created surrogate models, similar to the ones used by Richards and Feng 
+\cite{richards_application_2021}. We generated the data for the model by sampling 
+across the input space 1500 times. The Xe-100 and \gls{MMR} discharge burnups were 
+restricted to the specified values while the other variables were only restricted 
+to the specified range. We randomly sampled (using the Latin Hypercube Sampling 
+method in Dakota) each variable based on the possible values and calculated the 
+metrics for these samples. This data was then used to create the surrogate model 
+to perform the global sensitivity analysis and calculate the Sobol' indices. 
+We once again used random sampling for all of the variables, but allowed the discharge 
+burnups to vary across the range of values instead of restricting them to 
+the specific values. We also instructed Dakota to perform variance decomposition 
+on the surrogate model so that we could calculate the Sobol' indices. The 
+results presented in this section are the Sobol' indices that describes the 
+impact of each input parameter on each output metric. 
+
 \subsection{Scenario 7}
 
 \subsection{Scenario 14}
