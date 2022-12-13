@@ -32,11 +32,94 @@ multi-objective problems we used the ``moga'' solve method in
 Dakota, which is a multi-objective genetic algorithm. Genetic algorithms
 have previously been used to optimize fuel cycle transitions 
 \cite{passerini_systematic_2014}, which led to the decision to use 
-them for this work.
+them for this work. Each of these methods have multiple 
+hyperparameters that require careful tuning and selection. 
+
+\subsection{Hyperparameter tuning}
+Genetic algorithms have a variety of hyperparameters, such as the the 
+population size, mutation rate, and crossover rate, that can affect 
+the results of the algorithm. Therefore, we tuned multiple hyperparameters
+to determine the best combination for this work and the exact algorithm 
+used by Dakota. We performed the tuning by performing a grid search across 
+the possible values for different parameters, a method recommended 
+by Deb \cite{deb_multi-objective_2001}. Not all hyperparameters or 
+all possible values of the hyperparameters were considered. We downselected from 
+the possible hyperparameters and values defined in the Dakota Reference 
+Manual based on personal intuition and limitations on time to perform 
+the tuning. The 
+first grid search performed 40 iterations of different hyperparameter 
+values across a coarse grid. The total number of samples was restricted to 
+500 for each evaluation, which restricts the population size and the 
+number of generations, as the product of these two must equal the 
+total number of samples.Table \ref{tab:soga_tuning} describes 
+the hyperparameters considered in the tuning and the possible 
+values they take. Some of the variables, such as the mutation 
+type, take discrete values while others, such as the crossover 
+rate, can take continuous values. The crossover rate, mutation 
+rate, and constraint penalty were treated as continuous for this 
+tuning, and therefore were randomly sampled within the defined range. 
+The population size can be a continuous variable, but was 
+treated as discrete for this initial search to provide a well-defined 
+number of generations.
+
+\begin{table}
+    \centering 
+    \caption{Hyperparameters and values considered in tuning. If a range 
+    of values is provided, then the hyperparameter a random value in 
+    that range was selected.}
+    \label{tab:soga_tuning}
+    \begin{tabular}{c c c}
+        \hline
+        Hyperparameter & Coarse Search & Fine Search \\
+        \hline 
+        Experiments [\#] & 1-40 & ?? \\
+        Population size [\#] & 5, 10, 25, 50, 100 & \\
+        Constraint penalty & 0.5 $\leq$ x $\leq$ 2 & \\
+        Crossover rate & 0.1 $\leq$ x $\leq$ 0.9 & \\
+        Mutation type & replace uniform, offset normal & \\
+        Mutation rate & 0.01 $\leq$ x $\leq$ 0.2 & \\
+        \hline       
+    \end{tabular}
+\end{table}
+
+
+
+
+Based on the tuning performed, we selected values for each of the 
+hyperparameters. Table \ref{tab:ga_parameters} defines the 
+parameters used with the optimization schemes.
+
+\begin{table}
+    \centering
+    \caption{Parameters of genetic algorithm models}
+    \label{tab:ga_parameters}
+    \begin{tabular}{c c}
+        \hline
+        Parameter & Value \\
+        \hline
+        Population & 20 \\
+        Constraint penalty & \\
+        Crossover rate & 0.8 \\
+        Mutation type & normal distribution \\
+        Mutation rate & 0.2 \\
+        \hline
+        
+    \end{tabular}
+\end{table}
 
 \section{Once-through optimization}
+\subsection{Minimize HALEU SWU}
+
+\subsection{Minimize waste mass}
+
+\subsection{Minimize HALEU SWU and waste mass}
 
 \section{Recycling optimization}
+\subsection{Minimize HALEU SWU}
+
+\subsection{Minimize waste mass}
+
+\subsection{Minimize HALEU SWU and waste mass}
 
 
 
