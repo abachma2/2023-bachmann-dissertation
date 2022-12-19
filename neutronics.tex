@@ -10,7 +10,9 @@ impure \gls{HALEU} fuel in a reactor and compares it to the use of pure
 \gls{HALEU} (only $^{235}$U and $^{238}$U)
 to understand how the impurities affect the performance of the reactor.
 This chapter of work explores how the fuel affects the reactors, while 
-the other chapters explore how the reactors affect the fuel cycle. 
+the other chapters explore how the reactors affect the fuel cycle. We chose 
+the downblended \gls{HALEU} compositions from these sources because
+they are publicly available. 
 
 \section{Methodology}
 Full core models of Xe-100-like and \gls{MMR}-like were created in Serpent 
@@ -83,6 +85,9 @@ would create non-physical differences from the equilibrium condition of
 this reactor model. Therefore, the results of this model will be comparisons
 of the different uranium compositions for a single burnup step.
 
+In order to update the fuel compositions, we calculated the correct 
+isotopics for the enrichment level requried tby this
+
 We created an \gls{MMR}-like model primarily based on information in 
 \cite{hawari_development_2018}, and supplemented or modified based on 
 information published by \gls{USNC}. Information about the \gls{TRISO} 
@@ -153,12 +158,16 @@ total temperature feedback coefficients. We assumed a linear relationship betwee
 \keff and temperature to calculate the feedback coefficients. When varying the 
 temperatures, we also varied the density of the materials. We calculated the 
 density of the UO$_2$ by using the empirical relationship between density and 
-temperature defined in \cite{fink_thermophysical_2000}. We calculated the 
+temperature defined in \cite{fink_thermophysical_2000}. The calculated 
+densities were assumed to hold true for the Sangamon200. 
+
+We calculated the 
 graphite density by linearly extrapolating from the data available in 
 \cite{mceligot_thermal_nodate}. We calculated the density of the helium 
 by interpolating on the data available in \cite{petersen_properties_nodate}, 
 assuming the 3 MPa coolant pressure in the \gls{MMR}-like model as defined 
-by \cite{noauthor_usnc_2021}. 
+by \cite{noauthor_usnc_2021} and the 6 MPa inlet pressure defined in 
+\cite{mulder_overview_2021}. 
 
 \section{Results}
 The points of comparison for this work include:
