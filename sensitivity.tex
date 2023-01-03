@@ -699,38 +699,109 @@ just the parameter, respectively.
 \subsection{Scenario 7}
 
 \subsubsection{Xe-100 build share}
+When running the gaussian surrogate model for the variations in the Xe-100 build 
+share, the models all  have an R$^2$ value of 1, which means that the outputs of 
+the surrogate models match perfectly to the data provided from the initial 
+\Cyclus runs. The large R$^2$ value suggests that this surrogate model type 
+fits to noise in the data provided. A comparison of the results of the 
+gaussian surrogate model and the data provided to the model shows some interesting 
+results. Figure \ref{fig:s7_gaussian_share_haleu} compares the values of the
+\gls{HALEU} mass as a function of the Xe-100 burnup for the Gaussian model 
+and the input data. The results of the Gaussian model follows the input 
+data well, nearly reaching the maximum and minimums of the data. However, 
+closer inspection of the data shows that results of the Gaussian model 
+include non-physical results, such as negative values of \gls{HALEU} mass. 
+These values suggest that the Gaussian model is extrapolating some, instead 
+of just interpolating. Therefore, the Gaussian model is not a perfect 
+match to the input data, which means that the Sobol' indices are different 
+than if the variance decomposition were performed on the input data. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{xe100_share_gaussian_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the gaussian 
+    surrogate model for a model parameter of Xe-100 burnup and 
+    metric of HALEU.}
+    \label{fig:s7_gaussian_share_haleu}
+\end{figure}
+
+Table \ref{tab:s7_sobol_xe100_gaussian} reports the main and total Sobol' indices 
+for each input parameter on each output metric. The highlighted cells have 
+a total Sobol' index of at least 0.5. 
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the Gaussian model when varying the 
+    Xe-100 build share. The first value is the 
+    main index, the second value is the total index.}
     \label{tab:s7_sobol_xe100_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        Xe-100 Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.001/0.002 & 0.005/0.005 & 0.007/0.008 &
+                           0.011/0.011 & 0.007/0.007 & 0.001/0.002\\
+        LWR Lifetime & 0.274/0.289 & 0.012/0.024 & 0.086/0.103 & 
+                       0.013/0.022 & 0.012/0.025 & 0.305/0.321 \\
+        Xe-100 Build Share & \cellcolor{green!25}0.472/0.522 & \cellcolor{green!25}0.385/0.514 & 0.102/0.274 &
+        \cellcolor{green!25}0.369/0.500 & \cellcolor{green!25}0.381/0.511 & 0.407/0.465\\
+        Xe-100 Burnup & 0.188/0.248 & \cellcolor{green!25}0.459/0.556 & \cellcolor{green!25}0.620/0.765 & 
+        \cellcolor{green!25}0.462/0.572 & \cellcolor{green!25}0.457/0.556 & 0.213/0.281\\
+        MMR Burnup & 0.001/0.001 & 0.003/0.006 & 0.005/0.008 & 
+                    0.006/0.009 & 0.004/0.006 & 0.000/0.001\\
         \hline        
     \end{tabular}
 \end{table}
 
+When using a quadratic surrogate model, the R$^2$ values for the training points on 
+each output metric range between 0.921-0.966. Therefore, these model are still expected to 
+fit the input data provided but not be fit to the noise in the input data 
+as much as the Gaussian models. A comparison of the Xe-100 burnup and \gls{HALEU} 
+mass for the input data and the results of the quadratic model (Figure 
+\ref{fig:s7_quadratic_share_haleu}) shows that the quadratic model does 
+capture the overall trend of the input data. However, like the Gaussian model, 
+the quadratic model gives the non-physical result of a negative mass. Additionally, 
+the results of the quadratic model do not meet the maximum of the input data and 
+provide multiple results below the minimum value of the input data. Therefore, 
+the quadratic model is also performing some extrapolation of the data based on the 
+fit placed on the data.
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{xe100_share_quadratic_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the gaussian 
+    surrogate model for a model parameter of Xe-100 burnup and 
+    metric of HALEU.}
+    \label{fig:s7_quadratic_share_haleu}
+\end{figure}
+
+The Sobol' indices for each input parameter on each metric from the quadratic 
+surrogate model are shown in Table \ref{tab:s7_sobol_xe100_quadratic}. The 
+green cells identify total Sobol' indices that are at least 0.5. Some of the 
+total indices are smaller than the main indices -- how?
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the quadratic model when varying the Xe-100 
+    build share. The first number is the main index, the second is the total 
+    index.}
     \label{tab:s7_sobol_xe100_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        Xe-100 Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.000/0.000& 0.006/0.005 & 0.007/0.007 &
+                           0.008/0.007 & 0.008/0.007 & 0.002/0.004\\
+        LWR Lifetime & 0.278/0.286 & 0.014/0.021 & 0.082/0.089 & 
+                       0.015/0.022 & 0.015/0.022 & 0.310/0.319\\
+        Xe-100 Build Share & \cellcolor{green!25}0.443/0.501 & \cellcolor{green!25}0.374/0.500 & 0.115/0.283 & 
+                             0.374/0.499 & 0.374/0.499 & 0.375/0.441\\
+        Xe-100 Burnup & 0.214/0.279 & \cellcolor{green!25}0.472/0.578 & \cellcolor{green!25}0.624/0.773 &
+                        \cellcolor{green!25}0.470/0.576 & \cellcolor{green!25}0.430/0.576 & 0.243/0.315\\
+        MMR Burnup & 0.001/0.001 & 0.002/0.002 & 0.004/0.004 &
+                     0.003/0.003 & 0.003/0.003 & 0.001/0.001\\
         \hline        
     \end{tabular}
 \end{table}
