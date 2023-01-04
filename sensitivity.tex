@@ -705,7 +705,7 @@ the surrogate models match perfectly to the data provided from the initial
 \Cyclus runs. The large R$^2$ value suggests that this surrogate model type 
 fits to noise in the data provided. A comparison of the results of the 
 gaussian surrogate model and the data provided to the model shows some interesting 
-results. Figure \ref{fig:s7_gaussian_share_haleu} compares the values of the
+results. Figure \ref{fig:s7_xe100_gaussian} compares the values of the
 \gls{HALEU} mass as a function of the Xe-100 burnup for the Gaussian model 
 and the input data. The results of the Gaussian model follows the input 
 data well, nearly reaching the maximum and minimums of the data. However, 
@@ -720,14 +720,33 @@ than if the variance decomposition were performed on the input data.
     \centering 
     \includegraphics[scale=0.8]{xe100_share_gaussian_xe100_burnup_haleu.pdf}
     \caption{Comparison of the input data and the results of the gaussian 
-    surrogate model for a model parameter of Xe-100 burnup and 
-    metric of HALEU.}
-    \label{fig:s7_gaussian_share_haleu}
+    surrogate model when the Xe-100 build share is varied. }
+    \label{fig:s7_xe100_gaussian}
 \end{figure}
 
 Table \ref{tab:s7_sobol_xe100_gaussian} reports the main and total Sobol' indices 
 for each input parameter on each output metric. The highlighted cells have 
-a total Sobol' index of at least 0.5. 
+a total Sobol' index of at least 0.5. The Xe-100 build share and Xe-100 
+burnup have the largest Sobol' indices for most of the output metrics. 
+
+The \gls{MMR} burnup has a small Sobol' index for all of the output metrics
+because a very small portion of the fleet are \glspl{MMR}. The Xe-100 build share 
+does not have as much of an impact on the total \gls{SWU} capacity, compared 
+with its impact on the other metrics, because of the similar \gls{SWU} 
+capacity required by the Xe-100 and the VOYGR, and the replacement of Xe-100s 
+with VOYGRs as the Xe-100 build share decreases. The transition start time 
+has little effect on any of the metrics, which is consistent with the 
+results of the \gls{OAT} and synergistic analysis. The \gls{LWR} lifetimes 
+do not greatly affect any of the \gls{HALEU}-related metrics or the 
+total \gls{SWU} capacity. This parameter has some impact on the total 
+fuel mass and the \gls{SNF} mass, but less of an impact than the Xe-100 
+build share. 
+
+The Xe-100 build share has the largest impact on the \gls{SNF} mass, and 
+the other parameters do not have much of an impact. This parameter 
+has more of an impact on the \gls{SNF} mass than the other parameters because 
+of the replacement of Xe-100s with VOYGRs as the Xe-100 build share decreases. 
+The VOYGR 
 
 \begin{table}
     \centering
@@ -740,16 +759,16 @@ a total Sobol' index of at least 0.5.
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & 0.001/0.002 & 0.005/0.005 & 0.007/0.008 &
-                           0.011/0.011 & 0.007/0.007 & 0.001/0.002\\
-        LWR Lifetime & 0.274/0.289 & 0.012/0.024 & 0.086/0.103 & 
-                       0.013/0.022 & 0.012/0.025 & 0.305/0.321 \\
-        Xe-100 Build Share & \cellcolor{green!25}0.472/0.522 & \cellcolor{green!25}0.385/0.514 & 0.102/0.274 &
-        \cellcolor{green!25}0.369/0.500 & \cellcolor{green!25}0.381/0.511 & 0.407/0.465\\
-        Xe-100 Burnup & 0.188/0.248 & \cellcolor{green!25}0.459/0.556 & \cellcolor{green!25}0.620/0.765 & 
-        \cellcolor{green!25}0.462/0.572 & \cellcolor{green!25}0.457/0.556 & 0.213/0.281\\
-        MMR Burnup & 0.001/0.001 & 0.003/0.006 & 0.005/0.008 & 
-                    0.006/0.009 & 0.004/0.006 & 0.000/0.001\\
+        Transition Start & 0.003/0.003 & 0.007/0.007 & 0.007/0.009 &
+                           0.009/0.009 & 0.006/0.009 & 0.003/0.003\\
+        LWR Lifetime & 0.268/0.280 & 0.012/0.021 & 0.081/0.095 &
+                       0.013/0.022 & 0.013/0.022 & 0.301/0.314\\
+        Xe-100 Build Share & \cellcolor{green!25}0.478/0.533 & \cellcolor{green!25}0.375/0.513 & 0.099/0.283 &
+        \cellcolor{green!25}0.374/0.511 & \cellcolor{green!25}0.374/0.512 & 0.411/0.474\\
+        Xe-100 Burnup & 0.188/0.247 & \cellcolor{green!25}0.465/0.571 & \cellcolor{green!25}0.622/0.775 & 
+        \cellcolor{green!25}0.463/0.568 & \cellcolor{green!25}0.463/0.568 & 0.214/0.280\\
+        MMR Burnup & 0.002/0.002 & 0.003/0.004 & 0.005/0.006 & 
+                     0.004/0.005 & 0.004/0.005 & 0.002/0.002\\
         \hline        
     \end{tabular}
 \end{table}
@@ -759,7 +778,7 @@ each output metric range between 0.921-0.966. Therefore, these model are still e
 fit the input data provided but not be fit to the noise in the input data 
 as much as the Gaussian models. A comparison of the Xe-100 burnup and \gls{HALEU} 
 mass for the input data and the results of the quadratic model (Figure 
-\ref{fig:s7_quadratic_share_haleu}) shows that the quadratic model does 
+\ref{fig:s7_xe100_quadratic}) shows that the quadratic model does 
 capture the overall trend of the input data. However, like the Gaussian model, 
 the quadratic model gives the non-physical result of a negative mass. Additionally, 
 the results of the quadratic model do not meet the maximum of the input data and 
@@ -771,15 +790,18 @@ fit placed on the data.
     \centering 
     \includegraphics[scale=0.8]{xe100_share_quadratic_xe100_burnup_haleu.pdf}
     \caption{Comparison of the input data and the results of the gaussian 
-    surrogate model for a model parameter of Xe-100 burnup and 
-    metric of HALEU.}
-    \label{fig:s7_quadratic_share_haleu}
+    surrogate model when the Xe-100 build share is varied.}
+    \label{fig:s7_xe100_quadratic}
 \end{figure}
 
 The Sobol' indices for each input parameter on each metric from the quadratic 
 surrogate model are shown in Table \ref{tab:s7_sobol_xe100_quadratic}. The 
-green cells identify total Sobol' indices that are at least 0.5. Some of the 
-total indices are smaller than the main indices -- how?
+green cells identify total Sobol' indices that are at least 0.5. The same patterns 
+observed in the Sobol' indices from the Gaussian model are 
+observed in the values from the quadratic model as well. The Xe-100 build share 
+and Xe-100 burnup affect the metrics the most, the \gls{LWR} lifetime has some 
+impact, and the \gls{MMR} burnup and transition start time has the smallest impact 
+on the metrics. 
 
 \begin{table}
     \centering
@@ -806,42 +828,119 @@ total indices are smaller than the main indices -- how?
     \end{tabular}
 \end{table}
 
+Based on the results from each model, the Xe-100 build share and Xe-100 burnup 
+should be varied to have the largest impact on the metrics
+
 \subsubsection{MMR build share}
+The Gaussian model has an R$^2$ value of 1 with respect to each of the output 
+metrics. This value means that these models are also expected to fit the input 
+data very well, including any noise present in the data. As Figure 
+\ref{fig:s7_mmr_gaussian} shows, the data from the Gaussian model fits well 
+to the input data provided. Unlike the models predicted based on input data when 
+the Xe-100 build share was varied, this model does not result in any negative 
+mass values. However, it still results in mass values lower than what is 
+present in the input data which suggests that this model also extrapolates 
+on some of the data. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{mmr_share_gaussian_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the Gaussian 
+    surrogate model when the MMR build share is varied.}
+    \label{fig:s7_mmr_gaussian}
+\end{figure}
+
+Examination of the Sobol' indices for this model (Table \ref{tab:s7_sobol_mmr_gaussian})
+shows that the Xe-100 burnup has the largest impact on all of the 
+output metrics. This is somewhat surprising, as one may expect the \gls{MMR} 
+build share and \gls{MMR} burnup to have a strong combined impact on 
+the results. However, this result is consistent with the results 
+shown for the synergistic analysis (Figures \ref{fig:mmr_share_xe100_burnup} and 
+\ref{fig:mmr_share_mmr_burnup}). When the Xe-100 burnup was varied on combination 
+with the \gls{MMR} share, the range of values for each metric was larger than 
+when the \gls{MMR} burnup was varied with the \gls{MMR} build share. 
+
+Similar to the results from varying the Xe-100  build share, the 
+transition start time has no impact on the results. The \gls{LWR} 
+lifetime has less of an impact on the metrics than when the Xe-100 
+build share was varied. The \gls{MMR} has almost no impact on the 
+output metrics. 
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the Gaussian model when varying the MMR 
+    build share. The first number is the main index, the second is the total 
+    index.}
     \label{tab:s7_sobol_mmr_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        MMR Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.001/0.006 & 0.000/0.004 & 0.001/0.001 &
+                           0.001/0.001 & 0.001/0.001 & 0.001/0.006\\
+        LWR Lifetime & 0.054/0.068 & 0.047/0.063 & 0.055/0.071 &
+                       0.054/0.069 & 0.054/0.069 & 0.057/0.071\\
+        MMR Build Share & 0.069/0.107 & 0.068/0.107 & 0.162/0.203 &
+                          0.162/0.204 & 0.152/0.193 & 0.015/0.055\\
+        Xe-100 Burnup & \cellcolor{green!25}0.806/0.846 & \cellcolor{green!25}0.819/0.858 & \cellcolor{green!25}0.700/0.732 &
+        \cellcolor{green!25}0.701/0.734 & \cellcolor{green!25}0.713/0.747 & \cellcolor{green!25}0.858/0.900\\
+        MMR Burnup & 0.035/0.049 & 0.037/0.050 & 0.054/0.071 &
+                     0.054/0.071 & 0.052/0.069 & 0.038/0.053\\
         \hline        
     \end{tabular}
 \end{table}
 
+When using the quadratic surrogate model, the models have R$^2$ values of 0.94
+with respect to each of the output metrics. Therefore, these models also fit 
+the data well without fitting all of the noise present in the input data. 
+As Figure \ref{fig:s7_mmr_quadratic} shows, the output of the quadratic model 
+fits the input data well, but not perfectly. Similar to the quadratic 
+model created from varying the Xe-100 build share, this model 
+does not perform well in fitting the maximum values and under-predicts 
+some of the minimum values in the input data. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{mmr_share_quadratic_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the quadratic 
+    surrogate model when the MMR build share is varied.}
+    \label{fig:s7_mmr_quadratic}
+\end{figure}
+
+The Sobol' indices from the quadratic model are similar to those from the 
+Gaussian model. The Xe-100 burnup has the largest impact on all of the 
+output metrics. The \gls{MMR} build share has the next largest impact 
+on the metrics, but it is a very small impact. The other model 
+parameters have a negligible effect on the metrics. 
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the quadratic model when varying the MMR 
+    build share. The first number is the main index, the second is the total 
+    index.}
     \label{tab:s7_sobol_mmr_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        MMR Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.002/0.003 & 0.000/0.000 & 0.000/0.000 &
+                        0.000/0.000 & 0.000/0.000 & 0.002/0.003\\
+        LWR Lifetime & 0.023/0.062 & 0.046/0.054 & 0.050/0.059 &
+                       0.049/0.057 & 0.049/0.057 & 0.054/0.064\\
+        MMR Build Share & 0.051/0.087 & 0.052/0.089 & 0.133/0.171 &
+                          0.133/0.171 & 0.124/0.162 & 0.008/0.046\\
+        Xe-100 Burnup & \cellcolor{green!25}0.834/0.866 & \cellcolor{green!25}0.846/0.875 & \cellcolor{green!25}0.742/0.764 &
+        \cellcolor{green!25}0.742/0.765 & \cellcolor{green!25}0.753/0.777 & \cellcolor{green!25}0.879/0.909\\
+        MMR Burnup & 0.034/0.039 & 0.034/0.040 & 0.050/0.058 & 
+                     0.050/0.058 & 0.048/0.056 & 0.035/0.041\\
         \hline        
     \end{tabular}
 \end{table}
+
+The results of these models emphasize the role that the Xe-100 burnup 
+plays in the material requirements of these fuel cycles. 
 
 \subsubsection{VOYGR build share}
 \begin{table}
