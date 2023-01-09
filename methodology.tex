@@ -397,6 +397,16 @@ technology.
 Advanced reactors in these scenarios are deployed in the same manner 
 as they are deployed in the once-through scenarios, as described in 
 Section \ref{sec:once-through-methods}. 
+
+The accuracy of the spent fuel recipes is of great importance 
+when modeling a fuel cycle with recycling, because the spent fuel 
+composition is directly related to the amount of \gls{MOX} that 
+can be created fro each unit of spent fuel. Therefore, to 
+dynamically account for the depletion of fuel in a reactor, 
+this work created a new \Cyclus archetype that couples \Cyclus with 
+OpenMC \cite{romano_openmc:_2015}, an open-source Monte Carlo 
+neutron transport code that can perform depletion. More details 
+of this archetype are found in Chapter \ref{ch:openmcyclus}.
  
 
 \section{Calculation of results} \label{sec:results_calc}
