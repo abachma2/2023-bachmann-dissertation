@@ -10,10 +10,12 @@ repository for this archetype can be found at \hl{Create Zenodo object}.
 
 \section{Methodology}
 
-Using the IndependentOperator in OpenMC, performs depletion. We use this class in 
+Using the IndependentOperator in OpenMC, performs depletion without transport. 
+We use this class in 
 OpenMC because it's faster than using the CoupledOperator, which performs a full 
 transport calculation with the depletion. Required to create the 1-group cross 
-sections, don't update the cross sections 
+sections, don't update the cross sections. Effects of not updating the cross 
+sections cite Olek's work when out. 
 
 \section{Demonstration}
 We demonstrated the new archetype using two problems: a once-through scenario with one 
