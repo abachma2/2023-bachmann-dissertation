@@ -943,38 +943,72 @@ The results of these models emphasize the role that the Xe-100 burnup
 plays in the material requirements of these fuel cycles. 
 
 \subsubsection{VOYGR build share}
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{voygr_share_gaussian_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the Gaussian 
+    surrogate model when the VOYGR build share is varied.}
+    \label{fig:s7_voygr_gaussian}
+\end{figure}
+
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the Gaussian model when varying the VOYGR 
+    build share. The first number is the main index, the second is the total 
+    index.}
     \label{tab:s7_sobol_voygr_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        VOYGR Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.002/0.003 & 0.000/0.001 & 0.000/0.002 & 
+                           0.000/0.001 & 0.000/0.001 & 0.001/0.003\\
+        LWR Lifetime & 0.065/0.076 & 0.020/0.033 & 0.033/0.045 & 
+                       0.020/0.033 & 0.020/0.033 & 0.069/0.081\\
+        VOYGR Build Share & 0.252/0.284 & 0.114/0.0151 & 0.028/0.067 &
+                            0.114/0.151 & 0.114/0.151 & 0.204/0.238\\
+        Xe-100 Burnup & 0.652/0.683 & 0.837/0.883 & 0.910/0.956 & 
+                        0.836/0.881 & 0.836/0.881 & 0.696/0.730\\
+        MMR Burnup & 0.002/0.002 & 0.000/0.002 & 0.001/0.001 & 
+                     0.001/0.002 & 0.001/0.002 & 0.002/0.002\\
         \hline        
     \end{tabular}
 \end{table}
 
+When using the quadratic fit, the R$^2$ values range between 0.94-0.95. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{voygr_share_quadratic_xe100_burnup_haleu.pdf}
+    \caption{Comparison of the input data and the results of the quadratic 
+    surrogate model when the VOYGR build share is varied.}
+    \label{fig:s7_voygr_quadratic}
+\end{figure}
+
 \begin{table}
     \centering
-    \caption{Sobol' indices for the gaussian model}
+    \caption{Sobol' indices for the quadratic model when varying the VOYGR 
+    build share. The first number is the main index, the second is the total 
+    index.}
     \label{tab:s7_sobol_voygr_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
         & \multicolumn{6}{c}{Output Metric} \\
         Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
         \hline
-        Transition Start & \\
-        LWR Lifetime & \\
-        VOYGR Build Share & \\
-        Xe-100 Burnup & \\
-        MMR Burnup & \\
+        Transition Start & 0.002/0.002 & 0.000/0.000 & 0.000/0.001 &
+                           0.000/0.000 & 0.000/0.000 & 0.001/0.002\\
+        LWR Lifetime & 0.063/0.071 & 0.020/0.031 & 0.031/0.042 &
+                       0.051/0.031 & 0.020/0.031 & 0.066/0.075\\
+        VOYGR Build Share & 0.214/0.243 & 0.108/0.143 & 0.030/0.066 &
+                            0.108/0.143 & 0.108/0.143 & 0.170/0.200\\
+        Xe-100 Burnup & 0.700/0.724 & 0.843/0.884 & 0.911/0.952 &
+                        0.842/0.883 & 0.843/0.883 & 0.740/0.767\\
+        MMR Burnup & 0.001/0.001 & 0.001/0.001 & 0.001/0.002 &
+                     0.001/0.002 & 0.001/0.001 & 0.001/0.001\\
         \hline        
     \end{tabular}
 \end{table}
