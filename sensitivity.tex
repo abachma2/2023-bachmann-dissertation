@@ -943,6 +943,11 @@ The results of these models emphasize the role that the Xe-100 burnup
 plays in the material requirements of these fuel cycles. 
 
 \subsubsection{VOYGR build share}
+The R$^2$ values for the Gaussian model with respect to 
+each output metric is 1, similar to each of the other Gaussian 
+models. Comparing the input data and the Gaussian model data 
+(Figure \ref{fig:s7_voygr_gaussian}) shows that the data from the 
+Gaussian model fits very well to the input data provided. 
 
 \begin{figure}
     \centering 
@@ -952,6 +957,25 @@ plays in the material requirements of these fuel cycles.
     \label{fig:s7_voygr_gaussian}
 \end{figure}
 
+The Sobol' indices from this model, shown in Table \ref{tab:s7_sobol_voygr_gaussian}
+show a similar trend to the Sobol' indices from varying the \gls{MMR}
+build share. The Xe-100 burnup has the largest impact on all of the 
+results, the transition start time and \gls{MMR} burnup have no 
+effect on the metrics, and the \gls{LWR} lifetimes and VOYGR build share 
+have a very small impact on the metrics. 
+
+Based on the results of 
+the \gls{OAT} analysis, increasing the VOYGR build share replaces 
+Xe-100s with VOYGRs. Therefore, the VOYGR build share implicitly 
+impacts the Xe-100 build share, which leads to this input parameter 
+having a larger impact on the metrics than most of the other variables. 
+The VOYGR build share has a larger impact on the fuel mass and the 
+\gls{SNF} mass than the other metrics because the VOYGR takes in more 
+and discharges more 
+fuel than the Xe-100 and \gls{MMR} per unit time and energy. The 
+increased impact of the VOYGR build share on these metrics leads to 
+the decreased impact of the Xe-100 burnup, relative to the 
+\gls{HALEU}-related metrics. 
 
 \begin{table}
     \centering
@@ -970,8 +994,8 @@ plays in the material requirements of these fuel cycles.
                        0.020/0.033 & 0.020/0.033 & 0.069/0.081\\
         VOYGR Build Share & 0.252/0.284 & 0.114/0.0151 & 0.028/0.067 &
                             0.114/0.151 & 0.114/0.151 & 0.204/0.238\\
-        Xe-100 Burnup & 0.652/0.683 & 0.837/0.883 & 0.910/0.956 & 
-                        0.836/0.881 & 0.836/0.881 & 0.696/0.730\\
+        Xe-100 Burnup & \cellcolor{green!25}0.652/0.683 & \cellcolor{green!25}0.837/0.883 & \cellcolor{green!25}0.910/0.956 & 
+        \cellcolor{green!25}0.836/0.881 & \cellcolor{green!25}0.836/0.881 & \cellcolor{green!25}0.696/0.730\\
         MMR Burnup & 0.002/0.002 & 0.000/0.002 & 0.001/0.001 & 
                      0.001/0.002 & 0.001/0.002 & 0.002/0.002\\
         \hline        
@@ -979,6 +1003,12 @@ plays in the material requirements of these fuel cycles.
 \end{table}
 
 When using the quadratic fit, the R$^2$ values range between 0.94-0.95. 
+These values are consistent with the R$^2$ values for the other 
+quadratic models in this work. The data from this quadratic model,
+compared with the input data in Figure \ref{fig:s7_voygr_quadratic}, 
+shows that it does not fully reach the maximum of the input data
+and under-predicts some of the minimum values. These trends have 
+been observed in all of the quadratic models created for this analysis. 
 
 \begin{figure}
     \centering 
@@ -987,6 +1017,11 @@ When using the quadratic fit, the R$^2$ values range between 0.94-0.95.
     surrogate model when the VOYGR build share is varied.}
     \label{fig:s7_voygr_quadratic}
 \end{figure}
+
+The Sobol' indices from this model, given in Table \ref{tab:s7_sobol_voygr_quadratic},
+have the same pattern as the Sobol' indices from the Gaussian model created. 
+This data does not provide any new insights into how each input parameter
+affects the output metrics of this transition scenario. 
 
 \begin{table}
     \centering
@@ -1005,8 +1040,8 @@ When using the quadratic fit, the R$^2$ values range between 0.94-0.95.
                        0.051/0.031 & 0.020/0.031 & 0.066/0.075\\
         VOYGR Build Share & 0.214/0.243 & 0.108/0.143 & 0.030/0.066 &
                             0.108/0.143 & 0.108/0.143 & 0.170/0.200\\
-        Xe-100 Burnup & 0.700/0.724 & 0.843/0.884 & 0.911/0.952 &
-                        0.842/0.883 & 0.843/0.883 & 0.740/0.767\\
+        Xe-100 Burnup & \cellcolor{green!25}0.700/0.724 & \cellcolor{green!25}0.843/0.884 & \cellcolor{green!25}0.911/0.952 &
+        \cellcolor{green!25}0.842/0.883 &\cellcolor{green!25} 0.843/0.883 & \cellcolor{green!25}0.740/0.767\\
         MMR Burnup & 0.001/0.001 & 0.001/0.001 & 0.001/0.002 &
                      0.001/0.002 & 0.001/0.001 & 0.001/0.001\\
         \hline        
