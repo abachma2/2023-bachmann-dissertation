@@ -72,17 +72,80 @@ number of generations.
         \hline
         Hyperparameter & Coarse Search & Fine Search \\
         \hline 
-        Experiments [\#] & 1-40 & ?? \\
-        Population size [\#] & 5, 10, 25, 50, 100 & \\
-        Constraint penalty & 0.5 $\leq$ x $\leq$ 2 & \\
-        Crossover rate & 0.1 $\leq$ x $\leq$ 0.9 & \\
-        Mutation type & replace uniform, offset normal & \\
-        Mutation rate & 0.01 $\leq$ x $\leq$ 0.2 & \\
+        Experiments [\#] & 1-40 & 41-60 \\
+        Population size [\#] & 5, 10, 25, 50, 100 & 25, 50\\
+        Constraint penalty & 0.5 $\leq$ x $\leq$ 2 & 1 $\leq$ x $\leq$ 2\\
+        Crossover rate & 0.1 $\leq$ x $\leq$ 0.9 & 0.3 $\leq$ x $\leq$ 0.9\\
+        Mutation type & replace uniform, offset normal & replace uniform, offset normal\\
+        Mutation rate & 0.01 $\leq$ x $\leq$ 0.2 & 0.025 $\leq$ x $\leq$ 0.19\\
         \hline       
     \end{tabular}
 \end{table}
 
 
+Figure \ref{fig:soga_coarse_tuning} shows the results of the coarse tuning 
+for the single objective problem. From these results, we observe that the 
+\gls{HALEU} \gls{SWU} capacity tends to be lower with:
+\begin{itemize}
+    \item a population size between 10 and 50
+    \item an ``offset normal'' mutation type
+\end{itemize}
+
+\begin{figure}
+    \includegraphics[scale=0.7]{soga_coarse_tunng.pdf}
+    \caption{Results of coarse tuning for the single-objective 
+    optimization.}
+    \label{fig:soga_coarse_tuning}
+\end{figure}
+
+Five of the tuning runs reached the theoretical minimum for \gls{HALEU} \gls{SWU} 
+capacity of 0 kg-SWU, which occurs when only the VOYGR is deployed. Four of the 
+runs had a population size of 25 and one had a population size of 50. Three of 
+them used an ``offset normal'' mutation 
+type, while two used a ``replace uniform'' mutation type. The smallest mutation 
+rate was 0.029 and the largest is 0.182, so this hyperparameter spans most of 
+the space. The crossover rates ranges between 0.3-0.888. The constraint 
+penalty ranges between 0.648-1.986, with four of the five runs having constraint 
+penalties above 1.0. Based on this information, we ran another 20 tuning runs with 
+a finer grid for some of the parameters, defined in the ``Fine Search'' column of 
+Table \ref{tab:soga_tuning}, based on these results. 
+
+Three of the fine tuning cases found the theoretical minimum. Observations about 
+these cases include:
+\begin{itemize}
+    \item All had a population size of 25
+    \item The mutation rates varied between 0.123-0.166
+    \item The crossover rates varied between 0.415-0.70, with two of the three 
+          runs having crossover rates between 0.4-0.5
+    \item The constraint penalty values ranged between 1.157-1.530
+\end{itemize}
+Combined with the observations from the coarse tuning, the hyperparameter 
+tuning suggests that a population size of 25, a mutation rate above 
+0.1, crossover rate between 0.4-0.7, and a constraint penalty 
+between 1.1-1.6 should be used.  
+
+In addition to hyperparameters, another consideration in the tuning process 
+is how well the linear constraint of the problem (all of the advanced 
+reactor build shares sum to 100) is met. According to the Dakota 
+Reference Manual page for the ``SOGA'' optimization method, this 
+optimization method does not always strictly adhere to any linear 
+constraints defined by the user \cite{adams_dakota_2019}. In practice, 
+this means that the constraint will not be met by every evaluation but the 
+final solution will meet the constraint. Because not all evaluations 
+adhere to the constraint, this method is likely to take more time and 
+compute resources than the optimization methods in Dakota that will 
+adhere to the constraint on every evaluation. 
+
+The build share for the \gls{MMR} and Xe-100 are each under 1\% for all of 
+the tuning runs that reached the theoretical minimum. While these values 
+are not zero, the workflow applied rounded these values to zero, which resulted 
+in none of these reactors being deployed and reaching the theoretical 
+minimum for \gls{HALEU} {SWU}. The rounding of the build share values (which 
+is also applied to the VOYGR build share) leads to an undersupply of 
+power in all scenarios, because the largest VOYGR build share is 99\%. 
+The undersupply of power demonstrates that fuel cycle modelers need to have 
+a strong understanding of their assumptions, such as how numbers are rounded, 
+when using the methodology for optimizing a fuel cycle. 
 
 
 Based on the tuning performed, we selected values for each of the 
@@ -97,11 +160,11 @@ parameters used with the optimization schemes.
         \hline
         Parameter & Value \\
         \hline
-        Population & 20 \\
+        Population & 25 \\
         Constraint penalty & \\
-        Crossover rate & 0.8 \\
-        Mutation type & normal distribution \\
-        Mutation rate & 0.2 \\
+        Crossover rate & \\
+        Mutation type & \\
+        Mutation rate & \\
         \hline
         
     \end{tabular}
