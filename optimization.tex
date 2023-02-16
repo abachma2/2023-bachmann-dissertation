@@ -35,7 +35,7 @@ have previously been used to optimize fuel cycle transitions
 them for this work. Each of these methods have multiple 
 hyperparameters that require careful tuning and selection. 
 
-\subsection{Hyperparameter tuning}
+\subsection{Single-objective hyperparameter tuning}
 Genetic algorithms have a variety of hyperparameters, such as the the 
 population size, mutation rate, and crossover rate, that can affect 
 the results of the algorithm. Therefore, we tuned multiple hyperparameters
@@ -114,15 +114,19 @@ Three of the fine tuning cases found the theoretical minimum. Observations about
 these cases include:
 \begin{itemize}
     \item All had a population size of 25
-    \item The mutation rates varied between 0.123-0.166
+    \item The mutation rates varied between 0.123-0.168
     \item The crossover rates varied between 0.415-0.70, with two of the three 
           runs having crossover rates between 0.4-0.5
-    \item The constraint penalty values ranged between 1.157-1.530
+    \item The constraint penalty values ranged between 1.157-1.792
 \end{itemize}
 Combined with the observations from the coarse tuning, the hyperparameter 
 tuning suggests that a population size of 25, a mutation rate above 
 0.1, crossover rate between 0.4-0.7, and a constraint penalty 
-between 1.1-1.6 should be used.  
+between 1.1-1.6 should be used. For the mutation type, the replace uniform 
+method and the offset normal methods resulted in four and five runs that 
+reached the theoretical minimum, respectively, across the two sets of 
+tuning cases. As a whole, this hyperparameter did not cause as much of 
+an effect on the results.
 
 In addition to hyperparameters, another consideration in the tuning process 
 is how well the linear constraint of the problem (all of the advanced 
@@ -147,31 +151,65 @@ The undersupply of power demonstrates that fuel cycle modelers need to have
 a strong understanding of their assumptions, such as how numbers are rounded, 
 when using the methodology for optimizing a fuel cycle. 
 
-
+\subsubsection{Hyperparameter selection}
 Based on the tuning performed, we selected values for each of the 
 hyperparameters. Table \ref{tab:ga_parameters} defines the 
-parameters used with the optimization schemes.
+parameters used with the single-objective optimization schemes. These 
+hyperparameters match the hyperparameter values of tuning run 54, 
+which resulted in a \gls{HALEU} \gls{SWU} value of 0. These hyperparameters 
+were selected over the hyperparameters of the other runs that resulted in 
+0 \gls{HALEU} \gls{SWU} because this run selected variables that came closest to 
+meeting the constraint of a 100\% advanced reactor build share after the rounding 
+was applied. 
 
 \begin{table}
     \centering
-    \caption{Parameters of genetic algorithm models}
-    \label{tab:ga_parameters}
+    \caption{Hyperparameters selcted for single-objective optimization.}
+    \label{tab:soga_parameters}
     \begin{tabular}{c c}
         \hline
         Parameter & Value \\
         \hline
         Population & 25 \\
-        Constraint penalty & \\
-        Crossover rate & \\
-        Mutation type & \\
-        Mutation rate & \\
+        Constraint penalty & 1.157\\
+        Crossover rate & 0.415\\
+        Mutation type & offset normal\\
+        Mutation rate & 0.123\\
         \hline
         
     \end{tabular}
 \end{table}
 
+\subsection{Multi-objective hyperparamter tuning}
+Hyperparameter tuning for a multi-objective problem is more complicated 
+than tuning for a single-objective problem. 
+
+\subsubsection{Hyperparameter selection}
+
 \section{Once-through optimization}
 \subsection{Minimize HALEU SWU}
+By applying the hyperparameters to an optimization problem to minimize the 
+\gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
+found a minimum with the values defined in Table \ref{tab:soga_ot_haleu}.
+
+\begin{table}
+    \centering 
+    \caption{Values resulting in a minimum \gls{HALEU} \gls{SWU} capacity for 
+              a once-through transition scenario.}
+    \label{tab:soga_ot_haleu}
+    \begin{tabular}{c c}
+        \hline
+        Variable & Value \\
+        \hline
+        LWR Lifetime & 19.04\\
+        Xe-100 build share & 0.14\\
+        MMR build share & 0.73\\
+        VOYGR build share & 98.85\\
+        Xe-100 burnup & 140\\
+        MMR burnup & 82\\
+        \hline
+    \end{tabular}
+\end{table}
 
 \subsection{Minimize waste mass}
 
