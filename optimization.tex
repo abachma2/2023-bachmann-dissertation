@@ -42,25 +42,35 @@ the results of the algorithm. Therefore, we tuned multiple hyperparameters
 to determine the best combination for this work and the exact algorithm 
 used by Dakota. We performed the tuning by performing a grid search across 
 the possible values for different parameters, a method recommended 
-by Deb \cite{deb_multi-objective_2001}. Not all hyperparameters or 
-all possible values of the hyperparameters were considered. We downselected from 
+by Deb \cite{deb_multi-objective_2001} and demonstrated for reactor 
+design optimization by Chee \cite{chee_fluoride-salt-cooled_2022}. 
+Not all hyperparameters or all possible values of the hyperparameters 
+were considered. We downselected from 
 the possible hyperparameters and values defined in the Dakota Reference 
-Manual based on personal intuition and limitations on time to perform 
-the tuning. The 
+Manual based on hyperparameters defined in previous generic algorithms 
+for nuclear energy applications
+\cite{passerini_systematic_2014,chee_fluoride-salt-cooled_2022},
+personal intuition, and limitations on time to perform 
+the tuning.
+
+The 
 first grid search performed 40 iterations of different hyperparameter 
 values across a coarse grid. The total number of samples was restricted to 
-500 for each evaluation, which restricts the population size and the 
+300 for each evaluation, which restricts the population size and the 
 number of generations, as the product of these two must equal the 
-total number of samples.Table \ref{tab:soga_tuning} describes 
-the hyperparameters considered in the tuning and the possible 
-values they take. Some of the variables, such as the mutation 
+total number of samples. Table \ref{tab:soga_tuning} describes 
+the hyperparameters considered in the tuning and the range of possible 
+values considered. Some of the variables, such as the mutation 
 type, take discrete values while others, such as the crossover 
 rate, can take continuous values. The crossover rate, mutation 
 rate, and constraint penalty were treated as continuous for this 
 tuning, and therefore were randomly sampled within the defined range. 
 The population size can be a continuous variable, but was 
 treated as discrete for this initial search to provide a well-defined 
-number of generations.
+number of generations. Hyperparameters not varied in the tuning, and 
+help constant for all runs include the convergence type (kept at
+``best fitness tracker'' ), the fitness type (kept at ``merit function''),
+and the random seed (kept at the same value for all runs).
 
 \begin{table}
     \centering 
@@ -142,25 +152,27 @@ adhere to the constraint on every evaluation.
 
 The build share for the \gls{MMR} and Xe-100 are each under 1\% for all of 
 the tuning runs that reached the theoretical minimum. While these values 
-are not zero, the workflow applied rounded these values to zero, which resulted 
-in none of these reactors being deployed and reaching the theoretical 
-minimum for \gls{HALEU} {SWU}. The rounding of the build share values (which 
-is also applied to the VOYGR build share) leads to an undersupply of 
-power in all scenarios, because the largest VOYGR build share is 99\%. 
-The undersupply of power demonstrates that fuel cycle modelers need to have 
-a strong understanding of their assumptions, such as how numbers are rounded, 
-when using the methodology for optimizing a fuel cycle. 
+are not zero, the workflow applied rounded down these values to zero, which 
+resulted in none of these reactors being deployed and reaching the 
+theoretical minimum for \gls{HALEU} {SWU}. The rounding of the build share 
+values (which is also applied to the other input parameters) leads to an 
+undersupply of power in all scenarios, because the largest VOYGR build 
+share is 99\%. The undersupply of power demonstrates that fuel cycle 
+modelers need to have a strong understanding of their assumptions, such 
+as how numbers are rounded, when using the methodology for optimizing a 
+fuel cycle. 
 
 \subsubsection{Hyperparameter selection}
 Based on the tuning performed, we selected values for each of the 
 hyperparameters. Table \ref{tab:ga_parameters} defines the 
 parameters used with the single-objective optimization schemes. These 
-hyperparameters match the hyperparameter values of tuning run 54, 
+hyperparameters match the hyperparameter values of tuning run 50, 
 which resulted in a \gls{HALEU} \gls{SWU} value of 0. These hyperparameters 
 were selected over the hyperparameters of the other runs that resulted in 
 0 \gls{HALEU} \gls{SWU} because this run selected variables that came closest to 
 meeting the constraint of a 100\% advanced reactor build share after the rounding 
-was applied. 
+was applied. We applied these hyperparameters to all single-objective 
+optimization problems in this work. 
 
 \begin{table}
     \centering
@@ -171,12 +183,11 @@ was applied.
         Parameter & Value \\
         \hline
         Population & 25 \\
-        Constraint penalty & 1.157\\
-        Crossover rate & 0.415\\
+        Constraint penalty & 1.554\\
+        Crossover rate & 0.753\\
         Mutation type & offset normal\\
-        Mutation rate & 0.123\\
+        Mutation rate & 0.045\\
         \hline
-        
     \end{tabular}
 \end{table}
 
@@ -201,17 +212,39 @@ found a minimum with the values defined in Table \ref{tab:soga_ot_haleu}.
         \hline
         Variable & Value \\
         \hline
-        LWR Lifetime & 19.04\\
-        Xe-100 build share & 0.14\\
-        MMR build share & 0.73\\
-        VOYGR build share & 98.85\\
-        Xe-100 burnup & 140\\
-        MMR burnup & 82\\
+        LWR Lifetime & \\
+        Xe-100 build share & \\
+        MMR build share & \\
+        VOYGR build share & \\
+        Xe-100 burnup & \\
+        MMR burnup & \\
         \hline
     \end{tabular}
 \end{table}
 
 \subsection{Minimize waste mass}
+By applying the hyperparameters to an optimization problem to minimize the 
+\gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
+found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
+
+\begin{table}
+    \centering 
+    \caption{Values resulting in a minimum \gls{HALEU} \gls{SWU} capacity for 
+              a once-through transition scenario.}
+    \label{tab:soga_ot_waste}
+    \begin{tabular}{c c}
+        \hline
+        Variable & Value \\
+        \hline
+        LWR Lifetime & \\
+        Xe-100 build share & \\
+        MMR build share & \\
+        VOYGR build share & \\
+        Xe-100 burnup & \\
+        MMR burnup & \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \subsection{Minimize HALEU SWU and waste mass}
 
