@@ -1,14 +1,25 @@
 \section{Methodology}
 Optimization of the nuclear fuel cycle is intended to develop 
-a fuel cycle based on a specific objective or objectives. For this 
-work, we developed three different optimization problems to apply to 
+a fuel cycle based on a specific objective or objectives. 
+Optimization has previously been applied to the nuclear fuel 
+cycle \cite{passerini_sensitivity_2012,andrianov_optimization_2019}
+and other nuclear engineering \cite{chee_fluoride-salt-cooled_2022}.
+This application of optimization uses \Cyclus \cite{huff_fundamental_2016}
+to simulate the fuel cycle and Dakota \cite{adams_dakota_2019} to 
+perform the optimization. In this chapter we demonstrate a methodology to 
+apply this coupling to different optimization problems, and identify 
+advantages and disadvantages of this methodology to optimize a nuclear 
+fuel cycle. 
+
+We developed three different optimization problems to apply to 
 Scenarios 7 (no growth, once-through transition to the \gls{MMR}, Xe-100, 
 and VOYGR) and 14 (no growth, limited recycling transition to the 
 \gls{MMR}, Xe-100, and VOYGR): minimizing the \gls{SWU} capacity to 
 produce \gls{HALEU}, minimizing the mass of \gls{SNF} for disposal, 
 and minimizing both the \gls{HALEU} \gls{SWU} and the \gls{SNF} 
 mass. To optimize these transitions, we consider six different 
-variables: percent of \glspl{LWR} operating for 80 years, the build share 
+variables: percent of \glspl{LWR} operating for 80 years (the \gls{LWR} 
+lifetime), the build share 
 of Xe-100s, the build share of \glspl{MMR}, the build share of VOYGRs, 
 the discharge burnup of the Xe-100, and the discharge burnup of the 
 \gls{MMR}. All of these variables were considered in the sensitivity 
@@ -164,9 +175,9 @@ fuel cycle.
 
 \subsubsection{Hyperparameter selection}
 Based on the tuning performed, we selected values for each of the 
-hyperparameters. Table \ref{tab:ga_parameters} defines the 
+hyperparameters. Table \ref{tab:soga_parameters} defines the 
 parameters used with the single-objective optimization schemes. These 
-hyperparameters match the hyperparameter values of tuning run 50, 
+hyperparameters match the hyperparameter values of tuning run 29, 
 which resulted in a \gls{HALEU} \gls{SWU} value of 0. These hyperparameters 
 were selected over the hyperparameters of the other runs that resulted in 
 0 \gls{HALEU} \gls{SWU} because this run selected variables that came closest to 
@@ -193,7 +204,17 @@ optimization problems in this work.
 
 \subsection{Multi-objective hyperparamter tuning}
 Hyperparameter tuning for a multi-objective problem is more complicated 
-than tuning for a single-objective problem. 
+than tuning for a single-objective problem. In multi-objective 
+problems, there is no single best solution but rather many solutions 
+that form a Pareto front \cite{adams_dakota_2019}. The points on a 
+Pareto front indicate that further improvement of one objective 
+results in a worsening of another objective. Therefore, to tune the 
+hyperparameters of a multi-objective problem, one tunes base on the 
+hypervolume of the Pareto front \textbf{Find citation}. The 
+hypervolume of a Pareto front is calculated by calculating the area 
+contained by 
+
+Used equal weights for each objective. 
 
 \subsubsection{Hyperparameter selection}
 
@@ -226,6 +247,7 @@ found a minimum with the values defined in Table \ref{tab:soga_ot_haleu}.
 By applying the hyperparameters to an optimization problem to minimize the 
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
 found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
+The minimum waste mass determined through the optimization is 22,703 MT. 
 
 \begin{table}
     \centering 
@@ -236,15 +258,36 @@ found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
         \hline
         Variable & Value \\
         \hline
-        LWR Lifetime & \\
-        Xe-100 build share & \\
-        MMR build share & \\
-        VOYGR build share & \\
-        Xe-100 burnup & \\
-        MMR burnup & \\
+        LWR Lifetime & 49.31\%\\
+        Xe-100 build share & 85.93\%\\
+        MMR build share & 6.53\%\\
+        VOYGR build share & 9.31\%\\
+        Xe-100 burnup & 185 MWd/kgU\\
+        MMR burnup & 90 MWd/kgU\\
         \hline
     \end{tabular}
 \end{table}
+
+Each of the variables either match or trend towards expectations for this problem. 
+Based on the transition analysis (Chapter \ref{ch:once_through_results}) and 
+sensitivity analysis (Chapter \ref{ch:sa}), one would expect that to minimize 
+the spent fuel mass the \gls{LWR} lifetime percent, Xe-100 build share, 
+Xe-100 burnup, and \gls{MMR} burnup would all be maximized while the \gls{MMR} 
+and VOYGR build shares are minimized with the deployment of \glspl{MMR} favored 
+over VOYGR deployment. The Xe-100 and \gls{MMR} burnup values are at the maximum 
+values considered for this work, which matches expectations. The \gls{LWR} lifetime 
+extension percent is near the maximum considered for this work, which suggests that 
+the waste mass from advanced reactors could be further decreased by using the 
+maximum of this input parameter. 
+
+The advanced reactor build shares trend towards expectations, but don't fully 
+meet them. The deployment of Xe-100s over the other advanced reactors is consistent 
+with the results in Table \ref{tab:nogrowth_waste}, which shows that only deploying 
+Xe-100s results in less spent fuel mass than the other combinations of the reactors. 
+Therefore, one would expect that the Xe-100 build share would be 100\%. Then combined 
+with the other input parameters (the \gls{LWR} lifetime percent and Xe-100 burnup 
+specifically) the optimized transition scenario would result in less spent fuel 
+mass than the scenarios considered in Chapter \ref{tab:nogrowth_waste}.
 
 \subsection{Minimize HALEU SWU and waste mass}
 
@@ -254,14 +297,3 @@ found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
 \subsection{Minimize waste mass}
 
 \subsection{Minimize HALEU SWU and waste mass}
-
-
-
-\cite{andrianov_optimization_2019} minimized total discounted costs using 
-the MESSAGE energy planning software. 
-
-I get a general sense that a lot of work has been done to optimize fuel cycles 
-for cost, unf management, or proliferation risk. Not seeing a whole lot on 
-material requirements. 
-Methods I'm seeing: genetic algorithms, linear programming, stochastic linear 
-programming (same thing?)
