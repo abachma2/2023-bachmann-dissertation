@@ -322,37 +322,54 @@ second pass through the reactor. Continuous recycling assumes that all
 \gls{SNF} is recycled an unlimited number of times until all fissile 
 material has been used. Both recycling schemes were considered in the 
 \acrfull{ES} \cite{wigeland_nuclear_2014}, which is why they are both 
-considered in this work.  
-
-All of the scenarios with recycling model the transition from the 
-current fleet of \glspl{LWR} to the X-energy Xe-100, \gls{USNC} \gls{MMR}, 
-and the NuScale VOYGR, the same as in scenarios 7 and 13. This combination 
-of reactors is considered for this step of the work, and not all of the 
-combinations considered for the once-through scenarios, to limit the scope 
-of the work while providing some amount of comparison between the 
-once-through and recycle transition scenarios. 
+considered in this work. Another distinction between some of the 
+scenarios is if \gls{TRISO} fuel is recycled. \gls{TRISO} fuel is 
+expensive and difficult to recycle \textbf{find citation}, and 
+therefore by modeling scenarios that do and do not recycle 
+\gls{TRISO} we can model realistic scenarios in which \gls{TRISO} 
+is recycled and more academic scenarios in which all spent fuel is 
+recycled. 
 
 \begin{table}[ht]
     \centering
     \caption{Summary of the recycle fuel cycle transition scenarios.}
     \label{tab:scenarios_recycle}
-    \begin{tabular}{l l l}
+    \begin{tabular}{l l l l}
             \hline
-            Scenario number & Energy growth model & Recycle scheme\\\hline
-            14 & No growth & Limited \\
-            15 & No growth & Continuous \\
-            16 & 1\% growth & Limited \\
-            17 & 1\% growth & Continuous \\
+            Scenario number & Energy growth model & Recycle scheme & TRISO recycled?\\
+            \hline
+            14 & No growth & Limited & Yes\\
+            15 & No growth & Limited & No\\
+            16 & No growth & Continuous & ??? \\
+            17 & 1\% growth & Limited & Yes\\
+            18 & 1\% growth & Limited & No\\
+            19 & 1\% growth & Continuous & ??? \\
             \hline
     \end{tabular}
 \end{table}
 
+All of the scenarios with recycling model the transition from the 
+current fleet of \glspl{LWR} to the X-energy Xe-100, \gls{USNC} \gls{MMR}, 
+and the NuScale VOYGR, the same as in scenarios 7 and 13. Therefore, 
+the advanced reactor deployment schedules for these two scenarios are applied 
+to the recycling scencarios for the appropriate energy grwoth model. 
+This combination 
+of reactors is considered for this step of the work, and not all of the 
+combinations considered for the once-through scenarios, to limit the scope 
+of the work while providing some amount of comparison between the 
+once-through and recycle transition scenarios. Because these scenarios 
+use the same advanced reactor deployment schedule, the number of 
+advanced reactors and the energy supplied are not examined in the 
+results because they will be the same for each of these scenarios. Instead, 
+the results of these scenarios will focus on the material requriements. 
+
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
-for the scenarios with limited recycling (Scenarios 14 and 16). This fuel 
-cycle assumes that \gls{SNF}
-from the \glspl{LWR} and advanced reactors can undergo separation and be 
-recycled. A separations facility is defined to be deployed 5 years before 
-the transition 
+for the scenarios with limited recycling (Scenarios 14, 15, 17, and 18). 
+In scenarios 15 and 18 only the spent fuel from the \glspl{LWR} and 
+VOYGRs is sent to the reprocessing facility, but in scenarios 14 and 17, 
+all spent fuel from the advanced reactors and \glspl{LWR} is sent to the 
+reprocessing facility. A separations facility is defined to be deployed 5 
+years before the transition 
 begins (i.e. in 2020), as this strategy is commonly used for modeling 
 transitions with recycling \cite{passerini_systematic_2014,richards_application_2021}
 to ensure that enough fuel can be separated and 
@@ -394,14 +411,10 @@ technology.
 
 \input{continuous-recycling-flow}
 
-Advanced reactors in these scenarios are deployed in the same manner 
-as they are deployed in the once-through scenarios, as described in 
-Section \ref{sec:once-through-methods}. 
-
 The accuracy of the spent fuel recipes is of great importance 
 when modeling a fuel cycle with recycling, because the spent fuel 
 composition is directly related to the amount of \gls{MOX} that 
-can be created fro each unit of spent fuel. Therefore, to 
+can be created from each unit of spent fuel. Therefore, to 
 dynamically account for the depletion of fuel in a reactor, 
 this work created a new \Cyclus archetype that couples \Cyclus with 
 OpenMC \cite{romano_openmc:_2015}, an open-source Monte Carlo 
