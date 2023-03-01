@@ -25,35 +25,42 @@ the discharge burnup of the Xe-100, and the discharge burnup of the
 \gls{MMR}. All of these variables were considered in the sensitivity 
 analysis. The transition start time was also considered in the sensitivity 
 analysis. However, that analysis showed that the transition start time has
-a much smaller impact on each of the metrics and delaying the transition 
+very little effect on each of the metrics and delaying the transition 
 can lead to unfulfilled energy demand. Therefore, this parameter is 
 not considered in the optimization of each scenario. 
 
 For this work, the percent of \glspl{LWR} operating for 80 years 
 was constrained to between 0-50\% of the current \gls{LWR} fleet. 
 The build share of each advanced reactor was allowed to range between 
-0-100\%, but the three parameters had to sum to 100\%. The discharge burnups 
-are restricted to the values considered in the sensitivity analysis.
+0-100\%, but the three parameters had to sum to 100\%. The discharge 
+burnups are restricted to the values considered in the \gls{OAT} 
+sensitivity analysis.
 
 We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota 
 \cite{adams_dakota_2019} to perform this optimization. For the 
 single-objective problems, we used the ``soga'' solve method in 
 Dakota, which is a single-objective genetic algorithm. For the 
 multi-objective problems we used the ``moga'' solve method in 
-Dakota, which is a multi-objective genetic algorithm. Genetic algorithms
+Dakota, which is a multi-objective genetic algorithm. The Dakota 
+User's Manual \cite{adams_dakota_2019} provides some guidance 
+on selecting the most appropriate optimization method available 
+in Dakota. According to this guide, these two methods are the most 
+appropriate to use, because the problem has continuous and 
+discrete variables as well as bound and linear constraints. 
+Additionally, genetric algorithms
 have previously been used to optimize fuel cycle transitions 
-\cite{passerini_systematic_2014}, which led to the decision to use 
-them for this work. Each of these methods have multiple 
-hyperparameters that require careful tuning and selection. 
-
-\subsection{Single-objective hyperparameter tuning}
+\cite{passerini_systematic_2014}. 
 Genetic algorithms have a variety of hyperparameters, such as the the 
 population size, mutation rate, and crossover rate, that can affect 
 the results of the algorithm. Therefore, we tuned multiple hyperparameters
 to determine the best combination for this work and the exact algorithm 
-used by Dakota. We performed the tuning by performing a grid search across 
-the possible values for different parameters, a method recommended 
-by Deb \cite{deb_multi-objective_2001} and demonstrated for reactor 
+used by Dakota.
+
+\subsection{Single-objective hyperparameter tuning}
+We performed the tuning by performing a grid search across 
+the possible values for some parameters, a method recommended 
+by Deb \cite{deb_multi-objective_2001}, and used random 
+search over other parameters. This method was demonstrated for reactor 
 design optimization by Chee \cite{chee_fluoride-salt-cooled_2022}. 
 Not all hyperparameters or all possible values of the hyperparameters 
 were considered. We downselected from 
@@ -67,7 +74,7 @@ the tuning.
 The 
 first grid search performed 40 iterations of different hyperparameter 
 values across a coarse grid. The total number of samples was restricted to 
-300 for each evaluation, which restricts the population size and the 
+500 for each evaluation, which restricts the population size and the 
 number of generations, as the product of these two must equal the 
 total number of samples. Table \ref{tab:soga_tuning} describes 
 the hyperparameters considered in the tuning and the range of possible 
@@ -103,6 +110,12 @@ and the random seed (kept at the same value for all runs).
     \end{tabular}
 \end{table}
 
+All six of the input parameters considered were limited to integer
+values by using the ``discrete design set'' variable definition for the 
+Xe-100 and \gls{MMR} burnups and the ``discrete design range'' variable 
+definition for the other four. This variable definition was selected to 
+simplify file names and prevent rounding of values from Dakota.
+
 
 Figure \ref{fig:soga_coarse_tuning} shows the results of the coarse tuning 
 for the single objective problem. From these results, we observe that the 
@@ -119,75 +132,14 @@ for the single objective problem. From these results, we observe that the
     \label{fig:soga_coarse_tuning}
 \end{figure}
 
-Five of the tuning runs reached the theoretical minimum for \gls{HALEU} \gls{SWU} 
-capacity of 0 kg-SWU, which occurs when only the VOYGR is deployed. Four of the 
-runs had a population size of 25 and one had a population size of 50. Three of 
-them used an ``offset normal'' mutation 
-type, while two used a ``replace uniform'' mutation type. The smallest mutation 
-rate was 0.029 and the largest is 0.182, so this hyperparameter spans most of 
-the space. The crossover rates ranges between 0.3-0.888. The constraint 
-penalty ranges between 0.648-1.986, with four of the five runs having constraint 
-penalties above 1.0. Based on this information, we ran another 20 tuning runs with 
-a finer grid for some of the parameters, defined in the ``Fine Search'' column of 
-Table \ref{tab:soga_tuning}, based on these results. 
 
-Three of the fine tuning cases found the theoretical minimum. Observations about 
-these cases include:
-\begin{itemize}
-    \item All had a population size of 25
-    \item The mutation rates varied between 0.123-0.168
-    \item The crossover rates varied between 0.415-0.70, with two of the three 
-          runs having crossover rates between 0.4-0.5
-    \item The constraint penalty values ranged between 1.157-1.792
-\end{itemize}
-Combined with the observations from the coarse tuning, the hyperparameter 
-tuning suggests that a population size of 25, a mutation rate above 
-0.1, crossover rate between 0.4-0.7, and a constraint penalty 
-between 1.1-1.6 should be used. For the mutation type, the replace uniform 
-method and the offset normal methods resulted in four and five runs that 
-reached the theoretical minimum, respectively, across the two sets of 
-tuning cases. As a whole, this hyperparameter did not cause as much of 
-an effect on the results.
-
-In addition to hyperparameters, another consideration in the tuning process 
-is how well the linear constraint of the problem (all of the advanced 
-reactor build shares sum to 100) is met. According to the Dakota 
-Reference Manual page for the ``SOGA'' optimization method, this 
-optimization method does not always strictly adhere to any linear 
-constraints defined by the user \cite{adams_dakota_2019}. In practice, 
-this means that the constraint will not be met by every evaluation but the 
-final solution will meet the constraint. Because not all evaluations 
-adhere to the constraint, this method is likely to take more time and 
-compute resources than the optimization methods in Dakota that will 
-adhere to the constraint on every evaluation. 
-
-The build share for the \gls{MMR} and Xe-100 are each under 1\% for all of 
-the tuning runs that reached the theoretical minimum. While these values 
-are not zero, the workflow applied rounded down these values to zero, which 
-resulted in none of these reactors being deployed and reaching the 
-theoretical minimum for \gls{HALEU} {SWU}. The rounding of the build share 
-values (which is also applied to the other input parameters) leads to an 
-undersupply of power in all scenarios, because the largest VOYGR build 
-share is 99\%. The undersupply of power demonstrates that fuel cycle 
-modelers need to have a strong understanding of their assumptions, such 
-as how numbers are rounded, when using the methodology for optimizing a 
-fuel cycle. 
 
 \subsubsection{Hyperparameter selection}
-Based on the tuning performed, we selected values for each of the 
-hyperparameters. Table \ref{tab:soga_parameters} defines the 
-parameters used with the single-objective optimization schemes. These 
-hyperparameters match the hyperparameter values of tuning run 29, 
-which resulted in a \gls{HALEU} \gls{SWU} value of 0. These hyperparameters 
-were selected over the hyperparameters of the other runs that resulted in 
-0 \gls{HALEU} \gls{SWU} because this run selected variables that came closest to 
-meeting the constraint of a 100\% advanced reactor build share after the rounding 
-was applied. We applied these hyperparameters to all single-objective 
-optimization problems in this work. 
+
 
 \begin{table}
     \centering
-    \caption{Hyperparameters selcted for single-objective optimization.}
+    \caption{Hyperparameters selected for single-objective optimization.}
     \label{tab:soga_parameters}
     \begin{tabular}{c c}
         \hline
@@ -212,9 +164,47 @@ results in a worsening of another objective. Therefore, to tune the
 hyperparameters of a multi-objective problem, one tunes base on the 
 hypervolume of the Pareto front \textbf{Find citation}. The 
 hypervolume of a Pareto front is calculated by calculating the area 
-contained by 
+between the Pareto front and a reference point. The reference point 
+must be selected such that all values on the Pareto front are contained in 
+the hypervolume. 
 
-Used equal weights for each objective. 
+For multi-objective problems, we used the ``moga'' method in Dakota, which 
+stands for Multi-objective Genetic Algorithm. Using this method, Dakota
+outputs the Pareto front for the problem, which can then be used to 
+tune the hyperparameters for this problem. 
+
+We began by using the same problem and general sets of variable definitions 
+as what was used for the ``soga'' runs: linear constraint, integers for 
+all variables. We observed that by using a linear equality constraint
+Dakota only found a single solution, as opposed to a Pareto front, because 
+not all of the samples adhere to linear constraints. By using a linear 
+inequality constraint, defining that the advanced reactor build share is 
+at least 100\%, Dakota was able to provide values for a Pareto front. 
+We then used the `deap' python package to calculate the hyper volume 
+for a given Pareto front. 
+
+Hyperparameters selected for tuning in this work include the 
+population size, the mutation rate, and the crossover rate. Each 
+hyperparameter took specific values, instead of doing a random 
+search of values, because of resource limitations. The population 
+sizes considered include 10, 25, and 50, mutation rates considered 
+include 0.08, 0.1, 0.15, \textbf{SOGA parameter}, and the crossover rates 
+considered include 0.3, 0.8, and \textbf{SOGA parameter}. These values 
+were selected based off of the hyper parameters used for the single-objective 
+problem, the default value in Dakota, or intuition. The default values for 
+the population size, mutation rate, and crossover rate are 50, 
+0.08, and 0.8, respectively, in Dakota. Therefore, if the value of a 
+hyperparameter is not specified, the Dakota default value is used.  
+We ran each set of hyper 
+parameters 20 times, and compared the statistics of the hypervolumes of 
+the resulting Pareto fronts. From this data, we selected the 
+hyperparameters to use for multi-objective optimization for this work. 
+
+
+
+
+
+Not assigning any weights
 
 \subsubsection{Hyperparameter selection}
 
@@ -251,7 +241,7 @@ The minimum waste mass determined through the optimization is 22,703 MT.
 
 \begin{table}
     \centering 
-    \caption{Values resulting in a minimum \gls{HALEU} \gls{SWU} capacity for 
+    \caption{Values resulting in a minimum waste mass disposed of for 
               a once-through transition scenario.}
     \label{tab:soga_ot_waste}
     \begin{tabular}{c c}
@@ -290,6 +280,8 @@ specifically) the optimized transition scenario would result in less spent fuel
 mass than the scenarios considered in Chapter \ref{tab:nogrowth_waste}.
 
 \subsection{Minimize HALEU SWU and waste mass}
+
+Results to include: graph of Pareto front
 
 \section{Recycling optimization}
 \subsection{Minimize HALEU SWU}
