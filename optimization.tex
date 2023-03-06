@@ -45,11 +45,14 @@ Dakota, which is a multi-objective genetic algorithm. The Dakota
 User's Manual \cite{adams_dakota_2019} provides some guidance 
 on selecting the most appropriate optimization method available 
 in Dakota. According to this guide, these two methods are the most 
-appropriate to use, because the problem has continuous and 
-discrete variables as well as bound and linear constraints. 
+appropriate to use, because the problem has bound and linear constraints. 
 Additionally, genetric algorithms
 have previously been used to optimize fuel cycle transitions 
 \cite{passerini_systematic_2014}. 
+
+Genetic algorithms are based on... and work by...
+
+
 Genetic algorithms have a variety of hyperparameters, such as the the 
 population size, mutation rate, and crossover rate, that can affect 
 the results of the algorithm. Therefore, we tuned multiple hyperparameters
@@ -121,8 +124,8 @@ Figure \ref{fig:soga_coarse_tuning} shows the results of the coarse tuning
 for the single objective problem. From these results, we observe that the 
 \gls{HALEU} \gls{SWU} capacity tends to be lower with:
 \begin{itemize}
-    \item a population size between 10 and 50
-    \item an ``offset normal'' mutation type
+    \item 
+    \item 
 \end{itemize}
 
 \begin{figure}
@@ -135,7 +138,8 @@ for the single objective problem. From these results, we observe that the
 
 
 \subsubsection{Hyperparameter selection}
-
+Table \ref{tab:soga_parameters} defines the hyperparameters used 
+for all single-objective problems in this work.
 
 \begin{table}
     \centering
@@ -180,7 +184,7 @@ Dakota only found a single solution, as opposed to a Pareto front, because
 not all of the samples adhere to linear constraints. By using a linear 
 inequality constraint, defining that the advanced reactor build share is 
 at least 100\%, Dakota was able to provide values for a Pareto front. 
-We then used the `deap' python package to calculate the hyper volume 
+We then calculated the hyper volume 
 for a given Pareto front. 
 
 Hyperparameters selected for tuning in this work include the 
@@ -238,6 +242,9 @@ By applying the hyperparameters to an optimization problem to minimize the
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
 found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
 The minimum waste mass determined through the optimization is 22,703 MT. 
+
+How well did this work? How important is it to tune the hyper parameters 
+for each problem?
 
 \begin{table}
     \centering 
