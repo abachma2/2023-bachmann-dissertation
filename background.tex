@@ -804,10 +804,10 @@ evaluated fuel cycle options based on radiotoxicity of the \gls{SNF} and
 
 \subsection{Dakota}
 One tool for performing sensitivity analysis and optimization is 
-Dakota \cite{adams_dakota_2019}.
+Dakota \cite{adams_dakota_2021}.
 \gls{SNL} developed Dakota as a systematic way for scientists and 
 engineers to "obtain improved or optimal designs or understand sensitivity
-or uncertainty using simulation-based models" \cite{adams_dakota_2019}.
+or uncertainty using simulation-based models" \cite{adams_dakota_2021}.
 Dakota can easily be coupled with a variety of codes in a ``black-box'' 
 manner
 to remove supplying Dakota with any of the other program's source code.
@@ -819,14 +819,18 @@ Dakota does not need any information about the code to which it is coupled.
 The sampling of the input parameter values can be performed with a variety of 
 methods, including even grid spacing across multiple dimensions, specific 
 intervals along a specific vector, or Latin Hypercube Sampling 
-\cite{adams_dakota_2019}.
+\cite{adams_dakota_2021}.
 
 Dakota performs optimization through a variety of methods, including
 gradient-based, multi-objective optimization, and surrogate-based 
-minimization \cite{adams_dakota_2019}. The optimization problem can be 
+minimization \cite{adams_dakota_2021}. The optimization problem can be 
 solved by minimizing an objective function based on given constraints. The 
 constraints can be upper and lower bounds for a value or nonlinear 
-equality constraints with a given target value. 
+equality constraints with a given target value. The optimization 
+methods ins Dakota have been applied to a variety of engineering problems,
+including for the optimization of carbon fiber composites 
+\cite{skulborstad_multi-objective_2018} and to compare different 
+multi-objective optimization techniques \cite{chiandussi_comparison_2012}. 
 
 Dakota has been coupled with fuel cycle simulators such as \gls{DYMOND} and 
 \Cyclus 

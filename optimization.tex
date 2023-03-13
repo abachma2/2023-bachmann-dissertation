@@ -37,25 +37,58 @@ burnups are restricted to the values considered in the \gls{OAT}
 sensitivity analysis.
 
 We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota 
-\cite{adams_dakota_2019} to perform this optimization. For the 
+\cite{adams_dakota_2021} to perform this optimization. For the 
 single-objective problems, we used the ``soga'' solve method in 
 Dakota, which is a single-objective genetic algorithm. For the 
 multi-objective problems we used the ``moga'' solve method in 
 Dakota, which is a multi-objective genetic algorithm. The Dakota 
-User's Manual \cite{adams_dakota_2019} provides some guidance 
+User's Manual \cite{adams_dakota_2021} provides some guidance 
 on selecting the most appropriate optimization method available 
 in Dakota. According to this guide, these two methods are the most 
 appropriate to use, because the problem has bound and linear constraints. 
-Additionally, genetric algorithms
+Additionally, genetic algorithms
 have previously been used to optimize fuel cycle transitions 
-\cite{passerini_systematic_2014}. 
+\cite{passerini_systematic_2014}. More specifically, the ``moga'' method 
+in Dakota was found to always lead to a correct and accurate solution set 
+when used with five different benchmark problems \cite{chiandussi_comparison_2012}.
 
-Genetic algorithms are based on... and work by...
 
+Genetic algorithms are based on the survival of the fittest principle in 
+evolutionary biology \cite{adams_dakota_2021}. The algorithm randomly 
+selects an initial population of model parameters, with each set of model 
+parameters forming a ``genetic string'' that is analogous to a DNA string 
+that is unique for each member of a population \cite{adams_dakota_2021}.
+Each member of a population is evaluated for its performance on a given 
+problem, and the best performing sets of parameters are passed to the next 
+generations, emulating the breeding of a population. In addition to 
+passing along parameters sets to the next generation, crossovers and 
+mutations occur. Crossovers are when one parameter value is exchanged 
+between two members of the same population, similar to the combination of 
+the genes from a parent to form a child \cite{kramer_genetic_2017}. In 
+the crossover, the string of parameters are split at an arbitrary point, and 
+switched to form two different offspring.
+Mutations are when a parameter 
+value of a population member is replaced with a random value within the 
+parameter space. After mutation, the new population is evaluated for 
+its performance in the defined problem. This process of 
+crossover, mutation, and evaluation is performed for each population 
+until a convergence criteria is met. Convergence criteria can be based on 
+the convergence of a solution, the number of evaluations, or both. 
 
 Genetic algorithms have a variety of hyperparameters, such as the the 
-population size, mutation rate, and crossover rate, that can affect 
-the results of the algorithm. Therefore, we tuned multiple hyperparameters
+mutation rate and crossover rate, that can affect 
+the results of the algorithm and the speed at which a solution is found. 
+Specifically, the crossover and mutation rates of a genetic algorithm 
+control how similar each population is to the one before it, and how much 
+of new space is considered.If the mutation rate is too low, then the 
+genetic algorithm can reach a local minimum instead of a global 
+minimum. If the mutation rate is too high, then the algorithm behaves more 
+like a random search and isn't able to fully use the information about the 
+previous generation to find a minimum. If the crossover rate is too low, 
+each generation is too similar to the one before it and the algorithm 
+with converge without adequately exploring the parameter space. 
+Therefore, before the genetic algorithms in Dakota can be used to 
+optimize the fuel cycle transition, we must tune multiple hyperparameters
 to determine the best combination for this work and the exact algorithm 
 used by Dakota.
 
