@@ -136,12 +136,12 @@ and the random seed (kept at the same value for all runs).
         \hline
         Hyperparameter & Coarse Search & Fine Search \\
         \hline 
-        Experiments [\#] & 1-40 & 41-60 \\
-        Population size [\#] & 5, 10, 25, 50, 100 & 25, 50\\
-        Constraint penalty & 0.5 $\leq$ x $\leq$ 2 & 1 $\leq$ x $\leq$ 2\\
-        Crossover rate & 0.1 $\leq$ x $\leq$ 0.9 & 0.3 $\leq$ x $\leq$ 0.9\\
+        Experiments [\#] & 1-40 & 41-68 \\
+        Population size [\#] & 5, 10, 25, 50, 100 & 50, 100\\
+        Constraint penalty & 0.5 $\leq$ x $\leq$ 2 & 0.5 $\leq$ x $\leq$ 2\\
+        Crossover rate & 0.1 $\leq$ x $\leq$ 0.9 & 0.1 $\leq$ x $\leq$ 0.9\\
         Mutation type & replace uniform, offset normal & replace uniform, offset normal\\
-        Mutation rate & 0.01 $\leq$ x $\leq$ 0.2 & 0.025 $\leq$ x $\leq$ 0.19\\
+        Mutation rate & 0.01 $\leq$ x $\leq$ 0.2 & 0.01 $\leq$ x $\leq$ 0.19\\
         \hline       
     \end{tabular}
 \end{table}
@@ -154,15 +154,18 @@ simplify file names and prevent rounding of values from Dakota.
 
 
 Figure \ref{fig:soga_coarse_tuning} shows the results of the coarse tuning 
-for the single objective problem. From these results, we observe that the 
-\gls{HALEU} \gls{SWU} capacity tends to be lower with:
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
+for the single objective problem. From these results, we observe that a 
+larger population size results in lower \gls{HALEU} \gls{SWU} capacity required
+and performs the best in meeting the build share constraint for this work. 
+These two observations strongly point to the use of a larger population size. 
+From the other hyperparameters, there are no conclusions that can be drawn 
+about a range of values that should be used. 
+Therefore, more tuning cases (the ``Fine Search'' in Table \ref{tab:soga_tuning})
+were performed to provide more insight into how the other hyperparameters 
+affect the results with the larger population sizes. 
 
 \begin{figure}
-    \includegraphics[scale=0.7]{soga_coarse_tunng.pdf}
+    \includegraphics[scale=0.4]{soga_coarse_tuning_all_parameters.pdf}
     \caption{Results of coarse tuning for the single-objective 
     optimization.}
     \label{fig:soga_coarse_tuning}
