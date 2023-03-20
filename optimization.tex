@@ -5,7 +5,7 @@ Optimization has previously been applied to the nuclear fuel
 cycle \cite{passerini_sensitivity_2012,andrianov_optimization_2019}
 and other nuclear engineering \cite{chee_fluoride-salt-cooled_2022}.
 This application of optimization uses \Cyclus \cite{huff_fundamental_2016}
-to simulate the fuel cycle and Dakota \cite{adams_dakota_2019} to 
+to simulate the fuel cycle and Dakota \cite{adams_dakota_2021} to 
 perform the optimization. In this chapter we demonstrate a methodology to 
 apply this coupling to different optimization problems, and identify 
 advantages and disadvantages of this methodology to optimize a nuclear 
@@ -248,7 +248,7 @@ the total build share constraint.
         Population & 100 \\
         Constraint penalty & 1.109\\
         Crossover rate & 0.584\\
-        Mutation type & replace normal\\
+        Mutation type & replace uniform\\
         Mutation rate & 0.116\\
         \hline
     \end{tabular}
@@ -266,7 +266,7 @@ constraint by allowing more exploration of the variable space.
 Hyperparameter tuning for a multi-objective problem is more complicated 
 than tuning for a single-objective problem. In multi-objective 
 problems, there is no single best solution but rather many solutions 
-that form a Pareto front \cite{adams_dakota_2019}. The points on a 
+that form a Pareto front \cite{adams_dakota_2021}. The points on a 
 Pareto front indicate that further improvement of one objective 
 results in a worsening of another objective. Therefore, to tune the 
 hyperparameters of a multi-objective problem, one tunes base on the 
@@ -296,8 +296,8 @@ population size, the mutation rate, and the crossover rate. Each
 hyperparameter took specific values, instead of doing a random 
 search of values, because of resource limitations. The population 
 sizes considered include 10, 25, and 50, mutation rates considered 
-include 0.08, 0.1, 0.15, \textbf{SOGA parameter}, and the crossover rates 
-considered include 0.3, 0.8, and \textbf{SOGA parameter}. These values 
+include 0.08, 0.1, 0.0116, 0.15, and the crossover rates 
+considered include 0.3, 0.584, 0.8. These values 
 were selected based off of the hyper parameters used for the single-objective 
 problem, the default value in Dakota, or intuition. The default values for 
 the population size, mutation rate, and crossover rate are 50, 
@@ -309,11 +309,6 @@ the resulting Pareto fronts. From this data, we selected the
 hyperparameters to use for multi-objective optimization for this work. 
 
 
-
-
-
-Not assigning any weights
-
 \subsubsection{Hyperparameter selection}
 
 \section{Once-through optimization}
@@ -321,6 +316,8 @@ Not assigning any weights
 By applying the hyperparameters to an optimization problem to minimize the 
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
 found a minimum with the values defined in Table \ref{tab:soga_ot_haleu}.
+The \gls{SWU} capacity required to produce \gls{HALEU} for these input 
+parameters is 4.812$\times 10^7$ kg-SWU.
 
 \begin{table}
     \centering 
@@ -331,24 +328,73 @@ found a minimum with the values defined in Table \ref{tab:soga_ot_haleu}.
         \hline
         Variable & Value \\
         \hline
-        LWR Lifetime & \\
-        Xe-100 build share & \\
-        MMR build share & \\
-        VOYGR build share & \\
-        Xe-100 burnup & \\
-        MMR burnup & \\
+        LWR Lifetime & 36\%\\
+        Xe-100 build share & 0\%\\
+        MMR build share & 2\%\\
+        VOYGR build share & 100\%\\
+        Xe-100 burnup & 151 MWd/kgU\\
+        MMR burnup & 90 MWd/kgU\\
         \hline
     \end{tabular}
 \end{table}
 
+The \gls{HALEU} \gls{SWU} capacity output from this optimization is not the
+theoretical minimum for this problem, and is larger than any of the values 
+presented in Table \ref{tab:soga_tuning_results}. This solution results in 
+a larger \gls{HALEU} \gls{SWU} capacity required because the parameters selected 
+by Dakota results in a build share greater than 100\%, which artificially 
+inflates the material resources needed for the transition. Additionally, 
+Dakota selected a non-zero build share of \glspl{MMR}, which as the transition 
+analysis and sensitivity analysis shows requires more \gls{SWU} capacity than 
+the Xe-100 and VOYGR. 
+
+The inability of the ``soga'' algorithm to properly meet the build share 
+constraint in the tuning cases and in this problem identifies a significant 
+disadvantage of using this method to optimize the transition. According to the 
+Dakota documentation, the ``soga'' method provides a feasible solution, but
+may violate the constraint as it searches the input space \cite{noauthor_dakota_2021}.
+In practice, I observed that the algorithm freely explores the parameter space 
+without regards to the constraint and the final solution provided is the 
+iteration that best meets the constraint and minimizes the objective function.
+Dakota developers suggest variation of the `constraint penalty' hyperparameter 
+to force the algorithm to more strictly adhere to the constraint 
+\cite{noauthor_optimization_2023}. 
+However, Figures \ref{fig:soga_coarse_tuning} and \ref{fig:soga_fine_tuning}
+do not show any strong correlation between the constraint penalty and how 
+well the constraint is met (shown in the purple line in the bottom row of 
+plots). This problem ended at 1000 iterations (the maximum allowed) and 
+provided results that met the build share constraint to a similar 
+extent as many of the tuning cases, which only ran a maximum of 500 iterations. 
+Therefore, it is not clear if allowing more iterations will yield results that 
+better meet the constraint. The Dakota manual defines some optimization 
+methods that will more strictly adhere to linear constraints as they search
+\cite{noauthor_dakota_2021}, such as derivative-free pattern searches. 
+Therefore, it is worth future work to include use of these other methods to 
+optimize fuel cycle transitions. 
+
+With respect to the other model input parameters suggested by the optimization 
+of the transition, they follow in the trends identified by the 
+sensitivity analysis. The percent of \glspl{LWR} receiving license extensions
+is above 25\%, the \gls{MMR} burnup is at the maximum value considered, 
+and the Xe-100 burnup is near the maximum value considered. For this specific 
+problem, these input parameters are not as impactful on the results as the 
+build share of each reactor type. Therefore, it is reasonable that the 
+results provided from Dakota do not place these variables at the very 
+edge of the range of values considered. 
+
+Because the results provided by this algorithm in Dakota do not strictly 
+meet the linear constraint and do not reach the theoretical minimum for 
+this problem, the results should not be accepted at face value. The results should 
+be taken more as guidance on how to perform the optimization of this problem 
+with respect to this objective function; maximizing the VOYGR build share in 
+this transition will minimize the \gls{SWU} capacity required to produce \gls{HALEU}.
+
 \subsection{Minimize waste mass}
 By applying the hyperparameters to an optimization problem to minimize the 
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
-found a minimum with the values defined in Table \ref{tab:soga_ot_waste}.
-The minimum waste mass determined through the optimization is 22,703 MT. 
-
-How well did this work? How important is it to tune the hyper parameters 
-for each problem?
+found a minimum with the model input parameters defined in Table 
+\ref{tab:soga_ot_waste}. The minimum waste mass determined through the 
+optimization is 1,736 MT. 
 
 \begin{table}
     \centering 
@@ -359,36 +405,37 @@ for each problem?
         \hline
         Variable & Value \\
         \hline
-        LWR Lifetime & 49.31\%\\
-        Xe-100 build share & 85.93\%\\
-        MMR build share & 6.53\%\\
-        VOYGR build share & 9.31\%\\
+        LWR Lifetime & 50\%\\
+        Xe-100 build share & 100\%\\
+        MMR build share & 7\%\\
+        VOYGR build share & 11\%\\
         Xe-100 burnup & 185 MWd/kgU\\
         MMR burnup & 90 MWd/kgU\\
         \hline
     \end{tabular}
 \end{table}
 
-Each of the variables either match or trend towards expectations for this problem. 
-Based on the transition analysis (Chapter \ref{ch:once_through_results}) and 
-sensitivity analysis (Chapter \ref{ch:sa}), one would expect that to minimize 
-the spent fuel mass the \gls{LWR} lifetime percent, Xe-100 build share, 
-Xe-100 burnup, and \gls{MMR} burnup would all be maximized while the \gls{MMR} 
-and VOYGR build shares are minimized with the deployment of \glspl{MMR} favored 
-over VOYGR deployment. The Xe-100 and \gls{MMR} burnup values are at the maximum 
-values considered for this work, which matches expectations. The \gls{LWR} lifetime 
-extension percent is near the maximum considered for this work, which suggests that 
-the waste mass from advanced reactors could be further decreased by using the 
-maximum of this input parameter. 
+From Table \ref{tab:soga_ot_waste}, it is clear that more than 100\% build share
+is defined, which needlessly increases the \gls{SNF} mass generated from 
+advanced reactors in this fuel cycle and is consistent with the results of 
+the other single-objective problem for this fuel cycle. However, the build share 
+percentages suggest 
+a build out of Xe-100 reactors to reduce the \gls{SNF} mass generated, which 
+is supported by the sensitivity analysis in Chapter \ref{ch:sa}. Additionally, 
+the optimization algorithm points to a maximum in the percent of \glspl{LWR} 
+receiving license extensions, Xe-100 discharge burnup, and \gls{MMR} burnup. 
+These results are also consistent with the sensitivity analysis and 
+modeler intuition of how to optimize for this metric. The results of the 
+\gls{LWR} lifetime, \gls{MMR} burnup, and Xe-100 burnup demonstrate that this 
+algorithm can perform well with respect to variables that do not have a 
+linear constraint applied. 
 
-The advanced reactor build shares trend towards expectations, but don't fully 
-meet them. The deployment of Xe-100s over the other advanced reactors is consistent 
-with the results in Table \ref{tab:nogrowth_waste}, which shows that only deploying 
-Xe-100s results in less spent fuel mass than the other combinations of the reactors. 
-Therefore, one would expect that the Xe-100 build share would be 100\%. Then combined 
-with the other input parameters (the \gls{LWR} lifetime percent and Xe-100 burnup 
-specifically) the optimized transition scenario would result in less spent fuel 
-mass than the scenarios considered in Chapter \ref{tab:nogrowth_waste}.
+This optimization problem converged in 590 iterations, and the best objective 
+function found in iteration 437. Therefore, the hyperparameters resulted 
+in a faster convergence for this problem than the previous one, despite the 
+hyperparameters being tuned on the previous problem. This suggests that 
+the hyperparameters for this algorithm can perform well for any problem, 
+but will converge at different rates for each problem. 
 
 \subsection{Minimize HALEU SWU and waste mass}
 
