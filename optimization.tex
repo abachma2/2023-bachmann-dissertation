@@ -171,11 +171,71 @@ affect the results with the larger population sizes.
     \label{fig:soga_coarse_tuning}
 \end{figure}
 
+The results from the fine tuning, shown in Figure \ref{fig:soga_fine_tuning}
+are not completely aligned with the results from the coarse tuning. 
+The coarse tuning showed that a population size of 100 consistently performed 
+better than the other population sizes, but the fine tuning showed that a 
+population size of 50 performed better. Both sets of tuning runs suggested 
+a population size to use, but did not show any strong correlation between 
+the other hyperparameters and the \gls{HALEU} \gls{SWU}, but each set of 
+tuning cases suggested different population sizes. Therefore, we compared 
+the hyperparameters and model parameters values in the five best performing 
+tuning cases, based on the \gls{HALEU} \gls{SWU} required, shown in 
+Table \ref{tab:soga_tuning_results}.
+
+\begin{figure}
+    \includegraphics[scale=0.4]{soga_fine_tuning_all_parameters.pdf}
+    \caption{Results of fine tuning for the single-objective 
+    optimization.}
+    \label{fig:soga_fine_tuning}
+\end{figure}
+
+Four of the five best performing tuning cases are able to find the 
+theoretical minimum for this problem, 0 kg-SWU. However, none of the 
+cases perfectly match the build share target of 100\%. Case 38 is the only 
+one that at least meets the target, but it exceeds it by specifying a total 
+build share of 103\%. However, this is the only tuning case that does 
+not reach the theoretical minimum. 
+
+\begin{table}
+    \centering 
+    \caption{Hyperparameter and model parameter values from the five best 
+    performing tuning cases for the single-objective problems.}
+    \label{tab:soga_tuning_results}
+    \begin{tabular}{c c c c c c}
+        \hline 
+        & \multicolumn{5}{c}{Tuning case number} \\
+        \textbf{Hyperparmeter} & 28 & 38 & 43 & 45 & 59 \\
+        \hline 
+        Mutation type & offset normal & offset normal & replace uniform &
+        replace uniform & offset normal\\
+        Population size & 25 & 100 & 50 & 50 & 50 \\
+        Mutation rate & 0.113 & 0.059 & 0.182 & 0.116 & 0.035\\
+        Crossover rate & 0.5 & 0.664 & 0.333 & 0.584 & 0.603\\
+        Constraint penalty & 0.648 & 1.261 & 1.072 & 1.109 & 1.031\\
+        \hline
+        \textbf{Model Parameter} \\
+        \gls{HALEU} \gls{SWU} (kg-SWU)& 0 & 4.37 $\times 10^7$ & 0 & 0 & 0\\
+        VOYGR build share (\%) & 75 & 100 & 91 & 99 & 94\\
+        \gls{MMR} build share (\%)& 0 & 0 & 0 & 0 & 0\\
+        Xe-100 build share (\%) & 0 & 3 & 0 & 0 & 0\\
+        LWR Lifetime (\%)& 35 & 48 & 42 & 49 & 15\\
+        \gls{MMR} burnup (MWd/kgU) & 86 & 74 & 74 & 41 & 90\\
+        Xe-100 burnup (MWd/kgU) & 56 & 185 & 112 & 168 & 151\\
+        \hline 
+        
+        
+    \end{tabular}
+\end{table}
 
 
 \subsubsection{Hyperparameter selection}
-Table \ref{tab:soga_parameters} defines the hyperparameters used 
-for all single-objective problems in this work.
+Based on the information in Table \ref{tab:soga_tuning_results}, we 
+selected hyperparameters to use for all single-objective problems in this 
+work. We selected the hyperparameters from tuning case 45, given in 
+Table \ref{tab:soga_parameters}, because this tuning case reached the 
+theoretical minimum for th problem and was the closest to meeting 
+the total build share constraint. 
 
 \begin{table}
     \centering
@@ -185,14 +245,22 @@ for all single-objective problems in this work.
         \hline
         Parameter & Value \\
         \hline
-        Population & 25 \\
-        Constraint penalty & 1.554\\
-        Crossover rate & 0.753\\
-        Mutation type & offset normal\\
-        Mutation rate & 0.045\\
+        Population & 100 \\
+        Constraint penalty & 1.109\\
+        Crossover rate & 0.584\\
+        Mutation type & replace normal\\
+        Mutation rate & 0.116\\
         \hline
     \end{tabular}
 \end{table}
+
+The tuning cases each ran a maximum of 500 evaluations to limit the 
+amount of time required for each run. However, for each single-objective 
+problem we will run each problem for a maximum of 1000 evaluations. By 
+increasing the maximum number of evaluations, we hope to ensure that 
+the genetic algorithm is able to effectively find the minimum objective 
+function for the problem while also meeting the total build share 
+constraint by allowing more exploration of the variable space. 
 
 \subsection{Multi-objective hyperparamter tuning}
 Hyperparameter tuning for a multi-objective problem is more complicated 
