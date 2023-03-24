@@ -28,7 +28,7 @@ core model. The model itself can be found at \cite{richter_zoerichterphlox_2022}
 The Sangamon200 model is a pebble-bed, \gls{HTGR}-style reactor core model 
 initially created to characterize the isotopic compositions and 
 reactor physics of a pebble-bed, \gls{HTGR}. While this reactor model 
-is very similar to current published data for the Xe-energy Xe-100
+is very similar to current published data for the X-energy Xe-100
 \cite{mulder_overview_2021}, there are some notable differences that affect 
 the reactor physics. The first difference is that the \gls{TRISO} particles 
 in the Sangamon200 are modeled as a blended mix of the \gls{TRISO} 
@@ -76,7 +76,7 @@ compositions within a single pass would likely not cause significant
 changes in the isotopic composition of the fuel. 
 
 The Sangamon200 is modeled an an isothermal state at 800 K \cite{richter_isotopic_2022}.
-This model was run with 70,000 particles per cycle, 50 inactive cycles, 
+This model was run with 100,000 particles per cycle, 50 inactive cycles, 
 and 150 active cycles. We did not perform depletion on the Sangamon200 model 
 because our model 
 does not capture the continuous refueling scheme used by the Xe-100 or 
@@ -86,7 +86,7 @@ this reactor model. Therefore, the results of this model will be comparisons
 of the different uranium compositions for a single burnup step.
 
 In order to update the fuel compositions, we calculated the correct 
-isotopics for the enrichment level requried tby this
+isotopics for the enrichment level required tby this
 
 We created an \gls{MMR}-like model primarily based on information in 
 \cite{hawari_development_2018}, and supplemented or modified based on 
@@ -189,5 +189,90 @@ present in \gls{HALEU} will prevent any of the design criteria of the
 reactors from being met. 
 
 \subsection{Xe-100 reactor}
+
+\subsubsection{\keff}
+Table \ref{tab:xe100_keff} reports the \keff value when using each fuel 
+composition. the impure fuels result in a slightly higher \keff 
+than the pure fuel. The uranium isotopes mostly present in 
+each of the fuel compositions (weight fraction of at least 1$\times 10^{-3}$)
+are $^{234}$U, $^{235}$U, $^{236}$U, and $^{238}$U. The $^{235}$U weight 
+fraction is the same in each fuel composition, so the impurities are 
+displacing the $^{238}$U in the fuel. $^{234}$U and $^{236}$U have larger 
+total fission cross sections than $^{238}$U, so their displacement of the
+$^{238}$U in the fuel increases the neutron multiplication of the reactor. 
+This is supported by the impure fuels leading to a slight increase 
+in the $\eta$ (1.737 from \gls{EBR} fuel, 1.735 from Y-12 fuel, and 1.712 
+from pure fuel), which signifies a greater ratio in the number of neutrons
+born from fission to the number absorbed in the fuel in the impure 
+fuel compositions. The change in $\eta$ is the primary driver in changes 
+in the \keff, from the lens of the six factor formula. 
+
+How does this change compare to other reported results? How does the number 
+for the pure fuel compare with X-energy published results?
+
+\begin{table}
+        \centering 
+        \caption{\keff values for the Xe-100-like reactor model for 
+        each fuel composition.}
+        \label{tab:xe100_keff}
+        \begin{tabular}{c c}
+                \hline
+                Fuel composition & \keff \\
+                \hline 
+                Pure & 1.06663 $\pm$ 0.00016\\
+                \gls{EBR} & 1.08086 $\pm$ 0.00016\\
+                Y-12 & 1.08016 $\pm$ 0.00014\\
+                \hline                
+        \end{tabular}
+
+\end{table}
+
+\subsubsection{\betaEff}
+
+\subsubsection{Flux}
+Figures \ref{fig:xe100_thermal-radial}-\ref{fig:xe100_fast_axial} show 
+various fluxes in the reactor core across different axes and energy 
+groups. The thermal radial flux (Figure \ref{fig:xe100_thermal_radial})
+shows peaks at the edge of the core resulting from the graphite moderator 
+around the core. The middle of the core exhibits a notable 
+difference in the neutron flux between the impure and pure fuel 
+compositions. The impure fuel compositions result in a slightly 
+smaller flux than the pure fuel, which contrasts with the higher 
+\keff from the impure fuel. If the \keff, one would expect the neutron 
+flux to be slightly higher because there are more neutrons in each 
+generation. 
+
+\begin{figure}
+        \centering 
+        \includegraphics{xe100_thermal_radial.pdf}
+        \caption{Thermal flux in the Xe-100-like Sangamon200 
+        reactor model in the radial direction, across the 
+        x-axis.}
+        \label{fig:xe100_thermal_radial}
+\end{figure}
+
+\begin{figure}
+        \centering 
+        \includegraphics{xe100_fast_radial.pdf}
+        \caption{Fast flux in the Xe-100-like Sangamon200 
+        reactor model in the radial direction, across the 
+        x-axis.}
+        \label{fig:xe100_fast_radial}
+\end{figure}
+\begin{figure}
+        \centering 
+        \includegraphics{xe100_thermal_axial.pdf}
+        \caption{Thermal flux in the Xe-100-like Sangamon200 
+        reactor model in the axial direction.}
+        \label{fig:xe100_thermal_axial}
+\end{figure}
+\begin{figure}
+        \centering 
+        \includegraphics{xe100_fast_axial.pdf}
+        \caption{Fast flux in the Xe-100-like Sangamon200 
+        reactor model in the axial direction.}
+        \label{fig:xe100_fast_axial}
+\end{figure}
+\subsubsection{Reactivity feedback coefficients}
 
 \subsection{MMR reactor}
