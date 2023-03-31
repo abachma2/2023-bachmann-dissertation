@@ -82,7 +82,7 @@ changes in the isotopic composition of the fuel.
 
 The Sangamon200 is modeled an an isothermal state at 800 K \cite{richter_isotopic_2022}.
 This model was run with 100,000 particles per cycle, 50 inactive cycles, 
-and 150 active cycles. We did not perform depletion on the Sangamon200 model 
+and 200 active cycles. We did not perform depletion on the Sangamon200 model 
 because our model 
 does not capture the continuous refueling scheme used by the Xe-100 or 
 any pebble movement. Performing depletion without modeling pebble movement 
@@ -254,7 +254,7 @@ value of
 \end{table}
 
 \subsubsection{Flux}
-Figures \ref{fig:xe100_thermal-radial}-\ref{fig:xe100_fast_axial} show 
+Figures \ref{fig:xe100_thermal_radial}-\ref{fig:xe100_fast_axial} show 
 various fluxes in the reactor core across different axes and energy 
 groups. The thermal radial flux (Figure \ref{fig:xe100_thermal_radial})
 shows peaks at the edge of the core resulting from the graphite moderator 
@@ -275,6 +275,14 @@ generation.
         \label{fig:xe100_thermal_radial}
 \end{figure}
 
+The fast radial flux (Figure \ref{fig:xe100_fast_radial}) does not 
+exhibit the same increases in the reflector as the thermal flux 
+because of the neutron energy difference. The fast flux is slightly 
+higher than the thermal flux, but the differences in the fluxes from 
+the fuel compositions is on a similar order of magnitude. Therefore, 
+the differences in the flux from the fuel compositions is a smaller 
+relative change in the fast neutron flux. 
+
 \begin{figure}
         \centering 
         \includegraphics{xe100_fast_radial.pdf}
@@ -283,6 +291,18 @@ generation.
         x-axis.}
         \label{fig:xe100_fast_radial}
 \end{figure}
+
+The theraml axial flux (Figure \ref{fig:xe100_thermal_axial}) shows 
+similar results to the thermal radial flux. There is a small bump in the 
+flux at the top and bottom of the core because of the graphite reflector.
+Additionally, the pure fuel results in a slightly higher flux than 
+the impure fuels, despite the opposite trend in the \keff values. The 
+two impure fuel compositions result in very similar fluxes. The flux 
+differences between the fuel compositions is larger in the bottom 
+of the core, despite the core being in an isothermal state. I'm not really 
+sure why this would be the case. If temperature variations were to be modeled 
+in the reactor, then we would expect to see more variation in the bottom of 
+the core because 
 \begin{figure}
         \centering 
         \includegraphics{xe100_thermal_axial.pdf}
@@ -290,6 +310,14 @@ generation.
         reactor model in the axial direction.}
         \label{fig:xe100_thermal_axial}
 \end{figure}
+
+The fast axial flux (FIgure \ref{fig:xe100_fast_axial}) shows a smaller 
+difference in the flux between the different fuel compositions. The 
+impure fuels result in similar fluxes, similar to what was observed in 
+the thermal axial flux. The largest flux difference between the pure 
+and impure fuels is also in the bottom of the core, and in the top 
+of the core the impure fuel result in a slightly larger flux than the pure 
+fuel. 
 \begin{figure}
         \centering 
         \includegraphics{xe100_fast_axial.pdf}
@@ -297,16 +325,26 @@ generation.
         reactor model in the axial direction.}
         \label{fig:xe100_fast_axial}
 \end{figure}
+
 \subsubsection{Reactivity feedback coefficients}
+Table \ref{tab:coeff_xe100} reports the reactivity feedback 
+coefficients for each material type in the Xe-100-like reactor model. 
+All of the coefficients are negative, which is what is preferred in 
+a reactor so that reactivity naturally decreases as temperature increases. 
+For most of the materials, the impure fuels result in more negative 
+feedback coefficients than the pure fuel, with the exception of the fuel 
+feedback coefficient. 
+
 
 \begin{table}
         \centering
         \caption{Reactivity temperature feedback coefficients for 
         each material type in the Xe-100-like model for each fuel 
         type.}
+        \label{tab:coeff_xe100}
         \begin{tabular}{c c c c c}
             \hline 
-            & \multicolumn{4}{c}{Material Coefficinet Type} \\
+            & \multicolumn{4}{c}{Material feedback coefficinet (pcm/K)} \\
             Fuel Type & Fuel & Coolant & Moderator & Total \\
             \hline
             Pure & -3.875$\pm$0.094 & -0.044 $\pm$ 0.112 & -0.071$\pm$0.459 & -4.216$\pm$0.502\\
@@ -316,5 +354,228 @@ generation.
 
         \end{tabular}
 \end{table}
+The work by Mulder and Boyes \cite{mulder_neutronics_2020}, reports 
+the Doppler coefficient (the fuel feedback), the moderator coefficient, 
+and the total coefficient as between -5.6e-5 -- -3.2e-5 $\Delta$ 
+\keff/\textdegree C
+-4.2e-5 -- -0.4e-4 $\Delta$ \keff/\textdegree C, and -6.1e-5 -- -2e-5 
+$\Delta$ \keff/\textdegree C, respectively, for temperatures between 100-900
+\textdegree C. The feedback coefficients are within the ranges reported 
+by Mulder and Boyes, despite the differences in the reactor models used. 
 
 \subsection{MMR reactor}
+
+\subsubsection{\keff}
+
+\begin{table}
+        \centering
+        \caption{\keff in the \gls{MMR}-like model at select burnup 
+        steps.}
+        \label{tab:mmr_keff}
+        \begin{tabular}{c c c c}
+                \hline 
+                & \multicolumn{3}{c}{Burnup step}\\
+                Fuel Type & \gls{BOL} & Mid-cycle & \gls{EOL} \\
+                \hline 
+                Pure & 1.33797 $\pm$ 0.00027 & 1.18048 $\pm$ 0.00025 & 1.05535$\pm$000024\\
+                \gls{EBR} & 1.32609 $\pm$0.00028 & 1.17148 $\pm$ 0.00027 & 1.04792 $\pm$ 0.00025 \\
+                Y-12 & 1.32453$\pm$0.00029 & 1.17051$\pm$0.00027 & 1.04823$\pm$0.0024\\
+                \hline
+                
+        \end{tabular}
+\end{table}
+
+\subsubsection{\betaEff}
+
+Table \ref{tab:mmr_betaeff} reports the \betaEff values when using 
+each fuel composition at three different burnup steps. For all three 
+fuel compositions, the \betaEff decreases with increasing burnup. This 
+is consistent with the depletion of the $^{235}$U in the core and 
+an increase in the number of fissions happening in isotopes
+that have a lower \betaEff than $^{235}$U, such as $^{239}$Pu. 
+
+\begin{table}
+        \centering
+        \caption{\betaEff value in the \gls{MMR}-like model at 
+        select burnup steps.}
+        \label{tab:mmr_betaeff}
+        \begin{tabular}{c c c c}
+                \hline 
+                 & \multicolumn{3}{c}{Burnup step}\\
+                Fuel & \gls{BOL} & Mid-cycle & \gls{EOL}\\
+                \hline 
+                Pure & 0.00669 $\pm$ 0.00004 & 0.00586 $\pm$ 0.00004 & 0.00548 $\pm$ 0.00003\\
+                \gls{EBR} & 0.00663 $\pm$ 0.00003 & 0.00591 $\pm$ 0.00003 & 0.00542 $\pm$ 0.00003\\
+                Y-12 & 0.00665$\pm$0.00004 &  0.00598 $\pm$ 0.00004& 0.00553 $\pm$ 0.00003\\
+                \hline 
+
+        \end{tabular}
+\end{table}
+
+Each of the fuel compositions result in different \betaEff values at 
+each burnup step. However, almost all of the values from the impure 
+fuels are within error of the value from the pure fuel. Therefore, no 
+strong conclusions can be drawn about trends in how these fuel compositions 
+affect the \betaEff of this reactor design. 
+
+\subsubsection{Neutron Flux}
+
+Figures \ref{fig:mmr_bol}-\ref{fig:mmr_eol} show the neutron flux 
+in the thermal and fast energy ranges in the radial and axial 
+direction for each burnup step. The radial fluxes are taken 
+across the middle of the core in the y-direction, which means the flux 
+is taken across the plane with three coolant channels in Figure 
+\ref{fig:mmr_radial}. The axial flux is taken along the z-axis, with the 
+x- and y-directions collapsed. 
+
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_radial_bol.pdf}
+            \caption{Thermal radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_thermal_radial_bol}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_radial_bol.pdf}
+            \caption{Fast radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_radial_bol}
+        \end{subfigure}
+        \hfill            
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_axial_bol.pdf}
+            \caption{Thermal axial flux in the \gls{MMR}-like reactor. }
+            \label{fig:mmr_thermal_axial_bol}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_axial_bol.pdf}
+            \caption{Fast axial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_axial_bol}
+        \end{subfigure}
+        \hfill
+        \caption{Radial and axial flux for each energy group when using 
+        each fuel composition in the \gls{MMR}-like model at the beginning 
+        of life.}
+        \label{fig:mmr_bol}
+   \end{figure}
+
+
+   
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_radial_mc.pdf}
+            \caption{Thermal radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_thermal_radial_mc}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_radial_mc.pdf}
+            \caption{Fast radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_radial_mc}
+        \end{subfigure}
+        \hfill
+            
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_axial_mc.pdf}
+            \caption{Thermal axial flux in the \gls{MMR}-like reactor. }
+            \label{fig:mmr_thermal_axial_mc}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_axial_mc.pdf}
+            \caption{Fast axial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_axial_mc}
+        \end{subfigure}
+        \hfill
+        \caption{Radial and axial flux for each energy group when using 
+        each fuel composition in the \gls{MMR}-like model at middle of 
+        the operation cycle.}
+        \label{fig:mmr_mc}
+   \end{figure}
+
+   
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_radial_eol.pdf}
+            \caption{Thermal radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_thermal_radial_eol}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_radial_eol.pdf}
+            \caption{Fast radial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_radial_eol}
+        \end{subfigure}
+        \hfill
+            
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_thermal_axial_eol.pdf}
+            \caption{Thermal axial flux in the \gls{MMR}-like reactor. }
+            \label{fig:mmr_thermal_axial_eol}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{mmr_fast_axial_eol.pdf}
+            \caption{Fast axial flux in the \gls{MMR}-like reactor.}
+            \label{fig:mmr_fast_axial_eol}
+        \end{subfigure}
+        \hfill
+        \caption{Radial and axial flux for each energy group when using 
+        each fuel composition in the \gls{MMR}-like model at the end 
+        of life.}
+        \label{fig:mmr_eol}
+   \end{figure}
+
+
+\subsubsection{Reactivity feedback coefficients}
+
+\begin{table}
+        \centering 
+        \caption{Reactivity feedback coefficients (pcm/K) for different 
+        materials at different burnup steps in the \gls{MMR}-like 
+        reactor model.}
+        \label{tab:coeff_mmr}
+        \begin{tabular}{c c c c}
+                \hline 
+                & \multicolumn{3}{c}{Burnup step} \\
+                Fuel & \gls{BOL} & Mid-cycle & \gls{EOL} \\
+                \hline 
+                \multicolumn{4}{c}{Fuel reactivity feedabck}\\
+                Pure & -3.314 $\pm$ 0.059 & -3.889 $\pm$ 0.088 & -4.536 $\pm$0.264\\
+                \gls{EBR} & -3.073 $\pm$ 0.109 & -3.720 $\pm$ 0.147 & -4.699 $\pm$ 0.151\\
+                Y-12 & -3.233 $\pm$ 0.107 & -3.704 $\pm$ 0.133 & -4.168 $\pm$ 0.100\\
+                \hline 
+                \multicolumn{4}{c}{Coolant reactivity feedabck}\\
+                Pure & -0.211 $\pm$ 0.063 & 0.021 $\pm$ 0.169 & 0.052 $\pm$ 0.234\\
+                \gls{EBR} & 0.007 $\pm$ 0.051 & -0.165 $\pm$ 0.183 & 0.005 $\pm$ 0.085\\
+                Y-12 & -0.221 $\pm$ 0.068 & 0.197 $\pm$ 0.145 & -0.0146 $\pm$ 0.158\\
+                \hline 
+                \multicolumn{4}{c}{Moderator reactivity feedabck}\\
+                Pure & -0.815 $\pm$ 0.062 & -1.298 $\pm$ 0.155 & -2.590 $\pm$ 0.323\\
+                \gls{EBR} &-0.934 $\pm$ 0.171 & -1.723 $\pm$ 0.268 & -2.375 $\pm$ 0.313\\
+                Y-12 & -0.950 $\pm$ 0.138 & -1.333 $\pm$ 0.206 & -2.432 $\pm$ 0.190\\
+                \hline 
+                \multicolumn{4}{c}{Total reactivity feedabck}\\
+                Pure & -4.142 $\pm$ 0.297 & -5.015 $\pm$ 0.215 & -6.865 $\pm$ 0.300\\
+                \gls{EBR} & -4.191 $\pm$ 0.097 & -5.284 $\pm$ 0.286 & -6.709 $\pm$ 0.329\\
+                Y-12 & -4.037 $\pm$ 0.322 & -5.410 $\pm$ 0.268 & -6.689 $\pm$ 0.232\\
+                \hline 
+                
+                
+        \end{tabular}
+\end{table}
