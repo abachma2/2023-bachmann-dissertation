@@ -202,7 +202,11 @@ This fuel cycle is a simplified version of the modeled fuel cycle in
 do not affect the reported results. Removing some of the steps simplified 
 the models from a user standpoint and reduced the size of the \Cyclus 
 output file, facilitating data analysis. The transition from the 
-\glspl{LWR} to the advanced reactors begins in 2025. 
+\glspl{LWR} to the advanced reactors begins in 2025. Each of the non-reactor 
+facilities have an unlimited capacity to produce or process materials,
+to prevent material unavailability from influencing the results. 
+This methodology has previously been applied to transition analysis 
+\cite{djokic_application_2015}.
 
 \input{once-through-flow}
 
@@ -352,7 +356,7 @@ All of the scenarios with recycling model the transition from the
 current fleet of \glspl{LWR} to the X-energy Xe-100, \gls{USNC} \gls{MMR}, 
 and the NuScale VOYGR, the same as in scenarios 7 and 13. Therefore, 
 the advanced reactor deployment schedules for these two scenarios are applied 
-to the recycling scencarios for the appropriate energy grwoth model. 
+to the recycling scenarios for the appropriate energy growth model. 
 This combination 
 of reactors is considered for this step of the work, and not all of the 
 combinations considered for the once-through scenarios, to limit the scope 
@@ -361,19 +365,28 @@ once-through and recycle transition scenarios. Because these scenarios
 use the same advanced reactor deployment schedule, the number of 
 advanced reactors and the energy supplied are not examined in the 
 results because they will be the same for each of these scenarios. Instead, 
-the results of these scenarios will focus on the material requriements. 
+the results of these scenarios will focus on the material requirements. 
 
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
 for the scenarios with limited recycling (Scenarios 14, 15, 17, and 18). 
 In scenarios 15 and 18 only the spent fuel from the \glspl{LWR} and 
 VOYGRs is sent to the reprocessing facility, but in scenarios 14 and 17, 
 all spent fuel from the advanced reactors and \glspl{LWR} is sent to the 
-reprocessing facility. A separations facility is defined to be deployed 5 
+reprocessing facility. \gls{MOX} fuel is not sent to the \gls{MMR} in this 
+material flow scheme because the \gls{MMR} does not undergo refueling, 
+and therefore would not receive \gls{MOX} fuel. 
+
+\input{limited-recycling-flow}
+
+A separations facility is defined to be deployed 5 
 years before the transition 
 begins (i.e. in 2020), as this strategy is commonly used for modeling 
 transitions with recycling \cite{passerini_systematic_2014,richards_application_2021}
 to ensure that enough fuel can be separated and 
-processed in time for use in advanced reactors. Although this is a 
+processed in time for use in advanced reactors. The separations facility 
+separates out uranium and plutonium from the other materials in the fuel, 
+emulating the COEX reprocessing method although the chemistry is not explicitly 
+modeled. The Although this is a 
 non-physical time to begin recycling in the US, using this timeline ensures 
 that there will be enough reprocessed fuel to fuel all of the advanced 
 reactors. The deployment time of the separation facility will be adjusted 
@@ -382,7 +395,7 @@ by using this timeline, specifically ensuring that advanced reactors
 are deployed at the same time as when they are deployed in the once-through 
 transition to provide an even comparison between these fuel cycle options. 
 
-\input{limited-recycling-flow}
+
 
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
 flow for the continuous recycle fuel cycle. Continuous recycle 
