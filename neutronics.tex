@@ -228,6 +228,25 @@ for the pure fuel compare with X-energy published results?
 \end{table}
 
 \subsubsection{\betaEff}
+The \betaEff resulting from the use of each fuel type is reported in 
+Table \ref{tab:betaeff_xe100}. The \betaEff when using the impure fuels 
+is slightly lower than when using the pure fuel. $^{235}$U has a \betaEff 
+value of 
+
+\begin{table}
+        \centering 
+        \caption{\betaEff value from using each fuel type.}
+        \label{tab:betaeff_xe100}
+        \begin{tabular}{cc}
+                \hline
+                Fuel type & \betaEff \\
+                \hline
+                Pure & 0.00617 $\pm$ 0.00003 \\
+                \gls{EBR} & 0.00604 $\pm$ 0.00003 \\
+                Y-12 & 0.00598 $\pm$ 0.0002 \\
+                \hline
+        \end{tabular}
+\end{table}
 
 \subsubsection{Flux}
 Figures \ref{fig:xe100_thermal-radial}-\ref{fig:xe100_fast_axial} show 
@@ -274,5 +293,23 @@ generation.
         \label{fig:xe100_fast_axial}
 \end{figure}
 \subsubsection{Reactivity feedback coefficients}
+
+\begin{table}
+        \centering
+        \caption{Reactivity temperature feedback coefficients for 
+        each material type in the Xe-100-like model for each fuel 
+        type.}
+        \begin{tabular}{c c c c c}
+            \hline 
+            & \multicolumn{4}{c}{Material Coefficinet Type} \\
+            Fuel Type & Fuel & Coolant & Moderator & Total \\
+            \hline
+            Pure & -3.875$\pm$0.094 & -0.044 $\pm$ 0.112 & -0.071$\pm$0.459 & -4.216$\pm$0.502\\
+            \gls{EBR} & -3.759$\pm$0.138 & -0.433$\pm$0.048 & -0.708$\pm$0.404 & -4.817$\pm$0.438\\
+            Y-12 & -3.797$\pm$0.157 & -0.351$\pm$0.092 & -0.728$\pm$0.469 & -4.700 $\pm$0.349\\
+            \hline
+
+        \end{tabular}
+\end{table}
 
 \subsection{MMR reactor}
