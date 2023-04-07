@@ -33,7 +33,6 @@
         \draw [arrow] (cooling) -- node[anchor=west, text width=1.5cm]{Cooled Spent UOX}(separation);
         \draw [arrow] (separation) -| node[anchor=south,text width=1.5cm, pos=0.4]{Separated fissile material}(mox_fab);
         \draw [arrow] (separation) -| node[anchor=south, text width=1.5cm]{Fission Products}(sinkhlw);
-        \draw [arrow] (wetstorage) -- node[sloped, anchor=south, text width=2cm]{Cool Spent UOX}(separation);
         \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural uranium} (mox_fab);
         \draw [arrow] (mox_cooling) |- node[anchor=south]{Cool Spent MOX}(sinkhlw);
         \draw [arrow] (mox_fab.east) - ++(5mm,0) |- node[anchor=south, pos=0.5, text width=1.5cm]{Fresh MOX}(voygr.east);
