@@ -212,8 +212,11 @@ born from fission to the number absorbed in the fuel in the impure
 fuel compositions. The change in $\eta$ is the primary driver in changes 
 in the \keff, from the lens of the six factor formula. 
 
-How does this change compare to other reported results? How does the number 
-for the pure fuel compare with X-energy published results?
+Part of the increase in \keff when using the impure fuels is because 
+the pebbles modeled are at different burnup steps. Therefore, many of the 
+pebbles are already partially burned and the uranium impurities in the fuel 
+have already undergone neutron capture reactions and have been transmuted 
+into other isotopes that are more fertile. 
 
 \begin{table}
         \centering 
@@ -229,14 +232,21 @@ for the pure fuel compare with X-energy published results?
                 Y-12 & 1.08016 $\pm$ 0.00014\\
                 \hline                
         \end{tabular}
-
 \end{table}
+
+The effect of the impure fuels resulting in increased \keff is that more 
+control mechanisms may be required to control the chain reaction, or 
+to lower the \keff and ensure that the targeted discharge burnup can 
+cycle length can be reached. 
+
 
 \subsubsection{\betaEff}
 The \betaEff resulting from the use of each fuel type is reported in 
 Table \ref{tab:betaeff_xe100}. The \betaEff when using the impure fuels 
-is slightly lower than when using the pure fuel. $^{235}$U has a \betaEff 
-value of 
+is slightly lower than when using the pure fuel. This result indicates 
+that control mechanisms in the reactor will be slightly less effective 
+because a larger fraction of the neutron population will be prompt neutrons. 
+$^{235}$U has a \betaEff value of 
 
 \begin{table}
         \centering 
@@ -266,6 +276,19 @@ smaller flux than the pure fuel, which contrasts with the higher
 flux to be slightly higher because there are more neutrons in each 
 generation. 
 
+$^{238}$U has the largest difference between the total and total 
+fission cross sections of the uranium isotopes considered for this model. 
+So by replacing the U-238 with other isotopes the flux should 
+increase from the larger fission to total ratio because the other isotopes 
+are more likely to have fission reactions and produce neutrons. But 
+another factor to consider is that this core is not just fresh fuel. 
+The use of burned pebbles in this model affects things because the 
+fission yield curves are different for each fissile isotope. 
+Also, the even isotopes have relatively small fission cross sections, 
+so they're still more likely to absorb a neutron than to fission. 
+What is that pathway when they absorb neutrons, what do they transmute to?
+
+
 \begin{figure}
         \centering 
         \includegraphics{xe100_thermal_radial.pdf}
@@ -292,7 +315,28 @@ relative change in the fast neutron flux.
         \label{fig:xe100_fast_radial}
 \end{figure}
 
-The theraml axial flux (Figure \ref{fig:xe100_thermal_axial}) shows 
+The radial fluxes from this reactor model are about three orders of 
+magnitudes larger than the results from the work by Mulder and 
+Boyes \cite{mulder_neutronics_2020}. Part of this difference comes 
+from the ranges used for each energy group. Mulder and Boyes used 
+a definition of greater than 0.1 MeV and less than 1.86 eV for the 
+fast and thermal energy groups, respectively. This work applies a 
+definition of greater than 0.625 eV and less then 0.625 eV for fast 
+and thermal neutrons, respectively. Therefore, the definitions used by 
+Mulder and Boyes does not include all possible neutron energies 
+while the definition used in this work does which causes some of the 
+differences between the fluxes. 
+
+The other difference leading to the different fluxes comes from the detector 
+definitions in the inputs. For this work, the radial detector 
+was defined across the x- and y-axes and the axial detector was defined 
+across the z-direction. The flux in a detector in Serpent is integrated 
+across the volume of the core \cite{leppanen_serpent_2013}. Therefore, 
+the flux across any axes not included in the mesh for a detector is 
+summed across those axes. This is the primary reason why the flux is 
+orders of magnitude different between the two models. 
+
+The thermal axial flux (Figure \ref{fig:xe100_thermal_axial}) shows 
 similar results to the thermal radial flux. There is a small bump in the 
 flux at the top and bottom of the core because of the graphite reflector.
 Additionally, the pure fuel results in a slightly higher flux than 
@@ -367,6 +411,30 @@ by Mulder and Boyes, despite the differences in the reactor models used.
 
 \subsubsection{\keff}
 
+Table \ref{tab:mmr_keff} reports the \keff value of the \gls{MMR} at three 
+different burnup steps using each fuel composition. At each burnup step, 
+using the impure fuel compositions results in a 712-1344 pcm 
+difference from the \keff when using the pure fuel. The difference in \keff 
+from the different fuel compositions decreases with burnup because of 
+the depletion of the uranium. 
+
+The impure fuel resulting in a lower \keff than the pure fuel is the opposite 
+effect of that observed in the Xe-100-like model. The change in the trend 
+is likely because in this reactor the fuel is more homogeneous than in 
+the Xe-100-like model. In the Xe-100-like model, the pebbles are modeled 
+at different burnup stages, while in this model all of the fuel is at the 
+same burnup step. All of the fuel in this model is unburned in the 
+first burnup step, meaning that the impurities have a more significant 
+effect on the neutron population because the impurities are a larger fraction 
+of the uranium in the core than in the Xe-100-like model. 
+
+The effect of of the impurities on this reactor model are significant on the 
+\keff because the differences are more than the error on the values. However, 
+even at the last burnup step, which is at the end of life for the reactor 
+core, the \keff is still above 1. Therefore the effect of the impurities 
+is not great enough to cause the reactor to reach a subcritical state 
+during its operation. 
+
 \begin{table}
         \centering
         \caption{\keff in the \gls{MMR}-like model at select burnup 
@@ -414,9 +482,10 @@ that have a lower \betaEff than $^{235}$U, such as $^{239}$Pu.
 
 Each of the fuel compositions result in different \betaEff values at 
 each burnup step. However, almost all of the values from the impure 
-fuels are within error of the value from the pure fuel. Therefore, no 
-strong conclusions can be drawn about trends in how these fuel compositions 
-affect the \betaEff of this reactor design. 
+fuels are within error of the value from the pure fuel. Therefore, the 
+fuel impurities do not lead to any significant changes in the 
+\betaEff. Additionally, the impure fuel compositions do not lead to 
+a consistent change in \betaEff between burnup steps. 
 
 \subsubsection{Neutron Flux}
 
@@ -464,8 +533,32 @@ x- and y-directions collapsed.
         \label{fig:mmr_bol}
    \end{figure}
 
+Figure \ref{fig:mmr_energy_spectrum} shows the flux in the active 
+region of the core as a function of energy and the difference between 
+the flux from the pure fuel and each of the impure fuels. This data was 
+calculated using the defined SCALE-238 energy group structure in Serpent,
+with the plotted flux of each group normalized by lethargy. The purple 
+line in both plots in the figure shows the delineation between the fast and 
+thermal energy groups. This figure shows that the difference between 
+the fluxes is small compared with the magnitude of the flux, especially in 
+the thermal group (left of the purple line). The difference between the 
+fluxes generally increases with energy such that the largest difference in 
+in the peak around 1 MeV. However, this difference is about two orders 
+of magnitude smaller than the flux and is therefore quite small. 
 
-   
+\begin{figure}
+        \centering
+        \includegraphics{mmr_energy_spectrum.pdf}
+        \caption{Top: Flux energy spectrum for each fuel composition at a 
+        burnup of 0 MWd/kgU in the active region of the core. The 
+        purple line shows the delineation between the fast and thermal 
+        neutron energy groups used in other results of this work. \\
+        Bottom: Difference between the flux from the pure fuel and each 
+        of the impure fuels in each energy group. The purple line shows the 
+        delineation between the fast and thermal energy groups. }
+        \label{fig:mmr_energy_spectrum}
+\end{figure}
+
 \begin{figure}
         \centering
         \begin{subfigure}[b]{0.48\textwidth}
