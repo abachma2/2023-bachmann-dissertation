@@ -367,6 +367,7 @@ advanced reactors and the energy supplied are not examined in the
 results because they will be the same for each of these scenarios. Instead, 
 the results of these scenarios will focus on the material requirements. 
 
+\subsection{Limited recycle scenarios}
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
 for the scenarios with limited recycling (Scenarios 14, 15, 17, and 18). 
 In scenarios 15 and 18 only the spent fuel from the \glspl{LWR} and 
@@ -383,20 +384,28 @@ years before the transition
 begins (i.e. in 2020), as this strategy is commonly used for modeling 
 transitions with recycling \cite{passerini_systematic_2014,richards_application_2021}
 to ensure that enough fuel can be separated and 
-processed in time for use in advanced reactors. The separations facility 
-separates out uranium and plutonium from the other materials in the fuel, 
-emulating the COEX reprocessing method although the chemistry is not explicitly 
-modeled. The Although this is a 
+processed in time for use in advanced reactors. Although this is a 
 non-physical time to begin recycling in the US, using this timeline ensures 
 that there will be enough reprocessed fuel to fuel all of the advanced 
 reactors. The deployment time of the separation facility will be adjusted 
 to determine if a more physical deployment timeline is possible. Additionally, 
 by using this timeline, specifically ensuring that advanced reactors 
 are deployed at the same time as when they are deployed in the once-through 
-transition to provide an even comparison between these fuel cycle options. 
+transition to provide an even comparison between these fuel cycle options.
 
+The separations facility separates out uranium and plutonium from the other 
+materials in the fuel, emulating the COEX reprocessing method although the 
+chemistry is not explicitly modeled. The separation efficiency is \textbf{find 
+these numbers} for plutonium and uranium, respectively. The separated 
+material from this facility is then sent to a \gls{MOX} fuel fabrication 
+facility that produces \gls{MOX} with a pre-defined composition for each 
+advanced reactor \textbf{found from literature, transport calculations, 
+or plutonium equivalence}.
+The separated plutonium is used as a fissile stream while the separated 
+uranium and natural uranium from the mine are used as filler materials to 
+produce the \gls{MOX}.
 
-
+\subsection{Continuous recycle scenarios}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
 flow for the continuous recycle fuel cycle. Continuous recycle 
 requires a fast reactor, and all of the reactors considered in this 
@@ -428,11 +437,32 @@ The accuracy of the spent fuel recipes is of great importance
 when modeling a fuel cycle with recycling, because the spent fuel 
 composition is directly related to the amount of \gls{MOX} that 
 can be created from each unit of spent fuel. Therefore, to 
-dynamically account for the depletion of fuel in a reactor, 
+dynamically account for the depletion of fuel in a reactor 
 this work created a new \Cyclus archetype that couples \Cyclus with 
 OpenMC \cite{romano_openmc:_2015}, an open-source Monte Carlo 
-neutron transport code that can perform depletion. More details 
-of this archetype are found in Chapter \ref{ch:openmcyclus}.
+neutron transport code that can perform depletion. 
+
+\subsection{OpenMCyclus}
+OpenMCyclus is an archetype (a generic facility model) that couples the 
+\Cyclus with OpenMC to provide dynamic updates of spent fuel composition 
+during a fuel cycle simulation. The methodology for material requests 
+and transactions mimics the methodology employed by the \Cycamore 
+Reactor archetype \textbf{good citation for this?}, which means that
+there is not a difference is the frequency and amount of fuel requested 
+by each reactor prototype when using this archetype. To provided 
+updated spent fuel compositions, the transport-independent depletion 
+solver in OpenMC \cite{romano_depletion_2021} is called during a fuel cycle 
+simulation. The compositions of the fresh fuel are passed from the archetype 
+to OpenMC, the depletion solver is called, and the spent fuel compositions 
+are given back to the archetype and \Cyclus for other facility prototypes 
+to read and use. 
+
+OpenMC has two stand-alone depletion solvers: one that updates cross section d
+data before depletion and one that doesn't. For this work I decided to use 
+the one that doesn't update the cross section data. Using this method increases 
+the differences in the spent fuel composition compared with when the depletion 
+is performed with transport \textbf{see if Olek has published his paper yet},
+but this expense is taken in favor of improved computational performance. 
  
 
 \section{Calculation of results} \label{sec:results_calc}
@@ -446,7 +476,6 @@ The energy generated in each scenario is calculated and directly
 reported by \Cyclus. Each reactor facility is assumed to produce a 
 commodity called ``power'', and the total output of each reactor facility 
 is reported at each timestep that they produce this commodity. 
-
 \Cyclus reports the timestep that each facility in the simulation enters 
 (commissions) and exits (decommissions) the simulation. Based on 
 this information the total number of reactors, advanced reactors, and 
@@ -476,8 +505,14 @@ place a limit on the enrichment facility capacity to ensure that the
 reactors are fully fueled and prevent other facility limits to 
 influence the reported material demands. 
 
-Finally, the mass of \gls{SNF} generated is the mass of spent fuel that is 
+Finally, in the once through scenarios the mass of \gls{SNF} generated is 
+the mass of spent fuel that is 
 traded from the reactor facilities to the cooling pools. This mass is the 
-entire fuel form, not just the uranium mass in the spent fuel, because 
-the entire fuel form must be considered when determining disposal needs 
-and options. 
+entire fuel form, not just the uranium or heavy metal mass in the spent 
+fuel, because the entire fuel form must be considered when determining 
+disposal needs and options. In the recycling scenarios, the spent fuel 
+mass is the mass traded from separations and \gls{MOX} cooling facilities 
+to the repository. This change in the calculation of spent fuel mass 
+in the recycling scenarios is because not all of the material discharged 
+from the reactors is disposed of in these scenarios, and the inclusion of 
+reprocessing is captured in this metric. 
