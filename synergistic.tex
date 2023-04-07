@@ -2,29 +2,46 @@ This appendix contains all of the plots with results for the synergistic
 sensitivity analysis of Scenario 7. Any plots shown in Section 
 \ref{sec:s7_synergistic} are not duplicated here.
 
+Figure \ref{fig:ts_lwr} shows the trends in each of the metrics as a result
+of varying the transition start time and the percent of \glspl{LWR} 
+operating for 80 years. The transition starts later and the percent of 
+\glspl{LWR} increases all of the metrics decrease, which is consistent 
+with the results of the \gls{OAT} analysis. Increasing the percent of 
+\glspl{LWR} has a great effect than delaying the transition start time, 
+which can also be gleaned from the \gls{OAT} analysis, but is easier 
+to visualize in these results. Additionally, these results show that 
+the combined effect of varying these parameters together is minimal. 
+This result is because increasing the number of \glspl{LWR} that 
+operate for 80 years inherently delays the transition start time 
+because the \glspl{LWR} continue to supply the power needed and 
+advanced reactors are not needed until a later time. Therefore, these 
+results suggest that extending \gls{LWR} lifetimes is a more effective 
+method than only delaying the transition start time to change the material 
+requirements of this transition scenario. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:ts_lwr_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:ts_lwr_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:ts_lwr_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -34,14 +51,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_lwr_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_lwr_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -52,28 +69,37 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:ts_lwr}
 \end{figure}
 
+Figure \ref{fig:ts_xe100_share} shows the results of varying the 
+transition start time and Xe-100 build share on the \gls{HALEU} mass, 
+\gls{SWU} to produce \gls{HALEU}, waste mass discharged, and feed 
+to produce \gls{HALEU}. This figure shows that increasing the 
+Xe-100 build share has a greater impact on the metrics than 
+changing the transition start time, which is consistent with the 
+\gls{OAT} results. There is no clear combined effect from varying these 
+parameters together. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_share_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:ts_xe100_share_haleu}
     \end{subfigure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:ts_xe100_share_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_xe100_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -84,29 +110,33 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:ts_xe100_share}
 \end{figure}
 
+Figure \ref{fig:ts_mmr_share} shows the results of varying the 
+transition start time and the \gls{MMR} build share on all 
+six of the metrics. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:ts_mmr_share_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:ts_mmr_share_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:ts_mmr_share_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -116,14 +146,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_mmr_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -134,15 +164,19 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:ts_mmr_share}
 \end{figure}
 
+Figure \ref{fig:ts_voygr_share} shows the effects of varying the 
+transition start time and the VOYGR build share on all six of the 
+metrics. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:ts_voygr_share_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -152,28 +186,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:ts_voygr_share_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:ts_voygr_share_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_voygr_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_voygr_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -183,29 +217,33 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     transition start time and VOYGR build share.}
     \label{fig:ts_voygr_share}
 \end{figure}
+
+Figure \ref{fig:ts_xe100_bu} shows the effects of varying the 
+transition start time and the Xe-100 discharge burnup on all six 
+metrics. 
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:ts_xe100_bu_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:ts_xe100_bu_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:ts_xe100_bu_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -215,14 +253,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_xe100_bu_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_xe100_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -233,15 +271,18 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:ts_xe100_bu}
 \end{figure}
 
+Figure \ref{fig:ts_mmr_bu} shows the effects of varying the transition 
+start time and the \gls{MMR} discharge burnup on all six metrics. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:ts_mmr_bu_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -251,28 +292,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:ts_mmr_bu_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:ts_mmr_bu_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:ts_mmr_bu_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{ts_mmr_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -283,28 +324,44 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:ts_mmr_bu}
 \end{figure}
 
+Figure \ref{fig:lwr_xe100_share} shows the effects of varying the 
+percent of \glspl{LWR} operating for 80 years and the Xe-100 
+build share on all six metrics. The trends observed in the \gls{OAT} 
+can also be observed here, such as how increasing the Xe-100 share 
+increases the \gls{HALEU} mass required but increasing the 
+percent of \glspl{LWR} decreases this metric. However, these results 
+show that there is a combined effect from varying these parameters 
+together that is not captured in the \gls{OAT} analysis. For 
+example, the \gls{HALEU} mass decreases by a greater fraction 
+as the percent of \glspl{LWR} and Xe-100 build shares increase than 
+when only the percent of \glspl{LWR} extended increases. This combined 
+effect is a result of more of the advanced reactor fleet being fueled 
+by \gls{HALEU}-fueled reactors. However, these results also show that 
+the despite this combined effect, not deploying Xe-100s will still
+result in a minimum in the \gls{HALEU} mass required. 
+
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:lwr_xe100_share_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:lwr_xe100_share_haleu}
     \end{subfigure}  
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:lwr_xe100_share_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -314,14 +371,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:lwr_xe100_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -333,14 +390,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:lwr_mmr_share_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -350,28 +407,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:lwr_mmr_share_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:lwr_mmr_share_haleu_swu}
     \end{subfigure}
 
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:lwr_mmr_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -383,27 +440,27 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}   
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_voygr_share_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:lwr_voygr_share_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_voygr_share_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:lwr_voygr_share_haleu_swu}
     \end{subfigure}   
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_voygr_share_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:lwr_voygr_share_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_voygr_share_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -415,28 +472,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:lwr_xe100_burnup_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:lwr_xe100_burnup_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:lwr_xe100_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -446,14 +503,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:lwr_xe100_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_xe100_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -464,14 +521,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:lwr_xe100_burnup}
 \end{figure}
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:lwr_mmr_burnup__enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -481,28 +538,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:lwr_mmr_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:lwr_mmr_burnup_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:lwr_mmr_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{lwr_mmr_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -514,28 +571,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:mmr_share_xe100_burnup_haleu}
     \end{subfigure}
     \hfill 
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:mmr_share_xe100_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:mmr_share_xe100_burnup_haleu_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
@@ -545,7 +602,7 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -557,14 +614,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:mmr_share_mmr_burnup_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -574,28 +631,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:mmr_share_mmr_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:mmr_share_mmr_burnup_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:mmr_share_mmr_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{mmr_share_mmr_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -607,28 +664,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 \end{figure}
 
 \begin{figure}    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:xe100_share_xe100_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:xe100_share_xe100_burnup_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:xe100_share_xe100_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -639,28 +696,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:xe100_share_xe100_burnup}
 \end{figure}
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:xe100_share_mmr_burnup_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:xe100_share_mmr_burnup_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:xe100_share_mmr_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -670,14 +727,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:xe100_share_mmr_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{xe100_share_mmr_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -688,14 +745,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:xe100_share_mmr_burnup}
 \end{figure}
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:voygr_share_xe100_burnup_enr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
@@ -705,28 +762,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:voygr_share_xe100_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
         \label{fig:voygr_share_xe100_burnup_haleu_swu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:voygr_share_xe100_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_xe100_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}
@@ -737,28 +794,28 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
     \label{fig:voygr_share_xe100_burnup}
 \end{figure}
 \begin{figure}
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_enr_u.pdf}
         \caption{Effect on total fuel mass.}
         \label{fig:voygr_share_mmr_burnupenr_u}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_haleu.pdf}
         \caption{Effect on HALEU mass.}
         \label{fig:voygr_share_mmr_burnup_haleu}
     \end{subfigure}
     
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_swu.pdf}
         \caption{Effect on total SWU capacity.}
         \label{fig:voygr_share_mmr_burnup_swu}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_haleu_swu.pdf}
         \caption{Effect on HALEU SWU capacity.}
@@ -768,14 +825,14 @@ sensitivity analysis of Scenario 7. Any plots shown in Section
 
 \begin{figure}
     \ContinuedFloat    
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_waste.pdf}
         \caption{Effect on waste mass discharged.}
         \label{fig:voygr_share_mmr_burnup_waste}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
+    \begin{subfigure}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth, trim=120 0 120 30, clip]{voygr_share_mmr_burnup_feed.pdf}
         \caption{Effect on HALEU feed.}

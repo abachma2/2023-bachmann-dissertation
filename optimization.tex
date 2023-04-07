@@ -278,7 +278,8 @@ the hypervolume.
 
 For multi-objective problems, we used the ``moga'' method in Dakota, which 
 stands for Multi-objective Genetic Algorithm. Using this method, Dakota
-outputs the Pareto front for the problem, which can then be used to 
+outputs the Pareto front for the problem, which can be used to calculate 
+a hypervolume with a reference point, and 
 tune the hyperparameters for this problem. 
 
 We began by using the same problem and general sets of variable definitions 
@@ -287,15 +288,18 @@ all variables. We observed that by using a linear equality constraint
 Dakota only found a single solution, as opposed to a Pareto front, because 
 not all of the samples adhere to linear constraints. By using a linear 
 inequality constraint, defining that the advanced reactor build share is 
-at least 100\%, Dakota was able to provide values for a Pareto front. 
-We then calculated the hyper volume 
-for a given Pareto front. 
+at least 100\%, Dakota was able to provide multiple values for a Pareto front. 
+Therefore, we used this linear inequality constraint for the tuning cases and 
+the final problem run to ensure that a Pareto front can be found. Therefore, 
+in addition to considering the hypervolumes resulting from each hyperparameter 
+value, we will also consider how close to 100\% the total build share is 
+to minimize oversupply of power.
 
 Hyperparameters selected for tuning in this work include the 
 population size, the mutation rate, and the crossover rate. Each 
 hyperparameter took specific values, instead of doing a random 
 search of values, because of resource limitations. The population 
-sizes considered include 10, 25, and 50, mutation rates considered 
+sizes considered include 25, 50, and 100, mutation rates considered 
 include 0.08, 0.1, 0.0116, 0.15, and the crossover rates 
 considered include 0.3, 0.584, 0.8. These values 
 were selected based off of the hyper parameters used for the single-objective 
@@ -307,6 +311,7 @@ We ran each set of hyper
 parameters 20 times, and compared the statistics of the hypervolumes of 
 the resulting Pareto fronts. From this data, we selected the 
 hyperparameters to use for multi-objective optimization for this work. 
+
 
 
 \subsubsection{Hyperparameter selection}
