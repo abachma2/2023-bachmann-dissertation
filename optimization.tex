@@ -303,7 +303,8 @@ sizes considered include 25, 50, and 100, mutation rates considered
 include 0.08, 0.1, 0.0116, 0.15, and the crossover rates 
 considered include 0.3, 0.584, 0.8. These values 
 were selected based off of the hyper parameters used for the single-objective 
-problem, the default value in Dakota, or intuition. The default values for 
+problem, the default value in Dakota, or intuition. More values were not 
+considered because of time constraints. The default values for 
 the population size, mutation rate, and crossover rate are 50, 
 0.08, and 0.8, respectively, in Dakota. Therefore, if the value of a 
 hyperparameter is not specified, the Dakota default value is used.  
@@ -313,8 +314,81 @@ the resulting Pareto fronts. From this data, we selected the
 hyperparameters to use for multi-objective optimization for this work. 
 
 
+Figure \ref{fig:moga_crossover} shows the statistics of the hypervolumes 
+resulting from each value of the crossover rate. All three of the 
+crossover rates result in similar median values, and similar statistics. 
+A crossover rate of 
+0.3 results in the largest median, mean, and maximum for the 
+hypervolumes. A crossover rate of 0.584 results in the smallest minimum 
+hypervolume. A crossover rate of 0.8 results in the smallest median 
+and mean of the hypervolumes. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{moga_crossover.pdf}
+    \caption{Statistics of the hypervolumes resulting from each 
+    crossover rate value considered in the MOGA Tuning.}
+    \label{fig:moga_crossover}
+\end{figure}
+
+
+Figure \ref{fig:moga_population} shows the statistics of the hypervolumes 
+resulting from different population sizes. There is more observed variation 
+in the statistics of this hyperparameter than the variation from varying 
+the crossover rate. This observation suggests that the population size has 
+a greater impact on the hypervolume than the crossover rate. A population 
+size of 50 results in the largest median and first quartiles, as well 
+as the smallest minimum. A population of 25 results in the largest mean 
+and maximum hypervolumes. 
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{moga_population.pdf}
+    \caption{Statistics of hte hypervolumes resulting from 
+    each population size considered in the MOGA Tuning.}
+    \label{fig:moga_population}
+\end{figure}
+
+Finally, Figure \ref{fig:moga_mutation} shows the statistics of the 
+hypervolumes resulting from different values of the mutation rate.
+
+\begin{figure}
+    \centering 
+    \includegraphics[scale=0.8]{moga_mutation.pdf}
+    \caption{Statistics of hte hypervolumes resulting from 
+    each mutation rate considered in the MOGA Tuning.}
+    \label{fig:moga_mutation}
+\end{figure}
 
 \subsubsection{Hyperparameter selection}
+For the multi-objective problems, we selected the hyperparameter 
+values defined in Table \ref{tab:moga_parameters}. We selected 
+a crossover rate of 0.3 because this parameter resulted in the 
+most favorable statistics in the tuning process: the largest 
+median, mean, and maximum of the resulting hypervolumes. We selected 
+a population size of 25 because this population size resulted in 
+the largest mean and maximum hypervolumes in the tuning cases. 
+Additionally, a population size of 25 results in the highest 
+values for the upper quartiles plus or minus 1.5 times the interquartile 
+range (the end of the whiskers), which suggests that when this 
+hyperparameter value is used again the results will continue to be 
+favorable. Finally, we selected a mutation rate of 
+
+\begin{table}
+    \centering 
+    \caption{Hyperparameters values selected for multi-objective 
+    optimization problems based on tuning.}
+    \label{tab:moga_parameters}
+    \begin{tabular}{c c}
+        \hline
+        Hyperparameter & Value \\
+        \hline
+        Crossover rate & 0.3\\
+        Population size & 25\\
+        Mutation rate & \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \section{Once-through optimization}
 \subsection{Minimize HALEU SWU}
