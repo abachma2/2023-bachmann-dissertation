@@ -400,10 +400,14 @@ these numbers} for plutonium and uranium, respectively. The separated
 material from this facility is then sent to a \gls{MOX} fuel fabrication 
 facility that produces \gls{MOX} with a pre-defined composition for each 
 advanced reactor \textbf{found from literature, transport calculations, 
-or plutonium equivalence}.
+or plutonium equivalence}. 
 The separated plutonium is used as a fissile stream while the separated 
 uranium and natural uranium from the mine are used as filler materials to 
-produce the \gls{MOX}.
+produce the \gls{MOX}. The separation step is modeled using the \Cycamore 
+Separations archetype, and the \gls{MOX} fuel fabrication is modeled 
+using the \Cycamore FuelFab archetype. The \Cycamore FuelFab archetype 
+matches materials streams to produce the \gls{MOX} based on plutonium 
+equivalence. 
 
 \subsection{Continuous recycle scenarios}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
