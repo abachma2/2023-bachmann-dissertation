@@ -11,8 +11,8 @@ impure \gls{HALEU} fuel in a reactor and compares it to the use of pure
 to understand how the impurities affect the performance of the reactor.
 This chapter of work explores how the fuel affects the reactors, while 
 the other chapters explore how the reactors affect the fuel cycle. We chose 
-the downblended \gls{HALEU} compositions from these sources because
-they are publicly available. 
+the downblended \gls{HALEU} compositions based on what is publicly 
+available. 
 
 
 
@@ -75,10 +75,17 @@ Each \gls{TRISO} pebble in the core goes through multiple passes, an average
 of six passes per pebble. To account for the different burnup of 
 the pebbles in an equilibrium core, the \gls{TRISO} pebble compositions are 
 varied to reflect the composition of a pebble after it has gone through 
-each number of passes. Each composition is stagnant, 
-but the variations in 
-compositions within a single pass would likely not cause significant 
-changes in the isotopic composition of the fuel. 
+each number of passes. To determine the isotopic composition of the 
+pebbles after each pass we performed a similar methodology to what
+Richter performed for their modeling of a 20 MW pebble-bed \gls{HTGR}. 
+We performed depletion on the single pebble model 
+created by Richter \cite{richter_zoerichterphlox_2022}. Then we 
+applied the composition corresponding to the burnup step of each pass 
+to 1/7th of the pebbles of the core. The placement of the pebbles for 
+each pass number are spread throughout the core, mimicking spread of 
+differently burned pebbles throughout a core in the equilibrium state 
+of the reactor. Each pebble at the same burnup level have the same 
+composition in this model.   
 
 The Sangamon200 is modeled an an isothermal state at 800 K \cite{richter_isotopic_2022}.
 This model was run with 100,000 particles per cycle, 50 inactive cycles, 
@@ -90,9 +97,6 @@ would create non-physical differences from the equilibrium condition of
 this reactor model. Therefore, the results of this model will be comparisons
 of the different uranium compositions for a single burnup step.
 
-In order to update the fuel compositions, we calculated the correct 
-isotopics for the enrichment level required tby this
-
 We created an \gls{MMR}-like model primarily based on information in 
 \cite{hawari_development_2018}, and supplemented or modified based on 
 information published by \gls{USNC}. Information about the \gls{TRISO} 
@@ -103,9 +107,11 @@ The final core configuration
 is different than what is modeled in \cite{hawari_development_2018} 
 because the model by Hawari and Venneri is only meant to operate 
 for 10 years, while the \gls{MMR} is meant to operate for 20 years. We 
-selected this core configuration after modeling some of the other core 
-configurations found in literature, and determining that this core 
-configuration can operate the longest before going subcritical. 
+selected our core configuration after modeling some of the other core 
+configurations found in literature and determining that this core 
+configuration can operate the longest before going subcritical and 
+achieve a burnup close to the reported 82.6 MWd/kgU reported by 
+\gls{USNC} \cite{noauthor_usnc_2021}. 
 
 Figure \ref{fig:mmr_core} shows the radial and axial geometry of the 
 \gls{MMR} model. The fuel channels have a radius of 1.15 cm, the same
@@ -122,7 +128,7 @@ fuel blocks described in \cite{noauthor_usnc_2021}. The entire core
 is assumed to be in an isothermal state at 800 K. There is a 20 cm 
 thick graphite reflector above and below the stacks of graphite, 
 and a 10 cm beryllium-oxide reflector on the outside of the 
-graphite blocks of the core. Both of these reflectors are specified 
+graphite blocks of the core. Both of these radial reflectors are specified 
 in \cite{hawari_development_2018}, with the thickness of the 
 beryllium-oxide reflector given. However, the thickness of the graphite 
 reflectors above and below the core was not specified, so we selected 
@@ -152,14 +158,14 @@ object}.
 
 For the \gls{MMR}-like model we modeled depletion of the core across the 
 expected 20 year lifetime of the \gls{MMR}, because the core is not 
-meant to undergo refueling during those 20 years. Because we modeled 
-depletion for this model, the flux, \keff, and temperature feedback coefficients
-are compared at the \gls{BOL}, mid-cycle, and \gls{EOL} for the \gls{MMR}-like 
-model. 
+meant to undergo refueling during those 20 years. Depletion is modeled using 
+burnup steps of 2 years. Each burnup step used 140 active cycles, 75 inactive 
+cycles, and 65,000 particles per cycle. 
 
 For both reactor models, we varied the fuel, coolant, and moderator temperatures 
-between 750 K, 800 K, and 850 K to calculate the fuel, coolant, moderator, and 
-total temperature feedback coefficients. We assumed a linear relationship between 
+between 700, 750, 800, 850, and 900 K to calculate the fuel, coolant, 
+moderator, and total temperature feedback coefficients. We assumed a linear 
+relationship between 
 \keff and temperature to calculate the feedback coefficients. When varying the 
 temperatures, we also varied the density of the materials. We calculated the 
 density of the UO$_2$ by using the empirical relationship between density and 
@@ -173,6 +179,28 @@ by interpolating on the data available in \cite{petersen_properties_nodate},
 assuming the 3 MPa coolant pressure in the \gls{MMR}-like model as defined 
 by \cite{noauthor_usnc_2021} and the 6 MPa inlet pressure defined in 
 \cite{mulder_overview_2021}. 
+
+We used three different fuel compositions for this work: pure, \gls{EBR}, 
+and Y-12. The pure fuel composition assumes that all uranium present is 
+either $^{235}$U or $^{238}$U, and int he correct isotopic ratio to 
+represent the enrichment level needed for each reactor. The \gls{EBR} 
+composition is based on the estimated uranium isotopic composition from 
+downblending spent fuel from \gls{EBR}, published by \gls{INL} 
+\cite{vaden_isotopic_2018}. The Y-12 composition is based on the 
+estimated uranium isotopic composition from downblending \gls{HEU} 
+stockpiles at the Y-12 National Security Complex \cite{nelson_foreign_2010}.
+The published isotopics for the \gls{EBR} and Y-12 fuel assume an enrichment 
+of 19.75\%, but only the \gls{MMR} requires this level of enrichment. 
+Therefore, for the fuel in the \gls{MMR}, the uranium isotopic ratios 
+published are applied as part of the fuel composition. For the fuel in the 
+Xe-100, the isotopics had to be adjusted slightly to match the needed 
+enrichment level. The $^{235}$U fraction was set to match the 
+enrichment level required, the non-$^{238}$U isotopes were kept in the 
+same ratio defined in the publications, and the $^{238}$U was defined to fill 
+the remainder of the fuel. Therefore, all three fuel compositions for each 
+reactor have the same $^{235}$U weight fractions, non-$^{238}$U weight
+fractions that match the published values, and vary in the ${238}$U 
+weight fraction. 
 
 \section{Results}
 The points of comparison for this work include:
@@ -197,7 +225,7 @@ reactors from being met.
 
 \subsubsection{\keff}
 Table \ref{tab:xe100_keff} reports the \keff value when using each fuel 
-composition. the impure fuels result in a slightly higher \keff 
+composition. The impure fuels result in a slightly higher \keff 
 than the pure fuel. The uranium isotopes mostly present in 
 each of the fuel compositions (weight fraction of at least 1$\times 10^{-3}$)
 are $^{234}$U, $^{235}$U, $^{236}$U, and $^{238}$U. The $^{235}$U weight 
@@ -211,12 +239,6 @@ from pure fuel), which signifies a greater ratio in the number of neutrons
 born from fission to the number absorbed in the fuel in the impure 
 fuel compositions. The change in $\eta$ is the primary driver in changes 
 in the \keff, from the lens of the six factor formula. 
-
-Part of the increase in \keff when using the impure fuels is because 
-the pebbles modeled are at different burnup steps. Therefore, many of the 
-pebbles are already partially burned and the uranium impurities in the fuel 
-have already undergone neutron capture reactions and have been transmuted 
-into other isotopes that are more fertile. 
 
 \begin{table}
         \centering 
@@ -233,6 +255,12 @@ into other isotopes that are more fertile.
                 \hline                
         \end{tabular}
 \end{table}
+
+Part of the increase in \keff when using the impure fuels is because 
+the pebbles modeled are at different burnup steps. Therefore, many of the 
+pebbles are already partially burned and the uranium impurities in the fuel 
+have already undergone neutron capture reactions and have been transmuted 
+into other isotopes that are more fertile. 
 
 The effect of the impure fuels resulting in increased \keff is that more 
 control mechanisms may be required to control the chain reaction, or 
@@ -413,27 +441,10 @@ by Mulder and Boyes, despite the differences in the reactor models used.
 
 Table \ref{tab:mmr_keff} reports the \keff value of the \gls{MMR} at three 
 different burnup steps using each fuel composition. At each burnup step, 
-using the impure fuel compositions results in a 712-1344 pcm 
-difference from the \keff when using the pure fuel. The difference in \keff 
+using the impure fuel compositions results in a \keff 712-1344 pcm 
+smaller than the \keff when using the pure fuel. The difference in \keff 
 from the different fuel compositions decreases with burnup because of 
 the depletion of the uranium. 
-
-The impure fuel resulting in a lower \keff than the pure fuel is the opposite 
-effect of that observed in the Xe-100-like model. The change in the trend 
-is likely because in this reactor the fuel is more homogeneous than in 
-the Xe-100-like model. In the Xe-100-like model, the pebbles are modeled 
-at different burnup stages, while in this model all of the fuel is at the 
-same burnup step. All of the fuel in this model is unburned in the 
-first burnup step, meaning that the impurities have a more significant 
-effect on the neutron population because the impurities are a larger fraction 
-of the uranium in the core than in the Xe-100-like model. 
-
-The effect of of the impurities on this reactor model are significant on the 
-\keff because the differences are more than the error on the values. However, 
-even at the last burnup step, which is at the end of life for the reactor 
-core, the \keff is still above 1. Therefore the effect of the impurities 
-is not great enough to cause the reactor to reach a subcritical state 
-during its operation. 
 
 \begin{table}
         \centering
@@ -452,6 +463,25 @@ during its operation.
                 
         \end{tabular}
 \end{table}
+
+The impure fuel resulting in a lower \keff than the pure fuel is the opposite 
+effect of that observed in the Xe-100-like model. The change in the trend 
+is likely because in this reactor the fuel is more homogeneous than in 
+the Xe-100-like model. In the Xe-100-like model, the pebbles are modeled 
+at different burnup stages, while in this model all of the fuel is at the 
+same burnup step. All of the fuel in this model is unburned in the 
+first burnup step, meaning that the impurities have a more significant 
+effect on the neutron population because the impurities are a larger fraction 
+of the uranium in the core than in the Xe-100-like model. 
+
+The effect of of the impurities on this reactor model are significant on the 
+\keff because the differences are more than the error on the values. However, 
+even at the last burnup step, which is at the end of life for the reactor 
+core, the \keff is still above 1. Therefore the effect of the impurities 
+is not great enough to cause the reactor to reach a subcritical state 
+during its operation. 
+
+
 
 \subsubsection{\betaEff}
 
@@ -474,7 +504,7 @@ that have a lower \betaEff than $^{235}$U, such as $^{239}$Pu.
                 \hline 
                 Pure & 0.00669 $\pm$ 0.00004 & 0.00586 $\pm$ 0.00004 & 0.00548 $\pm$ 0.00003\\
                 \gls{EBR} & 0.00663 $\pm$ 0.00003 & 0.00591 $\pm$ 0.00003 & 0.00542 $\pm$ 0.00003\\
-                Y-12 & 0.00665$\pm$0.00004 &  0.00598 $\pm$ 0.00004& 0.00553 $\pm$ 0.00003\\
+                Y-12 & 0.00665 $\pm$ 0.00004 &  0.00598 $\pm$ 0.00004& 0.00553 $\pm$ 0.00003\\
                 \hline 
 
         \end{tabular}
@@ -489,6 +519,32 @@ a consistent change in \betaEff between burnup steps.
 
 \subsubsection{Neutron Flux}
 
+Figure \ref{fig:mmr_energy_spectrum} shows the flux in the active 
+region of the core as a function of energy and the difference between 
+the flux from the pure fuel and each of the impure fuels. This data was 
+calculated using the defined SCALE-238 energy group structure in Serpent,
+with the plotted flux of each group normalized by lethargy. The purple 
+line in both plots in the figure shows the delineation between the fast and 
+thermal energy groups. This figure shows that the difference between 
+the fluxes is small compared with the magnitude of the flux, especially in 
+the thermal group (left of the purple line). The difference between the 
+fluxes generally increases with energy such that the largest difference in 
+in the peak around 1 MeV. However, this difference is about two orders 
+of magnitude smaller than the flux and is therefore quite small. 
+
+\begin{figure}
+        \centering
+        \includegraphics{mmr_energy_spectrum.pdf}
+        \caption{Top: Flux energy spectrum for each fuel composition at a 
+        burnup of 0 MWd/kgU in the active region of the core. The 
+        purple line shows the delineation between the fast and thermal 
+        neutron energy groups used in other results of this work. \\
+        Bottom: Difference between the flux from the pure fuel and each 
+        of the impure fuels in each energy group. The purple line shows the 
+        delineation between the fast and thermal energy groups. }
+        \label{fig:mmr_energy_spectrum}
+\end{figure}
+
 Figures \ref{fig:mmr_bol}-\ref{fig:mmr_eol} show the neutron flux 
 in the thermal and fast energy ranges in the radial and axial 
 direction for each burnup step. The radial fluxes are taken 
@@ -496,6 +552,14 @@ across the middle of the core in the y-direction, which means the flux
 is taken across the plane with three coolant channels in Figure 
 \ref{fig:mmr_radial}. The axial flux is taken along the z-axis, with the 
 x- and y-directions collapsed. 
+
+The radial flux at \gls{BOL} (Figures \ref{fig:mmr_thermal_radial_bol} and 
+\ref{fig:mmr_fast_radial_bol}) show that the greatest difference in the 
+fluxes between the fuel compositions is in the areas of the core close 
+to the fuel pellets. This makes sense, as as the difference between the 
+different fluxes is greatest in the fast energy region (Figure 
+\ref{fig:mmr_energy_spectrum}) and there are likely to be more 
+fast neutrons near the fuel where they are born fom fission. 
 
 \begin{figure}
         \centering
@@ -533,31 +597,32 @@ x- and y-directions collapsed.
         \label{fig:mmr_bol}
    \end{figure}
 
-Figure \ref{fig:mmr_energy_spectrum} shows the flux in the active 
-region of the core as a function of energy and the difference between 
-the flux from the pure fuel and each of the impure fuels. This data was 
-calculated using the defined SCALE-238 energy group structure in Serpent,
-with the plotted flux of each group normalized by lethargy. The purple 
-line in both plots in the figure shows the delineation between the fast and 
-thermal energy groups. This figure shows that the difference between 
-the fluxes is small compared with the magnitude of the flux, especially in 
-the thermal group (left of the purple line). The difference between the 
-fluxes generally increases with energy such that the largest difference in 
-in the peak around 1 MeV. However, this difference is about two orders 
-of magnitude smaller than the flux and is therefore quite small. 
+The axial fluxes at \gls{BOL} (Figures \ref{fig:mmr_thermal_axial_bol} and 
+\ref{fig:mmr_fast_axial_bol}) shows that using the impure fuels results in 
+a slightly smaller flux at the bottom of the core and a slightly higher 
+flux at the top of the core. The differences between the fluxes is 
+1-2 orders of magnitude smaller than the flux itself, which suggests that 
+the differences are not a major concern. The axial flux of the Xe-100-like 
+reactor model showed a similar result, the flux from the impure fuels 
+increases in the top of the core. 
 
-\begin{figure}
-        \centering
-        \includegraphics{mmr_energy_spectrum.pdf}
-        \caption{Top: Flux energy spectrum for each fuel composition at a 
-        burnup of 0 MWd/kgU in the active region of the core. The 
-        purple line shows the delineation between the fast and thermal 
-        neutron energy groups used in other results of this work. \\
-        Bottom: Difference between the flux from the pure fuel and each 
-        of the impure fuels in each energy group. The purple line shows the 
-        delineation between the fast and thermal energy groups. }
-        \label{fig:mmr_energy_spectrum}
-\end{figure}
+Figure \ref{fig:mmr_mc} shows the different fluxes in the \gls{MMR}-like 
+reactor at mid-cycle. The trends at mic-cycle in the radial fluxes are 
+similar to those observed at the \gls{BOL}: the radial fluxes have the 
+greatest difference near the fuel pins in the core. In the axial fluxes 
+however, there is a noticeable difference between the flux from the \gls{EBR} 
+fuel and the other fuels. The \gls{EBR} results in a greater difference 
+from the flux from the pure fuel than the Y-12 fuel, but the shape of 
+the difference is similar to what was observed at \gls{BOL}; the flux from 
+the \gls{EBR} fuel is less than that from the pure fuel in the bottom of 
+the core and greater at the top of the core. For the thermal axial flux, 
+the difference between the flux from the pure and Y-12 fuels decreases 
+compared with the fluxes at \gls{BOL}, but the difference between the flux 
+from pure and \gls{EBR} fuel increases compared with the flux at \gls{BOL}. 
+A similar pattern occurs in the fast axial flux. This suggests that 
+as the core burns, the impurities in the Y-12 fuel are burned off sooner 
+than those present in the \gls{EBR}, allowing the core with the Y-12 fuel to 
+behave more similarly to the pure fuel. 
 
 \begin{figure}
         \centering
@@ -596,6 +661,19 @@ of magnitude smaller than the flux and is therefore quite small.
         \label{fig:mmr_mc}
    \end{figure}
 
+Finally, Figure \ref{fig:mmr_eol} shows the different fluxes in the 
+\gls{MMR}-like model at \gls{EOL}. The radial fluxes continue to show 
+the same trend of the largest differences between the fluxes occurring near
+the fuel pins. The axial fluxes (Figures \ref{fig:mmr_thermal_axial_eol} and 
+\ref{fig:mmr_fast_axial_eol}) show a different trend. Both axial 
+fluxes show that the impure fuels result in a larger flux at the 
+bottom of the core and a smaller flux at the top of the core, opposite
+to what was observed in the \gls{BOL} and mid-cycle fluxes. The thermal 
+and fast axial fluxes are higher at the \gls{EOL} than at the other 
+two burnup steps. The difference between the flux from \gls{EBR} fuel 
+and the pure fuel decreases from the difference at mid-cycle, but the 
+difference between the fluxes from the pure and Y-12 fuel 
+increases from the difference at mid-cycle. 
    
 \begin{figure}
         \centering
@@ -636,6 +714,15 @@ of magnitude smaller than the flux and is therefore quite small.
 
 
 \subsubsection{Reactivity feedback coefficients}
+Finally, the reactivity feedback coefficients of different materials 
+at each burnup step are reported in Table \ref{tab:coeff_mmr}. The 
+fuel reactivity feedback coefficients become more negative with 
+burnup, which is consistent with 
+
+The coolant reactivity feedback coefficients have the smallest absolute 
+value of any of the coefficients considered in this work, which 
+indicates that the helium coolant has the smallest effect on the reactivity 
+of the core as the temperature changes. 
 
 \begin{table}
         \centering 
