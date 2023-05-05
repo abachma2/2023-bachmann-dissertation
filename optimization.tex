@@ -351,10 +351,13 @@ and maximum hypervolumes.
 
 Finally, Figure \ref{fig:moga_mutation} shows the statistics of the 
 hypervolumes resulting from different values of the mutation rate.
+A mutation rate of 0.08 resulted in the largest mean and median of the 
+values considered, closely followed by a mutation rate of 0.1. 
+
 
 \begin{figure}
     \centering 
-    \includegraphics[scale=0.8]{moga_population.pdf}
+    \includegraphics[scale=0.8]{moga_mutation.pdf}
     \caption{Statistics of hte hypervolumes resulting from 
     each mutation rate considered in the MOGA Tuning.}
     \label{fig:moga_mutation}
@@ -372,11 +375,16 @@ Additionally, a population size of 25 results in the highest
 values for the upper quartiles plus or minus 1.5 times the interquartile 
 range (the end of the whiskers), which suggests that when this 
 hyperparameter value is used again the results will continue to be 
-favorable. Finally, we selected a mutation rate of 
+favorable. Finally, we selected a mutation rate of 0.1 because 
+although a mutation rate of 0.08 resulted in a larger mean and median 
+than a rate of 0.1, it also resulted in a smaller minimum hypervolume and 
+more values that are lower than those from a a rate of 0.1. Therefore, we 
+selected a mutation rate of 0.1 because the hypervolumes were more 
+consistent than those from a rate of 0.08. 
 
 \begin{table}
     \centering 
-    \caption{Hyperparameters values selected for multi-objective 
+    \caption{Hyperparameter values selected for multi-objective 
     optimization problems based on tuning.}
     \label{tab:moga_parameters}
     \begin{tabular}{c c}
@@ -385,10 +393,16 @@ favorable. Finally, we selected a mutation rate of
         \hline
         Crossover rate & 0.3\\
         Population size & 25\\
-        Mutation rate & \\
+        Mutation rate & 0.1\\
         \hline
     \end{tabular}
 \end{table}
+
+We applied each of the hyperparameters in Table \ref{tab:moga_parameters}
+to the multi-objective problems in this work. We also increased the 
+maximum number of evaluations to 1500 to allow for more exploration 
+of the problem space in hopes of better performance for the problems 
+run. 
 
 \section{Once-through optimization}
 \subsection{Minimize HALEU SWU}
@@ -517,8 +531,57 @@ the hyperparameters for this algorithm can perform well for any problem,
 but will converge at different rates for each problem. 
 
 \subsection{Minimize HALEU SWU and waste mass}
+For the multi-objective problem of minimizing the \gls{SWU} to produce 
+\gls{HALEU} and the \gls{SNF} mass, Dakota identified a pareto front 
+of 217 points, shown in Figure \ref{fig:once-through_pareto}. The points 
+on this figure identify different values of each objective that are equally 
+optimized; in order to improve one objective the other objective becomes w
+worse. There is a linear trade-off between each of the objectives. 
 
-Results to include: graph of Pareto front
+
+\begin{figure}[ht]
+    \centering 
+    \includegraphics{once_through_pareto.pdf}
+    \caption{Pareto front resulting from the multi-objective optimization 
+    of the once-through transition.}
+    \label{fig:once_through_pareto}
+\end{figure}
+
+The points on this pareto front have some similar model parameter values. 
+Every point has a 0\% build share of \glspl{MMR} and an Xe-100 discharge 
+burnup of 185 MWd/kgU. Additionally, the percent \glspl{LWR} operating 
+for 80 years ranges between 47-50\%. Each of these results are very 
+consistent with the results of the sensitivity analysis and the 
+single-objective optimization. The \gls{MMR} discharge burnup varies 
+across the range of possible values in this work because the discharge 
+burnup becomes irrelevant if none of the reactors are deployed in the
+transition.
+
+The Xe-100 and VOYGR build shares vary across the pareto front. The Xe-100 
+build share varies between 11-100\% and the VOYGR build share varies 
+between 10-99\%. The total build share varies between 100-191\% in these 
+results, with 3 of the results having a total build share of 100\%. 
+These two input parameters vary the most in each of the points on 
+the pareto front and have the most effect over the results. The effect of 
+these parameters explains why the pareto front is linear: each of these 
+build shares has a linear relationship with the objectives (see Section 
+\ref{sec:ot_oat}). Therefore, their combined effect remains linear.
+
+Examining the Xe-100, VOYGR, and total build shares also identifies 
+weaknesses in using this tool and methodology. Neither of the two reactor 
+build shares reaches 0\%, which suggests that those ares of the parameter 
+space were not properly explored. Additionally, 73 of the 217 (34\%) points 
+on the pareto front have a total build share above 150\%. Intuition 
+suggests that both objectives would be minimized with a lower total 
+build share. Therefore, the total build shares further suggests that the 
+genetic algorithm is not able to fully explore the parameter space. 
+However, the build share of different reactors experiences a degeneracy. 
+Because the reactors must be built in whole numbers, multiple values of 
+a build share can result in the same number of a reactor type built, 
+suggesting that multiple build share percents will minimize the 
+objectives. Therefore, some variation in the build share of each 
+advanced reactor is a result of the degeneracy property of the build 
+shares.
 
 \section{Recycling optimization}
 \subsection{Minimize HALEU SWU}
