@@ -533,10 +533,15 @@ but will converge at different rates for each problem.
 \subsection{Minimize HALEU SWU and waste mass}
 For the multi-objective problem of minimizing the \gls{SWU} to produce 
 \gls{HALEU} and the \gls{SNF} mass, Dakota identified a pareto front 
-of 217 points, shown in Figure \ref{fig:once-through_pareto}. The points 
+of 217 points, shown in Figure \ref{fig:once_through_pareto}. The points 
 on this figure identify different values of each objective that are equally 
-optimized; in order to improve one objective the other objective becomes w
+optimized; in order to improve one objective the other objective becomes 
 worse. There is a linear trade-off between each of the objectives. 
+The hypervolume of this pareto front is 1.061$\times 10^18$ using a 
+reference point of (6$\times 10^9$, 2$\times 10^8$). This hypervolume is 
+greater than any of the median or mean values in the hyperparameter tuning,
+using the same reference point. This result suggests that these hyperparameters 
+performed well in this problem. 
 
 
 \begin{figure}[ht]
@@ -554,7 +559,7 @@ for 80 years ranges between 47-50\%. Each of these results are very
 consistent with the results of the sensitivity analysis and the 
 single-objective optimization. The \gls{MMR} discharge burnup varies 
 across the range of possible values in this work because the discharge 
-burnup becomes irrelevant if none of the reactors are deployed in the
+burnup becomes irrelevant if none of these reactors are deployed in the
 transition.
 
 The Xe-100 and VOYGR build shares vary across the pareto front. The Xe-100 
@@ -581,7 +586,11 @@ a build share can result in the same number of a reactor type built,
 suggesting that multiple build share percents will minimize the 
 objectives. Therefore, some variation in the build share of each 
 advanced reactor is a result of the degeneracy property of the build 
-shares.
+shares. The degeneracy of the build shares is why setting a strict 
+linear constraint of the build shares summing to 100\% results in 
+so few points on the pareto front. However, the results of this work 
+suggest that an upper limit should be applied to the linear constraint 
+(instead of setting it to infinity) to produce more intuitive results. 
 
 \section{Recycling optimization}
 \subsection{Minimize HALEU SWU}
