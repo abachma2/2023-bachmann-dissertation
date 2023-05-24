@@ -112,7 +112,12 @@ parameters together.
 
 Figure \ref{fig:ts_mmr_share} shows the results of varying the 
 transition start time and the \gls{MMR} build share on all 
-six of the metrics. 
+six of the metrics. The \gls{HALEU}-related metrics and the total 
+\gls{SWU} capacity show a much stronger effect from the \gls{MMR} 
+build share than the transition start time. The total fuel mass 
+and \gls{SNF} mass show an effect from varying both parameters, 
+but they do not compound on each other (result in a non-linear 
+trend in the metric). 
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -166,7 +171,13 @@ six of the metrics.
 
 Figure \ref{fig:ts_voygr_share} shows the effects of varying the 
 transition start time and the VOYGR build share on all six of the 
-metrics. 
+metrics. Except for the total \gls{SWU} capacity, the metrics 
+exhibit more impact from the VOYGR build share than the 
+transition start time. The total \gls{SWU} capacity is impacted more 
+by the transition start time than the VOYGR build share. This
+different trend is because the Xe-100 and VOYGR require similar 
+\gls{SWU} capacity, so this parameter has almost no impact on 
+this metric. 
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -220,7 +231,12 @@ metrics.
 
 Figure \ref{fig:ts_xe100_bu} shows the effects of varying the 
 transition start time and the Xe-100 discharge burnup on all six 
-metrics. 
+metrics. These two parameters impact all six of the metrics in 
+a similar matter: the metrics decrease as the Xe-100 burnup increases 
+and are not greatly impacted by the transition start time. The 
+Xe-100 burnup has a more pronounced on the metrics because Xe-100s 
+comprise most of the advanced reactors. 
+
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -272,7 +288,13 @@ metrics.
 \end{figure}
 
 Figure \ref{fig:ts_mmr_bu} shows the effects of varying the transition 
-start time and the \gls{MMR} discharge burnup on all six metrics. 
+start time and the \gls{MMR} discharge burnup on all six metrics. All 
+of the metrics exhibit the same trends as the parameters vary: the 
+metrics decrease as the transition start time is later and as the 
+\gls{MMR} burnup increases. The two parameters have impacts on similar 
+magnitudes, which is in contrast to the impact from the Xe-100 burnup. The 
+\gls{MMR} burnup has a smaller impact on the metrics because \glspl{MMR} 
+make up a smaller fraction of the advanced reactor fleet than Xe-100s. 
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -399,6 +421,15 @@ larger effect on the
     \label{fig:lwr_xe100_share}
 \end{figure}
 
+Figure \ref{fig:lwr_mmr_share} shows the effects of varying the 
+percent of \glspl{LWR} operating for 80 years and the \gls{MMR} 
+build share on all of the metrics. The metrics have the same trends 
+as the parameters are varied: they increase as the \gls{MMR} build 
+share increases and as the percent of \glspl{LWR} extended 
+decreases. Therefore, all six metrics reach a minimum with 50\% of 
+the \glspl{LWR} operating for 80 years and a 0\% \gls{MMR} build 
+share. 
+
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -449,6 +480,17 @@ larger effect on the
     \label{fig:lwr_mmr_share}
 \end{figure}
 
+Figure \ref{fig:lwr_voygr_share} shows the effects of varying the 
+percent of \glspl{LWR} operating for 80 years and the VOYGR build share
+on the total \gls{SWU} capacity, \gls{HALEU} \gls{SWU} capacity, 
+\gls{SNF} mass, and feed mass to produce \gls{HALEU}. The total 
+\gls{SWU} capacity, \gls{HALEU} \gls{SWU}, and feed mass exhibit the same 
+trend of decreasing with increased \gls{LWR} percent. The \gls{HALEU} 
+\gls{SWU} and feed mass decrease with increase VOYGR build share, 
+while the total \gls{SWU} capacity is constant. The \gls{SNF} mass 
+also decreases with increasing \gls{LWR} percent, but increases with 
+the VOYGR build share. 
+
 \begin{figure}   
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -480,6 +522,22 @@ larger effect on the
     LWR lifetimes and VOYGR build share.}
     \label{fig:lwr_voygr_share}
 \end{figure}
+
+Figure \ref{fig:lwr_xe100_burnup} shows the effects of varying the 
+\gls{LWR} lifetime extension percent and the Xe-100 discharge 
+burnup. All of the output metrics exhibit the same trends as these 
+parameters are varied, which is consistent with these parameters having 
+the same effect on the metrics in the the \gls{OAT} analysis. The metrics 
+decrease with increasing 
+Xe-100 discharge burnup and increasing number of \glspl{LWR} that 
+receive lifetime extensions. The effect of the \gls{LWR} lifetime 
+extensions diminishes as the Xe-100 burnup increases, indicating that 
+the Xe-100 discharge burnup has a greater influence on the metrics of 
+this transition. This result is consistent with most of the advanced 
+reactors deployed in this work being Xe-100s and the global analysis 
+performed, showing that the Xe-100 discharge burnup consistently had one of 
+the highest Sobol' indices. 
+
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -530,6 +588,14 @@ larger effect on the
     LWR lifetimes and the Xe-100 discharge burnup}
     \label{fig:lwr_xe100_burnup}
 \end{figure}
+
+Figure \ref{fig:lwr_mmr_burnup} shows the effects of varying the percent 
+of \gls{LWR} operating for 80 years and the \gls{MMR} discharge burnup. 
+Varying these parameters has the same effect on each of the metrics: 
+increasing these parameters decreases the metrics. The \gls{LWR} lifetime 
+has a greater effect on the metrics than the \gls{MMR} burnup because 
+\glspl{MMR} supply a small of the energy supplied by the advanced reactors.
+
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -545,7 +611,6 @@ larger effect on the
         \label{fig:lwr_mmr_burnup_haleu}
     \end{subfigure}
 \end{figure}
-
 \begin{figure}
     \ContinuedFloat    
     \begin{subfigure}[t]{0.48\textwidth}
@@ -579,6 +644,19 @@ larger effect on the
     LWR lifetimes and MMR discharge burnup.}
     \label{fig:lwr_mmr_burnup}
 \end{figure}
+
+Figure \ref{fig:mmr_share_xe100_burnup} shows the effects from varying 
+the \gls{MMR} build share and the Xe-100 discharge burnup on the 
+\gls{HALEU} mass, total \gls{SWU} capacity, \gls{HALEU} \gls{SWU} 
+capacity, \gls{SNF} mass discharged, and the feed mass to produce \gls{HALEU}. 
+The effects on each of these metrics are consistent with the effects on 
+the total enriched uranium mass, presented in Section \ref{sec:s7_synergistic}.
+Increasing both of the parameters has contradictory effects. Increasing the 
+Xe-100 burnup decreases all of the metrics while increasing the \gls{MMR} 
+build share increases all of the metrics. As the \gls{MMR} build share 
+increases, the Xe-100 burnup has a smaller impact on the metrics because 
+fewer of the advanced reactors deployed are Xe-100s. 
+
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -622,6 +700,23 @@ larger effect on the
     MMR build share and Xe-100 discharge burnup.}
     \label{fig:mmr_share_xe100_burnup}
 \end{figure}
+
+Figure \ref{fig:mmr_share_mmr_burnup} shows the effects of varying 
+the \gls{MMR} share and \gls{MMR} burnup on all of the metrics. All of 
+the metrics exhibit the same trends as each parameter is varied: the 
+metrics decrease with increasing \gls{MMR} burnup and increase 
+with increasing \gls{MMR} build share. This trends are a result of 
+less fuel and materials produce the fuel as the \gls{MMR} burnup increases, 
+but the \gls{MMR} requiring more materials than Xe-100 to meet the same 
+energy demand. These two parameters have a 
+compounding effect, such that as the \gls{MMR} build share increases 
+the variations in the burnup have a greater impact on the metrics because 
+more of the advanced reactors deployed are \glspl{MMR}. All of the metrics 
+are at a minimum when the \gls{MMR} build share is 0\%, independent of 
+the \gls{MMR} burnup. This result is because if there are no \glspl{MMR} 
+deployed in the transition, then the discharge burnup of the fuel that 
+goes into these reactors has no effect on the transition. 
+
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -673,6 +768,34 @@ larger effect on the
     \label{fig:mmr_share_mmr_burnup}
 \end{figure}
 
+Figure \ref{fig:xe100_share_xe100_burnup} shows the effects of varying 
+the Xe-100 build share and Xe-100 discharge burnup on total \gls{SWU}
+capacity, \gls{HALEU} \gls{SWU} capacity, \gls{SNF} mass discharged, and
+the feed mass to produce \gls{HALEU}. The \gls{SNF} exhibits a different 
+trend than the other three metrics. As the Xe-100 build share and 
+burnup increase the \gls{SNF} mass decreases. The other metrics generally
+increase with increasing Xe-100 build share and decreasing burnup. 
+As identified in the \gls{OAT} analysis, the effects in the metrics from 
+varying the Xe-100 build share is a result of design and material 
+requirement differences between the Xe-100 and VOYGR. Therefore, the 
+different trends in each of the metrics as the Xe-100 build share increases 
+is a result of the difference in the two reactor designs. 
+In each of 
+the metrics, the impact of the Xe-100 burnup increases as the 
+Xe-100 build share increases because more of the advanced reactor fleet 
+is comprised of Xe-100s. Additionally, the metrics have a constant value 
+as a function of Xe-100 burnup when the build share is 0\% because none 
+of the advanced reactors deployed are Xe-100s. 
+
+The \gls{OAT} showed that as the Xe-100 build share increases, the 
+total \gls{SWU} capacity remained constant for a given burnup because 
+of the trade-off in enrichment level and mass of fuel between the Xe-100 
+and VOYGR. The results of the synergistic analysis show that this 
+metric only remains relatively constant for high burnup values. At 
+low burnup values (below about 140 MWd/kgU), the Xe-100 requires more 
+fuel mass than the VOYGR, which means that more \gls{SWU} capacity 
+is needed to fuel the reactors. 
+
 \begin{figure}    
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -705,6 +828,28 @@ larger effect on the
     Xe-100 build share and Xe-100 discharge burnup.}
     \label{fig:xe100_share_xe100_burnup}
 \end{figure}
+
+Figure \ref{fig:xe100_share_mmr_burnup} shows the effects of varying the 
+Xe-100 build share and the \gls{MMR} burnup on each of the metrics. 
+The total fuel mass and \gls{SNF} mass decrease with increasing 
+Xe-100 build share and are affected little by the \gls{MMR} burnup. The
+\gls{HALEU} mass, \gls{HALEU} \gls{SWU}, and feed mass to produce 
+\gls{HALEU} the Xe-100 build share  increase with increasing Xe-100 
+build share and are affected little by the \gls{MMR} burnup. The total 
+\gls{SWU} capacity decreases with increasing \gls{MMR} burnup and is 
+affected little by the Xe-100 build share. All of the metrics are only 
+strongly influenced by one of the parameters varied, which indicates that 
+these two parameters do not interact. Variations in the Xe-100 build 
+share primarily impacts the number of Xe-100s and VOYGRs built, as shown 
+in the \gls{OAT} analysis. Because this parameter does not greatly affect 
+the number of \glspl{MMR} deployed, these two parameters do not have any 
+combined effects on the metrics. The total \gls{SWU} capacity is most affected 
+by the \gls{MMR} burnup because the Xe-100 build share primarily 
+affects the deployment of Xe-100s and VOYGRs, and these two reactors 
+require similar \gls{SWU} capacity. Therefore, the changes in fuel 
+requirements and \gls{SWU} capacity from varying the \gls{MMR} burnup 
+is greater than the change in the change in \gls{SWU} capacity from 
+varying the Xe-100 build share. 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -754,6 +899,21 @@ larger effect on the
     Xe-100 build share and MMR discharge burnup}
     \label{fig:xe100_share_mmr_burnup}
 \end{figure}
+
+Figure \ref{fig:voygr_share_mmr_burnup} shows the results of varying the 
+VOYGR build share and the Xe-100 burnup on all of the metrics. All six 
+metrics decrease as a function of the Xe-100 burnup. The total fuel 
+mass and \gls{SNF} generally decrease with the VOYGR build share while 
+the \gls{HALEU}-related metrics and total \gls{SWU} capacity decrease 
+with increasing build share. The results indicate that there is interaction 
+between these two parameters. As the VOYGR build share increases, the number 
+of Xe-100s deployed decreases. This effect is the opposite of the result of 
+increasing the Xe-100 build share. Therefore, the VOYGR build share and 
+Xe-100 burnup interact in opposite ways as the Xe-100 build share and the 
+Xe-100 burnup. As the VOYGR build share increases, the Xe-100 burnup has less impact on the 
+metrics. Additionally, as the Xe-100 burnup increases, the VOYGR 
+build share has less impact on the metrics. 
+
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -803,6 +963,22 @@ larger effect on the
     VOYGR build share and Xe-100 discharge burnup.}
     \label{fig:voygr_share_xe100_burnup}
 \end{figure}
+
+Figure \ref{fig:voygr_share_mmr_burnup} shows the effects of varying 
+the VOYGR build share and \gls{MMR} burnup on all of the metrics. The 
+results of varying these two parameters is similar, but opposite in 
+direction, to the results of varying the Xe-100 build share and 
+\gls{MMR} burnup. The total fuel mass ans \gls{SNF} mass increase 
+with increasing VOYGR build share and are not impacted greatly by the 
+\gls{MMR} burnup. The \gls{HALEU}-related metrics decrease with 
+increasing VOYGR build share and are not greatly affected by the 
+\gls{MMR} burnup. The total \gls{SWU} capacity decreases with increasing 
+\gls{MMR} burnup and is not greatly affected by the VOYGR build share. 
+These results identify that these two parameters do not 
+interact with each other. The VOYGR build share affects the number of 
+VOYGRs and Xe-100s deployed, while the \gls{MMR} burnup affects the 
+fuel requirements of the the \glspl{MMR} that are deployed. 
+
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
