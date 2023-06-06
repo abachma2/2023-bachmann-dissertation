@@ -216,12 +216,14 @@ compared with a once-through fuel cycle \cite{park_comparative_2011}.
 In the \gls{NFC}, enrichment increases the relative abundance of 
 $^{235}$U compared with $^{238}$U in the fuel, increasing
 the relative abundance of fissile material needed 
-for most reactor designs. US currently employs 
-gaseous centrifuges to enrich uranium, although there are multiple 
-technologies that can enrich uranium. Gaseous centrifuges are currently 
+for most reactor designs. There are multiple technologies and processes that can 
+enrich uranium, including gaseous diffusion, calutrons, and laser separation 
+technologies. The US currently employs gaseous centrifuges to enrich uranium 
+for commercial supplies. Gaseous centrifuges are currently 
 used at the Urenco site in New Mexico \cite{us_nuclear_regulatory_commission_louisiana_2022} and 
 planned for the Centrus facility in Piketon, Ohio 
-\cite{us_nuclear_regulatory_commission_centrus_2021}. Gaseous centrifuges are rotating canisters, 
+\cite{us_nuclear_regulatory_commission_centrus_2021}. Gaseous centrifuges 
+are rotating canisters, 
 relying on the speed of the rotation to move heavier 
 materials to the outside of the canister. Because of this preferential 
 movement, a greater concentration of the lighter material ($^{235}$U) 
@@ -233,7 +235,7 @@ fluorine present does not contribute to any mass differences between
 different molecules. 
 
 Multiple quantities govern the capacity of an enrichment facility 
-\cite{tsoulfanidis_nuclear_2013}, defined with Table \ref{tab:enrichment_variables}.
+\cite{tsoulfanidis_nuclear_2013}, defined in Table \ref{tab:enrichment_variables}.
 Each of these quantities can be related using the following equations:
 \begin{subequations}
     \begin{equation}
@@ -288,12 +290,11 @@ product
 enrichment level increases, the amount of \gls{SWU} capacity needed also increases. 
 However, if the product mass decreases, then the required \gls{SWU} capacity 
 also decreases. Therefore, changes to the product enrichment level and mass 
-throughput have opposite effects on the amount of feed material and required 
+throughput have similar effects on the amount of feed material and required 
 \gls{SWU} capacity. Opposing changes to both quantities 
 (i.e., an increase in one and a decrease in the other) will not lead to a clear 
 expectation for the change in feed material of the \gls{SWU} capacity. 
-The effect 
-on these variables will depend on the magnitude of the changes.
+The effect on these variables will depend on the magnitude of the changes.
 
 The separation needed to enrich uranium cannot be performed 
 in a single 
@@ -302,9 +303,8 @@ Therefore, centrifuges at a facility have
 cascades, as shown in Figure \ref{fig:cascade}. Each cascade is designed with 
 multiple separation stages in series, with multiple centrifuge units in 
 parallel comprising each stage \cite{villani_uranium_1979}. Each stage 
-output a product enriched to a certain 
-amount (less than the final product of the cascade), then the product from 
-one 
+outputs a product enriched to a certain amount (less than the final product 
+of the cascade), then the product from one 
 stage becomes the feed material for the next stage in the cascade to produce 
 a greater enrichment level. The tails material from each 
 stage is combined with feed material for the previous stage, to help strip 
@@ -444,7 +444,7 @@ facilities with the institutions.
 
 The \Cycamore agent library provides a variety of libraries that can be 
 dynamically loaded into \Cyclus for use in a simulation 
-\cite{carlsen_cycamore_2014,huff_fundamental_2016}. These libraries 
+\cite{huff_fundamental_2016,carlsen_cycamore_2014}. These libraries 
 include multiple facilities, two institutions, and one region as of 
 \Cycamore 1.3 \cite{huff_fundamental_2016}. The two institutions interact 
 with the region (the \Cycamore \texttt{GrowthRegion}) to deploy 
@@ -464,13 +464,24 @@ In \Cyclus, agents trade materials through the \gls{DRE}
 supply-demand communication framework and treats facilities as black boxes
 so the solution strategy is agnostic to the resource types being exchanged. 
 There are three steps in the \gls{DRE}: information gathering, resource 
-exchanges, and trade execution. During the information gathering 
-phase an exchange graph is created based on information from suppliers 
-and consumers, with any constraints considered. The requested demand from 
-an agent 
-can be more than what it actually consumes, granted capacity constraints 
-accompany the request. An agent can request multiple commodities, but 
-it must provide a preference for each commodity. A solution is found to the 
+exchanges, and trade execution \cite{gidden_agent-based_2015}. 
+During the information gathering 
+phase facilities that need materials state their demand for a given 
+material (e.g., a reactor stating a demand for fuel), referred to 
+as requests. Requests 
+from a facility can be more than what is actually required (e.g. a reactor
+requesting extra fuel assemblies just in case one breaks mid-cycle). Additionally, 
+facilities can state mutual requests, or state requests for materials in 
+which either of the materials would meet the demand (e.g., a reactor 
+requesting UOX and MOX fuel and only needing one to meet their request), with 
+a preference defined for each material.
+Then facilities that produce materials also state the amount of a material 
+they have to trade away (e.g., a fuel fabrication plant stating that they have 
+3 fuel assemblies), in the responses to the requests. Using the information of 
+the material requests and the responses to the requests an exchange graph is 
+created. The exchange graph is a bipartite network \cite{gidden_agent-based_2015}
+with nodes for the requests and the responses to the requests. 
+A solution is found to the 
 exchange graph, then final trades are constructed and executed 
 \cite{gidden_methodology_2016}. A feasible solution is found to the 
 exchange graph using an optimization-based 
