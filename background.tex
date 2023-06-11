@@ -463,6 +463,9 @@ In \Cyclus, agents trade materials through the \gls{DRE}
 \cite{gidden_agent-based_2015,huff_fundamental_2016}. The \gls{DRE} defines the 
 supply-demand communication framework and treats facilities as black boxes
 so the solution strategy is agnostic to the resource types being exchanged. 
+The \gls{DRE} is a novel concept and unique to \Cyclus. It provides a 
+flexible architecture to support supply-demand modeling and dynamic 
+material flows between facilities \cite{huff_fundamental_2016}. 
 There are three steps in the \gls{DRE}: information gathering, resource 
 exchanges, and trade execution \cite{gidden_agent-based_2015}. 
 During the information gathering 
@@ -473,30 +476,91 @@ from a facility can be more than what is actually required (e.g. a reactor
 requesting extra fuel assemblies just in case one breaks mid-cycle). Additionally, 
 facilities can state mutual requests, or state requests for materials in 
 which either of the materials would meet the demand (e.g., a reactor 
-requesting UOX and MOX fuel and only needing one to meet their request), with 
-a preference defined for each material.
-Then facilities that produce materials also state the amount of a material 
-they have to trade away (e.g., a fuel fabrication plant stating that they have 
-3 fuel assemblies), in the responses to the requests. Using the information of 
-the material requests and the responses to the requests an exchange graph is 
-created. The exchange graph is a bipartite network \cite{gidden_agent-based_2015}
+requesting UOX and MOX fuel but only needing one to meet their request), with 
+a preference defined for each material. Requests for materials can have 
+constraints attached, such as quantity limits or if the request is 
+\textit{exclusive}. Exclusive requests mean that it must be met fully 
+from a single bid, as opposed to being met through multiple small 
+bids. Then facilities that produce materials also state the amount of a 
+material they have to trade away (e.g., a fuel fabrication plant stating 
+that they have 3 fuel assemblies), as the responses to the requests or 
+bids. Using the information of the material requests and the bids, 
+an exchange graph is created. The exchange graph is a 
+bipartite network \cite{gidden_agent-based_2015}
 with nodes for the requests and the responses to the requests. 
-A solution is found to the 
-exchange graph, then final trades are constructed and executed 
-\cite{gidden_methodology_2016}. A feasible solution is found to the 
-exchange graph using an optimization-based 
-approach with economics-based proxies \cite{gidden_methodology_2016}. 
-The \gls{DRE} can apply physical, economic, and social 
-constraints to a fuel cycle model, such as any tariffs between regions. 
+
+Once the exchange graph is created, the requesting facilities can apply 
+preferences to possible each potential bid based on the facility 
+making the bid \cite{huff_fundamental_2016}. Preferences can be based on 
+the facility making the bid, or the bidding facility's institution or 
+region. For example, a reactor facility can prefer to receive fuel 
+assemblies from one agent, or agents from an institution (mimicking but not 
+fully enforcing contracts between companies), or agents from a region 
+(mimicking international trade agreements). The addition of preferences of 
+potential bids allows the \gls{DRE} to more closely mimic supply chain 
+dynamics within a fuel cycle. 
+A solution is found to the exchange graph by matching requests with 
+responses. A feature of \Cyclus is that it is possible for 
+requests to be unmet if there is not enough material in the responses 
+to fully meet the bid \textbf{who said this?}. To account for this 
+capability, unconstrained false nodes are defined in the exchange graph
+to ensure a feasible solution is possible \cite{gidden_methodology_2016}.
+A solution to the exchange graph is found using a simulation-based 
+heuristic or a mathematical program \cite{gidden_agent-based_2015}.
+Mathematical models to solve the exchange graph include \gls{MILP} and 
+\gls{LP}, with \gls{MILP} required to solve the exchange graph if 
+any of the requests are denoted as exclusive \cite{huff_fundamental_2016}.
+Once a solution is found to the exchange graph, the materials are 
+traded between the matched facilities in the trade execution phase.  
 
 Similar to many of the other fuel cycle simulators developed, material 
-compositions in \Cyclus are 
-defined using recipes. However there is a module to allow for 
-depletion calculations of a single enrichment reactor core using ORIGEN 
-\cite{skutnik_cyborg_2016}. This module increases \Cyclus's ability 
-to use realistic material definitions for spent fuel, which is 
-important for an accurate understanding of reprocessing and repository 
-needs. 
+compositions in \Cyclus are defined using recipes. Recipes are 
+typically defined as stagnant compositions are the beginning of 
+a simulation. However, there are instances in which fuel compositions 
+need to be dynamic during a simulation, such as when accounting for fuel 
+depletion. 
+
+\subsection{Fuel depletion}
+Fuel depletion is an important component of fuel cycle simulations 
+because the composition of spent fuel affects the decay heat, 
+amount of fissile material present, and the volume of the spent 
+fuel. Each of these fuel properties affect transportation of the fuel, 
+repository storage limits, and how much material is available for 
+reprocessing and recycling. Therefore, fuel cycle simulators must 
+have a way to account for fuel depletion. 
+
+One possible way to account for fuel depletion is define stagnant 
+compositions of spent fuel and update the fuel composition when 
+it is discharged from a reactor. Spent fuel compositions are defined 
+based on depletion modeling through other codes, and are applied 
+to the modeled fuel cycle. This methodology is used by the 
+\Cycamore Reactor archetype for \Cyclus \cite{carlsen_cycamore_2014}
+and is available through ORION \cite{sunny_transition_2015}. The 
+material compositions must be known \textit{a priori}, with spent fuel 
+compositions typically obtained by modeling depletion before modeling the 
+fuel cycle. 
+This method of accounting for fuel depletion provides a fast and 
+low-fidelity way to model a fuel cycle. Although it has been used to 
+model closed fuel cycles \cite{bae_standardized_2019,djokic_application_2015},
+it is most appropriate for once through fuel cycles 
+\cite{sunny_transition_2015} because the same 
+compositions for fresh fuel are loaded into a reactor at each 
+refueling, which means that the spent fuel compositions do not vary 
+greatly between discharged batches. 
+
+Dynamic modeling of fuel depletion is considered an ``exemplary'' quality 
+of a fuel cycle simulator by Brown et al. \cite{brown_identification_2016},
+and is available in different simulators. ORION \cite{feng_standardized_2016}
+and DYMOND \cite{richards_application_2021} both have dynamic fuel 
+depletion capabilities that allow the codes to more accurately fuel depletion 
+and the effects of fuel compositions on the fuel cycle. ORION allows 
+users to define material compositions through recipes or the code can 
+model decay and depletion of material \cite{sunny_transition_2015}. ORION 
+has some built-in reactor-specific cross sections for modeling 
+depletion during a fuel cycle simulation, or users can generate 
+and provide their own cross section data to fit the reactors and fuel cycle 
+they are modeling. 
+
 
 \subsection{Verification and use of fuel cycle simulators}
 Multi-lab efforts validated the \gls{NFC} simulators discussed here 
