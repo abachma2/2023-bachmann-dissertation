@@ -553,13 +553,49 @@ of a fuel cycle simulator by Brown et al. \cite{brown_identification_2016},
 and is available in different simulators. ORION \cite{feng_standardized_2016}
 and DYMOND \cite{richards_application_2021} both have dynamic fuel 
 depletion capabilities that allow the codes to more accurately fuel depletion 
-and the effects of fuel compositions on the fuel cycle. ORION allows 
+and the effects of fuel compositions on the fuel cycle. \gls{ORION} allows 
 users to define material compositions through recipes or the code can 
 model decay and depletion of material \cite{sunny_transition_2015}. ORION 
 has some built-in reactor-specific cross sections for modeling 
 depletion during a fuel cycle simulation, or users can generate 
 and provide their own cross section data to fit the reactors and fuel cycle 
-they are modeling. 
+they are modeling. DYMOND models depletion through a coupling with 
+ORIGEN2, a stand-alone depletion solver, using pre-generated 
+reactor-specific depletion libraries \cite{richards_application_2021}.
+The coupling of DYMOND with ORIGEN2 provides dynamic updates to 
+spent fuel compositions, but it also allows for the code to perform 
+criticality searches to determine fresh fuel compositions based on 
+the spent fuel compositions available. This criticality search provides 
+more accurate compositions of the fresh fuel produced than using a recipe 
+to define the composition because it creates a feedback mechanism 
+between the fresh and spent fuel compositions \cite{richards_application_2021}.
+However, the increased accuracy in fuel compositions in DYMOND comes 
+at the cost of increased computational cost \cite{richards_application_2021}.
+
+The core kernel of \Cyclus does not provide a method to dynamically 
+model depletion of fuel. However, the modular nature of \Cyclus means 
+that developers can easily couple \Cyclus to a third-party code to 
+model fuel depletion. One such coupling is \gls{CYBORG}, which is a 
+reactor-style archetype that couples \Cyclus with ORIGEN 
+\cite{skutnik_cyborg_2016}. \gls{CYBORG} leverages the validated 
+depletion capabilities in ORIGEN to model fuel depletion during 
+a fuel cycle simulation. \cite{skutnik_cyborg_2016}. Fresh fuel  
+compositions and reactor parameters (such as irradiation time and 
+power level) are passed from \Cyclus to \gls{CYBORG}, which then produces 
+a problem-specific cross section library that is then passed to 
+ORIGEN to perform the depletion calculation. The depleted material 
+compositions are then passed back to \Cyclus to update the 
+appropriate material compositions. Use of this 
+archetype requires users to have a license to use ORIGEN, as it 
+it an export-controlled code, which can pose issues in a user being 
+able to use this archetype. Further development of depletion 
+capabilities in \Cyclus include coupling it with other 
+depletion solvers, such as OpenMC \cite{romano_depletion_2021}, 
+or the development of an archetype with an internal CRAM solver. 
+These additional capabilities could potential increase the user base 
+for this capability because they would potentially not require a user 
+to obtain a license to use the software. 
+
 
 
 \subsection{Verification and use of fuel cycle simulators}
