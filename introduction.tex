@@ -1,7 +1,6 @@
 \section{Motivation}
-The current fleet of nuclear reactors in the US are comprised 
-of two reactor designs: \glspl{PWR} and \glspl{BWR}, 
-which both fall under the classification of \glspl{LWR}.
+In the US, the current fleet of nuclear reactors is comprised 
+of two \gls{LWR} designs: \glspl{PWR} and \glspl{BWR}. 
 Both designs use uranium dioxide pellets as fuel, with the uranium 
 enriched to no more than 5\% $^{235}$U and supply about 1000 MW of 
 power. These types of reactors 
@@ -18,8 +17,8 @@ currently deployed in the US have license expiration dates within
 the next 35 years, with the last license expiring in 2055 
 \cite{nuclear_energy_institute_us_2021}. Therefore, if nuclear energy is 
 to continue to produce energy in the US and assist in meeting carbon 
-emission goals after 2050, we must build new reactors or extend current 
-reactor licenses. 
+emission goals after 2050, we must extend current reactor licenses or 
+build new reactors. 
 
 Multiple countries around the world are building new \glspl{LWR}
 \cite{world_nuclear_association_plans_2022}, and developing
@@ -57,34 +56,6 @@ advanced reactors. Therefore, the \gls{DOE} is investigating how to develop
 a supply chain and \gls{NFC} for uranium enriched to this 
 increased level \cite{regalbuto_addressing_2020,dixon_estimated_2022}. 
 
-Deploying advanced reactors that require \gls{HALEU} and developing 
-the supply chain to fuel them are expected to have large impacts on 
-the \gls{NFC} in the US. The impacts to the US \gls{NFC} stems from the 
-different fuel forms and enrichment levels of the advanced reactor fuel, 
-compared with \gls{LWR} fuel, as different materials and different 
-quantities of materials will be needed to fuel the advanced reactors. 
-To assist in understanding the impacts 
-from deploying \gls{HALEU}-fueled reactors, modeling the \gls{NFC} 
-can provide the material requirements of potential transition scenarios. 
-The technology employed in the \gls{NFC} often defines the fuel 
-cycle type, and a transition in the nuclear fuel cycle occurs when 
-introducing new fuel types or other fuel cycle technologies.  
-Modeling  a \gls{NFC}, typically aided by a fuel cycle simulator, 
-includes modeling the deployment and decommissioning of facilities in 
-the \gls{NFC}, such as mines or reactors, and modeling the materials 
-traded between facilities. 
-\gls{NFC} simulators have been used to model a variety of \gls{NFC} 
-transitions \cite{sunny_transition_2015,bae_fuel_2018,piet_dynamic_2011} 
-and quantify the resource requirements of \glspl{NFC} transitions
-\cite{bachmann_enrichment_2021}. Therefore, using \gls{NFC} simulators to 
-model the transition from the US fleet of \glspl{LWR} to potential 
-fleets of advanced reactors can inform \gls{DOE}, researchers, companies, 
-and other key stakeholders of potential \gls{HALEU} needs for future 
-advanced reactors deployed. Estimates on potential needs can then inform on 
-ways to develop material supply chains to fuel advanced reactors. Because of
-the different enrichment level of advanced reactors, developing a supply 
-chain of \gls{HALEU} has been an emphasis for \gls{DOE}. 
-
 There are two methods to produce \gls{HALEU}: enrich natural uranium up to 
 the required level
 or downblend \acrfull{HEU} to the desired enrichment level. The current US
@@ -116,12 +87,35 @@ Therefore, meeting \gls{HALEU} demand through downblending may require the
 development and licensing of additional facilities to downblend \gls{HEU} if 
 the BWXT facility does not have enough capacity. 
 
+The production of fuels needed for deploying advanced reactors 
+is expected to have numerous impacts on the \gls{NFC}, stemming from 
+the different materials and enrichment levels needed for advanced reactor
+fuels. To assist in understanding the impacts 
+from deploying \gls{HALEU}-fueled reactors, modeling the \gls{NFC} 
+can provide the material requirements of potential transition scenarios. 
+The technology employed in the \gls{NFC} often defines the fuel 
+cycle type, and a transition in the nuclear fuel cycle occurs when 
+introducing new fuel types or other fuel cycle technologies.  
+Modeling  a \gls{NFC}, typically aided by a fuel cycle simulator, 
+includes modeling the deployment and decommissioning of facilities in 
+the \gls{NFC}, such as mines or reactors, and modeling the materials 
+traded between facilities. 
+\gls{NFC} simulators have been used to model a variety of \gls{NFC} 
+transitions \cite{sunny_transition_2015,bae_fuel_2018,piet_dynamic_2011} 
+and quantify the resource requirements of \glspl{NFC} transitions
+\cite{bachmann_enrichment_2021}. Therefore, using \gls{NFC} simulators to 
+model the transition from the US fleet of \glspl{LWR} to potential 
+fleets of advanced reactors can inform \gls{DOE}, researchers, companies, 
+and other key stakeholders of potential \gls{HALEU} needs for future 
+advanced reactors deployed. Estimates on potential needs can then inform 
+ways to develop material supply chains to fuel advanced reactors. 
+
 When modeling the \gls{NFC} to assist in answering questions about 
 \gls{HALEU} demand and other resources required to meet the demand, 
-there is a large array of potential 
-input parameters, such as when to start a transition or the speed of the 
+there is a large array of input parameters that must be considered: when to start 
+a transition, the speed of the 
 transition, and the advanced reactors to deploy. Many times, modelers make 
-assumptions about transition parameters \cite{djokic_application_2015,sunny_transition_2015}
+assumptions about transition parameters \cite{sunny_transition_2015, djokic_application_2015}
 and others use energy projections to determine transition parameters 
 \cite{dixon_estimated_2022}. These are valid methods to determine 
 transition parameters, but only considering a select set of parameters may 
@@ -143,11 +137,11 @@ material requirements of a \gls{NFC} coupled with sensitivity analysis
 aids in optimizing the \gls{NFC} based on given criteria, such as 
 minimizing the amount of \gls{HALEU} required. Various 
 optimization schemes have been applied to \glspl{NFC} to optimize the fuel 
-cycle based on criteria such as fuel requirements \cite{kim_selection_1999},
+cycle based on minimizing certain criteria: fuel requirements \cite{kim_selection_1999},
 waste production \cite{shwageraus_optimization_2003}, and combinations 
 of these metrics in multi-objective 
 problems \cite{passerini_systematic_2014}. By combining \gls{NFC} transition 
-analysis with sensitivity analysis and optimization, key stakeholders obtain 
+analysis with sensitivity analysis and optimization,one obtains
 a deep understanding of potential \gls{HALEU} demand, potential supply 
 chain requirements, and how to alter reactor deployment to aid in developing 
 the supply chain. 

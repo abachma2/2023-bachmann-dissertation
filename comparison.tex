@@ -1,0 +1,26 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[node distance=1.5cm]
+        \node (mine) [facility] {Uranium Mine};
+        \node (enrichment) [facility, below of=mine]{Enrichment};
+        \node (reactor) [facility, below of=enrichment]{Reactor};
+        \node (sinkhlw) [facility, below of=reactor, xshift=2.5cm, yshift=-1cm]{Repository};
+        \node (separation) [facility, right of=reactor, xshift=2.5cm]{Separations};
+        \node (mox_fab) [facility, above of=separation, yshift=0.8cm]{MOX Fuel Fab};
+        
+        \draw [arrow] (mine) -- node[anchor=east]{Natural uranium} (enrichment);
+        \draw [arrow] (enrichment) -- node[anchor=east]{Fresh UOX}(reactor);
+        \draw [arrow] (reactor) -- node[anchor=north]{Spent UOX}(separation);
+        %\draw [arrow] (cooling) -- node[anchor=west, text width=1.5cm]{Cooled Spent UOX}(separation);
+        \draw [arrow] (separation) -- node[anchor=west]{Separated plutonium}(mox_fab);
+        \draw [arrow] (separation) |- node[anchor=west, pos=0.3]{Fission Products}(sinkhlw);
+        \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural uranium} (mox_fab);
+        \draw [arrow] (reactor) |- node[anchor=east, pos=0.3]{Spent MOX} (sinkhlw);
+        \draw [arrow] (mox_fab) -- node[anchor=south, sloped]{Fresh MOX} (reactor);
+        %\draw [arrow] (mox_fab.east) -| ++(5mm,0) -| (xe100.north);
+        \end{tikzpicture}
+    \caption{Fuel cycle facilities and material flow between facilities for the 
+    sample fuel cycle scenarios used to compare the results of the \Cycamore Reactor 
+    and OpenMCyclus DepleteReactor archetypes. }
+    \label{fig:comparison}
+\end{figure}
