@@ -502,7 +502,7 @@ dynamics within a fuel cycle.
 A solution is found to the exchange graph by matching requests with 
 responses. A feature of \Cyclus is that it is possible for 
 requests to be unmet if there is not enough material in the responses 
-to fully meet the bid \textbf{who said this?}. To account for this 
+to fully meet the bid. To account for this 
 capability, unconstrained false nodes are defined in the exchange graph
 to ensure a feasible solution is possible \cite{gidden_methodology_2016}.
 A solution to the exchange graph is found using a simulation-based 
@@ -595,6 +595,19 @@ or the development of an archetype with an internal CRAM solver.
 These additional capabilities could potential increase the user base 
 for this capability because they would potentially not require a user 
 to obtain a license to use the software. 
+
+Another third-party archetype developed to account for fuel depletion 
+is Bright-lite \cite{schneider_integrated_2016}. This archetype accounts for 
+fuel depletion through two methods: forward calculations and blending. 
+The forward method uses a defined input fuel composition to determine 
+the spent fuel isotopics and fuel burnup using one-group cross 
+section libraries. In the blending mode, the archetype uses two materials 
+streams of known composition and combines them to reach a specified burnup 
+for the fuel. Bright-lite creates a single cross section set for each 
+fuel type and reactor condition. Each cross section set leads to a
+isotope library database that contains the fluence, neutron production rate,
+neutron destruction rate, total burnup, and isotope transmutation product 
+vectors and matrices. 
 
 
 

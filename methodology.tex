@@ -298,7 +298,7 @@ minimize power oversupply, and mimic a realistic deployment strategy.
     \centering
     \includegraphics[scale=0.6, trim=50 100 60 0,clip]{Deployment_Scheme.pdf}
     \caption{Example of how advanced reactors are deployed in Scenario 7 
-    to meet a demand of 480 MWe.}
+    to meet a theoretical demand of 530 MWe.}
     \label{fig:AR_deployment}
 \end{figure}
 
@@ -397,7 +397,9 @@ The separations facility separates out uranium and plutonium from the other
 materials in the fuel, emulating the aqueous reprocessing method although the 
 chemistry is not explicitly modeled. The partitioning factor is 99\% for
 both plutonium and uranium, based on a conservative estimate of stated 
-process loses for aqueous reprocessing \cite{herbst_6_2011}. The separated 
+process loses for aqueous reprocessing \cite{herbst_6_2011} and the 
+separation efficiency previously used in fuel cycle modeling 
+\cite{wigeland_nuclear_2014,sunny_transition_2015}. The separated 
 material from this facility is then sent to a \gls{MOX} fuel fabrication 
 facility that produces \gls{MOX} with a pre-defined composition for each 
 advanced reactor \textbf{found from literature, transport calculations, 
@@ -409,6 +411,13 @@ Separations archetype, and the \gls{MOX} fuel fabrication is modeled
 using the \Cycamore FuelFab archetype. The \Cycamore FuelFab archetype 
 matches materials streams to produce the \gls{MOX} based on plutonium 
 equivalence. 
+
+For the recycle scenarios we developed and used the OpenMCyclus 
+DepleteReactor archetype to model the reactor facilities. 
+This archetype couples with the stand-alone depletion solver in 
+OpenMC \cite{romano_depletion_2021} to dynamically update spent 
+fuel compositions during a simulation. More information 
+about this archetype can be found in Section \ref{sec:openmcyclus}. 
 
 \subsection{Continuous recycle scenarios}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
@@ -438,37 +447,130 @@ technology.
 
 \input{continuous-recycling-flow}
 
-The accuracy of the spent fuel recipes is of great importance 
-when modeling a fuel cycle with recycling, because the spent fuel 
-composition is directly related to the amount of \gls{MOX} that 
-can be created from each unit of spent fuel. Therefore, to 
-dynamically account for the depletion of fuel in a reactor 
-this work created a new \Cyclus archetype that couples \Cyclus with 
-OpenMC \cite{romano_openmc:_2015}, an open-source Monte Carlo 
-neutron transport code that can perform depletion. 
+\section{OpenMCyclus}\label{sec:openmcyclus}
+OpenMCyclus is an archetype library that holds the DepleteReactor 
+archetype. Currently, OpenMCyclus only holds this one archetype, so 
+the two terms are used synonymously here. OpenMCyclus couples 
+\Cyclus with the stand-alone depletion solver in OpenMC to provide 
+dynamic updates of spent fuel composition during a fuel cycle simulation.
+We decided to coupled with the depletion solver in OpenMC because 
+of the pen-source nature of OpenMC and its rich Python \gls{API}. 
+The open-source nature of OpenMC complements the open-source nature 
+of \Cyclus to prevent crating additional obstacles for user to navigate 
+to use the code. Additionally, the Python \gls{API} of OpenMC 
+compliments the Python \gls{API} of \Cyclus, aiding in the development 
+of the archetype. 
+There are two primary components to OpenMCyclus: fuel depletion and 
+transmutation and the interaction with the \Cyclus \gls{DRE}. 
 
-\subsection{OpenMCyclus}
-OpenMCyclus is an archetype (a generic facility model) that couples the 
-\Cyclus with OpenMC to provide dynamic updates of spent fuel composition 
-during a fuel cycle simulation. The methodology for material requests 
-and transactions mimics the methodology employed by the \Cycamore 
-Reactor archetype \textbf{good citation for this?}, which means that
-there is not a difference is the frequency and amount of fuel requested 
-by each reactor prototype when using this archetype. To provided 
-updated spent fuel compositions, the transport-independent depletion 
-solver in OpenMC \cite{romano_depletion_2021} is called during a fuel cycle 
-simulation. The compositions of the fresh fuel are passed from the archetype 
-to OpenMC, the depletion solver is called, and the spent fuel compositions 
-are given back to the archetype and \Cyclus for other facility prototypes 
-to read and use. 
+\subsection{Fuel depletion and transmutation}
+The depletion of fuel in this archetype is performed through a coupling with 
+the depletion solver in OpenMC. The depletion solver in OpenMC solves a system 
+of first-order ODEs that describes 
+the rate of change of each nuclide as a function of production and loss 
+mechanisms \cite{romano_depletion_2021}. OpenMC applies a \gls{CRAM} solver 
+and multiple time integration methods to solve the system of equations, which 
+has been shown to have good agreement with the depletion solver in Serpent 
+\cite{romano_depletion_2021}. OpenMC provides this capability in two primary forms: 
+transport dependent and transport independent solvers. To simplify the information 
+needed and reduce solve times, OpenMCyclus uses the transport independent 
+solver through the ``IndependentOperator'' class of the ``openmc.deplete''
+module. 
 
-OpenMC has two stand-alone depletion solvers: one that updates cross section d
+Use of this class requires users to provide information including the 
+multi-group microscopic cross section data, depletion chain data, the 
+number of depletion steps, 
+power level, and material compositions for the fuel. The multi-group 
+cross section data must be provided by the user through a ``.csv'' file by 
+specifying a path to the file, assumed to be titled ``micro\_xs.csv'' by the 
+archetype. This data can be obtained by running a transport calculation 
+of the desired reactor geometry using OpenMC or another transport solver. 
+The depletion chain data is an ``.xml'' file that is assumed to be in the 
+same directory as the cross section data, under a filename that is specified 
+by the user. TThe depletion steps are 30 days each (corresponding to 1 month), 
+with one depletion step for each month of the operating cycle, as defined by 
+the user. The power level is defined by the user, and is converted from 
+MW to W (units assumed by \Cyclus to unites assumed by OpenMC). Each of these 
+variables (the cross section data file name, path to the cross section data and 
+depletion chain data, the number of depletion steps, and the power level) are 
+defined by the user through the \Cyclus input file then passed from the archetype 
+to OpenMC. The material compositions are located in an ``.xml'' file 
+(assumed to be in the same directory as the cross section and depletion 
+chain data). The information in this file is updated by the archetype to 
+contain the composition of each assembly in the reactor core at the 
+beginning of each cycle. The information in this file is then read in
+by OpenMC to define the materials for depletion. 
+
+To account for multiple batches of fuel in the core, all of the assemblies 
+are depleted and have their compositions updated based on the depletion results
+at the end of each cycle. This methodology differs from what the \Cycamore 
+Reactor archetype, which transmutes the composition of only the number of 
+assemblies in a batch, and immediately changes the composition from that 
+of the fresh fuel to that of spent fuel. Therefore, by accounting for 
+changes in fresh fuel composition (e.g., UOX to MOX) and multiple 
+batches in a core, OpenMCyclus is expected to be more sensitive to 
+changes in spent fuel composition that the \Cycamore Reactor archetype. 
+Additionally, when a reactor facility is decommissioned, the default behavior 
+of the \Cycamore Reactor archetype is to transmute only half of the assemblies 
+in the core, while the OpenMCyclus archetype transmutes all of the assemblies. 
+This setting in the \Cycamore Reactor (``decom\_transmute\_all'') can be 
+toggled to ``True'' so that both archetypes have the same behavior.
+
+OpenMC has two stand-alone depletion solvers: one that updates cross section
 data before depletion and one that doesn't. For this work I decided to use 
 the one that doesn't update the cross section data. Using this method increases 
 the differences in the spent fuel composition compared with when the depletion 
 is performed with transport \textbf{see if Olek has published his paper yet},
-but this expense is taken in favor of improved computational performance. 
+but this expense is taken in favor of improved computational performance.
+
+\subsection{Interactions with DRE}
+The archetype interactions with the \Cyclus \gls{DRE} controls how
+the archetype requests and places bids for materials, the quantities 
+of the requests and bids, and the agents from which the materials 
+are received. we designed OpenMCyclus to mimic the \gls{DRE} 
+interactions of the \Cycamore Reactor archetype. This means that 
+fuel assemblies are requested when the core or the fresh fuel 
+storage is not full, and are traded away after each operating cycle. 
+Each fuel assembly needed is a separate request, with each request 
+being exclusive (i.e., partial fulfillment of the request by another 
+agent is not allowed). If multiple commodities can meet a request for 
+an assembly (e.g., UOX or MOX assemblies), then all of the possible 
+commodities are requested through mutual requests based on user-defined 
+preferences for each commodity.
+Materials are requested in quantities to match the user-defined 
+assembly mass size. 
+
+\subsection{Comparison with \Cycamore Reactor}
+To verify the results from OpenMCyclus, we created a sample fuel cycle 
+scenario to model with the \Cycamore Reactor archetype and the 
+OpenMCyclus DepleteReactor archetype. The fuel cycle is shown in Figure 
+\ref{fig:comparison}. Each of the non-reactor facilities are defined 
+using archetypes in the \Cycamore library, with the \Cycamore Mixer 
+defining the MOX Fuel Fab agent. The Mixer agent takes in multiple 
+material streams and combines them in a user-defined ratio to produce 
+a final output stream. For this scenario, the separated fissile plutonium 
+and natural uranium are combined in a 1:9 ratio (10\% plutonium and 90\% 
+natural uranium). 
+
+\input{comparison}
+
+The entire simulation is 200 months. Reactors are deployed using the 
+\Cycamore DeployInst institution archetype: 5 at time step 1, 2 at time step 
+50, 2 at time step 100, and 2 at time step 150. The reactors have a lifetime 
+of 60 time steps, cycle length of 12 time steps, refueling length of 1 
+time step, three batches per core, one assembly per batch, a power output of 
+100 MW, and an assembly size of 10 kg. The reactors prefer MOX over UOX. 
  
+For the reactor agent, we ran this simulation using the OpenMCyclus 
+DepleteReactor archetype and the \Cycamore Reactor archetype. We ran the 
+simulation with the \Cycamore Reactor archetype twice to toggle the 
+``decom\_transmute\_all'' option. The fresh fuel compositions were consistent 
+across the three iterations: 4.5\% $^{235}$U and 95.5\% $^{238}$U for the 
+fresh UOX and \textbf{figure out MOX} for the fresh MOX. To determine the cross 
+section data 
+
+We compared each of the simulations 
+based on the amount of each fuel type sent to the reactors
 
 \section{Calculation of results} \label{sec:results_calc}
 The results of each transition scenario modeled include the energy generated, 
@@ -480,8 +582,8 @@ are obtained from the \Cyclus output file of the simulation.
 The energy generated in each scenario is calculated and directly 
 reported by \Cyclus. Each reactor facility is assumed to produce a 
 commodity called ``power'', and the total output of each reactor facility 
-is reported at each timestep that they produce this commodity. 
-\Cyclus reports the timestep that each facility in the simulation enters 
+is reported at each time step that they produce this commodity. 
+\Cyclus reports the time step that each facility in the simulation enters 
 (commissions) and exits (decommissions) the simulation. Based on 
 this information the total number of reactors, advanced reactors, and 
 each type of reactor can be determined. 
