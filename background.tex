@@ -362,8 +362,9 @@ A variety of fuel cycle simulators have been developed, often to focus on
 specific areas of the nuclear fuel cycle \cite{huff_next_2010}. Some of the 
 \gls{NFC} simulators developed include
 \gls{DYMOND} \cite{feng_sensitivity_2020,feng_standardized_2016}, 
-\gls{VISION} \cite{yacout_visionverifiable_2006}, and ORION 
-\cite{gregg_analysis_2012}.
+\gls{VISION} \cite{yacout_visionverifiable_2006}, ORION 
+\cite{gregg_analysis_2012}, COSI6 \cite{coquelet-pascal_cosi6:_2015}, and
+\gls{NFCSim} \cite{schneider_nfcsim:_2005}.
 \gls{DYMOND} is a fuel cycle simulator developed by \gls{ANL} initially for 
 the Gen IV Fuel Cycle Crosscut Group. This simulator combines 
 multiple modeling paradigms, including system dynamics, discrete events, and
@@ -371,10 +372,6 @@ agent-based modeling \cite{feng_standardized_2016,feng_sensitivity_2020}.
 \gls{DYMOND} accepts inputs of reactor and fuel characteristics, fuel cycle 
 facility properties, the facilities that use each fuel type, and an 
 energy demand to output the reactor fleet composition \cite{feng_standardized_2016}.
-One distinguishing 
-feature of \gls{DYMOND} is that it performs depletion of material inputs 
-to a reactor facility using ORIGEN, enabling 
-an `exemplary' functionality of \gls{NFC} simulators. 
 \gls{VISION} was developed primarily to meet the program objectives of the 
 \gls{AFCI} and is based on \gls{DYMOND} \cite{yacout_visionverifiable_2006}.
 \gls{VISION} was initially developed to be US-focused, but has been modified to 
@@ -393,7 +390,19 @@ The UK National Nuclear Laboratory developed ORION, which tracks up to
 move through a nuclear fuel cycle \cite{gregg_analysis_2012}. ORION models
 facilities as individual objects, instead of just at the fleet level, and 
 the decay and irradiation of the tracked nuclides 
-\cite{feng_standardized_2016}.
+\cite{feng_standardized_2016}. COSI6 was developed by \gls{CEA} to 
+study different evolutions of reactors and fuel cycles and 
+provide technical information to decision makers \cite{coquelet-pascal_cosi6:_2015}. 
+COSI6 simulates a fuel 
+cycle in a chronological order based on user-provided inputs, and does 
+not provide any decision making. \gls{NFCSim} was developed by \gls{LANL}
+to address contemporary gaps in the ability of fuel cycle simulators 
+to model transition scenarios or time-dependent information of 
+sensitive material locations \cite{schneider_nfcsim:_2005}. 
+\gls{NFCSim} applies an object-oriented 
+philosophy to represent each element of a fuel cycle model. Objects 
+are grouped into classes, with classes grouped together to form 
+superclasses. 
 
 Another \gls{NFC} simulator is \Cyclus, an open-source, agent-based 
 \gls{NFC} simulator \cite{huff_fundamental_2016}. The next section 
@@ -531,16 +540,15 @@ have a way to account for fuel depletion.
 
 One possible way to account for fuel depletion is define stagnant 
 compositions of spent fuel and update the fuel composition when 
-it is discharged from a reactor. Spent fuel compositions are defined 
-based on depletion modeling through other codes, and are applied 
-to the modeled fuel cycle. This methodology is used by the 
+it is discharged from a reactor. This methodology is used by the 
 \Cycamore Reactor archetype for \Cyclus \cite{carlsen_cycamore_2014}
+and \gls{VISION} \cite{yacout_vision_2006},
 and is available through ORION \cite{sunny_transition_2015}. The 
 material compositions must be known \textit{a priori}, with spent fuel 
-compositions typically obtained by modeling depletion before modeling the 
-fuel cycle. 
+compositions typically obtained by using another program 
+to model depletion before modeling the fuel cycle. 
 This method of accounting for fuel depletion provides a fast and 
-low-fidelity way to model a fuel cycle. Although it has been used to 
+simple way to model a fuel cycle. Although it has been used to 
 model closed fuel cycles \cite{bae_standardized_2019,djokic_application_2015},
 it is most appropriate for once through fuel cycles 
 \cite{sunny_transition_2015} because the same 
@@ -550,44 +558,59 @@ greatly between discharged batches.
 
 Dynamic modeling of fuel depletion is considered an ``exemplary'' quality 
 of a fuel cycle simulator by Brown et al. \cite{brown_identification_2016},
-and is available in different simulators. ORION \cite{feng_standardized_2016}
-and DYMOND \cite{richards_application_2021} both have dynamic fuel 
-depletion capabilities that allow the codes to more accurately fuel depletion 
-and the effects of fuel compositions on the fuel cycle. \gls{ORION} allows 
+and is available in different simulators. Dynamic depletion 
+modeling allows a fuel cycle simulator to more accurately fuel depletion 
+and the effects of fuel compositions on the fuel cycle. Some of the 
+fuel cycle simulators that have dynamic fuel depletion capabilities 
+are ORION \cite{feng_standardized_2016}, \gls{DYMOND} 
+\cite{richards_application_2021}, and \gls{NFCSim} \cite{schneider_nfcsim:_2005}.
+\gls{ORION} allows 
 users to define material compositions through recipes or the code can 
 model decay and depletion of material \cite{sunny_transition_2015}. ORION 
 has some built-in reactor-specific cross sections for modeling 
 depletion during a fuel cycle simulation, or users can generate 
 and provide their own cross section data to fit the reactors and fuel cycle 
-they are modeling. DYMOND models depletion through a coupling with 
+they are modeling. \gls{DYMOND} models depletion through a coupling with 
 ORIGEN2, a stand-alone depletion solver, using pre-generated 
 reactor-specific depletion libraries \cite{richards_application_2021}.
-The coupling of DYMOND with ORIGEN2 provides dynamic updates to 
+The coupling of \gls{DYMOND} with ORIGEN2 provides dynamic updates to 
 spent fuel compositions, but it also allows for the code to perform 
 criticality searches to determine fresh fuel compositions based on 
 the spent fuel compositions available. This criticality search provides 
 more accurate compositions of the fresh fuel produced than using a recipe 
 to define the composition because it creates a feedback mechanism 
 between the fresh and spent fuel compositions \cite{richards_application_2021}.
-However, the increased accuracy in fuel compositions in DYMOND comes 
+However, the increased accuracy in fuel compositions in \gls{DYMOND} comes 
 at the cost of increased computational cost \cite{richards_application_2021}.
+\gls{NFCSim} is coupled with \gls{LACE}, a criticality and burnup 
+engine developed to couple with \gls{NFCSim} to model the 
+time-dependent nature of nuclear materials in a fuel cycle simulation
+\cite{schneider_nfcsim:_2005}. By providing \gls{LACE} with cross 
+section libraries, it can find fluence-dependent burnups and production 
+and destruction rates for actinides in the fuel materials. This 
+information is then used to develop reactor-specific reactivity models 
+based on the fluence as the independent variable. This coupling 
+with \gls{LACE} provides a cycle-dependent way to determine 
+spent fuel compositions upon discharge from the reactor or at a 
+later time (e.g., after initial cooling or upon entrance to a 
+separations facility). 
 
 The core kernel of \Cyclus does not provide a method to dynamically 
 model depletion of fuel. However, the modular nature of \Cyclus means 
-that developers can easily couple \Cyclus to a third-party code to 
-model fuel depletion. One such coupling is \gls{CYBORG}, which is a 
+that developers can easily create archetypes that provide this 
+functionality. One such archetype is \gls{CYBORG}, which is a 
 reactor-style archetype that couples \Cyclus with ORIGEN 
 \cite{skutnik_cyborg_2016}. \gls{CYBORG} leverages the validated 
 depletion capabilities in ORIGEN to model fuel depletion during 
-a fuel cycle simulation. \cite{skutnik_cyborg_2016}. Fresh fuel  
+a fuel cycle simulation \cite{skutnik_cyborg_2016}. Fresh fuel  
 compositions and reactor parameters (such as irradiation time and 
-power level) are passed from \Cyclus to \gls{CYBORG}, which then produces 
-a problem-specific cross section library that is then passed to 
+power level) are passed from the archetype to \gls{CYBORG}, which then 
+produces a problem-specific cross section library that is then passed to 
 ORIGEN to perform the depletion calculation. The depleted material 
 compositions are then passed back to \Cyclus to update the 
 appropriate material compositions. Use of this 
 archetype requires users to have a license to use ORIGEN, as it 
-it an export-controlled code, which can pose issues in a user being 
+is an export-controlled code, which can pose issues in a user being 
 able to use this archetype. Further development of depletion 
 capabilities in \Cyclus include coupling it with other 
 depletion solvers, such as OpenMC \cite{romano_depletion_2021}, 
@@ -596,29 +619,59 @@ These additional capabilities could potential increase the user base
 for this capability because they would potentially not require a user 
 to obtain a license to use the software. 
 
-Another third-party archetype developed to account for fuel depletion 
-is Bright-lite \cite{schneider_integrated_2016}. This archetype accounts for 
-fuel depletion through two methods: forward calculations and blending. 
-The forward method uses a defined input fuel composition to determine 
-the spent fuel isotopics and fuel burnup using one-group cross 
-section libraries. In the blending mode, the archetype uses two materials 
-streams of known composition and combines them to reach a specified burnup 
-for the fuel. Bright-lite creates a single cross section set for each 
-fuel type and reactor condition. Each cross section set leads to a
-isotope library database that contains the fluence, neutron production rate,
-neutron destruction rate, total burnup, and isotope transmutation product 
-vectors and matrices. 
+A third-party archetype library developed to account for fuel depletion 
+is Bright-lite \cite{schneider_integrated_2016}. The Bright-lite 
+library contains three different archetypes: ReactorFacility, 
+FuelFabricationFacility, ReprocessingFacility. This archetype library 
+models depletion by determining fresh and spent fuel compositions
+based on burnup, criticality, and transmutations matrix curves. 
+Bright-lite has two operation modes: forward mode and blending 
+mode \cite{schneider_integrated_2016}. In forward mode, Bright-lite 
+reads in a defined fuel composition and depletes based on the neutron 
+fluence through the material and a target (i.e. \keff=1). In 
+blending mode, Bright-lite connects the ReactorFacility and 
+FuelFabFacility to mix multiple material streams to create a single 
+stream that meets a specific target: burnup-criticality or burnup-conversion
+ratio. This archetype library can be used for modeling multiple reactor 
+designs and multiple fuel forms, but requires different cross 
+section libraries for each reactor and fuel type. Bright-lite comes 
+with pr-defined libraries or a user may supply their own 
+library that can be interpolated by Bright-lite. There is little 
+published use of this archetype library in the current literature, 
+suggesting that there are significant barriers to its use or that 
+other archetypes are sufficient to meet the performance of this 
+archetype library. 
 
-
+A third archetype to add dynamic depletion capabilities to \Cyclus 
+is the ann\_pwr archetype \cite{bae_deep_2020}. This archetype 
+attempts to strike a balance between computational cost and 
+depletion accuracy by predicting the spent fuel composition based on 
+fuel burnup and initial enrichment using trained neural networks.
+A similar depletion method was used with the \gls{CLASS} 
+\gls{NFC} simulator to predict core loading and cross section data 
+for a \gls{PWR} loaded with \gls{MOX} fuel \cite{leniau_neural_2015}.
+The neural networks for the ann\_pwr archetype were trained 
+on data in the \gls{UNFSTANDARDS} \gls{UDB} \cite{peterson_used_2013}.
+Performance of this archetype is very promising, showing much faster 
+compute times and reduced memory requirements than other depletion 
+methods as well as greater agreement to the data in the \gls{UDB} than 
+using a standard recipe composition \cite{bae_deep_2020}. However, 
+this archetype is very limited in applicability for many fuel cycles. 
+The neural network was trained only on data from \gls{PWR}
+assemblies, so a user cannot use this archetype to model depletion 
+in other reactor types. Expansion of this archetype to include 
+other reactor types would require developing separate neural networks for 
+each reactor design, or the develop a new network that accounts for 
+reactor type as an input parameter. 
 
 \subsection{Verification and use of fuel cycle simulators}
-Multi-lab efforts validated the \gls{NFC} simulators discussed here 
+Multi-lab efforts validated some of the \gls{NFC} simulators discussed here 
 (\gls{DYMOND}, \gls{VISION}, ORION, and \Cyclus)
 using a no growth transition from \glspl{LWR} 
-to \glspl{SFR} \cite{feng_sensitivity_2020,bae_standardized_2019}.
+to \glspl{SFR} \cite{feng_standardized_2016,bae_standardized_2019}.
 Each \gls{LWR} in the scenario provides 1000 MWe of 
 electricity and each \gls{SFR} provides 333.3 MWe of electricity. The 
-scenario is simple enough that a spreadsheet could calculated the results, 
+scenario is simple enough that a spreadsheet could calculate the results, 
 which served as an analytical solution. The 
 results from each \gls{NFC} simulator were compared to each other and 
 to the spreadsheet solution. Any observed differences were either explained 
@@ -626,7 +679,7 @@ based on modeling implementation or resolved through changes to the
 necessary code.
 
 The results of the verification efforts showed agreement between each 
-of the codes and the spreadsheet results, as well as identified modeling 
+of the codes and the spreadsheet results, but it also identified modeling 
 differences. For example, \gls{VISION} and \gls{DYMOND} model continuous 
 reprocessing at each time step, as opposed to the instantaneous 
 reprocessing modeled by the spreadsheet \cite{feng_standardized_2016}. 
@@ -634,7 +687,7 @@ This difference led to \gls{DYMOND} reporting lower annual mass flow
 rates for the \glspl{SFR} and a small delay in the idle \gls{SNF} 
 inventory modeled by \gls{VISION} compared with the spreadsheet 
 solution. 
-Another difference identified is that the \Cycamore reactor 
+Another difference identified is that the \Cycamore Reactor 
 archetype models each fuel assembly and batch as discrete material 
 \cite{bae_standardized_2019}, as 
 opposed to the other codes assuming continuous fuel discharge. 
@@ -643,7 +696,7 @@ when using \Cyclus, while the other codes results do not have these
 oscillations.
 However, this modeling decision in \Cyclus produced results that 
 are closer to reality. 
-Additionally, the \Cycamore reactor archetype depletes half of the 
+Additionally, the \Cycamore Reactor archetype depletes half of the 
 core of fuel upon decommissioning, while the other \gls{NFC} simulators 
 deplete the entire core of fuel upon decommissioning. This 
 difference affects the \gls{TRU} material inventory, and was 
@@ -670,11 +723,11 @@ needs, fuel irradiation, \gls{SNF}, waste production, and cost.
 
 The use of \gls{NFC} simulators over the 
 last decade has primarily been guided by the Nuclear Fuel Cycle \gls{ES} 
-from the \gls{DOE-NE} 
-\cite{wigeland_nuclear_2014}. This project categorized 
-multiple fuel cycle options into 40 different \glspl{EG} based on characteristics 
-such as the recycling scheme, the type of fuel burned, 
-and the type of reactor (e.g. thermal critical reactor, fast critical reactor). 
+from the \gls{DOE-NE} \cite{wigeland_nuclear_2014}. This project
+categorized multiple fuel cycle options into 40 different \glspl{EG} 
+based on characteristics such as the recycling scheme, the type of fuel 
+burned, 
+and the type of reactor (e.g., thermal critical reactor, fast critical reactor). 
 The \glspl{EG} were compared on their performance at equilibrium on nine evaluation 
 criterion, including nuclear waste management and resource utilization. The 
 results of this project showed that the most benefit comes from fuel cycles 
@@ -687,9 +740,11 @@ both fast and critical reactors (\gls{EG} 30) \cite{wigeland_nuclear_2014}.
 
 Based on the results of the \gls{ES}, many efforts have modeled 
 the transition to these promising fuel cycle options using fuel cycle 
-simulators. ORION modeled the transition from a once-through 
-fuel cycle option using enriched uranium in thermal critical reactors 
-(\gls{EG} 01 to \gls{EG} 29) \cite{sunny_transition_2015}. This work 
+simulators. Researchers used\gls{ORION} to model the transition from a 
+once-through fuel cycle option using enriched uranium in thermal critical 
+reactors to a closed fuel cycle with U/Pu recycling in fast 
+critical reactors (\gls{EG} 01 to \gls{EG} 23) \cite{sunny_transition_2015}.
+This work 
 demonstrated the importance of new \glspl{LWR} and license 
 extensions of existing reactors for this transition. 
 
@@ -701,7 +756,8 @@ The power generated, reactor entry
 time, and reactor exit time for the \Cyclus simulation qualitatively 
 matches well with the results of the \gls{DYMOND} simulation, but the power 
 demand growth could match better to the target 1\% by slightly modifying 
-the \gls{SFR} deployment. Littell \cite{littell_development_2016}
+the \gls{SFR} deployment \cite{djokic_application_2015}. Littell 
+\cite{littell_development_2016}
 also modeled the \gls{EG} 01 to \gls{EG} 23 transition in \Cyclus. 
 This work included constraints such as restricting the mass of separated 
 plutonium to less than 100 MT, not allowing reprocessing to begin until 
@@ -748,12 +804,13 @@ lifetime \cite{feng_sensitivity_2020,noauthor_effects_2017},
 and the transition start time or introduction date of new reactor technology
 \cite{chee_sensitivity_2019,passerini_systematic_2014,noauthor_effects_2017}. 
 Common model outputs used in sensitivity analysis include 
-natural uranium requirements \cite{noauthor_effects_2017,richards_application_2021},
+natural uranium requirements 
+\cite{richards_application_2021,noauthor_effects_2017},
 plutonium inventory \cite{chee_sensitivity_2019,noauthor_effects_2017}, 
 and \gls{SWU} 
-capacity required \cite{noauthor_effects_2017,richards_application_2021}.
+capacity required \cite{richards_application_2021,noauthor_effects_2017}.
 
-There are multiple types of sensitivity analysis, and this work includes 
+There are multiple types of sensitivity analysis, and this work considers 
 \gls{OAT}, synergistic, and global sensitivity analysis. 
 
 \subsection{One-at-a-time Analysis}
@@ -791,20 +848,21 @@ transitions. The \gls{OECD} conducted \gls{OAT} analysis for a transition scenar
 from \glspl{PWR} to \glspl{SFR} \cite{noauthor_effects_2017}. They examined 
 the effects of 15 different 
 input parameters, such as the energy demand, first year of reprocessing fuel 
-from \glspl{PWR} and the enrichment tails assays, on 22 different output metrics, 
+from \glspl{PWR}, and the enrichment tails assays, on 22 different output metrics, 
 such as the cumulative mass of natural uranium required, the \gls{SWU} capacity 
 required, and the plutonium inventory at various fuel cycle facilities. 
 Their analysis showed that the energy demand and the introduction date of 
 \glspl{SFR} had the most pronounced effect on many of the output metrics 
 based on the 
-sensitivity indicator. When using the sensitivity, their analysis 
-showed the \gls{SFR} introduction date, the energy demand, and the enrichment 
-tails assay had the greatest impacts on the natural uranium consumption and 
-the \gls{SWU} requirements. 
+sensitivity indicator. When using the sensitivity indicator, their analysis 
+showed that the \gls{SFR} introduction date, the energy demand, and the 
+enrichment tails assay had the greatest impacts on the natural uranium 
+consumption and the \gls{SWU} requirements. 
 
 Chee \cite{chee_sensitivity_2019} performed \gls{OAT} analysis the \gls{EG} 
 01 to \gls{EG} 30 transition 
-(\gls{PWR} fleet transitioning to \gls{MOX} fueled \glspl{PWR} and \glspl{SFR}). 
+(once-through fuel cycle with \glspl{PWR} fleet transitioning to a 
+closed fuel cycle with \gls{MOX} fueled \glspl{PWR} and \glspl{SFR}). 
 Chee considered the cooling time length 
 for \gls{SNF}, the fleet share of \gls{MOX} \glspl{PWR} to \glspl{SFR}, and 
 the transition start year as the model input parameters to vary and metrics 
@@ -836,7 +894,7 @@ technology for a given \gls{NFC} on the number of reactors constructed,
 the \gls{LCOE}, the mass of enrichment tails, and the \gls{SWU} 
 capacity \cite{passerini_systematic_2014}. By combining all four output 
 metrics into a single output metric, this analysis showed how the 
-later introduction dates  for both thermal reprocessing 
+later introduction dates for both thermal reprocessing 
 and fast reactor technology minimizes the combined metric. The work by 
 Passerini 
 et al. \cite{passerini_systematic_2014} and Chee \cite{chee_sensitivity_2019}
@@ -927,7 +985,8 @@ problem.
 A variety of algorithms can be used to optimize a given 
 fuel cycle. Linear programming tools have been used for 
 optimization, but have intrinsic issues with solving non-linear 
-problems, such as fuel cycles, as demonstrated by \cite{passerini_systematic_2014}.
+problems, such as fuel cycles, as demonstrated by 
+Passerini et al. \cite{passerini_systematic_2014}.
 Linear programming optimization tools will often find a local minimum, 
 but not the global minimum, one of the limitations in using them 
 to optimize a \gls{NFC}.
@@ -949,13 +1008,12 @@ aspect of the \gls{NFC}. An example of the latter
 evaluated fuel cycle options based on radiotoxicity of the \gls{SNF} and 
 \gls{HLW} in a repository \cite{del_cul_advanced_2010}. 
 
-
 \subsection{Dakota}
 One tool for performing sensitivity analysis and optimization is 
-Dakota \cite{adams_dakota_2021}.
-\gls{SNL} developed Dakota as a systematic way for scientists and 
-engineers to "obtain improved or optimal designs or understand sensitivity
-or uncertainty using simulation-based models" \cite{adams_dakota_2021}.
+Dakota \cite{adams_dakota_2021}. Developed by \gls{SNL}, Dakota provides 
+a systematic way for scientists and 
+engineers to ``obtain improved or optimal designs or understand sensitivity
+or uncertainty using simulation-based models'' \cite{adams_dakota_2021}.
 Dakota can easily be coupled with a variety of codes in a ``black-box'' 
 manner
 to remove supplying Dakota with any of the other program's source code.
@@ -975,14 +1033,14 @@ minimization \cite{adams_dakota_2021}. The optimization problem can be
 solved by minimizing an objective function based on given constraints. The 
 constraints can be upper and lower bounds for a value or nonlinear 
 equality constraints with a given target value. The optimization 
-methods ins Dakota have been applied to a variety of engineering problems,
+methods in Dakota have been applied to a variety of engineering problems,
 including for the optimization of carbon fiber composites 
 \cite{skulborstad_multi-objective_2018} and to compare different 
 multi-objective optimization techniques \cite{chiandussi_comparison_2012}. 
 
-Dakota has been coupled with fuel cycle simulators such as \gls{DYMOND} and 
-\Cyclus 
-\cite{chee_sensitivity_2019,richards_application_2021} to perform sensitivity 
+Dakota has been coupled with fuel cycle simulators such as \gls{DYMOND} 
+\cite{richards_application_2021} and \Cyclus \cite{chee_sensitivity_2019} 
+to perform sensitivity 
 analysis. Chee \cite{chee_sensitivity_2019} used Dakota to perform 
 \gls{OAT}, synergistic, and global sensitivity analysis on the transition 
 from \gls{EG} 01 to \gls{EG} 30 with both \Cyclus and \gls{DYMOND}. Chee used even 
@@ -1007,10 +1065,9 @@ the output space.
 $^{235}$U, and is considered a subset of \gls{LEU}. Fuel for \glspl{LWR} 
 is enriched to no more than 5\% $^{235}$U, per \gls{NRC} regulations 
 \cite{noauthor_10_2006}. Table \ref{tab:enrichemnt} provides definitions 
-of some of the 
-main classifications of uranium enrichment. 
+of some of the main classifications of uranium enrichment. 
 
-\begin{table}
+\begin{table}[ht]
     \centering
     \caption{Categories of uranium enrichment by weight fraction of 
     uranium-235.}
@@ -1045,7 +1102,8 @@ with the possibility of
 developing more facilities to produce up to 12 MTU/year of \gls{HALEU}
 \cite{nuclear_energy_institute_establishing_2022}.
 
-The other option is to downblend \gls{HEU} to the required \gls{HALEU}
+The other \gls{HALEU} production option is to downblend \gls{HEU} to 
+the required \gls{HALEU}
 level. The \gls{DOE} is considering multiple sources of \gls{HEU} 
 to create \gls{HALEU} \cite{nuclear_energy_institute_establishing_2022}. The 
 first is spent fuel from \gls{EBR}, which can produce a total of 10 MTU 
@@ -1067,34 +1125,17 @@ processing method is better suited for spent \gls{EBR} fuel, because it is
 already in a metallic form, and is expected to produce about 5 MTU of 
 19.75\% \gls{HALEU} by 2023 \cite{herczeg_high-assay_2019}. The ZIRCEX 
 process is a solvent extraction system, with an uncertain timeline 
-for a full-scale facility \cite{herczeg_high-assay_2019}. 
+for a full-scale facility \cite{herczeg_high-assay_2019}. In order for
+the downblending of \gls{HEU} to be a viable \gls{HALEU} production 
+methods, facilities must be available to perform one of these two methods. 
 
 \subsection{Fuel forms}
 The \gls{HALEU} produced, using natural uranium or \gls{HEU}, must be 
 fabricated into the appropriate fuel form for the reactor.
 The advanced reactors being designed require \gls{HALEU} in a 
-variety of fuel forms (Table \ref{tab:fuel_forms}).  
+variety of fuel forms, as shown in Table \ref{tab:fuel_forms}.  
 
-\gls{TRISO} fuel particles contain 
-a small fuel kernel surrounded by four layers of material: a porous carbon 
-buffer layer, and inner pyrolytic carbon layer, a silicon carbide layer, 
-and an outer pyrolytic carbon layer \cite{demkowicz_coated_2019}. The fuel 
-kernel in the center contains the uranium fuel, typically in an oxide 
-or oxycarbide form. The porous carbon buffer acts an attenuator for any 
-recoil fission products and accommodates pressure changes from gas 
-accumulation.
-The pyrolytic carbon layers protect the silicon carbide layer from 
-any chemical degradation, while the silicon carbide layer maintains the 
-structural integrity of the particle from any stresses and is the primary 
-barrier against fission product gas release. The actual dimensions 
-of each layer depends on the exact manufacturing and design purpose, but 
-the \gls{TRISO} kernels are typically between 350-600 $\mu$m in diameter 
-\cite{demkowicz_coated_2019}. \gls{TRISO} particles have 
-favorable performance at high temperatures 
-\cite{demkowicz_coated_2019}, which are commonly employed in advanced 
-reactors. 
-
-\begin{table}
+\begin{table}[ht]
     \centering
     \caption{Fuel form required by select advanced reactors that will 
     require \gls{HALEU}. Reactor designs listed here are all of US origin, 
@@ -1118,6 +1159,24 @@ reactors.
     \end{tabular}
 \end{table}
 
+\gls{TRISO} fuel particles contain 
+a small fuel kernel surrounded by four layers of material: a porous carbon 
+buffer layer, and inner pyrolytic carbon layer, a silicon carbide layer, 
+and an outer pyrolytic carbon layer \cite{demkowicz_coated_2019}. The fuel 
+kernel in the center contains the uranium fuel, typically in an oxide 
+or oxycarbide form. The porous carbon buffer acts an attenuator for any 
+recoil fission products and accommodates pressure changes from gas 
+accumulation.
+The pyrolytic carbon layers protect the silicon carbide layer from 
+any chemical degradation, while the silicon carbide layer maintains the 
+structural integrity of the particle from any stresses and is the primary 
+barrier against fission product gas release. The actual dimensions 
+of each layer depends on the exact manufacturing and design purpose, but 
+the \gls{TRISO} kernels are typically between 350-600 $\mu$m in diameter 
+\cite{demkowicz_coated_2019}. \gls{TRISO} particles have 
+favorable performance at the high temperatures 
+at which many advanced reactors operate \cite{demkowicz_coated_2019}. 
+
 Multiple \gls{TRISO} kernels are combined into a pebble or 
 cylindrical compact for placement in a graphite block, based on the 
 design of the reactor \cite{demkowicz_coated_2019}. Each form of 
@@ -1131,7 +1190,8 @@ to form \gls{FCM} fuel. This fuel form performs better in high-burnup
 applications because of improved stability under neutron irradiation and 
 greater thermal conductivity \cite{snead_fully_2011}. The use of 
 \gls{FCM} fuel in \glspl{LWR} to burn \gls{TRU} material from waste 
-has been investigated \cite{snead_fully_2011,venneri_fully_2011}. 
+has been investigated \cite{snead_fully_2011,venneri_fully_2011} as 
+an additional application of this fuel form. 
 
 X-energy is currently developing a fuel fabrication facility to 
 produce the \gls{TRISO} fuel required by some of the advanced 
@@ -1141,7 +1201,11 @@ produce 8 MTU/year, and will expand to 16 MTU/year
 by the early 2030s. \gls{INL} is investigating 
 how they can use their Materials and Fuels Complex for 
 fabrication of metallic, ceramic, and intermetallic fuels with 
-\gls{HALEU} \cite{crawford_fuel_2019}. 
+\gls{HALEU} \cite{crawford_fuel_2019}. Therefore, this is some development 
+on a fuel fabrication facility to accompany the enrichment 
+capabilities to produce \gls{HALEU} fuel for reactors. However, 
+it is unclear if these planned capacities will be sufficient to 
+meet the future demand of \gls{HALEU} fuel. 
 
 \subsection{Expected Demand}
 Multiple efforts have been made and are in progress to understand the 
@@ -1165,27 +1229,26 @@ an enrichment facility will need to be built or additional \gls{HEU}
 stockpiles will need to be used to produce \gls{HALEU}.
 
 Models of reactor deployment to meet current net-zero carbon goals 
-estimates 520 MTU/year of \gls{HALEU} 
-will be needed by 2050 
+estimates 520 MTU/year of \gls{HALEU} will be needed by 2050 
 \cite{dixon_estimated_2022}. The cumulative need for \gls{HALEU} by 2050 
 is about 5350 MTU according to this model, but this varies between 
 3450-7175 MTU based on the type of advanced reactor deployed. An important 
 consideration in this work is that all \gls{HALEU} is assumed to be 
-at 19.75\% enrichment, which is higher than what many advanced reactor 
+at 19.75\% enrichment, which is higher than what some advanced reactor 
 designs will need. This work also assumed that reactors 
 requiring \gls{HALEU} would be deployed alongside reactors that don't 
 require \gls{HALEU}. This assumption stems from the deployment of new 
-\glspl{LWR} and \glspl{SMR}. This expected demand is 
-much less than the cumulative needs for \glspl{LWR} between 2021-2050, which 
+\glspl{LWR} and \glspl{SMR}. This expected demand is much less than the 
+cumulative needs for \glspl{LWR} between 2021-2050, which 
 is about 78,000 MTU \cite{dixon_estimated_2022}. 
 
 Demand for \gls{HALEU} for the \gls{ARDP} projects is expected to begin in 
 2024 and other reactor projects anticipate coming online in the 
 mid-2020's \cite{nuclear_energy_institute_establishing_2022}. 
-\gls{HALEU} creation will 
-need to begin before then to provide enough time for the 
-fuel fabrication process. First core loadings of \gls{HALEU} are needed by 
-2027 for the \gls{ARDP} demonstration reactors \cite{dixon_estimated_2022}. 
+\gls{HALEU} creation will need to begin before then to provide enough 
+time for the fuel fabrication process and proper transportation. First 
+core loadings of \gls{HALEU} are needed by 2027 for the \gls{ARDP} 
+demonstration reactors \cite{dixon_estimated_2022}. 
 
 \subsection{HALEU in reactors}
 A lot of work has been done to evaluate the performance of reactors 
@@ -1197,19 +1260,36 @@ but it does decrease the soluble boron coefficient and increase the maximum
 burnup at the edges of the fuel pellets. The impacts on the fuel cycle include 
 an increase in the amount of natural uranium required, a decrease in the 
 amount of high-level waste disposed of per unit energy, and the 
-radioactivity reduces slightly the \gls{SNF} and \gls{HLW} 100 years after 
-discharge \cite{burns_reactor_2020}.
+radioactivity of the \gls{SNF} and \gls{HLW} reduces slightly 100 years 
+after discharge \cite{burns_reactor_2020}.
 
 Increasing the fuel enrichment of the NuScale \gls{SMR} has also been 
 investigated \cite{carlson_implications_2022}. Increasing the fuel 
-enrichment to 8.34\% doubled the fuel discharge burnup and the cycle time. 
+enrichment to 8.34\% (compared with the current <5\% design) doubled 
+the fuel discharge burnup and the cycle time. 
 Fission product poisons, specifically $^{149}$Sm and $^{135}$Xe, increased 
-in concentration when using \gls{HALEU} fuel compared with using \gls{LEU}. 
-This increase impacts the 
-neutrons poisons needed during operation and the radioactivity of 
+in concentration when using \gls{HALEU} fuel compared with using the base 
+design. This increase impacts the 
+neutron poisons needed during operation and the radioactivity of 
 the fuel after discharge. Using \gls{HALEU} in the core also led to a 
 reduction in the \gls{LCOE} of the reactor for certain combinations of 
 enrichment and cycle length \cite{carlson_economic_2020,carlson_implications_2022}.
+
+The fabrication of the \gls{HALEU} fuel can also affect the fuel's 
+performance in the reactor. Analysis of fuel for the \gls{MIT} 
+Reactor showed that manufactured fuel had a slightly higher $^{235}$U 
+concentration (19.8\% instead of 19.75\%) and a slightly higher 
+density than original models accounted for \cite{mascolino_impact_2022}. 
+These changes in the fuel caused a greater $^{235}$U loading in the core, 
+increasing the \keff by 431 pcm \cite{mascolino_impact_2022}. The 
+differences in modeled and manufactured fuel meant that the modelers 
+had to account for more statistical uncertainty in the reactor performance, 
+which can be computationally intensive. To alleviate potential 
+computational costs, the modelers developed "high reactivity" and 
+"low reactivity" fuel compositions based on uncertainty in the manufactured 
+fuel compositions. This additional analysis of the extra fuel compositions 
+was sufficient to show that the reactor could still meet safety margins 
+with the fuel composition variations \cite{mascolino_impact_2022}.
 
 If \gls{HALEU} fuel is produced by downblending \gls{HEU}, is it possible 
 the \gls{HALEU} will contain impurities of minor uranium 
@@ -1223,13 +1303,15 @@ Complex also has $^{232}$U, $^{234}$U, and $^{236}$U impurities
 \cite{nelson_foreign_2010}. $^{233}$U is a fissile 
 isotope and is expected to affect the neutron population inside a reactor.
 $^{232}$U, $^{234}$U, and $^{236}$U are parasitic neutron absorbers, so 
-their 
-presence is also expected to affect the neutron population. The reactor 
-neutronics performance of using \gls{HALEU} containing $^{235}$U and 
-$^{238}$U was compared 
+their presence is also expected to affect the neutron population. The 
+reactor neutronics performance of using \gls{HALEU} containing $^{235}$U 
+and $^{238}$U was compared 
 with the performance using \gls{HALEU} from Y-12 with the known impurities 
 \cite{celikten_effects_2021}. By performing burnup dependent \gls{MCNP} 
 simulations of the potential Replacement Reactor Concept at \gls{NIST}, 
 the authors showed that using the \gls{HALEU} with the \gls{HEU} 
 impurities showed a 0.43\% decrease in reactivity, leading to an 8\% reduction 
-in the cycle length. 
+in the cycle length. This analysis suggests that these impurities may 
+impact the performance of commercially deployed reactors as well, which 
+warrants further investigation of the reactor performance when using 
+downblended \gls{HEU} as fuel. 
