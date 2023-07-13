@@ -71,17 +71,15 @@ This is the fuel cycle option currently employed in the
 United States. 
 
 Once-through \glspl{NFC} use interim and final disposal schemes
-\cite{rodriguez-penalonga_review_2017}. One form of interim 
-storage, used regardless of 
-the fuel cycle option, is cooling in an \textit{in situ} pool. 
-This interim storage step can last between 3-10 years after reactor 
-discharge \cite{rodriguez-penalonga_review_2017}
-and provides active cooling to the \gls{SNF}.
-Another interim storage option is dry cask storage, located 
-on-site or at a centralized location, which provides passive 
+such as \textit{in situ} pools, dry cas storage, and geological 
+repository \cite{rodriguez-penalonga_review_2017}. \gls{SNF} storage in 
+an \textit{in situ} storage pool can last between 3-10 years after 
+reactor discharge \cite{rodriguez-penalonga_review_2017}
+and provides active cooling. Dry cask storage can be located 
+on-site or at a centralized location and provides passive 
 cooling to the \gls{SNF} after active cooling in a pool. 
-Final disposal, which takes the form of a 
-deep geologic repository, is the ultimate disposal of \gls{SNF} and 
+Final disposal in a geologic repository, is the ultimate disposal 
+of \gls{SNF} and 
 is needed in both a once-through and recycling fuel cycle. The 
 US has currently identified Yucca Mountain as a geologic repository 
 site, but it is currently not operating.  
@@ -100,13 +98,17 @@ node in Figure \ref{fig:fuel_cycle}.
 There are two types of recycling fuel cycle options: a limited 
 recycle scheme and a continuous recycle scheme \cite{wigeland_nuclear_2014}. 
 A limited recycling scheme involves fuel being reprocessed and burned in 
-a reactor for a finite number of times before final disposal. A continuous 
-recycle scheme involves fuel being repeatedly reprocessed and burned in 
-a reactor. An 
-important difference between these two schemes is that \gls{SNF} is 
-disposed of in a limited recycle scheme, but not in the continuous 
-recycle scheme. Therefore, the recycling scheme will affect the amount of 
-new resources (uranium) that must be acquired and the amount of material 
+a reactor for a finite number of times before final disposal. This
+fuel cycle scheme is sometimes referred to as a ``modified open cycle''
+because of the disposal of both \gls{SNF} and \gls{HLW}
+\cite{wigeland_identification_2011}. A continuous 
+recycle scheme, sometimes referred to as a ``full recycle'' fuel 
+cycle scheme, involves actinides from \gls{SNF} being repeatedly reprocessed 
+and burned in a reactor, such that disposal only includes fission products 
+and no \gls{SNF} \cite{wigeland_identification_2011}. The difference 
+in the number of times actinides and \gls{SNF} are reprocessed in each 
+recycling scheme leads to differences in the amount of new resources 
+(uranium) that must be acquired and the amount of material 
 sent for final disposal in a repository. 
 
 There are two primary methods to reprocess \gls{SNF}: aqueous reprocessing 
@@ -216,12 +218,13 @@ compared with a once-through fuel cycle \cite{park_comparative_2011}.
 In the \gls{NFC}, enrichment increases the relative abundance of 
 $^{235}$U compared with $^{238}$U in the fuel, increasing
 the relative abundance of fissile material needed 
-for most reactor designs. There are multiple technologies and processes that can 
-enrich uranium, including gaseous diffusion, calutrons, and laser separation 
-technologies. The US currently employs gaseous centrifuges to enrich uranium 
-for commercial supplies. Gaseous centrifuges are currently 
-used at the Urenco site in New Mexico \cite{us_nuclear_regulatory_commission_louisiana_2022} and 
-planned for the Centrus facility in Piketon, Ohio 
+for most reactor designs. There are multiple technologies and processes 
+that can enrich uranium: gaseous diffusion, calutrons, gaseous centrifuges, 
+and laser separation technologies. The US currently employs gaseous 
+centrifuges to enrich uranium for commercial supplies. Gaseous centrifuges 
+are currently used at the Urenco site in New Mexico 
+\cite{us_nuclear_regulatory_commission_louisiana_2022} and planned for the 
+Centrus facility in Piketon, Ohio 
 \cite{us_nuclear_regulatory_commission_centrus_2021}. Gaseous centrifuges 
 are rotating canisters, 
 relying on the speed of the rotation to move heavier 
@@ -257,7 +260,7 @@ Each of these quantities can be related using the following equations:
     \label{eq:enrichment}
 \end{subequations}
 
-\begin{table}
+\begin{table}[ht]
     \centering
     \caption{Definitions for variables used to describe throughput and 
     capacity for an enrichment facility.}
@@ -346,21 +349,22 @@ cycle. \gls{NFC} simulators can evaluate the transition between fuel cycle
 options (e.g., from a once-through to a recycling fuel cycle), the 
 performance of one fuel cycle with a growth in the demand of nuclear power, 
 and the effect of perturbations on a given fuel cycle \cite{piet_dynamic_2011}. 
-\gls{NFC} simulators can include multiple functionalities, 
-such as material flow tracking and facility deployment \cite{brown_identification_2016}.
-Foundational capabilities of an \gls{NFC} simulator include modeling 
-facility deployment and retirement, fuel materials, timing and capacity of 
-facilities, and external sources of fissile material (such as a mine) 
+\gls{NFC} simulators include multiple functionalities and 
+capabilities: material flow tracking, facility deployment and 
+retirement, timing, facility capacities, and external fissile material 
+sources (e.g., mines) \cite{brown_identification_2016}.
+each of the features listed here are considered ``foundational 
+capabilities'' by Brown et al. 
 \cite{brown_identification_2016}. Each of these features can then be 
-expanded upon through `integral' or `exemplary' features to expand the 
-foundational capabilities. Examples of `integral' 
+expanded upon through ``integral'' or ``exemplary'' features to expand the 
+foundational capabilities. Examples of integral
 features include strategic deployment of facilities to meet a specified 
-material demand or material prioritization. Examples of `exemplary' 
+material demand or material prioritization. Examples of exemplary
 features include modeling radioactive decay of materials or calculations 
 of fuel depletion in a reactor \cite{brown_identification_2016}. 
 
 A variety of fuel cycle simulators have been developed, often to focus on 
-specific areas of the nuclear fuel cycle \cite{huff_next_2010}. Some of the 
+specific areas of the \gls{NFC} \cite{huff_next_2010}. Some of the 
 \gls{NFC} simulators developed include
 \gls{DYMOND} \cite{feng_sensitivity_2020,feng_standardized_2016}, 
 \gls{VISION} \cite{yacout_visionverifiable_2006}, ORION 
@@ -431,7 +435,7 @@ also allows for flexibility in licensing and distribution of the
 user-developed libraries. Libraries are loaded without changes to the \Cyclus 
 kernel and without unwanted transfer of sensitive information, which 
 allows library development with export controlled 
-software but still allow \Cyclus to be open-source.
+software while still allowing \Cyclus to be open-source.
 
 The agent-based modeling paradigm employed by \Cyclus allows agent level 
 modeling, as opposed to system level modeling. This paradigm allows different 
@@ -500,8 +504,9 @@ with nodes for the requests and the responses to the requests.
 Once the exchange graph is created, the requesting facilities can apply 
 preferences to possible each potential bid based on the facility 
 making the bid \cite{huff_fundamental_2016}. Preferences can be based on 
-the facility making the bid, or the bidding facility's institution or 
-region. For example, a reactor facility can prefer to receive fuel 
+the agent making the bid, the bidding agent's institution, or 
+the bidding agent's 
+region. For example, a reactor agent can prefer to receive fuel 
 assemblies from agent(s) that belong to a specific institution (mimicking but not 
 fully enforcing contracts between companies), or agents in a specific region 
 (mimicking international trade agreements). The addition of preferences of 
@@ -565,8 +570,8 @@ fuel cycle simulators that have dynamic fuel depletion capabilities
 are ORION \cite{feng_standardized_2016}, \gls{DYMOND} 
 \cite{richards_application_2021}, and \gls{NFCSim} \cite{schneider_nfcsim:_2005}.
 ORION allows 
-users to define material compositions through recipes or the code can 
-model decay and depletion of material \cite{sunny_transition_2015}. ORION 
+users to define material compositions using recipes or have the 
+program model decay and depletion of the material \cite{sunny_transition_2015}. ORION 
 has some built-in reactor-specific cross sections for modeling 
 depletion during a fuel cycle simulation, or users can generate 
 and provide their own cross section data to fit the reactors and fuel cycle 
@@ -602,13 +607,13 @@ functionality. One such archetype is \gls{CYBORG}, which is a
 reactor-style archetype that couples \Cyclus with ORIGEN 
 \cite{skutnik_cyborg_2016}. \gls{CYBORG} leverages the validated 
 depletion capabilities in ORIGEN to model fuel depletion during 
-a fuel cycle simulation \cite{skutnik_cyborg_2016}. Fresh fuel  
-compositions and reactor parameters (such as irradiation time and 
-power level) are passed from the archetype to \gls{CYBORG}, which then 
-produces a problem-specific cross section library that is then passed to 
+a fuel cycle simulation \cite{skutnik_cyborg_2016}. User-defined 
+parameters (such as fresh fuel compositions, irradiation time, and 
+power level) are passed to \gls{CYBORG}, which then produces a 
+problem-specific cross section library. The library is then passed to 
 ORIGEN to perform the depletion calculation. The depleted material 
-compositions are then passed back to \Cyclus to update the 
-appropriate material compositions. Use of this 
+compositions are then passed to \Cyclus to update the appropriate 
+material compositions and recipes in a simulation. Use of this 
 archetype requires users to have a license to use ORIGEN, as it 
 is an export-controlled code, which can pose issues in a user being 
 able to use this archetype. Further development of depletion 
@@ -712,9 +717,8 @@ could reduce \gls{SNF} volume in a repository \cite{yacout_dynamic_2004}.
 options. Dynamic simulations of fuel cycle options for the \gls{AFCI}
 Campaign in 2005 demonstrate the importance of the magnitude, timing, 
 and rate of deploying facilities for the new fuel cycle option 
-\cite{piet_assessment_2011}.
-Another common use of \gls{NFC} simulators is modeling the transition 
-between 
+\cite{piet_assessment_2011}. Furthermore, \gls{NFC} simulators are 
+used to model the transition between 
 different fuel cycle options or technology. Quantifying the transition 
 between fuel cycle options occurs by studying metrics such as the 
 energy output and resource requirements \cite{del_cul_advanced_2010}. 
@@ -775,12 +779,10 @@ limit was exceeded \cite{littell_development_2016}.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Sensitivity analysis and optimization}
-Sensitivity analysis provides information on how each input parameter 
-of a fuel cycle model affects output metrics. 
-Performing this analysis identifies and quantifies the effect of input 
-parameters on model outputs \cite{thiolliere_methodology_2018}. Sensitivity 
-analysis is also useful because of the multiple sources of uncertainty in 
-modeling the nuclear fuel cycle, including facility design parameters, 
+Sensitivity analysis identifies and quantifies how each input parameter 
+of a fuel cycle model affects output metrics \cite{thiolliere_methodology_2018}. 
+Sensitivity analysis is useful because of the multiple sources of uncertainty in 
+modeling the nuclear fuel cycle, such as facility design parameters, 
 scenario assumptions, and reactor physics calculations 
 \cite{noauthor_effects_2017}.
 Sensitivity 
@@ -874,10 +876,9 @@ output metrics, with some impact on the final mass of \gls{HLW}.
 
 \subsection{Synergistic Analysis}
 Synergistic analysis is a multi-parameter approach that varies two different 
-model inputs to investigate their combined impact on output metrics. Synergistic 
-analysis provides a more comprehensive view of the impact of the input 
-parameters by evaluating the compounding and their coupled effects of the 
-parameters.
+model inputs to investigate their combined impact on output metrics, 
+which provides a more comprehensive view of the impact of the input 
+parameters by evaluating the coupled effects of the parameters.
 This analysis is performed by sweeping over a range of values for each input 
 parameter, then observing the response in each output metric for each 
 combination. Through this process the input parameters resulting in the 
@@ -990,11 +991,9 @@ problems, such as fuel cycles, as demonstrated by
 Passerini et al. \cite{passerini_systematic_2014}.
 Linear programming optimization tools will often find a local minimum, 
 but not the global minimum, one of the limitations in using them 
-to optimize a \gls{NFC}.
-Another method explored to optimize fuel cycle options is genetic 
-algorithms \cite{passerini_systematic_2014}. Genetic algorithms 
-have been shown to find a global minimum with multiple objectives 
-applied \cite{passerini_systematic_2014}. 
+to optimize a \gls{NFC}. Another method explored to optimize fuel cycle 
+options is genetic algorithms, which have been shown to find a global 
+minimum with multiple objectives applied \cite{passerini_systematic_2014}. 
 
 Examples of optimized fuel cycles with \glspl{LWR} show that using a
 once-through fuel cycle minimizes cost, but reprocessing and recycling as 
@@ -1049,8 +1048,8 @@ and synergistic analysis.
 Richards and Feng \cite{richards_application_2021} coupled Dakota with 
 \gls{DYMOND} to perform global sensitivity analysis for a sample \gls{NFC} 
 to demonstrate this capability. This work utilized the Latin Hypercube 
-Sampling method in Dakota to select input parameter values, which provided
-random sampling across the input space. Random sampling is necessary for 
+Sampling method in Dakota to provide random sampling across the 
+input parameter space. Random sampling is necessary for 
 calculating Sobol' indices because they are based on the variance in 
 the output space. 
 
@@ -1235,7 +1234,7 @@ is about 5350 MTU according to this model, but this varies between
 3450-7175 MTU based on the type of advanced reactor deployed. An important 
 consideration in this work is that all \gls{HALEU} is assumed to be 
 at 19.75\% enrichment, which is higher than what some advanced reactor 
-designs will need. This work also assumed that reactors 
+designs will need. This work assumed that reactors 
 requiring \gls{HALEU} would be deployed alongside reactors that don't 
 require \gls{HALEU}, stemming from the deployment of new 
 \glspl{LWR} and \glspl{SMR}. This expected demand is much less than the 
