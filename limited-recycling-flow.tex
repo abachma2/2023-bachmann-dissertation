@@ -3,7 +3,7 @@
     \begin{tikzpicture}[node distance=1.5cm]
         \node (mine) [facility, text width=1cm] {Uranium Mine};
         \node (enrichment) [facility, below of=mine]{Enrichment};
-        \node (reactor) [facility, below of=enrichment]{LWR};
+        \node (reactor) [facility, below of=enrichment, yshift=-0.5cm]{LWR};
         \node (mmr) [transition, right of=reactor, xshift=1.5cm]{MMR};
         \node (xe100) [transition, right of=mmr, xshift=1.5cm]{Xe-100};
         \node (voygr) [transition, right of=xe100, xshift=1.5cm]{VOYGR};
@@ -20,27 +20,27 @@
         \draw [arrow] (enrichment) -- node[anchor=east]{Fresh UOX}(reactor);
         \draw [arrow] (enrichment) -- node[anchor=south]{Tails}(sinkllw);
         \draw [arrow] (enrichment) -| (mmr);
-        \draw [arrow] (enrichment) -| node[anchor=south]{Fresh UOX}(xe100);
-        \draw [arrow] (enrichment) -| (voygr);
+        \draw [arrow] (enrichment) -- ++(45mm,0) -- ++(0,-20mm) |- (xe100.west);
+        \draw [arrow] (enrichment) -| node[anchor=south, pos=0.3]{Fresh UOX} (voygr);
         \draw [arrow] (reactor) -- node[anchor=east]{Spent UOX}(wetstorage);
         \draw [arrow] (wetstorage) -- node[anchor=east]{Cool Spent UOX}(drystorage);
         \draw [arrow] (drystorage) |- node[anchor=east]{Casked Spent UOX}(sinkhlw);
         \draw [arrow] (mmr) |- node[anchor=east]{Spent UOX}(cooling);
         \draw [arrow] (xe100) |- (cooling);
-        \draw [arrow] (voygr) |- node[anchor=south]{Spent UOX}(cooling);
+        \draw [arrow] (voygr) |- node[anchor=west, text width=1.5cm, pos=0.25]{Spent UOX}(cooling);
         \draw [arrow] (xe100) -| (mox_cooling);
-        \draw [arrow] (voygr) -| node[anchor=south, text width=1cm, pos=0.25]{Spent MOX}(mox_cooling);
+        \draw [arrow] (voygr) -| node[anchor=south, text width=1cm, pos=0.45]{Spent MOX}(mox_cooling);
         \draw [arrow] (cooling) -- node[anchor=west, text width=1.5cm]{Cooled Spent UOX}(separation);
         \draw [arrow] (separation) -| node[anchor=south,text width=1.5cm, pos=0.4]{Separated fissile material}(mox_fab);
         \draw [arrow] (separation) -| node[anchor=south, text width=1.5cm]{Fission Products}(sinkhlw);
         \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural uranium} (mox_fab);
-        \draw [arrow] (mox_cooling) |- node[anchor=south]{Cool Spent MOX}(sinkhlw);
-        \draw [arrow] (mox_fab.east) - ++(5mm,0) |- node[anchor=south, pos=0.5, text width=1.5cm]{Fresh MOX}(voygr.east);
-        %\draw [arrow] (mox_fab.east) -| ++(5mm,0) -| (xe100.north);
+        \draw [arrow] (mox_cooling) |- node[anchor=south, pos=0.75]{Cool Spent MOX}(sinkhlw);
+        \draw [arrow] (mox_fab.east) - ++(5mm,0) |- node[anchor=west, pos=0.2, text width=1.5cm]{Fresh MOX}(voygr.east);
+        \draw [arrow] (mox_fab.east) -- ++(5mm,0) -- ++(0,30mm) -| (xe100.north);
         \end{tikzpicture}
-    \caption{Fuel cycle facilities and material flow between facilities for modeling the transition 
-    to advanced reactors with a limited recycle fuel cycle. The separations facility
-    is deployed in 2020, five years before the transition. Before 2020 a once-through 
-    fuel cycle is used with the facilities in blue.}
+    \caption{Fuel cycle facilities and material flow between facilities for modeling the 
+    transition to advanced reactors with a limited recycle fuel cycle. Before 2025 a once-through 
+    fuel cycle is used with the facilities in blue. Facilities in red are deployed starting 
+    in 2025.}
     \label{fig:limited_recycle_flow}
 \end{figure}
