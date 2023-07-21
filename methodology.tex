@@ -376,13 +376,12 @@ to ensure that enough fuel can be separated and
 processed in time for use in advanced reactors. Although this is a 
 non-physical time to begin recycling in the US, using this timeline ensures 
 that there will be enough reprocessed fuel to fuel all of the advanced 
-reactors. The deployment time of the separation facility will be adjusted 
-to determine if a more physical deployment timeline is possible. Additionally, 
+reactors, and the maximum benefit of recycling can be observed. Additionally 
 by using this timeline, specifically ensuring that advanced reactors 
 are deployed at the same time as when they are deployed in the once-through 
-transition to provide an even comparison between these fuel cycle options.
+transition, provides an even comparison between these fuel cycle options.
 
-The separations facility separates out uranium and plutonium from the other 
+The separations facility separates out plutonium from the other 
 materials in the fuel, emulating the aqueous reprocessing method although the 
 chemistry is not explicitly modeled. The partitioning factor is 99\% for
 plutonium, based on a conservative estimate of stated 
@@ -397,35 +396,28 @@ The separated plutonium is used as a fissile stream while the
 natural uranium from the mine are used as filler materials to 
 produce \gls{MOX}. The separation step is modeled using the \Cycamore 
 Separations archetype, and the \gls{MOX} fuel fabrication is modeled 
-using the \Cycamore FuelFab archetype. The \Cycamore FuelFab archetype 
-matches materials streams to produce the \gls{MOX} based on plutonium 
-equivalence. 
+using the \Cycamore Mixer archetype. The Mixer archetype combines the 
+separated plutonium and natural uranium material streams in a constant 
+\textbf{figure out ratio} to produce the \gls{MOX} fuel. 
 
 \subsection{Continuous recycle scenarios}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
-flow for the continuous recycle fuel cycle. Continuous recycle 
-requires a fast reactor, and all of the reactors considered in this 
-work have a thermal neutron energy spectrum. Therefore, a fast reactor 
-facility 
-must be added into the transition. To accomplish this, two different 
-transitions are included in these scenarios: the transition from 
-\glspl{LWR} to the advanced reactors and the transition from the 
-advanced reactors to the fast reactor. The first transition will begin 
-in 2025, and the second transition will begin in 2090, and the deployment 
-rate of each reactor type will be based on the energy demand of the 
-scenario. Because of the lifetime of the advanced reactors, these scenarios 
-will be extended out to 2155 to assume that advanced reactors would not 
-be prematurely decommissioned to facilitate this transition. These 
-scenarios will consist of a longer time period than the once-through 
-and limited recycle scenarios, which leads to uneven comparisons. Therefore, 
-the results of the continuous recycle scenarios will focus on the 
-material requirements after 2090, to provide a consistent 65 year 
-time period for comparison. 
-The fast reactor will be modeled 
+flow for the continuous recycle fuel cycle (Scenarios 16 and 19). Continuous recycle 
+requires a fast reactor, but all of the reactors considered in this 
+work have a thermal neutron energy spectrum. Therefore, the advanced 
+reactors used in the other scenarios are replaced with a sodium fast 
+reactor. The fast reactor is modeled 
 based on the fast reactor technology used in the \gls{ES} 
 \cite{wigeland_nuclear_2014} to provide a generic representation of 
 a fast reactor and not any specific commercial design of fast reactor 
-technology. 
+technology. To support using reprocessed fuel in the fast reactor, 
+the separations facility is deployed in 2020, similar to in the 
+limited recycling scenarios, and uranium and transuranic elements 
+(neptunium, plutonium, americium, and curium) are separated out from 
+the spent fuel with 99\% efficiency. If not enough reprocessed fuel is 
+available to support the fast reactor fleet, then \gls{HALEU} is used 
+to fuel the reactors, but the reactors have a preference for reprocessed 
+fuel over \gls{HALEU}. 
 
 \input{continuous-recycling-flow}
 
@@ -436,12 +428,11 @@ the two terms are used synonymously here. OpenMCyclus couples
 \Cyclus with the stand-alone depletion solver in OpenMC to provide 
 dynamic updates of spent fuel composition during a fuel cycle simulation.
 We decided to coupled with the depletion solver in OpenMC because 
-of the pen-source nature of OpenMC and its rich Python \gls{API}. 
+of the open-source nature of OpenMC and its rich Python \gls{API}. 
 The open-source nature of OpenMC complements the open-source nature 
-of \Cyclus to prevent crating additional obstacles for user to navigate 
-to use the code. Additionally, the Python \gls{API} of OpenMC 
-compliments the Python \gls{API} of \Cyclus, aiding in the development 
-of the archetype. 
+of \Cyclus to prevent creating additional obstacles in using the archetype. 
+Additionally, the Python \gls{API} of OpenMC complements the Python 
+\gls{API} of \Cyclus, aiding in the development of the archetype. 
 There are two primary components to OpenMCyclus: fuel depletion and 
 transmutation and the interaction with the \Cyclus \gls{DRE}. 
 
@@ -453,10 +444,10 @@ the rate of change of each nuclide as a function of production and loss
 mechanisms \cite{romano_depletion_2021}. OpenMC applies a \gls{CRAM} solver 
 and multiple time integration methods to solve the system of equations, which 
 has been shown to have good agreement with the depletion solver in Serpent 
-\cite{romano_depletion_2021}. OpenMC provides this capability in two primary forms: 
-transport dependent and transport independent solvers. To simplify the information 
-needed and reduce solve times, OpenMCyclus uses the transport independent 
-solver through the \texttt{IndependentOperator} class of the 
+\cite{romano_depletion_2021}. OpenMC provides this capability in two primary 
+forms: transport dependent and transport independent solvers. To simplify 
+the information needed and reduce run times, OpenMCyclus uses the transport 
+independent solver through the \texttt{IndependentOperator} class of the 
 \texttt{openmc.deplete} module. 
 
 Use of this class requires users to provide information including 
@@ -469,7 +460,7 @@ archetype. This data can be obtained by running a transport calculation
 of the desired reactor geometry using OpenMC or another transport solver. 
 The depletion chain data is an ``.xml'' file that is assumed to be in the 
 same directory as the cross section data, under a filename that is specified 
-by the user. This data is available through the OpenMC website \textbf{cite}.
+by the user.
 The depletion steps are 30 days each (corresponding to 1 month), 
 with one depletion step for each month of the operating cycle, as defined by 
 the user. The power level is defined by the user, and is converted from 
@@ -479,20 +470,27 @@ depletion chain data, the number of depletion steps, and the power level) are
 defined by the user through the \Cyclus input file then passed from the archetype 
 to OpenMC. The material compositions are located in an ``.xml'' file 
 (assumed to be in the same directory as the cross section and depletion 
-chain data). The information in this file is updated by the archetype to 
-contain the composition of each assembly in the reactor core at the 
-beginning of each cycle. The updated information in is then read in
+chain data, and assumed to be titled ``materials.xml''). The information 
+in this file is updated by the archetype to 
+contain the composition of each assembly in the reactor when depletion is 
+performed. The updated information in is then read in
 by OpenMC to define the materials for depletion. 
 
 To account for multiple batches of fuel in the core, all of the assemblies 
 are depleted and have their compositions updated 
-at the end of each cycle. This methodology differs from the \Cycamore 
-\texttt{Reactor} archetype, which transmutes the composition of only the number of 
+at the end of each cycle, with the depletion time equaling one cycle 
+length. This methodology differs from the \Cycamore 
+\texttt{Reactor} archetype, which transmutes the composition of only the 
+number of 
 assemblies in a batch, and immediately changes the composition from that 
-of the fresh fuel to that of spent fuel. Therefore, by accounting for 
+of the fresh fuel to that of spent fuel at the end of each cycle before the 
+assemblies are discharged. Therefore, by accounting for 
 changes in fresh fuel composition (e.g., UOX to MOX) and multiple 
 batches in a core, OpenMCyclus is expected to be more sensitive to 
-changes in spent fuel composition that the \Cycamore Reactor archetype. 
+changes in spent fuel composition than the \Cycamore Reactor archetype. 
+Additionally, the \Cycamore Reactor assumes that all spent fuel has the 
+same composition, so even assemblies that are discharged after only one 
+cycle have the same composition as those that are discharged after the
 Additionally, when a reactor facility is decommissioned, the default behavior 
 of the \Cycamore \texttt{Reactor} archetype is to transmute only half of the assemblies 
 in the core, while the OpenMCyclus archetype transmutes all of the assemblies. 
