@@ -37,6 +37,7 @@
         \draw [arrow] (mox_cooling) |- node[anchor=south, pos=0.75]{Cool Spent MOX}(sinkhlw);
         \draw [arrow] (mox_fab.east) - ++(5mm,0) |- node[anchor=west, pos=0.2, text width=1.5cm]{Fresh MOX}(voygr.east);
         \draw [arrow] (mox_fab.east) -- ++(5mm,0) -- ++(0,30mm) -| (xe100.north);
+        \draw [arrow] (wetstorage) -- node[anchor=west]{Cool Spent UOX} (separation);
         \end{tikzpicture}
     \caption{Fuel cycle facilities and material flow between facilities for modeling the 
     transition to advanced reactors with a limited recycle fuel cycle. Before 2025 a once-through 
