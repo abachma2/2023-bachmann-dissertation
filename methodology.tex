@@ -318,10 +318,10 @@ recycled.
             \hline
             14 & No growth & Limited & Yes\\
             15 & No growth & Limited & No\\
-            16 & No growth & Continuous & ??? \\
+            16 & No growth & Continuous & N/A \\
             17 & 1\% growth & Limited & Yes\\
             18 & 1\% growth & Limited & No\\
-            19 & 1\% growth & Continuous & ??? \\
+            19 & 1\% growth & Continuous & N/A \\
             \hline
     \end{tabular}
 \end{table}
@@ -353,8 +353,13 @@ works and how it compares to the \Cycamore \texttt{Reactor}
 archetype. OpenMCyclus couples with the stand-alone depletion 
 solver in OpenMC \cite{romano_depletion_2021}, thus, modeling a 
 reactor using this archetype requires information about the refueling 
-scheme for the reactor but also cross section data to perform the 
+scheme for the reactor but also one-group cross section data to perform the 
 depletion. 
+
+For the VOYGR, we approximated the cross section data by using the 
+built-in \gls{PWR} assembly model in OpenMC. We modified this model so 
+that the fuel composition matched that of the VOYGR as modeled in this 
+work. For the Xe-100, we \textbf{????}
 
 \subsection{Limited recycle scenarios}
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
@@ -386,7 +391,7 @@ materials in the fuel, emulating the aqueous reprocessing method although the
 chemistry is not explicitly modeled. The partitioning factor is 99\% for
 plutonium, based on a conservative estimate of stated 
 process loses for aqueous reprocessing \cite{herbst_6_2011} and the 
-separation efficiency previously used in fuel cycle modeling 
+separation efficiency previously used in previous fuel cycle modeling 
 \cite{wigeland_nuclear_2014,sunny_transition_2015}. The separated 
 material from this facility is then sent to a \gls{MOX} fuel fabrication 
 facility that produces \gls{MOX} with a pre-defined composition for the 
@@ -395,8 +400,9 @@ defined in the OpenMC pin cell example notebook \textbf{this work?}.
 The separated plutonium is used as a fissile stream while the 
 natural uranium from the mine are used as filler materials to 
 produce \gls{MOX}. The separation step is modeled using the \Cycamore 
-Separations archetype, and the \gls{MOX} fuel fabrication is modeled 
-using the \Cycamore Mixer archetype. The Mixer archetype combines the 
+\texttt{Separations} archetype, and the \gls{MOX} fuel fabrication is modeled 
+using the \Cycamore \texttt{Mixer} archetype. The \texttt{Mixer} archetype 
+combines the 
 separated plutonium and natural uranium material streams in a constant 
 \textbf{figure out ratio} to produce the \gls{MOX} fuel. 
 
@@ -425,7 +431,8 @@ fuel over \gls{HALEU}.
 OpenMCyclus is an archetype library that holds the DepleteReactor 
 archetype. Currently, OpenMCyclus only holds this one archetype, so 
 the two terms are used synonymously here. OpenMCyclus couples 
-\Cyclus with the stand-alone depletion solver in OpenMC to provide 
+\Cyclus with the stand-alone depletion solver in OpenMC 
+\cite{romano_depletion_2021} to provide 
 dynamic updates of spent fuel composition during a fuel cycle simulation.
 We decided to coupled with the depletion solver in OpenMC because 
 of the open-source nature of OpenMC and its rich Python \gls{API}. 
@@ -434,9 +441,9 @@ of \Cyclus to prevent creating additional obstacles in using the archetype.
 Additionally, the Python \gls{API} of OpenMC complements the Python 
 \gls{API} of \Cyclus, aiding in the development of the archetype. 
 There are two primary components to OpenMCyclus: fuel depletion and 
-transmutation and the interaction with the \Cyclus \gls{DRE}. 
+transmutation and the material handling. 
 
-\subsection{Fuel depletion and transmutation}
+\subsection{Fuel depletion and transmutation} \label{sec:transmute}
 The depletion of fuel in this archetype is performed through a coupling with 
 the depletion solver in OpenMC. The depletion solver in OpenMC solves a system 
 of first-order ODEs that describes 
@@ -504,53 +511,287 @@ the differences in the spent fuel composition compared with when the depletion
 is performed with transport \textbf{see if Olek has published his paper yet},
 but this expense is taken in favor of improved computational performance.
 
-\subsection{Interactions with DRE}
-The archetype interactions with the \Cyclus \gls{DRE} control how
-the archetype requests and places bids for materials, the quantities 
-of the requests and bids, and the agents from which the materials 
-are received. We designed OpenMCyclus to mimic the \gls{DRE} 
-interactions of the \Cycamore \texttt{Reactor} archetype. This means that 
-fuel assemblies are requested when the core or the fresh fuel 
-storage is not full, and are traded away after each operating cycle. 
-Each fuel assembly needed is a separate request, with each request 
+\subsection{Material handling}
+The material handling of the OpenMCyclus DepleteReactor archetype 
+includes how material is transferred within different inventories 
+in the archetype, how the archetype interacts with the \gls{DRE}, 
+and how these interactions are recorded to the database. 
+
+The DepleteReactor has three different material inventories that 
+are internal to the archetype: ``fresh fuel'', ``core'', and ``spent 
+fuel''. Each of these inventories are 
+\texttt{cyclus.typesystem.ResBufMaterialInv} objects, which means that 
+the material objects (i.e., fuel) can be moved between the different 
+inventories as needed, and each inventory has a defined capacity. Movements 
+between these inventories are not recorded to the database. The fresh 
+fuel inventory represents extra fuel that is kept on site at the 
+facility. The core inventory represents the fuel in the core 
+and used for operating the reactor. The spent fuel inventory 
+represents fuel that is finished in the core, and has been fully 
+transmuted to the spent fuel composition. Material requests that 
+are traded into the archetype can be placed in the fresh fuel 
+or core inventories, based on the capacities of each. The 
+material in the spent fuel inventory is used to generate bids 
+for requests, and is traded away to other facilities when the bids 
+are matched with a request by the \gls{DRE}. 
+
+The frequency of material movement between these inventories and 
+the timing of requests and bids in the \gls{DRE} are based on 
+the user-defined cycle length and refuel time state variables. 
+A reactor agent (a deployed prototype) requests enough fuel assemblies 
+to fill the fresh fuel and core inventories.
+Each fuel assembly to fill the fresh fuel and core inventories 
+is a separate request, with each request 
 being exclusive (i.e., partial fulfillment of the request by another 
 agent is not allowed). If multiple commodities can meet a request for 
 an assembly (e.g., UOX or MOX assemblies), then all of the possible 
 commodities are requested through mutual requests based on user-defined 
 preferences for each commodity. Materials are requested in quantities 
-to match the user-defined assembly mass size. 
+to match the user-defined assembly mass size. Information about the 
+materials is recorded to the output database, including the 
+commodity name, material mass, sending prototype, and the receiving 
+prototype. If the agent 
+receives enough fuel and the core inventory is filled, then the 
+agent begins its operating cycle. During the operating cycle, the 
+reactor is recorded as producing the user-defined power each time step 
+of the cycle, and will only request more fuel assemblies if the 
+fresh fuel inventory is not filled. At the end of the operating 
+cycle, the fuel in the core is transmuted as described in Section 
+\ref{sec:transmute}, and one batch of fuel (a user-defined state variable)
+is discharged from the core inventory to the spent fuel inventory. 
+If there is any fuel in the fresh fuel inventory, then it is 
+loaded into the core. Then more fuel for the fresh fuel and the 
+core inventories are requested from other facilities, and the 
+materials in the spent fuel inventory are traded away if requested 
+by other facilities. Before starting the next operating cycle, the 
+facility experiences a refueling period, that lasts as long as the 
+user-defined state variable. During this period, the facility does 
+not produce any power. If the core is not full or within the operating 
+cycle, then it does not produce any power. After the refueling period 
+ends, the facility 
+enters back into the operating cycle and repeats the process until it 
+is retired and decommissioned. 
+
+When the facility reaches the end of its lifetime, all of the fuel in 
+the core is transmuted one final time and all of the 
+assemblies are discharged from the core to the spent fuel
+inventory. If any assemblies in the fresh fuel inventory, then 
+they are also moved to the spent fuel inventory to be traded 
+away to other facilities. Once the core and spent fuel are 
+both empty, the facility is decommissioned and exits the simulation.
 
 \subsection{Comparison with \Cycamore Reactor}
 To verify the results from OpenMCyclus, we created a sample fuel cycle 
 scenario to model with the \Cycamore Reactor archetype and the 
-OpenMCyclus DepleteReactor archetype. The fuel cycle is shown in Figure 
+OpenMCyclus DepleteReactor archetype. All of the code used to define the 
+scenarios, generate data, and the analysis are publicly available 
+\textbf{create zenodo object for Comparison files}. The fuel cycle is 
+shown in Figure 
 \ref{fig:comparison}. Each of the non-reactor facilities are defined 
 using archetypes in the \Cycamore library, with the \Cycamore \texttt{Mixer}
-defining the MOX Fuel Fab agent. The \texttt{Mixer} agent takes in multiple 
+defining the ``MOX Fuel Fab'' agent. The \texttt{Mixer} agent takes in multiple 
 material streams and combines them in a user-defined ratio to produce 
 a final output stream. For this scenario, the separated fissile plutonium 
-and natural uranium are combined in a 1:9 ratio (10\% plutonium and 90\% 
-natural uranium). 
+and natural uranium are arbitrarily combined in a 1:9 ratio (10\% 
+plutonium and 90\% natural uranium). 
 
 \input{comparison}
 
 The entire simulation is 200 months. Reactors are deployed using the 
-\Cycamore \texttt{DeployInst} institution archetype: 2 at time step 1, 1 at time step 
+\Cycamore \texttt{DeployInst} institution archetype: 2 at time step 1, 
+1 at time step 
 50, 1 at time step 100, and 1 at time step 150. The reactors have a lifetime 
 of 60 time steps, cycle length of 12 time steps, refueling length of 1 
 time step, three batches per core, one assembly per batch, a power output of 
-100 MW, and an assembly size of 10 kg. The reactors prefer MOX over UOX. 
+195 W, and an assembly size of 0.00602 kg. The reactors prefer MOX over UOX. 
  
-For the reactor agent, we ran this simulation using the OpenMCyclus 
-DepleteReactor archetype and the \Cycamore \texttt{Reactor} archetype. We ran the 
-simulation with the \Cycamore \texttt{Reactor} archetype twice to toggle the 
-\texttt{decom\_transmute\_all} setting. The fresh fuel compositions were consistent 
-across the three iterations: 4.5\% $^{235}$U and 95.5\% $^{238}$U for the 
-fresh UOX and \textbf{figure out MOX} for the fresh MOX. To determine the cross 
-section data 
+To obtain a spent fuel composition for the \Cycamore \texttt{Reactor} 
+archetype and cross section data for the DepleteReactor archetype, we 
+used the pin cell example model in OpenMC \textbf{citation}. 
+Using this 
+small model is a simplifying assumption about the size of the reactors, 
+and led to the small power level and assembly mass of the prototypes. 
+We used this model in OpenMC to generate the one-group cross 
+section data required to define the \texttt{IndependentOperator} class 
+in OpenMC. Using this cross section data, we depleted the pin cell 
+model using OpenMC to obtain the spent UOX and 
+spent MOX compositions, with the depletion modeling the entire time that 
+an assembly would be in the the core (i.e., 36 months straight). 
+These compositions were then converted into recipes for use in 
+\Cyclus.
+The one-group cross section data from OpenMC was then used to run 
+OpenMCyclus, ensuring that the same data is used for both archetypes.  
 
-We compared each of the simulations 
-based on the amount of each fuel type sent to the reactors
+\begin{table}
+    \centering 
+    \caption{Compositions for fresh fuel used in the comparison between 
+    the \Cycamore \texttt{Reactor} and the OpenMCyclus DepleteReactor 
+    archetypes.}
+    \label{tab:comparison_comps}
+    \begin{tabular}{c c c c c c}
+        \hline
+        Recipe name & $^{235}$U ao & $^{238}$U & $^{16}$O ao & $^{239}$Pu ao & $^{240}$Pu ao\\
+        \hline
+        Fresh UOX &0.010 & 0.323 & 0.667 & 0 & 0 \\
+        Fresh MOX & 0.0097 & 0.3137 & 0.667 & 0.009 & 0.0006\\
+        \hline
+    \end{tabular}
+\end{table}
+
+We ran the scenario with the \Cycamore \texttt{Reactor} archetype twice, 
+toggling the \texttt{decom\_transmute\_all} setting between \texttt{True}
+and \texttt{False}. Toggling this setting allows us to explore how the 
+different possible methodologies to handle the fuel upon a facility 
+decommissioning in the \Cycamore \texttt{Reactor} affects the results of 
+the simulation, and provide a more comprehensive comparison between the 
+two archetypes. We compared the archetypes based on the energy generated 
+by the reactor prototypes and the transactions of fresh fuel, spent fuel, 
+and separated plutonium. 
+
+Figure \ref{fig:comparison_power} shows the power provided from the
+reactor prototypes in the scenario when each of the archetypes were used.
+It is important to compare this property of the archetypes because many 
+fuel cycle scenarios are designed based on deploying reactors to meet a 
+specific power demand. 
+There is perfect agreement between the archetypes, even with the different 
+settings for the \Cycamore \texttt{Reactor}. At the start of the scenario, 
+the prototypes produce 390 W of power, because two reactors are 
+deployed. When the third reactor is deployed at time step 50, 
+the power provided increases to 585 W. When there is only one  
+reactor deployed (e.g., between time steps 63-99) 195 W of power 
+are produced. Every 13th time step after a reactor facility deploys, 
+the facility produced 0 W of power, signifying that it is refueling.
+
+\begin{figure}[ht]
+    \centering 
+    \includegraphics{comparison_energy.pdf}
+    \caption{Comparison of power provided from reactor prototypes 
+    when comparing the \Cycamore \texttt{Reactor} and OpenMCyclus 
+    DepleteReactor archetypes.}
+    \label{fig:comparison_power}
+\end{figure}
+
+Figure \ref{fig:comparison_fuel} shows the transactions of UOX and 
+MOX fuel to the facilities when each archetype is used. There are 
+differences between the archetypes in when they receive each fuel type. 
+However, the total amount of fuel and when the fuel is received is in 
+perfect agreement between all three scenarios. At each time step that 
+a reactor facility is commissioned, a full core's worth of fuel (i.e., 
+three assemblies) are sent to the reactor. The reactors also receive fuel 
+at the correct intervals for refueling (every thirteen months or twelve 
+after deployment because of the lack of refueling period). The differences 
+that arise between the archetypes is in how much of each fuel commodity 
+is received at each time step. Because the \gls{MOX} fuel is preferred 
+over the \gls{UOX} fuel, the supply of plutonium available to create the 
+\gls{MOX} fuel is the driving factor of this difference and the primary 
+difference between these scenarios. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_uox.pdf}
+        \caption{Fresh UOX.}
+        \label{fig:comparison_uox}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_mox.pdf}
+        \caption{Fresh MOX.}
+        \label{fig:comparison_mox}
+    \end{subfigure}
+       \caption{Transactions of the fresh fuel commodities to the 
+       reactor facilities when defined with each archetype and 
+       setting.}
+       \label{fig:comparison_fuel}
+\end{figure}
+
+Figure \ref{fig:comparison_spentfuel} shows the transactions of 
+spent fuel from the reactors to the separations facility in each 
+scenario. There is more variation between the scenarios with the 
+\Cycamore \texttt{Reactor} archetype and the scenario with OpenMCyclus. 
+The differences in fresh fuel commodities received by the 
+reactor facilities propagate to differences in the spent fuel commodity 
+discharged by the reactors in each scenario. The timing and quantity of 
+fuel traded for non-retirement transactions is consistent between all 
+three scenarios. However, there are differences in the spent fuel 
+transactions that correspond to fuel discharged at the retirement of the 
+facilities. The OpenMCyclus archetype discharges all of the assemblies 
+in the same time step that the reactor retires. However, the \Cycamore 
+\texttt{Reactor} archetype discharges 2/3 of the assemblies in the same 
+time step that the facility retires, and the remaining 1/3 of the assemblies 
+in the next time step. The behavior of the \Cycamore \texttt{Reactor} 
+upon retirement is consistent regardless of the \texttt{decom\_transmute\_all}
+setting. This difference in transactions identifies a methodology 
+difference between the two archetypes. However, it only affects a 
+scenario when a reactor facility is retired, and a one time step difference 
+in when the fuel from the core is traded away is not large. Therefore, 
+this methodology difference is not expected to lead to large differences 
+in the behavior of a scenario. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_spentuox.pdf}
+        \caption{Spent UOX.}
+        \label{fig:comparison_spentuox}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_spentmox.pdf}
+        \caption{Spent MOX.}
+        \label{fig:comparison_spentmox}
+    \end{subfigure}
+       \caption{Transactions of the spent fuel commodities from the 
+       reactor facilities when defined with each archetype and 
+       setting.}
+       \label{fig:comparison_spentfuel}
+\end{figure}
+
+Finally, Figure \ref{fig:comparison_pu} shows the instantaneous and cumulative 
+masses of separated plutonium traded from the separations facility to 
+the fuel fabrication facility. The three different scenarios show consistency
+in when the separated plutonium is traded: one time step after a spent
+\gls{UOX} assembly is traded to the separations facility. However, the 
+amount of plutonium traded varies between the three scenarios. The two 
+scenarios that use the \Cycamore \texttt{Reactor} show agreement in the 
+traded plutonium mass until time step 61, when the first two reactors are
+retired. The disagreement between these two scenarios arises from the 
+\texttt{decom\_transmute\_all} setting. When set to \texttt{True}, 
+all of the assemblies in the core are transmuted upon retirement, 
+while when set to \texttt{False} only half of the assemblies are 
+transmuted. Therefore, when this setting is \texttt{False}, not all of the 
+spent fuel assemblies traded away have the spent fuel composition, and 
+therefore there is less plutonium in the defined material compositions 
+of the spent fuel assemblies. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu.pdf}
+        \caption{Instantaneous plutonium mass}
+        \label{fig:comparison_pu_inst}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu_cumulative.pdf}
+        \caption{Cumulative plutonium mass}
+        \label{fig:comparison_pu_cumulative}
+    \end{subfigure}
+       \caption{Transactions of the separated plutonium from the
+       separation facility to the fuel fabrication facility, based 
+       on the archetype to define the reactor facilities.}
+       \label{fig:comparison_pu}
+\end{figure}
+
+The differences between the \Cycamore and OpenMCyclus scenarios stems 
+primarily from the different methodologies in how the assemblies 
+are transmuted. 
 
 \section{Calculation of results} \label{sec:results_calc}
 The results of each transition scenario modeled include the energy generated, 
