@@ -35,14 +35,16 @@
         \draw [arrow] (mox_cooling) |- node[anchor=south, pos=0.75]{Cool Spent MOX}(sinkhlw);
         \draw [arrow] (mox_fab.east) - ++(5mm,0) |- node[anchor=west, pos=0.2, text width=1.5cm]{Fresh MOX}(voygr.east);
         \draw [arrow] (mox_fab.east) -- ++(5mm,0) -- ++(0,30mm) -| (xe100.north);
-        \draw [arrow] (wetstorage) -- node[anchor=west]{Cool Spent UOX} (separation);
+        \draw [arrow] (wetstorage) -- node[above, sloped, pos=0.55]{Cool Spent UOX} (separation);
         \end{tikzpicture}
     \caption{Fuel cycle facilities and material flow between facilities for modeling the 
     transition to advanced reactors with a limited recycle fuel cycle. Before 2025 a once-through 
     fuel cycle is used with the facilities in blue. Facilities in red are deployed starting 
-    in 2025. In all limited recycling scenarios the spent UOX from the VOYGRs is sent to the 
+    in 2025. In all limited recycling scenarios the spent UOX from the VOYGRs is sent from the 
+    red Cooling Pool to the 
     Separations facility. In Scenarios 14 and 17 the spent UOX fuel from the Xe-100 and 
-    MMR are also sent to the Separations facility, but they are sent directly 
-    to the Repository and are not reprocessed in Scenarios 15 and 18.}
+    MMR are also sent from the red Cooling Pool to the Separations facility, but they 
+    are sent directly from the red Cooling Pool to the Repository and are not reprocessed 
+    in Scenarios 15 and 18.}
     \label{fig:limited_recycle_flow}
 \end{figure}
