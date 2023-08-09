@@ -301,11 +301,11 @@ second pass through the reactor. Continuous recycling assumes that all
 material has been used. Both recycling schemes were considered in the 
 \acrfull{ES} \cite{wigeland_nuclear_2014}, which led to their inclusion 
 in this work. Another distinction between some of the 
-scenarios is if \gls{TRISO} fuel is recycled. \gls{TRISO} fuel is 
+scenarios is if spent \gls{TRISO} fuel is recycled. \gls{TRISO} fuel is 
 expensive and difficult to recycle \textbf{find citation}, and 
 therefore by modeling scenarios that do and do not recycle 
 \gls{TRISO} we can model realistic scenarios in which \gls{TRISO} 
-is recycled and more academic scenarios in which all spent fuel is 
+is not recycled and more academic scenarios in which all spent fuel is 
 recycled. 
 
 \begin{table}[ht]
@@ -314,7 +314,7 @@ recycled.
     \label{tab:scenarios_recycle}
     \begin{tabular}{l l l l}
             \hline
-            Scenario number & Energy growth model & Recycle scheme & TRISO recycled?\\
+            Scenario number & Energy growth model & Recycle scheme & \gls{TRISO} recycled?\\
             \hline
             14 & No growth & Limited & Yes\\
             15 & No growth & Limited & No\\
@@ -344,7 +344,7 @@ the results of these scenarios will focus on the material requirements.
 For this work, the \glspl{LWR} and \gls{MMR} are modeled using the 
 \Cycamore \texttt{Reactor} archetype. Each of these reactors use the 
 fresh and spent fuel recipes that are used for the once-through scenarios. 
-The Xe-100 and VOYGR are modeled using the \texttt{DepleteReactor} 
+The Xe-100 and VOYGR are modeled using the DepleteReactor 
 archetype from the OpenMCyclus library. The OpenMCyclus library was 
 developed for this work, to expand the capabilities of \Cyclus archetypes 
 to dynamically modeling fuel depletion during a simulation. Section 
@@ -356,37 +356,45 @@ reactor using this archetype requires information about the refueling
 scheme for the reactor but also one-group cross section data to perform the 
 depletion. 
 
-For the VOYGR, we approximated the cross section data by using the 
+For the VOYGR, we generated the one-group cross section data by using the 
 built-in \gls{PWR} assembly model in OpenMC. We modified this model so 
 that the fuel composition matched that of the VOYGR as modeled in this 
-work. For the Xe-100, we \textbf{????}
+work. For the Xe-100, we used the Serpent \cite{leppanen_serpent_2014} 
+and the Xe-100-like model described in Section 
+\ref{sec:xe100_serpent_model} to generate the cross section data. We 
+post-processed the cross section data from Serpent to match the 
+format required by OpenMC. For both reactors, we used the simplified 
+depletion chain from OpenMC (referred to as the CASL chain) 
+\cite{romano_depletion_2021}. Using this depletion chain results in  
+adequate accuracy to the full depletion chain \cite{romano_depletion_2021}
+and reduced run times compared with the full depletion chain.  
 
 \subsection{Limited recycle scenarios}
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
 for the scenarios with limited recycling (Scenarios 14, 15, 17, and 18). 
-In scenarios 15 and 18 only the spent fuel from the 
-VOYGRs is sent to the reprocessing facility, but in scenarios 14 and 17, 
+In Scenarios 15 and 18 only the spent fuel from the 
+VOYGRs is sent to the reprocessing facility, but in Scenarios 14 and 17, 
 all spent fuel from the advanced reactors is sent to the 
 reprocessing facility. Only the Xe-100 and VOYGRs receive \gls{MOX} fuel, 
 but not the \glspl{MMR} because the \gls{MMR} does not undergo refueling, 
-and therefore would not receive \gls{MOX} fuel. We assumed a \gls{MOX} 
-composition for the VOYGR to be the one from the OpenMC pin cell example, 
-and the \gls{MOX} for the Xe-100 to be from literature \cite{kuijper_htgr_2006}.
+and therefore would not receive \gls{MOX} fuel.
 
 \input{limited-recycling-flow}
 
-A separations facility is defined to be deployed 5 
-years before the transition 
+A separations facility is deployed 5 years before the transition 
 begins (i.e. in 2020), as this strategy is commonly used for modeling 
 transitions with recycling \cite{passerini_systematic_2014,richards_application_2021}
 to ensure that enough fuel can be separated and 
 processed in time for use in advanced reactors. Although this is a 
 non-physical time to begin recycling in the US, using this timeline ensures 
 that there will be enough reprocessed fuel to fuel all of the advanced 
-reactors, and the maximum benefit of recycling can be observed. Additionally 
+reactors, and one can observe the maximum benefit of recycling. Additionally 
 by using this timeline, specifically ensuring that advanced reactors 
 are deployed at the same time as when they are deployed in the once-through 
 transition, provides an even comparison between these fuel cycle options.
+Based on the timeline of the separations facility deployment, only the 
+\gls{UNF} from the \glspl{LWR} that is discharged after 2020 will 
+be reprocessed. 
 
 The separations facility separates out plutonium from the other 
 materials in the fuel, emulating the aqueous reprocessing method although the 
@@ -397,34 +405,40 @@ separation efficiency previously used in previous fuel cycle modeling
 \cite{wigeland_nuclear_2014,sunny_transition_2015}. The separated 
 material from this facility is then sent to a \gls{MOX} fuel fabrication 
 facility that produces \gls{MOX} with a pre-defined composition for the 
-advanced reactors. For simplicity, we used the \gls{MOX} composition 
-defined in the OpenMC pin cell example notebook \textbf{this work?}.
+advanced reactors. To determine the plutonium fraction in the 
+\gls{MOX} fuel, we calculated the plutonium equivalence of the $^{235}$U 
+based on the cross section data generated from OpenMC. We assumed 
+that all plutonium in the \gls{MOX} is $^{239}$Pu, even though fabricated 
+\gls{MOX} will have other plutonium isotopes present, as 
+a simplifying assumption. Using this 
+method helps ensure that the fuel used will allow the 
+reactor to run for the same cycle time and have the same assembly mass.
 The separated plutonium is used as a fissile stream while the 
 natural uranium from the mine are used as filler materials to 
 produce \gls{MOX}. The separation step is modeled using the \Cycamore 
 \texttt{Separations} archetype, and the \gls{MOX} fuel fabrication is modeled 
 using the \Cycamore \texttt{Mixer} archetype. The \texttt{Mixer} archetype 
-combines the 
-separated plutonium and natural uranium material streams in a constant 
-\textbf{figure out ratio} to produce the \gls{MOX} fuel. 
+combines the separated plutonium and natural uranium material 
+streams in the constant ratios required to produce the \gls{MOX} fuel
+that corresponds to composition for each reactor. 
 
 \subsection{Continuous recycle scenarios}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
 flow for the continuous recycle fuel cycle (Scenarios 16 and 19). Continuous recycle 
 requires a fast reactor, but all of the reactors considered in this 
 work have a thermal neutron energy spectrum. Therefore, the advanced 
-reactors used in the other scenarios are replaced with a sodium fast 
-reactor. The fast reactor is modeled based on the PRISM design from 
-\gls{GEH} in the \gls{UNF} Recycle mode \textbf{ctations}, based on 
-availability of open-source 
-information. To support using reprocessed fuel in the fast reactor, 
-the separations facility is deployed in 2020, similar to in the 
-limited recycling scenarios, and uranium and transuranic elements 
-(neptunium, plutonium, americium, and curium) are separated out from 
-the spent fuel with 99\% efficiency. If not enough reprocessed fuel is 
-available to support the fast reactor fleet, then \gls{HALEU} is used 
-to fuel the reactors, but the reactors have a preference for reprocessed 
-fuel over \gls{HALEU}. 
+reactors used in the other scenarios are replaced with a \gls{SFR}. 
+The fast reactor is modeled based on the PRISM design from 
+\gls{GEH} in the \gls{UNF} Recycle mode \textbf{citations}, based on 
+the availability of open-source information. We defined the \gls{SFR} 
+to prefer reprocessed fuel over \gls{HALEU} fuel. The reprocessed fuel 
+composition is based on published information about the metallic fuel 
+composition \textbf{cite PRISM paper}. The \gls{HALEU} composition 
+
+
+
+
+
 
 \input{continuous-recycling-flow}
 
@@ -434,7 +448,7 @@ fuel over \gls{HALEU}.
     \label{tab:fast_rx}
     \begin{tabular}{l l}
         \hline
-        Design Criteria & PRISM \textbf{Citations}\\
+        Design Criteria & PRISM \textbf{cite PRISM paper}\\
         \hline
         Reactor type & Sodium Fast Reactor\\
         Power Output (MWth) & 840 \\
@@ -448,6 +462,21 @@ fuel over \gls{HALEU}.
         \hline
     \end{tabular}
 \end{table}
+
+To support using reprocessed fuel in the fast reactor, 
+the separations facility is deployed in 2020, similar to in the 
+limited recycling scenarios, and uranium and transuranic elements 
+(neptunium, plutonium, americium, and curium) are separated out from 
+the spent fuel with 99\% efficiency. If not enough reprocessed fuel is 
+available to support the fast reactor fleet, then \gls{HALEU} is used 
+to fuel the reactors, but the reactors have a preference for reprocessed 
+fuel over \gls{HALEU}. We calculated the fuel mass using Eq. \ref{eq:fuel_mass},
+and divided as needed for the mass of each assembly in the core. 
+We also calculated the deployment scheme for this reactor using the 
+same methodology described in Section \ref{sec:reactor_methods}, based on 
+the applicable demand curve (no growth for Scenario 16 and 1\% growth 
+for Scenario 19), the power output of the \gls{SFR}, and the capacity 
+factor of the \gls{SFR}.
 
 \section{OpenMCyclus}\label{sec:openmcyclus}
 OpenMCyclus is an archetype library that holds the DepleteReactor 
@@ -654,7 +683,7 @@ OpenMCyclus, ensuring that the same data is used for both archetypes.
         \hline
         Recipe name & $^{235}$U ao & $^{238}$U & $^{16}$O ao & $^{239}$Pu ao & $^{240}$Pu ao\\
         \hline
-        Fresh UOX &0.010 & 0.323 & 0.667 & 0 & 0 \\
+        Fresh UOX & 0.010  & 0.323  & 0.667 & 0     & 0 \\
         Fresh MOX & 0.0097 & 0.3137 & 0.667 & 0.009 & 0.0006\\
         \hline
     \end{tabular}
@@ -785,10 +814,11 @@ retired. The disagreement between these two scenarios arises from the
 \texttt{decom\_transmute\_all} setting. When set to \texttt{True}, 
 all of the assemblies in the core are transmuted upon retirement, 
 while when set to \texttt{False} only half of the assemblies are 
-transmuted. Therefore, when this setting is \texttt{False}, not all of the 
+transmuted (in this case two of the three assemblies). Therefore, 
+when this setting is \texttt{False}, not all of the 
 spent fuel assemblies traded away have the spent fuel composition, and 
 therefore there is less plutonium in the defined material compositions 
-of the spent fuel assemblies. 
+of the spent fuel assemblies than when all of the assemblies are transmuted. 
 
 \begin{figure}
     \centering
@@ -811,9 +841,51 @@ of the spent fuel assemblies.
        \label{fig:comparison_pu}
 \end{figure}
 
-The differences between the \Cycamore and OpenMCyclus scenarios stems 
+The differences between the \Cycamore and OpenMCyclus scenarios led 
+to the differences in the type of fresh and spent fuel commodities 
+traded to and from the reactors. The differences stem 
 primarily from the different methodologies in how the assemblies 
-are transmuted. 
+are transmuted. For the spent fuel compositions in the cases with the \Cycamore 
+\texttt{Reactor}, we depleted an assembly for an entire residence time 
+(36 months continuously). However, in OpenMCyclus the fuel is depleted for 
+a single cycle at a time (12 months in this case). Therefore, the 
+assemblies discharged at the end fo the first two cycles by the 
+OpenMCyclus prototypes have not been depleted for the full 36 months 
+like they are with the \Cycamore \texttt{Reactor} prototype. To confirm  
+that the difference in the time steps of the depletion led to the 
+difference in separated plutonium inventory, we temporarily changed
+the OpenMCyclus source code to deplete the fuel in a more similar 
+manner to that of the \Cycamore \texttt{Reactor}: each assembly was 
+depleted for the full 36 month residence time right before being 
+discharged. This modification, shown in red in Figure 
+\ref{fig:comparison_pu_discharge}, shows that when the assemblies 
+are always depleted for the full 36 month duration the 
+separated plutonium masses are more consistent with those from 
+using the \Cycamore \texttt{Reactor} archetype. The consistency 
+between the two archetypes when using the modified OpenMCyclus 
+provides confidence in the results of OpenMCyclus when the fuel 
+is depleted each cycle instead of upon discharge. 
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu_discharge.pdf}
+        \caption{Instantaneous plutonium mass}
+        \label{fig:comparison_pu_inst_discharge}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu_cumulative_discharge.pdf}
+        \caption{Cumulative plutonium mass}
+        \label{fig:comparison_pu_cumulative_discharge}
+    \end{subfigure}
+       \caption{Transactions of the separated plutonium from the
+       separation facility to the fuel fabrication facility, based 
+       on the archetype to define the reactor facilities.}
+       \label{fig:comparison_pu_discharge}
+\end{figure}
 
 \section{Calculation of results} \label{sec:results_calc}
 The results of each transition scenario modeled include the energy generated, 
