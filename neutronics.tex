@@ -5,26 +5,23 @@ supplies to create \gls{HALEU} include $^{232}$U and $^{236}$U
 \cite{vaden_isotopic_2018,nelson_foreign_2010},  
 which are parasitic neutron absorbers and have the potential to affect 
 reactor physics and reactor operation. To investigate the magnitude of this 
-effect, this chapter presents models of the use of 
-impure \gls{HALEU} fuel in a reactor and compares it to the use of pure 
+effect, this chapter presents models of two advanced reactors that use  
+impure \gls{HALEU} fuel and compares the performance of the impure 
+fuel to the use of pure 
 \gls{HALEU} (comprised exclusively of $^{235}$U and $^{238}$U). This analysis 
-helps in understanding the impacts of the impurities on the performance of the reactor.
-While the other chapters explore how the reactors affect the fuel cycle this 
-chapter of work explores how the fuel affects the reactors.  We determined 
+helps in understanding the impacts of the impurities on the performance 
+of the reactor. While the other chapters explore how the reactors affect 
+the fuel cycle this chapter of work explores how the fuel affects the 
+reactors.  We determined 
 the downblended \gls{HALEU} compositions based on what is publicly 
 available. 
 
-
-
-
-\textbf{ASTM has standards on UOX/MOX purity -- ASTM C776-06, C753 (2004), C757 (2006a)}
-
 \section{Methodology}\label{sec:neutronics-methods}
 For this work we considered the two \gls{HALEU}-fueled reactors modeled 
-in the transition scenarios described in Chapter \ref{ch:fc_methods}. 
-Full core models of Xe-100-like and 
-\gls{MMR}-like reactors were created in Serpent 
-\cite{leppanen_serpent_2014} to model the neutronics and depletion of fuel 
+in the transition scenarios described in Chapter \ref{ch:fc_methods}: the 
+X-energy Xe-100 and the \gls{USNC} \gls{MMR}. We created reactor 
+core models that closely resemble these reactors in Serpent 
+\cite{leppanen_serpent_2014}, modeling the neutronics and fuel depletion  
 in each reactor design. Each model was run using the ENDF VII.1 
 cross section library
 \cite{chadwick_endfb-vii1_2011}. The core geometries used are not 
@@ -43,14 +40,14 @@ reactor core model
 initially created to characterize the isotopic compositions and 
 reactor physics of a 200 MW pebble-bed \gls{HTGR}. While this reactor model 
 is very similar to current published data for the X-energy Xe-100
-\cite{mulder_overview_2021}, there are some notable differences that affect 
+\cite{mulder_overview_2021}, there are two notable differences that affect 
 the reactor physics. The first difference is that the \gls{TRISO} particles 
 in the Sangamon200 are modeled as a blended mix of the \gls{TRISO} 
-materials, not the explicit layers. Using a homogenized \gls{TRISO} particle 
+materials and not the explicit layers. Using a homogenized \gls{TRISO} particle 
 decreases the \keff of the core by 4.45\%, but it does not reduce the 
 thermal and fast neutron fluxes across the reactor outside of error 
 \cite{richter_isotopic_2022}. Despite 
-the effect on \keff of this modeling decision, we continued to use the 
+the effect on \keff of this modeling decision, we used the 
 homogenized model of the \gls{TRISO} pebbles to be consistent with the 
 published results of the Sanagamon200 \cite{richter_isotopic_2022} and 
 to be conscious of computational expense. 
@@ -78,17 +75,18 @@ The second
 notable difference is the reactor vessel shape. The Sanagmon200 is a simple 
 cylinder, while the Xe-100 is a cylinder with a cone at the bottom to funnel 
 the pebbles to a single point as they come out of the core. However, 
-this is a lss neutronically important region of the core, so the geometry 
-difference between the two cores should produce a negligible effect on the results of the 
-core as a whole.
+this is a less neutronically important region of the core, so this geometry 
+difference between the two cores should produce a negligible effect on the 
+results of the core as a whole.
 
 In the Xe-100 reactor, each pebble moves down the core while it burns. Each 
 time that a pebbles travels from the top of the core to the bottom is a single 
 pass. Once a pebble reaches the bottom of the core, it is removed, inspected for 
 the burnup level, and placed back in the core for another pass if the pebble has 
-not reached the target burnup. Therefore, each pebble is expected to 
+not reached the target burnup. Each pebble is expected to 
 go through multiple passes in the core, an average 
-of six passes per pebble. To account for the different burnup of 
+of six passes per pebble, before reaching the target burnup of 185 
+MWd/kg. To account for the different burnup of 
 the pebbles in an equilibrium core, 
 six different pebble isotopic compositions were used to approximate the pebble
 variance in burnup in the core. These isotopic compositions represent burnup from 
@@ -101,24 +99,25 @@ We performed depletion on the single pebble model with each layer of the
 created by Richter \cite{richter_zoerichterphlox_2022} with depletion steps 
 corresponding to integer numbers of passes. Then we 
 applied the composition corresponding to the burnup step of each pass 
-to 1/7th of the pebbles of the core. The pebbles with different burnups 
+to 1/6th of the pebbles of the core. The pebbles with different burnups 
 were evenly mixed throughout the core, mimicking spread of 
 differently burned pebbles throughout a core in the equilibrium state 
 of the reactor. Each pebble at the same burnup level has the same 
 composition in this model.   
 
-The Sangamon200 is modeled an an isothermal state at 800 K \cite{richter_isotopic_2022}.
+We modeled the Sangamon200 in an an isothermal state at 800 K 
+\cite{richter_isotopic_2022}.
 We ran this model with 100,000 particles per cycle, 50 inactive cycles, 
 and 200 active cycles. We did not perform depletion on the Sangamon200 model 
-because our model 
-does not capture the continuous refueling scheme used by the Xe-100 or 
-any pebble movement. Performing depletion without modeling pebble movement 
+because our model does not capture pebble movement or the continuous 
+refueling scheme used by the Xe-100. Performing depletion without modeling 
+pebble movement 
 would create non-physical differences from the equilibrium condition of 
 this reactor model. Therefore, we did not model further depletion of the 
 pebbles when comparing the different fuel compositions.
 
 \subsection{MMR-like model}
-The \gls{USNC} \gls{MMR} is an  \gls{HTGR} that uses 
+The \gls{USNC} \gls{MMR} is a prismatic \gls{HTGR} that uses 
 \gls{TRISO} fuel in \acrfull{FCM} pellets inside graphite blocks 
 to produce 5 MWe \cite{noauthor_usnc_2021}.
 We created an \gls{MMR}-like model primarily based on information in 
@@ -132,10 +131,10 @@ The final core configuration
 is different than what is modeled by Hawari and Venneir \cite{hawari_development_2018} 
 because their model is only meant to operate 
 for 10 years, while the \gls{MMR} is meant to operate for 20 years 
-\cite{noauthor_usnc_2021}. We 
-selected this core configuration after modeling some of the other core 
+\cite{noauthor_usnc_2021}. We selected the core configuration shown in 
+Figure \ref{fig:mmr_core} after modeling some of the other core 
 configurations found in literature \cite{mitchell_usnc_2020,hawari_development_2018}
-and determining that the core configuration shown in Figure \ref{fig:mmr_core} 
+and determining that the selected core configuration  
 can operate the longest before going subcritical and 
 achieve a burnup close to the reported 82.6 MWd/kgU reported by 
 \gls{USNC} \cite{noauthor_usnc_2021}. 
@@ -149,10 +148,10 @@ and the control rod channels have a radius of 6 cm, obtained from
 \cite{hawari_development_2018}. These dimensions affect the graphite volume 
 of the core, and thus affect the fuel to moderator ratio of the core. 
 The \gls{TRISO} particles are modeled with a 40\% packing fraction in 
-the \gls{FCM} particles based on information in .
+the \gls{FCM} particles based on information in \textbf{find citation}.
 Control rods and burnable poisons are not included in this model, or 
-the Sangamon200 model, so the control rod locations are modeled as 
-filled with helium. There are five layers of the graphite fuel blocks 
+the Sangamon200 model, so the control rod locations are filled with helium
+in this model. There are five layers of the graphite fuel blocks 
 stacked to form the entire core, to approximate the number of 
 fuel blocks described in \cite{noauthor_usnc_2021}. The entire core 
 is assumed to be in an isothermal state at 800 K. There is a 20 cm 
@@ -192,12 +191,14 @@ For the \gls{MMR}-like model we modeled depletion of the core across the
 expected 20 year lifetime of the \gls{MMR}, because the core is not 
 meant to undergo refueling during those 20 years and the lack of 
 fuel movement is in a state model aligned with the operational core. 
-Depletion is modeled using 
-burnup steps of 2 years. Each burnup step was run using 140 active cycles, 75 inactive 
+Depletion is modeled using burnup steps of 2 years. Each burnup step 
+was run using 140 active cycles, 75 inactive 
 cycles, and 65,000 particles per cycle. 
 
 \subsection{Temperature variations and feedbacks}
-For both reactor models, we varied the fuel, coolant, and moderator temperatures 
+One of the goals of this work is to compare the temperature feedback 
+coefficients from using the different fuel compositions in each 
+reactor. Therefore we varied the fuel, coolant, and moderator temperatures 
 between 700, 750, 800, 850, and 900 K to calculate the fuel, coolant, 
 moderator, and total temperature feedback coefficients. We assumed a linear 
 relationship between 
@@ -237,8 +238,16 @@ same ratio defined in the publications, and the $^{238}$U was defined to fill
 the remainder of the fuel. Therefore, all three fuel compositions for each 
 reactor have the same $^{235}$U weight fractions, non-$^{238}$U weight
 fractions that match the published values, and vary in the $^{238}$U 
-weight fraction. Table \ref{tab:u_comps} defines the uranium isotopics used 
-in each reactor type for each of the \gls{HALEU} compositions.
+weight fraction. Table \ref{tab:u_comps} defines the uranium isotopic
+composition used 
+in each reactor type for each of the \gls{HALEU} compositions. The 
+standard for uranium enriched to less than 20\% $^{235}$U, ASTM C1462-21 
+\cite{noauthor_standard_2021-1}, sets limits on the the mass of 
+$^{232}$U and $^{234}$U relative to the mass of $^{235}$U, the mass of 
+$^{236}$U relative to the total mass of the uranium.
+The \gls{HALEU} from both \gls{HEU} sources is within the standards, 
+using the flexibility of a potential increase in the limit of 
+$^{236}$U in the fuel. 
 
 \begin{table}[ht]
         \centering 
@@ -284,7 +293,8 @@ The points of comparison for this work include:
 
 For the Sangamon200, these metrics are only compared in an equilibrium state
 state of the reactor. For the \gls{MMR}-like reactor these metrics 
-are compared at \gls{BOL}, \gls{MOL}, and \gls{EOL}. Each metric provides a 
+are compared at \gls{BOL} (0 MWd/kg burnup), \gls{MOL} (40.7 MWd/kg burnup), 
+and \gls{EOL} (81.4 MWd/kg burnup). Each metric provides a 
 measurement of the performance of 
 the reactor, such as the materials degradation rate, amount of burnable 
 poisons required, control rod worth, and the cycle time. The neutron flux 
@@ -365,7 +375,7 @@ The \betaEff resulting from the use of each fuel type is reported in
 Table \ref{tab:betaeff_xe100}. The \betaEff from using the pure 
 fuel is slightly smaller than the 0.0064 $\beta$ from thermal fissions 
 in $^{235}$U because the depletion of some pebbles in the core leads to 
-the breeding of $^{239}$Pu from the $^{238}$U, which fissions and has 
+the breeding of $^{239}$Pu, from the $^{238}$U, which fissions and has 
 a smaller \betaEff than $^{235}$U. The \betaEff when using the impure fuels 
 is smaller than when using the pure fuel, a difference that is 
 statistically significant. The pure fuel results in 
@@ -402,6 +412,7 @@ active region of the core as a function of energy (top) and
 the difference from the pure fuel flux (bottom). The purple 
 line in both plots shows the delineation between the fast 
 and thermal energy groups in this work. We used the pre-defined 
+SCALE-238 energy group structure in Serpent. 
 There is a large peak in the thermal flux around 0.01 MeV. The impure 
 \gls{HALEU} compositions have a smaller thermal flux peak 
 than the pure fuel, differing on the order of $10^{20}$ 

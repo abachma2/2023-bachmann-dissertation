@@ -1,20 +1,21 @@
-\section{Methodology}
-Optimization of the nuclear fuel cycle is intended to develop 
-a fuel cycle based on a specific objective or objectives. 
+Optimization of the nuclear fuel cycle aids in developing
+a fuel cycle based on a specific objective or  multiple objectives. 
 Optimization has previously been applied to the nuclear fuel 
 cycle \cite{passerini_sensitivity_2012,andrianov_optimization_2019}
-and other nuclear engineering \cite{chee_fluoride-salt-cooled_2022}.
+and other nuclear engineering applications 
+\cite{chee_fluoride-salt-cooled_2022}.
 This application of optimization uses \Cyclus \cite{huff_fundamental_2016}
 to simulate the fuel cycle and Dakota \cite{adams_dakota_2021} to 
 perform the optimization. In this chapter we demonstrate a methodology to 
-apply this coupling to different optimization problems, and identify 
+apply this coupling to different optimization problems, identify 
+optimized fuel cycle transitions, and identify 
 advantages and disadvantages of this methodology to optimize a nuclear 
 fuel cycle. 
 
+\section{Methodology}
 We developed three different optimization problems to apply to 
-Scenarios 7 (no growth, once-through transition to the \gls{MMR}, Xe-100, 
-and VOYGR) and 14 (no growth, limited recycling transition to the 
-\gls{MMR}, Xe-100, and VOYGR): minimizing the \gls{SWU} capacity to 
+Scenario 7 (no growth, once-through transition to the \gls{MMR}, Xe-100, 
+and VOYGR): minimizing the \gls{SWU} capacity to 
 produce \gls{HALEU}, minimizing the mass of \gls{SNF} for disposal, 
 and minimizing both the \gls{HALEU} \gls{SWU} and the \gls{SNF} 
 mass. To optimize these transitions, we consider six different 
@@ -34,7 +35,8 @@ was constrained to between 0-50\% of the current \gls{LWR} fleet.
 The build share of each advanced reactor was allowed to range between 
 0-100\%, but the three parameters had to sum to 100\%. The discharge 
 burnups are restricted to the values considered in the \gls{OAT} 
-sensitivity analysis.
+sensitivity analysis, which are based on different cycle lengths or 
+the number of passes pebbles go through the core.
 
 We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota 
 \cite{adams_dakota_2021} to perform this optimization. For the 
@@ -45,10 +47,13 @@ Dakota, which is a multi-objective genetic algorithm. The Dakota
 User's Manual \cite{adams_dakota_2021} provides some guidance 
 on selecting the most appropriate optimization method available 
 in Dakota. According to this guide, these two methods are the most 
-appropriate to use, because the problem has bound and linear constraints. 
-Additionally, genetic algorithms
+appropriate to use, because the problem has bound (variables 
+must be within a given range) and linear constraints (variables must 
+sum to a value). Additionally, genetic algorithms
 have previously been used to optimize fuel cycle transitions 
-\cite{passerini_systematic_2014}. More specifically, the ``moga'' method 
+\cite{passerini_systematic_2014}, which provides confidence that 
+this optimization method is appropriate for this application. 
+More specifically, the ``moga'' method 
 in Dakota was found to always lead to a correct and accurate solution set 
 when used with five different benchmark problems \cite{chiandussi_comparison_2012}.
 
@@ -64,7 +69,7 @@ generations, emulating the breeding of a population. In addition to
 passing along parameters sets to the next generation, crossovers and 
 mutations occur. Crossovers are when one parameter value is exchanged 
 between two members of the same population, similar to the combination of 
-the genes from a parent to form a child \cite{kramer_genetic_2017}. In 
+the genes from a parent to a child \cite{kramer_genetic_2017}. In 
 the crossover, the string of parameters are split at an arbitrary point, and 
 switched to form two different offspring.
 Mutations are when a parameter 
@@ -80,7 +85,7 @@ mutation rate and crossover rate, that can affect
 the results of the algorithm and the speed at which a solution is found. 
 Specifically, the crossover and mutation rates of a genetic algorithm 
 control how similar each population is to the one before it, and how much 
-of new space is considered.If the mutation rate is too low, then the 
+of new space is considered. If the mutation rate is too low, then the 
 genetic algorithm can reach a local minimum instead of a global 
 minimum. If the mutation rate is too high, then the algorithm behaves more 
 like a random search and isn't able to fully use the information about the 
@@ -105,7 +110,9 @@ Manual based on hyperparameters defined in previous generic algorithms
 for nuclear energy applications
 \cite{passerini_systematic_2014,chee_fluoride-salt-cooled_2022},
 personal intuition, and limitations on time to perform 
-the tuning.
+the tuning. We performed the hyperparameter tuning on the single-objective 
+problem to minimize the \gls{SWU} capacity required to produce 
+\gls{HALEU}. 
 
 The 
 first grid search performed 40 iterations of different hyperparameter 
@@ -146,12 +153,12 @@ and the random seed (kept at the same value for all runs).
     \end{tabular}
 \end{table}
 
-All six of the input parameters considered were limited to integer
+All six of the input parameters considered (the build shares, discharge burnups, 
+and the \gls{LWR} lifetimes) were limited to integer
 values by using the ``discrete design set'' variable definition for the 
 Xe-100 and \gls{MMR} burnups and the ``discrete design range'' variable 
 definition for the other four. This variable definition was selected to 
-simplify file names and prevent rounding of values from Dakota.
-
+simplify file names and prevent rounding errors.
 
 Figure \ref{fig:soga_coarse_tuning} shows the results of the coarse tuning 
 for the single objective problem. From these results, we observe that a 
@@ -162,7 +169,7 @@ From the other hyperparameters, there are no conclusions that can be drawn
 about a range of values that should be used. 
 Therefore, more tuning cases (the ``Fine Search'' in Table \ref{tab:soga_tuning})
 were performed to provide more insight into how the other hyperparameters 
-affect the results with the larger population sizes. 
+affect the results with the larger population sizes.''
 
 \begin{figure}
     \includegraphics[scale=0.4]{soga_coarse_tuning_all_parameters.pdf}
@@ -171,14 +178,15 @@ affect the results with the larger population sizes.
     \label{fig:soga_coarse_tuning}
 \end{figure}
 
-The results from the fine tuning, shown in Figure \ref{fig:soga_fine_tuning}
+The results from the fine tuning, shown in Figure \ref{fig:soga_fine_tuning},
 are not completely aligned with the results from the coarse tuning. 
 The coarse tuning showed that a population size of 100 consistently performed 
 better than the other population sizes, but the fine tuning showed that a 
 population size of 50 performed better. Both sets of tuning runs suggested 
-a population size to use, but did not show any strong correlation between 
-the other hyperparameters and the \gls{HALEU} \gls{SWU}, but each set of 
-tuning cases suggested different population sizes. Therefore, we compared 
+a population size to use, albeit suggesting different population sizes, 
+but did not show any strong correlation between 
+the other hyperparameters and the \gls{HALEU} \gls{SWU}. Therefore, 
+we compared 
 the hyperparameters and model parameters values in the five best performing 
 tuning cases, based on the \gls{HALEU} \gls{SWU} required, shown in 
 Table \ref{tab:soga_tuning_results}.
@@ -256,7 +264,7 @@ the total build share constraint.
 
 The tuning cases each ran a maximum of 500 evaluations to limit the 
 amount of time required for each run. However, for each single-objective 
-problem we will run each problem for a maximum of 1000 evaluations. By 
+problem we run each problem for a maximum of 1000 evaluations. By 
 increasing the maximum number of evaluations, we hope to ensure that 
 the genetic algorithm is able to effectively find the minimum objective 
 function for the problem while also meeting the total build share 
@@ -591,10 +599,3 @@ linear constraint of the build shares summing to 100\% results in
 so few points on the pareto front. However, the results of this work 
 suggest that an upper limit should be applied to the linear constraint 
 (instead of setting it to infinity) to produce more intuitive results. 
-
-\section{Recycling optimization}
-\subsection{Minimize HALEU SWU}
-
-\subsection{Minimize waste mass}
-
-\subsection{Minimize HALEU SWU and waste mass}
