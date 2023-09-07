@@ -412,7 +412,7 @@ maximum number of evaluations to 1500 to allow for more exploration
 of the problem space in hopes of better performance for the problems 
 run. 
 
-\section{Once-through optimization}
+\section{Single-objective optimization}
 \subsection{Minimize HALEU SWU}
 By applying the hyperparameters to an optimization problem to minimize the 
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
@@ -538,13 +538,14 @@ hyperparameters being tuned on the previous problem. This suggests that
 the hyperparameters for this algorithm can perform well for any problem, 
 but will converge at different rates for each problem. 
 
-\subsection{Minimize HALEU SWU and waste mass}
+\section{Multi-objective optimization}
 For the multi-objective problem of minimizing the \gls{SWU} to produce 
 \gls{HALEU} and the \gls{SNF} mass, Dakota identified a pareto front 
 of 217 points, shown in Figure \ref{fig:once_through_pareto}. The points 
 on this figure identify different values of each objective that are equally 
 optimized; in order to improve one objective the other objective becomes 
-worse. There is a linear trade-off between each of the objectives. 
+worse. There is a linear trade-off between each of the objectives along this 
+pareto front. 
 The hypervolume of this pareto front is 1.061$\times 10^18$ using a 
 reference point of (6$\times 10^9$, 2$\times 10^8$). This hypervolume is 
 greater than any of the median or mean values in the hyperparameter tuning,
@@ -565,7 +566,7 @@ Every point has a 0\% build share of \glspl{MMR} and an Xe-100 discharge
 burnup of 185 MWd/kgU. Additionally, the percent \glspl{LWR} operating 
 for 80 years ranges between 47-50\%. Each of these results are very 
 consistent with the results of the sensitivity analysis and the 
-single-objective optimization. The \gls{MMR} discharge burnup varies 
+single-objective optimization for each problem. The \gls{MMR} discharge burnup varies 
 across the range of possible values in this work because the discharge 
 burnup becomes irrelevant if none of these reactors are deployed in the
 transition.
@@ -575,7 +576,7 @@ build share varies between 11-100\% and the VOYGR build share varies
 between 10-99\%. The total build share varies between 100-191\% in these 
 results, with 3 of the results having a total build share of 100\%. 
 These two input parameters vary the most in each of the points on 
-the pareto front and have the most effect over the results. The effect of 
+the pareto front because they have the most effect on the results. The effect of 
 these parameters explains why the pareto front is linear: each of these 
 build shares has a linear relationship with the objectives (see Section 
 \ref{sec:ot_oat}). Therefore, their combined effect remains linear.
@@ -588,12 +589,12 @@ on the pareto front have a total build share above 150\%. Intuition
 suggests that both objectives would be minimized with a lower total 
 build share. Therefore, the total build shares further suggests that the 
 genetic algorithm is not able to fully explore the parameter space. 
-However, the build share of different reactors experiences a degeneracy. 
+However, there is degeneracy in the build share of different reactors. 
 Because the reactors must be built in whole numbers, multiple values of 
 a build share can result in the same number of a reactor type built, 
 suggesting that multiple build share percents will minimize the 
 objectives. Therefore, some variation in the build share of each 
-advanced reactor is a result of the degeneracy property of the build 
+advanced reactor is a result of the degeneracy of the build 
 shares. The degeneracy of the build shares is why setting a strict 
 linear constraint of the build shares summing to 100\% results in 
 so few points on the pareto front. However, the results of this work 
