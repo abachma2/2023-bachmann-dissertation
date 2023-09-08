@@ -426,19 +426,15 @@ that corresponds to composition for each reactor.
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
 flow for the continuous recycle fuel cycle (Scenarios 16 and 19). Continuous recycle 
 requires a fast reactor, but all of the reactors considered in this 
-work have a thermal neutron energy spectrum. Therefore, the advanced 
+work so far have a thermal neutron energy spectrum. Therefore, the advanced 
 reactors used in the other scenarios are replaced with a \gls{SFR}. 
 The fast reactor is modeled based on the PRISM design from 
 \gls{GEH} in the \gls{UNF} Recycle mode \textbf{citations}, based on 
-the availability of open-source information. We defined the \gls{SFR} 
+the availability of open-source information to accurately model the design. 
+We defined the \gls{SFR} 
 to prefer reprocessed fuel over \gls{HALEU} fuel. The reprocessed fuel 
 composition is based on published information about the metallic fuel 
-composition \textbf{cite PRISM paper}. The \gls{HALEU} composition 
-
-
-
-
-
+composition \textbf{cite PRISM papers}. The \gls{HALEU} composition 
 
 \input{continuous-recycling-flow}
 
@@ -448,20 +444,62 @@ composition \textbf{cite PRISM paper}. The \gls{HALEU} composition
     \label{tab:fast_rx}
     \begin{tabular}{l l}
         \hline
-        Design Criteria & PRISM \textbf{cite PRISM paper}\\
+        Design Criteria & PRISM \textbf{cite PRISM paper and Pu disposition paper}\\
         \hline
         Reactor type & Sodium Fast Reactor\\
         Power Output (MWth) & 840 \\
         Capacity Factor &  \\
         Enrichment (\% $^{235}U$) &   \\
         Cycle Length (yrs) & 1 \\
-        Number of cycles &  \\
+        Number of cycles &  4\\
         Fuel form &  Metallic \\
         Discharge fuel burnup (GWd/MTU) & 87.51 \\
-        Reactor Lifetime (yrs)&  \\
+        Reactor Lifetime (yrs)&  60\\
         \hline
     \end{tabular}
 \end{table}
+
+We developed an OpenMC model of the PRISM reactor (shown in 
+Figure \ref{fig:prism_model}) and used OpenMC to generate the one-group 
+cross section data needed for depletion. Information about the 
+dimensions and core configuration of the reactor were found in 
+\textbf{add PRISM citations}. These sources also provided some 
+information about the fresh fuel composition, which we supplemented 
+with the isotopic ratios defined for the S-PRISM reactor (a 1000 MWth
+\gls{SFR} of a similar design) in \textbf{cite Sumner dissertation}.
+We then used the transport-coupled depletion solver in OpenMC to 
+obtain compositions for each fuel batch at the beginning of cycle 
+in this reactor. After revising the model to include each of the 
+batch beginning of cycle compositions in the placements given 
+in \textbf{cite plutonium disposition paper}, we ran the model 
+through OpenMC again to obtain the one-group cross section data 
+required for modeling this reactor design in OpenMCyclus. We calculated
+the \gls{HALEU} composition required for this fuel cycle based on the 
+plutonium equivalence of uranium in this system.
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sfr_eq_core.pdf}
+        \caption{Radial view of the entire PRISM model.}
+        \label{fig:prism_lattice}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{sfr_eq_core_zoom.pdf}
+        \caption{Detailed view of the assembly lattice for each 
+        fuel type.}
+        \label{fig:prism_lattice_zoom}
+    \end{subfigure}
+    \hfill            
+    \caption{Full and zoomed in OpenMC models of the PRISM reactor, based 
+    on information in \textbf{citations}. The gold material is the 
+    sodium coolant, the purple is the inner fuel assemblies, and the 
+    light green is the outer fuel assemblies. }
+    \label{fig:prism_model}
+\end{figure}
 
 To support using reprocessed fuel in the fast reactor, 
 the separations facility is deployed in 2020, similar to in the 
