@@ -1,11 +1,10 @@
-\section{One-at-a-time}
-\subsection{Scenario 7} \label{sec:ot_oat}
+\section{One-at-a-time}\label{sec:ot_oat}
 This section discusses the results of the \gls{OAT} sensitivity analysis 
 as applied to Scenario 7. A subsection of this analysis is presented 
-in \hl{Cite ANS Paper}, but the analysis presented here has an expanded scope. 
-Additionally, the work presented here uses an updated deployment scheme to 
-account for non-consistent replacement of advanced reactors identified in 
-\hl{ANS Paper}. The results discuss
+in \cite{bachmann_sensitivity_2022}, but the analysis presented here has 
+an expanded scope and updated methodology to address the non-consistent 
+replacement of advanced reactors in the previously published work.
+The results discuss
 the relative change in each metric for each parameter varied. The minimum, 
 average, and maximum value for each metric is provided in Table 
 \ref{tab:oat_values}.
@@ -65,14 +64,14 @@ average, and maximum value for each metric is provided in Table
 \end{table}
 
 
-\subsubsection{Transition start time}
+\subsection{Transition start time}
 Delays in the transition start time generally decrease all of the output 
-metrics, as shown in Figure \ref{fig:ts_scenario7}. This results matches 
+metrics, as shown in Figure \ref{fig:ts_scenario7}. This result matches 
 expectations, because if the advanced reactors are deployed for less time, 
 then they require fewer resources. However, there are some increases in 
 the output metrics between individual time steps. For example, a transition 
 start time of October 2029 increases the fuel mass and \gls{SNF} mass 
-relative to July 2029. This increase is the result of changes in the number 
+relative to July 2029. This increase results from changes in the number 
 of each advanced reactor deployed, because of differences in the gap 
 between energy produced and energy demand that must initially be filled when 
 advanced reactors are deployed. By waiting until October 2029, more VOYGRs 
@@ -89,29 +88,27 @@ these two metrics increase for this particular transition start time.
     \label{fig:ts_scenario7}
 \end{figure}
 
-The \gls{HALEU} mass required for these transitions varied between 27.8-30.9
-MTU. 
-
 One of the disadvantages in delaying the transition start time is the 
 increasing gap between energy supplied and energy demand as the transition 
 start time is delayed. All of these scenarios have a constant demand 
-of 87.20 GWe-yr beginning in 2025. By delaying the transition start time 
-to after September 2025 (the observed initial deployment time of advanced 
-reactors in Section \ref{sec:nogrowth_reactors}) there is some gap between 
-the energy supplied and the energy demand. The largest gap observed is 36.7
+of 87.20 GWe-yr beginning in January 2025. By delaying the transition start 
+time to after September 2025 (the observed initial deployment time of advanced 
+reactors in Section \ref{sec:nogrowth_reactors}) there is a difference
+between the energy supplied and the energy demand. The largest gap observed 
+is 36.7
 GWe-yr, when reactors are deployed starting in January 2040. This difference 
 between energy supplied and energy demand is a disadvantage of delaying 
 the start time to reduce material requirements. 
 
-\subsubsection{LWR lifetimes}
+\subsection{LWR lifetimes}
 The next metric varied is the percent of the \glspl{LWR} that operate for 
 80 years, reflecting a license extension. As the percent of the \gls{LWR} 
 fleet operating for 80 years increases all of the metrics decrease, as 
-Figure \ref{fig:lwr_scenario7} shows. All of the metrics decrease by a similar 
-magnitude, with some variation because of changes in the number of each advanced 
-reactor deployed, as previously discussed. The \gls{SNF} mass decreases more 
-than the other metrics across this parameter space, ranging between 
-19.5-26.7 MTU.
+Figure \ref{fig:lwr_scenario7} shows. All of the metrics decrease 
+in a linear fashion and by a similar magnitude, with some variation because 
+of changes in the number of each advanced reactor deployed, as previously
+discussed. The \gls{SNF} mass decreases more than the other metrics across 
+this parameter space, ranging between 19.5-26.7 MTU.
 
 \begin{figure}
     \centering
@@ -123,34 +120,45 @@ than the other metrics across this parameter space, ranging between
 
 Across this parameter space, the metrics decrease by a greater fraction than 
 when varying the transition start time. The increased impact on the metrics 
-is partly because the \glspl{LWR} that don't operate for 80 years all operate for 
-60 years when varying this parameter, but not all of the \glspl{LWR} operate for 
-60 years in the initial transition analysis or when varying the transition
-start time. This modeling difference, made to simplify defining the advanced 
-reactor deployment schedule, does not have a large impact on the results as 
+is partly because of a small modeling change. When varying the transition 
+start time, the \glspl{LWR} are assumed to have the same lifetime as the 
+ones used in the transition analysis. Almost all of these lifetimes are  
+60 years but there are a select few (such as Watts Bar Unit 2) that 
+are currently license for only 40 years. A simplifying assumption for 
+modeling the effects of extending the \gls{LWR} lifetimes is that 
+they operate for either 60 or 80 years, giving those select few reactors 
+an artificial lifetime extension compared with the previous analysis. 
+This modeling difference does not have a large impact on the results as 
 evidenced by the maximum \gls{HALEU} mass when varying the \gls{LWR} lifetimes 
 being only 4.9\% lower than the maximum \gls{HALEU} mass when varying the 
-transition start time. This minimal impact from the modeling difference is 
-because most of the \glspl{LWR} operate for 60 years when varying the transition start 
-time. Therefore, we can attribute most of the change in the metrics to the 
-change in the \gls{LWR} lifetimes. In addition to causing greater change in 
-the metrics, the energy demand is always met when varying the \gls{LWR} lifetimes,
-which suggests that extending the lifetimes of the \glspl{LWR} is a better 
-parameter to vary if one wishes to decrease material requirements of this 
-transition. 
+transition start time. Therefore, we can attribute most of the change in
+the metrics to the 
+change in the \gls{LWR} lifetimes and not the artificial increase in 
+lifetimes from 40 to 60 years. Additionally, extending the \gls{LWR}
+lifetimes inherently delays the start time of the transition, or at 
+least decreases the speed of the transition, because the \glspl{LWR} 
+are sufficient to meet the energy demand for a longer period of time.
+In addition to causing greater change in the metrics, the energy demand 
+is always met when varying the \gls{LWR} lifetimes, which suggests that 
+extending the lifetimes of the \glspl{LWR} is a better parameter to vary 
+if one wishes to decrease material requirements of this transition. 
 
-\subsubsection{Xe-100 build share}
+\subsection{Xe-100 build share}
 As the Xe-100 build share increases, the \gls{HALEU}-related metrics 
 increase while the total \gls{SNF} and total fuel mass decrease and the 
-total \gls{SWU} capacity stays relatively constant (Figure \ref{fig:xe100_scenario7}).
-As Figure \ref{fig:xe100_s7_combined_reactors} shows, as the Xe-100 build share 
+total \gls{SWU} capacity stays relatively constant 
+(Figure \ref{fig:xe100_scenario7}). As Figure \ref{fig:xe100_s7_combined_reactors} 
+shows, as the Xe-100 build share 
 increases, the number of \glspl{MMR} is relatively constant and the number of 
-VOYGRs decreases. These results show that as the Xe-100 build share increases, they 
-are primarily replacing power that is supplied by the VOYGRs, instead of a portion 
-of each of the other advanced reactors. This replacement of VOYGRs is because 
-of the deployment scheme of this work, as the VOYGR has the largest power output 
-between the VOYGR and \gls{MMR}. Therefore, the VOYGR is primarily deployed when 
-the Xe-100 build share is 0\%. 
+VOYGRs decreases. These results show that as the Xe-100 build share 
+increases, the Xe-100s are primarily replacing power that is supplied by 
+the VOYGRs, instead of a portion of both of the other advanced reactors.
+This replacement of VOYGRs is because of the deployment scheme of this
+work, as the VOYGR has the largest power output between the VOYGR and 
+\gls{MMR}. Therefore, the VOYGR is primarily deployed when the Xe-100 
+build share is 0\%. This effect of the deployment scheme indicates that 
+varying this parameter highlights trade-offs between the Xe-100 and 
+VOYGR reactors.
 
 \begin{figure}
     \centering
@@ -168,9 +176,9 @@ the Xe-100 build share is 0\%.
     \label{fig:xe100_s7_combined_reactors}
 \end{figure}
 
-The \gls{HALEU}-related metrics increase with Xe-100 build share because more the 
-power comes from advanced reactors requiring \gls{HALEU}. The total fuel mass and 
-\gls{SNF} mass decrease because the Xe-100s are primarily replacing VOYGRs, and the 
+The \gls{HALEU}-related metrics increase with Xe-100 build share because more of 
+the demand is met through advanced reactors requiring \gls{HALEU}. The total 
+fuel mass and \gls{SNF} mass decrease because the 
 Xe-100 requires less fuel per unit time and energy than the VOYGR, as discussed 
 in Chapter \ref{ch:once_through_results}. The total \gls{SWU} capacity required 
 is relatively constant, decreasing between 0.3-1.7\% compared to the \gls{SWU} capacity 
@@ -181,14 +189,12 @@ VOYGR are primarily deployed. These results highlight the trade-off between the
 \gls{HALEU}-related metrics and the total fuel mass and \gls{SNF} mass in deploying 
 the Xe-100 versus the VOYGR. Both reactors require similar \gls{SWU} capacities, 
 but because of the different product assays required the cascade configuration 
-will vary. 
-
-The \gls{HALEU}-related metrics increase to up to 538.2\% of the mass required 
+will vary. The \gls{HALEU}-related metrics increase to up to 538.2\% of the 
+mass required 
 for a 0\% Xe-100 build share. The total fuel mass and \gls{SNF} mass decrease 
 to up to 44.11\% of the mass required for 1 0\% Xe-100 build share. 
 
-
-\subsubsection{MMR build share}
+\subsection{MMR build share}
 As the \gls{MMR} build share increases all of the metrics increase, as shown 
 in Figure \ref{fig:mmr_scenario7}. The total \gls{SWU}, \gls{HALEU} \gls{SWU}, 
 and \gls{HALEU} feed have the greatest relative increase because more of the 
@@ -229,9 +235,9 @@ build share increases, these results highlight the effects of deploying the
 \end{figure}
 
 
-\subsubsection{VOYGR build share}
+\subsection{VOYGR build share}
 When varying VOYGR build share, the impact on the metrics was 
-opposite that of when varying the Xe-100 build share (Figure 
+opposite the effects of varying the Xe-100 build share (Figure 
 \ref{fig:voygr_scenario7}). The total fuel mass and \gls{SNF} mass 
 increase, the \gls{HALEU}-related metrics decrease, and the total 
 \gls{SWU} capacity remains relatively constant. This reversal 
@@ -269,20 +275,21 @@ metrics all decrease because the VOYGR does not require \gls{HALEU}, so as the
 VOYGR build share increases a smaller portion of the advanced reactor fleet 
 requires \gls{HALEU}. While the trends from varying the VOYGR build share 
 mirrors the trends from varying the Xe-100 build share, the magnitude of the 
-changes are not the same. The magnitude difference occurs because these 
+changes are not the same because these 
 parameter variations cover adjacent but not overlapping design spaces. 
 
-\subsubsection{Xe-100 burnup}
+\subsection{Xe-100 burnup}
 When varying the burnup of fuel discharged from Xe-100s, the metrics decrease 
-as the burnup increases (Figure \ref{fig:xe100_bu_s7}). This decrease in material requirements because as 
+as the burnup increases (Figure \ref{fig:xe100_bu_s7}). The material 
+requirements decrease because as 
 the burnup is increased the fuel is going through the core more times or the 
 length of each pass is longer. Therefore, the Xe-100s in the simulation are receiving 
 less fuel at each refueling or receiving fuel less often as the burnup increases. 
 Varying the burnup of the Xe-100 has a large impact on the metrics, up to fives times 
 the material requirements compared with a burnup of 168 MWd/kgU, because most of 
-the energy produced in these scenarios comes from Xe-100s and many more Xe-100s are 
-deployed than \glspl{MMR} or VOYGRs. Therefore, changes to the Xe-100 refueling is 
-magnified because of the greater number of the reactor deployed. 
+the energy produced in these scenarios comes from Xe-100s, so their fuel needs 
+drive the total fuel cycle needs. Therefore, changes to the Xe-100 refueling is 
+magnified because of their greater build share. 
 
 \begin{figure}
     \centering
@@ -292,13 +299,14 @@ magnified because of the greater number of the reactor deployed.
     \label{fig:xe100_bu_s7}
 \end{figure}
 
-\subsubsection{MMR burnup}
+\subsection{MMR burnup}
 When the \gls{MMR} discharge burnup is varied the metrics all decrease, similar 
 to what was observed by varying the Xe-100 discharge burnup. One difference in 
 the trends observed between varying these two parameters is the magnitude of 
 the relative changes. Varying the \gls{MMR} burnup has a smaller relative effect 
-on the metrics than varying the Xe-100 burnup because there are fewer \glspl{MMR} 
-deployed in the transition. Therefore the impact on the cumulative metrics 
+on the metrics than varying the Xe-100 burnup because the \glspl{MMR}
+meet a much smaller portion of the build share than the Xe-100s.
+Therefore the impact on the cumulative metrics 
 (what is reported here) is smaller. Another difference is that the total 
 \gls{SWU}, \gls{HALEU} \gls{SWU}, and \gls{HALEU} feed increase the most 
 when the \gls{MMR} burnup is low, compared with the \gls{SNF} having the 
@@ -312,11 +320,11 @@ greatest relative increase with the Xe-100 burnup is low.
     \label{fig:mmr_bu_s7}
 \end{figure}
 
-\subsubsection{Burnup variations with a common build share}
+\subsection{Burnup variations with a common build share}
 To better investigate the effect of varying the discharge burnup of the Xe-100 
 and \gls{MMR} without the influence of the deployment scheme preferentially
 deploying Xe-100s, we repeated each set of analysis using a constant 20\% 
-build share for both the Xe-100 and \gls{MMR} (VOYGRs met the remaining 60\%). 
+build share for both the Xe-100 and \gls{MMR} (VOYGRs meet the remaining 60\%). 
 Using a constant build share for 
 both reactors means that they each will supply the same fraction of the energy demand.
 However, because of the different power output for each reactor a constant build 
@@ -360,12 +368,11 @@ more variation in the effect on the metrics than when a build share was not
 specified. In these scenarios, varying the discharge burnup of either reactor 
 leads to the greatest impact on the \gls{HALEU}-related metrics while the  
 total fuel mass and \gls{SNF} mass are affected the least. 
-The \gls{HALEU}-related metrics are affected the most because most of the reactors 
-in these scenarios are VOYGRs, which do not require \gls{HALEU}. Therefore, 
-small increases in the each of the \gls{HALEU}-related metrics led to larger 
-relative changes. Conversely, the total fuel mass and \gls{SNF} masses are 
-affected less by changes in these parameters because the fuel and \gls{SNF} 
-for the VOYGRs are constant and increase these values such that the changes 
-observed cause a smaller relative change. 
-
-\subsection{Scenario 14}
+The \gls{HALEU}-related metrics are affected the most because most of the 
+energy demand is met through VOYGRs, which do not require \gls{HALEU}. 
+Small changes in the each of the \gls{HALEU}-related metrics led to larger 
+relative changes because these two reactors drive the effects on the 
+\gls{HALEU}-related metrics. Conversely, the total fuel mass and \gls{SNF} 
+masses are affected less by changes in these parameters because the fuel 
+and \gls{SNF} for the VOYGRs are constant and the Xe-100 and \gls{MMR} 
+have less of an impact on these two metrics. 
