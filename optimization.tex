@@ -4,13 +4,10 @@ Optimization has previously been applied to the nuclear fuel
 cycle \cite{passerini_sensitivity_2012,andrianov_optimization_2019}
 and other nuclear engineering applications 
 \cite{chee_fluoride-salt-cooled_2022}.
-This application of optimization uses \Cyclus \cite{huff_fundamental_2016}
-to simulate the fuel cycle and Dakota \cite{adams_dakota_2021} to 
-perform the optimization. In this chapter we demonstrate a methodology to 
-apply this coupling to different optimization problems, identify 
-optimized fuel cycle transitions, and identify 
-advantages and disadvantages of this methodology to optimize a nuclear 
-fuel cycle. 
+In this chapter we demonstrate a methodology to identify
+optimized fuel cycle transitions from \glspl{LWR} to select 
+advanced reactors, and identify advantages and disadvantages of 
+this methodology to optimize a nuclear fuel cycle. 
 
 \section{Methodology}
 We developed three different optimization problems to apply to 
@@ -23,9 +20,9 @@ variables: percent of \glspl{LWR} operating for 80 years (the \gls{LWR}
 lifetime), the build share 
 of Xe-100s, the build share of \glspl{MMR}, the build share of VOYGRs, 
 the discharge burnup of the Xe-100, and the discharge burnup of the 
-\gls{MMR}. All of these variables were considered in the sensitivity 
-analysis. The transition start time was also considered in the sensitivity 
-analysis. However, that analysis showed that the transition start time has
+\gls{MMR}. The sensitivity analysis in Chapter \ref{ch:sa} considered 
+all of these variables and the transition start time. That analysis 
+showed that the transition start time has
 very little effect on each of the metrics and delaying the transition 
 can lead to unfulfilled energy demand. Therefore, this parameter is 
 not considered in the optimization of each scenario. 
@@ -42,7 +39,7 @@ We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota
 \cite{adams_dakota_2021} to perform this optimization. For the 
 single-objective problems, we used the ``soga'' solve method in 
 Dakota, which is a single-objective genetic algorithm. For the 
-multi-objective problems we used the ``moga'' solve method in 
+multi-objective problems, we used the ``moga'' solve method in 
 Dakota, which is a multi-objective genetic algorithm. The Dakota 
 User's Manual \cite{adams_dakota_2021} provides some guidance 
 on selecting the most appropriate optimization method available 
@@ -91,7 +88,10 @@ minimum. If the mutation rate is too high, then the algorithm behaves more
 like a random search and isn't able to fully use the information about the 
 previous generation to find a minimum. If the crossover rate is too low, 
 each generation is too similar to the one before it and the algorithm 
-with converge without adequately exploring the parameter space. 
+with converge without adequately exploring the parameter space. If the 
+crossover rate is too high, then the population may not have enough 
+diversity and also lead to convergence without adequately exploring the 
+parameter space. 
 Therefore, before the genetic algorithms in Dakota can be used to 
 optimize the fuel cycle transition, we must tune multiple hyperparameters
 to determine the best combination for this work and the exact algorithm 
@@ -129,7 +129,7 @@ tuning, and therefore were randomly sampled within the defined range.
 The population size can be a continuous variable, but was 
 treated as discrete for this initial search to provide a well-defined 
 number of generations. Hyperparameters not varied in the tuning, and 
-help constant for all runs include the convergence type (kept at
+held constant for all runs include the convergence type (kept at
 ``best fitness tracker'' ), the fitness type (kept at ``merit function''),
 and the random seed (kept at the same value for all runs).
 
@@ -241,7 +241,7 @@ Based on the information in Table \ref{tab:soga_tuning_results}, we
 selected hyperparameters to use for all single-objective problems in this 
 work. We selected the hyperparameters from tuning case 45, given in 
 Table \ref{tab:soga_parameters}, because this tuning case reached the 
-theoretical minimum for th problem and was the closest to meeting 
+theoretical minimum for the problem and was the closest to meeting 
 the total build share constraint. 
 
 \begin{table}
@@ -262,8 +262,8 @@ the total build share constraint.
 \end{table}
 
 The tuning cases each ran a maximum of 500 evaluations to limit the 
-amount of time required for each run. However, for each single-objective 
-problem we run each problem for a maximum of 1000 evaluations. By 
+amount of time required for each run. However, we run each 
+single-objective problem for a maximum of 1000 evaluations. By 
 increasing the maximum number of evaluations, we hope to ensure that 
 the genetic algorithm is able to effectively find the minimum objective 
 function for the problem while also meeting the total build share 
@@ -283,9 +283,9 @@ determination of equally optimized solutions. The
 hypervolume of a Pareto front is calculated by calculating the area 
 between the Pareto front and a reference point. The reference point 
 must be selected such that all values on the Pareto front are contained in 
-the hypervolume. For multi-objective problems, we used the ``moga'' method 
-in Dakota, which 
-stands for Multi-objective Genetic Algorithm. Using this method, Dakota
+the hypervolume. For multi-objective problems, we used the 
+Multi-objective Genetic Algorithm method 
+in Dakota. Using this method, Dakota
 outputs the Pareto front for the problem, which can be used to calculate 
 a hypervolume with a reference point, and 
 tune the hyperparameters for this problem. 
@@ -298,9 +298,11 @@ tuning: bounds, linear constraints, and integers for
 all variables. We observed that by using a linear equality constraint for 
 the different advanced reactor build shares 
 Dakota only found a single solution, as opposed to a Pareto front, because 
-not all of the samples adhere to linear constraints. By using a linear 
-inequality constraint, defining that the advanced reactor build share is 
-at least 100\%, Dakota was able to provide multiple values for a Pareto front. 
+not all of the samples adhere to linear constraints. By replacing the 
+linear equality constraint with a linear 
+inequality constraint (i.e., defining that the advanced reactor build share is 
+at least 100\% instead of equal to 100\%), Dakota was able to provide multiple 
+values for a Pareto front. 
 Therefore, we used this linear inequality constraint for the tuning cases and 
 the final problem run to ensure that a Pareto front can be found. Therefore, 
 in addition to considering the hypervolumes resulting from each hyperparameter 
@@ -310,19 +312,34 @@ to minimize oversupply of power.
 Hyperparameters selected for tuning in this work are the 
 population size, the mutation rate, and the crossover rate. Each 
 hyperparameter took specific values, instead of doing a random 
-search of values, because of resource limitations. The population 
-sizes considered include 25, 50, and 100, mutation rates considered 
-include 0.08, 0.1, 0.0116, 0.15, and the crossover rates 
-considered include 0.3, 0.584, 0.8. These values 
+search of values, because of resource limitations. 
+Table \ref{tab:moga_tuning} defines the different values considered, 
+and the default values of each hyperparameter in Dakota. 
+ These values 
 were selected based off of the hyper parameters used for the single-objective 
-problem, the default value in Dakota, or intuition. The default values for 
-the population size, mutation rate, and crossover rate are 50, 
-0.08, and 0.8, respectively, in Dakota. If the value of a 
+problem, the default value in Dakota, or intuition. If the value of a 
 hyperparameter is not specified, the Dakota default value is used.  
 We ran each set of hyper 
 parameters 20 times, and compared the statistics of the hypervolumes of 
 the resulting Pareto fronts. From this data, we selected the 
 hyperparameters to use for multi-objective optimization for this work. 
+
+\begin{table}
+    \centering 
+    \caption{Values of each hyperparameter considered in the 
+    multi-objective hyperparameter tuning.}
+    \label{tab:moga_tuning}
+    \begin{tabular}{c c c} 
+        \hline
+        Hyperparameter & Values & Default value\\
+        \hline
+        Population size & 25, 50, 100 & 50\\
+        Mutation rate & 0.08, 0.1, 0.116, 0.15 & 0.08 \\
+        Crossover rate & 0.3, 0.584, 0.8 & 0.8 \\
+        \hline
+        
+    \end{tabular}
+\end{table}
 
 Figure \ref{fig:moga_crossover} shows the statistics of the hypervolumes 
 resulting from each value of the crossover rate. All three of the 
@@ -551,7 +568,7 @@ on this figure identify different values of each objective that are equally
 optimized; in order to improve one objective the other objective becomes 
 worse. There is a linear trade-off between each of the objectives along this 
 pareto front. 
-The hypervolume of this pareto front is 1.061$\times 10^18$ using a 
+The hypervolume of this pareto front is 1.061$\times 10^{18}$ using a 
 reference point of (6$\times 10^9$, 2$\times 10^8$). This hypervolume is 
 greater than any of the median or mean values in the hyperparameter tuning,
 using the same reference point. This result suggests that these hyperparameters 
