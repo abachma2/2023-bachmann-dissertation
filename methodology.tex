@@ -26,8 +26,9 @@ start time for this work provides a bounding case for
 an aggressive deployment of these reactors. 
 
 Information about the US \glspl{LWR} is from the \gls{IAEA} \gls{PRIS} 
-database \cite{noauthor_power_1989} provided the start and select end 
-dates for \glspl{LWR}. The \gls{PRIS} database only contains end dates 
+database \cite{noauthor_power_1989}, providing the start dates and 
+power outputs (MWe) for all of the \glspl{LWR} and end 
+dates for select \glspl{LWR}. The \gls{PRIS} database only contains end dates 
 for reactors that are shut down before the publication of the 
 database each year. Reactors still operating in December 2020  
 (the year of the database used for this work) lack an end date 
@@ -37,9 +38,9 @@ their current operating license expiration date, obtained from
 reactors in the \gls{PRIS} database with a power level above 400 MWe 
 to avoid including prototype and research reactors present in the database. 
 Approximate masses for fuel used in the cores of the \glspl{LWR} were obtained 
-from \cite{todreas_nuclear_2012} and \cite{cacuci_handbook_2010}. 
+from literature \cite{todreas_nuclear_2012,cacuci_handbook_2010}. 
 
-This work compares the fuel cycle scenarios on multiple metrics: 
+This work considers multiple metrics of the fuel cycle transitions: 
 the energy produced, the number of reactors deployed, the 
 uranium requirements (both enriched uranium required for fuel and feed uranium 
 to produce enriched uranium), 
@@ -69,7 +70,8 @@ but the NuScale VOYGR requires \gls{LEU} with a similar enrichment level
 to current \gls{LWR} fuel. This work 
 includes the NuScale VOYGR, despite not requiring \gls{HALEU} fuel, 
 because the \gls{NRC} granted it design approval \cite{world_nuclear_news_nuscale_2021} 
-and it is very likely to be deployed along-side \gls{HALEU}-fueled 
+and it is of the author's personal opinion that it is very likely to be deployed 
+along-side \gls{HALEU}-fueled 
 reactors. Including the VOYGR reactor in the transition scenarios provides 
 insight into how the deployment of \gls{HALEU}-fueled and non-\gls{HALEU}-fueled 
 advanced reactors in tandem affects the material requirements of the transition. 
@@ -111,8 +113,8 @@ cycle length, and burnup:
 \end{equation}
 
 \noindent Eq. \ref{eq:fuel_mass} calculates the mass of uranium required 
-in the core. To calculate the total mass of the fuel (including the carbon 
-and/or oxygen in the fuel) this value was divided by the mass fraction of 
+in the core. To calculate the total mass of the fuel (including the non-heavy 
+metal in the fuel) this value was divided by the mass fraction of 
 uranium in the fuel form for the reactor. Any non-uranium bonded components 
 of the fuel, such as silicon-carbide in \gls{TRISO} particles, were 
 not considered in the mass. This methodology assumes that the 
@@ -120,16 +122,16 @@ uranium and uranium-containing fuel components would be the limiting
 factor in the fuel cycle and other fuel components would be available as 
 needed. 
 
-The \gls{MMR} does not undergo refueling, the initial core
+The \gls{MMR} does not undergo refueling; the initial core
 burns for the entire lifetime of the reactor \cite{mitchell_usnc_2020}. 
 Therefore, the \gls{MMR} has a cycle length that 
 matches the reactor lifetime. Additionally, the refueling mass for the
 \gls{MMR} is zero. The Xe-100 undergoes online refueling operations, with 
 each \gls{TRISO} pebble passing through the reactor six times before 
-discharge \cite{mulder_overview_2021}. Every six months about 1/7th 
+discharge \cite{mulder_overview_2021}. Every seven months about 1/6th 
 of the pebbles in the core are expected to be discharged. The Xe-100 
 refueling is modeled as a refueling time of zero months and a 
-replacement of 1/7th of the core mass every 6 months. 
+replacement of 1/6th of the core mass every seven months. 
 The VOYGR contains 37 fuel assemblies, with three different enrichment 
 levels \cite{nuscale_chapter_2020-1}. Each refueling replaces 13 fuel 
 assemblies, with the middle assembly replaced at every refueling. 
@@ -146,7 +148,7 @@ units per site \cite{reyes_nuscale_2021}), but in this study every reactor
 design is treated 
 on a single unit basis. Therefore, the number of reactors built in each 
 of the transitions does not represent the number of unique sites required 
-to build the reactors. All cores modeled are assumed to be equilibrium cores, 
+to build the reactors. All cores modeled are assumed to be equilibrium cores; 
 this work does not consider start-up cores or the transition to equilibrium. 
 
 To properly account for the capacity factor of each reactor, the power output 
@@ -164,13 +166,13 @@ on the same schedule as if the outages were explicitly modeled.
 \section{Once-through fuel cycle} \label{sec:once-through-methods}
 Figure \ref{fig:once-through_fuel_cycle} shows the flow of material through 
 the modeled once-through fuel cycles. The once-through fuel cycle models 
-material from the mine to final disposal in a repository (the 
-``HLW Sink'' in Figure \ref{fig:once-through_fuel_cycle}). The 
+material from the mine to final disposal in a repository. The 
 ``Advanced Reactor'' node in Figure 
 \ref{fig:once-through_fuel_cycle} represents any subset of the advanced 
 reactors (Xe-100s, \glspl{MMR}, and VOYGRs) included 
 in the scenario. This model assumes that all enriched uranium is produced 
-by enriching natural uranium; downblending \gls{HEU} is not considered. 
+by enriching natural uranium; this work does not consider downblending \gls{HEU} 
+to produce \gls{LEU}. 
 This fuel cycle is a simplified version of the modeled fuel cycle in 
 \cite{bachmann_enrichment_2021}, removing steps in the fuel cycle that 
 do not affect the reported results. Removing some of the steps simplified 
@@ -236,7 +238,7 @@ for fresh fuel in the advanced reactors. Other important recipes in the
 simulations include natural uranium (0.711\% weight fraction $^{235}$U) 
 and enrichment tails (0.2\% weight fraction $^{235}$U). Spent fuel 
 compositions for the Xe-100 and \gls{MMR} were obtained by performing 
-depletion on Serpent \cite{leppanen_serpent_2014} models of the 
+depletion on Serpent \cite{leppanen_serpent_2014} models of the
 cores, with Section \ref{sec:neutronics-methods} describing the models 
 in more detail. The spent fuel composition for the \gls{LWR} fuel 
 from Jacobson et al. were used for the VOYGR spent fuel. 
@@ -254,14 +256,17 @@ country.
 
 The advanced reactor deployment scheme preferentially deploys the advanced 
 reactor with the largest power output in the scenario (e.g., Xe-100s in 
-Scenario 7) until their deployment would create an oversupply of power. 
-Then the next reactor is deployed until an oversupply of power would be 
+Scenario 7) until their deployment would create an oversupply of power
+(i.e., the number of reactors is rounded down). 
+Then the next largest reactor (e.g., VOYGRs in Scenario 7) is deployed 
+until an oversupply of power would be 
 created. Finally, the reactor 
 with the smallest power output in the scenario (e.g., \glspl{MMR} in 
 Scenario 7) is deployed until the demand is fully met (i.e., the number of 
 reactors needed is rounded up). The demand 
-to be met by deploying new reactors is the difference between the energy 
-produced and the energy demand at each time step. 
+met by deploying new reactors is the difference between the energy 
+produced by previously deployed reactors and the energy demand at each 
+time step. 
 Figure \ref{fig:AR_deployment} illustrates how the advanced reactors 
 would be deployed in Scenario 7 to meet a fictitious demand of 530 MWe. For this 
 example, 5 Xe-100s, 1 VOYGR, and 1 \gls{MMR} are deployed, producing a 
@@ -271,7 +276,7 @@ minimize power oversupply, and mimic a realistic deployment strategy.
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.6, trim=50 100 60 0,clip]{Deployment_Scheme.pdf}
+    \includegraphics[scale=0.5, trim=0 100 90 0,clip]{Deployment_Scheme.pdf}
     \caption{Example of how advanced reactors are deployed in Scenario 7 
     to meet a theoretical demand of 530 MWe.}
     \label{fig:AR_deployment}
@@ -292,7 +297,8 @@ to investigate how this type of \gls{NFC} affects the material requirements
 and how the recycling scheme impacts them. The scenarios investigated in 
 this analysis vary by the energy demand of the scenario and the recycling 
 scheme (Table \ref{tab:scenarios_recycle}). Energy demands vary 
-between a no growth and a 1\% growth model, the same as in the once-through 
+between a no growth and a 1\% growth model, using the same 
+demand curves as the once-through 
 fuel cycle models. Variations in the recycling 
 scheme include either a limited or a continuous recycle. Limited recycle 
 scenarios assume that \gls{SNF} is recycled once and disposed of after a 
@@ -429,27 +435,32 @@ requires a fast reactor, but all of the reactors considered in this
 work so far have a thermal neutron energy spectrum. Therefore, the advanced 
 reactors used in the other scenarios are replaced with a \gls{SFR}. 
 The fast reactor is modeled based on the PRISM design from 
-\gls{GEH} in the \gls{UNF} Recycle mode \textbf{citations}, based on 
-the availability of open-source information to accurately model the design. 
-We defined the \gls{SFR} 
+\gls{GEH} in the \gls{UNF} Recycle mode \cite{triplett_prism:_2012}, based on 
+the availability of open-source information to accurately model the design
+and fuel compositions. We defined the \gls{SFR} 
 to prefer reprocessed fuel over \gls{HALEU} fuel. The reprocessed fuel 
 composition is based on published information about the metallic fuel 
-composition \textbf{cite PRISM papers}. The \gls{HALEU} composition 
+composition \cite{triplett_prism:_2012,sumner_effects_2011}. 
+The \gls{HALEU} was determined 
+based on the one-group cross section data of the OpenMC model described 
+below and calculating the plutonium equivalence of uranium for the core.
 
 \input{continuous-recycling-flow}
 
 \begin{table}
     \centering
+    \begin{threeparttable}
+
     \caption{Fast reactor design specification.}
     \label{tab:fast_rx}
     \begin{tabular}{l l}
         \hline
-        Design Criteria & PRISM \textbf{cite PRISM paper and Pu disposition paper}\\
+        Design Criteria & PRISM \cite{triplett_prism:_2012,fichtlscherer_assessing_2019}\\
         \hline
         Reactor type & Sodium Fast Reactor\\
         Power Output (MWth) & 840 \\
-        Capacity Factor &  \\
-        Enrichment (\% $^{235}U$) &   \\
+        Capacity Factor & 90\%\tnote{1} \\
+        Enrichment (wt\% fissile Pu) &  11.3/13.5\tnote{2}\\
         Cycle Length (yrs) & 1 \\
         Number of cycles &  4\\
         Fuel form &  Metallic \\
@@ -457,21 +468,29 @@ composition \textbf{cite PRISM papers}. The \gls{HALEU} composition
         Reactor Lifetime (yrs)&  60\\
         \hline
     \end{tabular}
+    \begin{tablenotes}
+        \item [1] Assumed value
+        \item [2] The PRISM in UNF Recycle mode has two different drive fuel compositions,
+                  which are averaged based on the number of each assembly type to determine 
+                  the fresh fuel composition for this reactor.
+    \end{tablenotes}
+\end{threeparttable}
 \end{table}
 
 We developed an OpenMC model of the PRISM reactor (shown in 
 Figure \ref{fig:prism_model}) and used OpenMC to generate the one-group 
 cross section data needed for depletion. Information about the 
 dimensions and core configuration of the reactor were found in 
-\textbf{add PRISM citations}. These sources also provided some 
+\cite{triplett_prism:_2012,fichtlscherer_assessing_2019}. 
+These sources also provided some 
 information about the fresh fuel composition, which we supplemented 
 with the isotopic ratios defined for the S-PRISM reactor (a 1000 MWth
-\gls{SFR} of a similar design) in \textbf{cite Sumner dissertation}.
+\gls{SFR} of a similar design) in \cite{sumner_effects_2011}.
 We then used the transport-coupled depletion solver in OpenMC to 
 obtain compositions for each fuel batch at the beginning of cycle 
 in this reactor. After revising the model to include each of the 
 batch beginning of cycle compositions in the placements given 
-in \textbf{cite plutonium disposition paper}, we ran the model 
+in \cite{fichtlscherer_assessing_2019}, we ran the model 
 through OpenMC again to obtain the one-group cross section data 
 required for modeling this reactor design in OpenMCyclus. We calculated
 the \gls{HALEU} composition required for this fuel cycle based on the 
