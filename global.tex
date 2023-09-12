@@ -8,64 +8,107 @@ varying all seven variables to prevent unwanted combinations of the
 advanced reactor build shares that result in large oversupplies or 
 undersupplies of power. 
 
-All of the variables included in this work can physically take any non-negative 
-real value. However, the discharge burnup values used in this work are specific 
-integer values. To reconcile the use of specific values when others are physical, 
-we created surrogate models, similar to the ones used by Richards and Feng 
-\cite{richards_application_2021}. We generated the data for the model by sampling 
-across the input space 4500 times because the Dakota user's manual 
-\cite{adams_dakota_2019} suggests running 
+To assist in calculating the Sobol' indices we created surrogate 
+models for each of the iterations. These models are approximations 
+of the relationships between the input and output parameters, and 
+are computationally inexpensive \cite{adams_dakota_2021}. To generate 
+each of the surrogate models (one for each advanced reactor build share 
+variation) we ran 4000 different fuel cycle transitions based on guidance 
+to run 
 
 \begin{equation}
     100\times P\times(R+2)
 \end{equation}
 
-in which $P$ is the number of input parameters and $R$ is the number out response 
-metrics. To assist in creation of the surrogate model, the \gls{MMR} burnup 
+number of cases to build the surrogate model \cite{adams_dakota_2021}. In this 
+equation $P$ is the number of input parameters and $R$ is the number out response 
+metrics. In these
+transitions, we allowed all of the input parameters vary freely 
+within a given range (defined in Table \ref{tab:global_ranges}), except 
+the Xe-100 discharge burnup. We kept this input parameter confined to 
+specific values to ensure integer numbers of passes an integer number of 
+months for the cycle lengths of this reactor. The \gls{MMR} burnup 
 was converted from a discrete variable to a continuous variable by varying 
-the lifetime of the reactor as need to achieve the burnup value. The 
-\gls{MMR} burnup was restricted to between 41-90 MWd/kgU, the range 
-for the values used in the other sensitivity analysis. 
-The Xe-100 discharge burnup values were expanded as well, but remained 
-a discrete variable. Additional burnup points were selected to represent 
+the lifetime of the reactor as need to achieve the burnup value. We made 
+this conversion from discrete to continuous for the \gls{MMR} burnup 
+because the lack of multiple batches in the core means that there are 
+no inherent restrictions to integer numbers. 
+
+\begin{table}
+    \centering 
+    \caption{Ranges of the input parameters considered for generating 
+    surrogate models in the global sensitivity analysis. The Xe-100 
+    burnup was constrained to 16 different values within the given range, 
+    while the other variables were free to vary within the defined range.}
+    \label{tab:global_ranges}
+    \begin{tabular}{c c c}
+        \hline
+        Input parameter & Range & Units \\
+        \hline 
+        Transition start time & January 2025-January 2040 & - \\
+        LWR lifetime extensions & 0-50 & \% \\
+        Reactor build share & 0-50 & \% \\
+        \gls{MMR} burnup & 41-90 & MWd/kg \\
+        Xe-100 burnup & 28-185 & MWd/kg \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+The Xe-100 discharge burnup values considered were expanded from what 
+was previously considered to provide additional datapoints off of which to 
+generate the surrogate model. Additional burnup points were selected to represent 
 between one and six passes for each pebble with a residence time of six, seven, 
 or eight months for each pass. This expansion of the Xe-100 burnup resulted 
-in 16 different burnup values between 28-185 MWd/kgU. The other variables were 
-only restricted to the specified range previously used for the variable (e.g., 
-0-50\% for the \gls{LWR} lifetime extensions) and were treated as continuous 
-variables.
+in 16 different burnup values between 28-185 MWd/kgU. 
 We randomly sampled (using the Latin Hypercube Sampling 
-method in Dakota) each continuous variable based on the possible values and 
-calculated the metrics for these samples. This data was then used to create 
-the surrogate model to perform the global sensitivity analysis and 
-calculate the Sobol' indices. 
+method in Dakota) each variable based on the possible values and 
+calculated the metrics for these samples. 
 
-When creating the surrogate model we once again used random sampling for all 
-of the variables, but allowed all of the input parameters to be continuous 
+When creating the surrogate model we once again used the Latin Hypercube sampling 
+for all of the variables, but allowed all of the input parameters to be continuous 
 variables. 
-We used both the gaussian and quadratic fits to the data 
+We used both the quadratic and Gaussian fits to the data 
 to create the surrogate models, similar to what Richards and 
-Feng did \cite{richards_application_2021}. 
+Feng did \cite{richards_application_2021}. The quadratic method defines a 
+second-order response surface based on linear least squares regressions methods 
+\cite{adams_dakota_2021}. The Gaussian method uses a Gaussian correlation function 
+to define a response surface \cite{adams_dakota_2021}. Both methods were used to 
+provide a comparison of the different methods, since they each have limitations. 
+The quadratic method does not implement any forward- or backward-stepping regression 
+methods to remove unnecessary terms in the polynomial fit, and the Gaussian method 
+may discard points if the data points are poorly spaced \cite{adams_dakota_2021}.
+These limitations in the methods contributed to the decision to have as many 
+input parameter data points as possible. 
 We also instructed Dakota to perform variance decomposition 
-on the surrogate model so that Sobol' indices would be calculated. The 
-results presented in this section are the Sobol' indices that describes the 
-impact of each input parameter on each output metric. The total and the main 
-Sobol' indices are reported, which describe the contribution from the parameter 
+on both of the surrogate models to calculate the Sobol' indices.
+
+The results presented in this section include the results from the initial 
+transitions modeled, the results from the surrogate models, and the Sobol' indices 
+that describes the impact of each input parameter on each output metric. The 
+results from the modeled transitions and the surrogate models provide 
+information of how well the surrogate models fit some of the trends and relationships 
+between the input parameters and output metrics. 
+The total and the main Sobol' indices reported describe the contribution from the 
+parameter 
 and its interactions with all of the other parameters and the contribution from 
 just the parameter, respectively. 
 
-\subsection{Scenario 7}
+\subsection{Xe-100 build share}
+This section provides the results of the global sensitivity analysis using 
+both a Gaussian and a quadratic surrogate model when varying the Xe-100 build 
+share. 
 
-\subsubsection{Xe-100 build share}
-When running the gaussian surrogate model for the variations in the Xe-100 build 
+\subsubsection{Gaussian surrogate model}
+When running the Gaussian surrogate model for the variations in the Xe-100 build 
 share, the models all  have an R$^2$ value of 1, which means that the outputs of 
 the surrogate models match perfectly to the data provided from the initial 
 \Cyclus runs. The large R$^2$ value suggests that this surrogate model type 
-fits to noise in the data provided. A comparison of the results of the 
-gaussian surrogate model and the data provided to the model shows some interesting 
-results. Figure \ref{fig:s7_xe100_gaussian} compares the values of the
+fits to noise in the data provided. 
+Figure \ref{fig:s7_xe100_gaussian} compares the values of the
 \gls{HALEU} mass as a function of the Xe-100 burnup for the Gaussian model 
-and the input data. The results of the Gaussian model follows the input 
+and the input data (the explicitly modeled transitions). The results of 
+the Gaussian model follows the input 
 data well, nearly reaching the maximum and minimums of the data. However, 
 closer inspection of the data shows that results of the Gaussian model 
 include non-physical results, such as negative values of \gls{HALEU} mass. 
@@ -77,40 +120,47 @@ than if the variance decomposition were performed on the input data.
 \begin{figure}
     \centering 
     \includegraphics[scale=0.8]{xe100_share_gaussian_xe100_burnup_haleu.pdf}
-    \caption{Comparison of the input data and the results of the gaussian 
-    surrogate model when the Xe-100 build share is varied. }
+    \caption{Comparison of the input data and the results of the Gaussian 
+    surrogate model when the Xe-100 build share is varied.}
     \label{fig:s7_xe100_gaussian}
 \end{figure}
 
 Table \ref{tab:s7_sobol_xe100_gaussian} reports the main and total Sobol' indices 
 for each input parameter on each output metric. The highlighted cells have 
-a total Sobol' index of at least 0.5. The Xe-100 build share and Xe-100 
-burnup have the largest Sobol' indices for most of the output metrics. 
-
-The \gls{MMR} burnup has a small Sobol' index for all of the output metrics
-because a very small portion of the fleet are \glspl{MMR}. The Xe-100 build share 
-does not have as much of an impact on the total \gls{SWU} capacity, compared 
-with its impact on the other metrics, because of the similar \gls{SWU} 
-capacity required by the Xe-100 and the VOYGR, and the replacement of Xe-100s 
-with VOYGRs as the Xe-100 build share decreases. The transition start time 
+a total Sobol' index of at least 0.5. 
+The transition start time 
 has little effect on any of the metrics, which is consistent with the 
 results of the \gls{OAT} and synergistic analysis. The \gls{LWR} lifetimes 
 do not greatly affect any of the \gls{HALEU}-related metrics or the 
-total \gls{SWU} capacity. This parameter has some impact on the total 
+total \gls{SWU} capacity because this parameter primarily delays when 
+the \gls{HALEU}-fueled reactors are deployed and not how many are deployed. 
+The \gls{LWR} lifetimes have some impact on the total 
 fuel mass and the \gls{SNF} mass, but less of an impact than the Xe-100 
 build share. 
+The \gls{MMR} burnup has a small Sobol' index for all of the output metrics
+because a very small portion of the fleet are \glspl{MMR}. 
 
-The Xe-100 build share has the largest impact on the \gls{SNF} mass, and 
-the other parameters do not have much of an impact. This parameter 
-has more of an impact on the \gls{SNF} mass than the other parameters because 
-of the replacement of Xe-100s with VOYGRs as the Xe-100 build share decreases. 
-The VOYGR 
+The Xe-100 build share and burnup have a large effect (total Sobol' indices 
+more than 0.5) on all three of the \gls{HALEU}-related metrics because the 
+number of \glspl{MMR} built in these transitions are relatively constant and the 
+variations in the Xe-100s drive the changes in these metrics. The Xe-100 build share 
+does not have as much of an impact on the total \gls{SWU} capacity because 
+of the similar \gls{SWU} capacity required by the Xe-100 and the VOYGR and 
+the replacement of VOYGRs with Xe-100s as the Xe-100 build share increases. 
+The Xe-100 build share has the largest impact on the total fuel mass 
+and the \gls{SNF} mass because 
+of the replacement of Xe-100s with VOYGRs as the Xe-100 build share decreases and 
+the large difference in fuel mass required by these two reactors. The Xe-100 
+burnup has the largest impact on the total \gls{SWU} capacity because as this 
+parameter varies, so does the difference in \gls{SWU} capacity needed to fuel the Xe-100 
+and the \gls{SWU} capacity needed to fuel the VOYGR.
 
 \begin{table}
     \centering
     \caption{Sobol' indices for the Gaussian model when varying the 
     Xe-100 build share. The first value is the 
-    main index, the second value is the total index.}
+    main index, the second value is the total index. Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_xe100_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -131,10 +181,12 @@ The VOYGR
     \end{tabular}
 \end{table}
 
+\subsubsection{Quadratic surrogate model}
 When using a quadratic surrogate model, the R$^2$ values for the training points on 
-each output metric range between 0.921-0.966. Therefore, these model are still expected to 
+each output metric range between 0.921-0.966. Therefore, these model are  
+expected to 
 fit the input data provided but not be fit to the noise in the input data 
-as much as the Gaussian models. A comparison of the Xe-100 burnup and \gls{HALEU} 
+as much as the Gaussian model. A comparison of the Xe-100 burnup and \gls{HALEU} 
 mass for the input data and the results of the quadratic model (Figure 
 \ref{fig:s7_xe100_quadratic}) shows that the quadratic model does 
 capture the overall trend of the input data. However, like the Gaussian model, 
@@ -147,13 +199,13 @@ fit placed on the data.
 \begin{figure}
     \centering 
     \includegraphics[scale=0.8]{xe100_share_quadratic_xe100_burnup_haleu.pdf}
-    \caption{Comparison of the input data and the results of the gaussian 
+    \caption{Comparison of the input data and the results of the quadratic 
     surrogate model when the Xe-100 build share is varied.}
     \label{fig:s7_xe100_quadratic}
 \end{figure}
 
-The Sobol' indices for each input parameter on each metric from the quadratic 
-surrogate model are shown in Table \ref{tab:s7_sobol_xe100_quadratic}. The 
+Table \ref{tab:s7_sobol_xe100_quadratic} provides the main and total Sobol' 
+indices for each of the input parameters on each output metric. The 
 green cells identify total Sobol' indices that are at least 0.5. The same patterns 
 observed in the Sobol' indices from the Gaussian model are 
 observed in the values from the quadratic model as well. The Xe-100 build share 
@@ -165,7 +217,8 @@ on the metrics.
     \centering
     \caption{Sobol' indices for the quadratic model when varying the Xe-100 
     build share. The first number is the main index, the second is the total 
-    index.}
+    index. Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_xe100_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -186,49 +239,67 @@ on the metrics.
     \end{tabular}
 \end{table}
 
-Based on the results from each model, the Xe-100 build share and Xe-100 burnup 
-should be varied to have the largest impact on the metrics
+The two surrogate models result in different Sobol' indices for each 
+input parameter/output metric pair. These differences are likely a result 
+of how the models fit the data. However, the two models are consistent 
+a relative comparison of how much each input parameter affects the output 
+metrics, and are consistent with the results from the \gls{OAT} and 
+synergistic analysis. The two models are also consistent in 
+identifying that the Xe-100 build share and Xe-100 burnup 
+should be varied to have the largest impact on the metrics.
 
-\subsubsection{MMR build share}
+\subsection{MMR build share}
+This section provides the results of the global sensitivity analysis using 
+both a Gaussian and a quadratic surrogate model when varying the \gls{MMR} 
+build share. 
+
+\subsubsection{Gaussian surrogate model}
 The Gaussian model has an R$^2$ value of 1 with respect to each of the output 
 metrics. This value means that these models are also expected to fit the input 
 data very well, including any noise present in the data. As Figure 
 \ref{fig:s7_mmr_gaussian} shows, the data from the Gaussian model fits well 
 to the input data provided. Unlike the models predicted based on input data when 
-the Xe-100 build share was varied, this model does not result in any negative 
+varying the Xe-100 build share, this model does not result in any negative 
 mass values. However, it still results in mass values lower than what is 
 present in the input data which suggests that this model also extrapolates 
-on some of the data. 
+on some of the data. It also does ot fully predict some of the outliers in 
+the data, such as the maximum \gls{HALEU} mass at a burnup at 128 MWd/kg.
 
 \begin{figure}
     \centering 
     \includegraphics[scale=0.8]{mmr_share_gaussian_xe100_burnup_haleu.pdf}
     \caption{Comparison of the input data and the results of the Gaussian 
-    surrogate model when the MMR build share is varied.}
+    surrogate model when varying the MMR build share.}
     \label{fig:s7_mmr_gaussian}
 \end{figure}
 
 Examination of the Sobol' indices for this model (Table \ref{tab:s7_sobol_mmr_gaussian})
-shows that the Xe-100 burnup has the largest impact on all of the 
-output metrics. This is somewhat surprising, as one may expect the \gls{MMR} 
+shows that the Xe-100 burnup has the largest impact and a significant impact (i.e., 
+total indices greater than 0.5) on all of the 
+output metrics. One may expect the \gls{MMR} 
 build share and \gls{MMR} burnup to have a strong combined impact on 
 the results. However, this result is consistent with the results 
 shown for the synergistic analysis (Figures \ref{fig:mmr_share_xe100_burnup} and 
-\ref{fig:mmr_share_mmr_burnup}). When the Xe-100 burnup was varied on combination 
+\ref{fig:mmr_share_mmr_burnup}). When the Xe-100 burnup was varied in combination 
 with the \gls{MMR} share, the range of values for each metric was larger than 
-when the \gls{MMR} burnup was varied with the \gls{MMR} build share. 
-
-Similar to the results from varying the Xe-100  build share, the 
-transition start time has no impact on the results. The \gls{LWR} 
+when the \gls{MMR} burnup was varied with the \gls{MMR} build share. Variations 
+in the \gls{MMR} build share replaces Xe-100s with \glspl{MMR}. The variations 
+in the Xe-100 burnup lead to greater changes in the metrics than variations 
+in the \gls{MMR} burnup, as shown in Figure \ref{fig:bu_constant}, because 
+the Xe-100 burnup values span a larger range and the compounding effects of the 
+multiple batches in the Xe-100. 
+Similar to the results from varying the Xe-100 build share, the 
+transition start time has effectively no impact on the results. The \gls{LWR} 
 lifetime has less of an impact on the metrics than when the Xe-100 
-build share was varied. The \gls{MMR} has almost no impact on the 
+build share was varied. The \gls{MMR} burnup also has little impact on the 
 output metrics. 
 
 \begin{table}
     \centering
     \caption{Sobol' indices for the Gaussian model when varying the MMR 
     build share. The first number is the main index, the second is the total 
-    index.}
+    index.Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_mmr_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -249,7 +320,8 @@ output metrics.
     \end{tabular}
 \end{table}
 
-When using the quadratic surrogate model, the models have R$^2$ values of 0.94
+\subsubsection{Quadratic surrogate model}
+When using the quadratic surrogate model, the model has an R$^2$ value of 0.94
 with respect to each of the output metrics. Therefore, these models also fit 
 the data well without fitting all of the noise present in the input data. 
 As Figure \ref{fig:s7_mmr_quadratic} shows, the output of the quadratic model 
@@ -262,21 +334,25 @@ some of the minimum values in the input data.
     \centering 
     \includegraphics[scale=0.8]{mmr_share_quadratic_xe100_burnup_haleu.pdf}
     \caption{Comparison of the input data and the results of the quadratic 
-    surrogate model when the MMR build share is varied.}
+    surrogate model when varying the MMR build share.}
     \label{fig:s7_mmr_quadratic}
 \end{figure}
 
-The Sobol' indices from the quadratic model are similar to those from the 
+The Sobol' indices from the quadratic model (Table 
+\ref{tab:s7_sobol_mmr_quadratic}) are similar to those from the 
 Gaussian model. The Xe-100 burnup has the largest impact on all of the 
 output metrics. The \gls{MMR} build share has the next largest impact 
 on the metrics, but it is a very small impact. The other model 
-parameters have a negligible effect on the metrics. 
+parameters have a negligible effect on the metrics. The Sobol' 
+indices from this model are very similar to those from the Gaussian 
+model. 
 
 \begin{table}
     \centering
     \caption{Sobol' indices for the quadratic model when varying the MMR 
     build share. The first number is the main index, the second is the total 
-    index.}
+    index. Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_mmr_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -297,10 +373,12 @@ parameters have a negligible effect on the metrics.
     \end{tabular}
 \end{table}
 
-The results of these models emphasize the role that the Xe-100 burnup 
-plays in the material requirements of these fuel cycles. 
+\subsection{VOYGR build share}
+This section provides the results of the global sensitivity analysis using 
+both a Gaussian and a quadratic surrogate model when the varying the 
+VOYGR build share. 
 
-\subsubsection{VOYGR build share}
+\subsubsection{Gaussian surrogate model}
 The R$^2$ values for the Gaussian model with respect to 
 each output metric is 1, similar to each of the other Gaussian 
 models. Comparing the input data and the Gaussian model data 
@@ -317,29 +395,20 @@ Gaussian model fits very well to the input data provided.
 
 The Sobol' indices from this model, shown in Table \ref{tab:s7_sobol_voygr_gaussian}
 show a similar trend to the Sobol' indices from varying the \gls{MMR}
-build share. The Xe-100 burnup has the largest impact on all of the 
-results, the transition start time and \gls{MMR} burnup have no 
+build share. The Xe-100 burnup has the largest impact and a large impact 
+(a total Sobol' indices greater than 0.5) on all of the 
+results. The transition start time and \gls{MMR} burnup have effectively no 
 effect on the metrics, and the \gls{LWR} lifetimes and VOYGR build share 
-have a very small impact on the metrics. 
-
-Based on the results of 
-the \gls{OAT} analysis, increasing the VOYGR build share replaces 
-Xe-100s with VOYGRs. Therefore, the VOYGR build share implicitly 
-impacts the Xe-100 build share, which leads to this input parameter 
-having a larger impact on the metrics than most of the other variables. 
-The VOYGR build share has a larger impact on the fuel mass and the 
-\gls{SNF} mass than the other metrics because the VOYGR takes in more 
-and discharges more 
-fuel than the Xe-100 and \gls{MMR} per unit time and energy. The 
-increased impact of the VOYGR build share on these metrics leads to 
-the decreased impact of the Xe-100 burnup, relative to the 
-\gls{HALEU}-related metrics. 
+have a very small impact on the metrics. The \gls{LWR} lifetimes has a smaller 
+effect on the metrics than when varying the Xe-100 build share, but a similar 
+effect on the metrics to when varying the \gls{MMR} build share. 
 
 \begin{table}
     \centering
     \caption{Sobol' indices for the Gaussian model when varying the VOYGR 
     build share. The first number is the main index, the second is the total 
-    index.}
+    index. Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_voygr_gaussian}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -360,6 +429,26 @@ the decreased impact of the Xe-100 burnup, relative to the
     \end{tabular}
 \end{table}
 
+Based on the results of the \gls{OAT} analysis, increasing the VOYGR build 
+share replaces 
+Xe-100s with VOYGRs. Therefore, the VOYGR build share implicitly 
+impacts the Xe-100 build share, which leads to this input parameter 
+having a larger impact on most of the metrics than most of the other variables. 
+The VOYGR build share does not have a noticeable impact on the 
+total \gls{SWU} capacity because of the similar \gls{SWU} capacities 
+required by the Xe-100 and VOYGR. This result is consistent with the 
+Xe-100 build share having a lesser effect on this metric compared 
+with its effect on the other metrics. 
+The VOYGR build share has a larger impact on the fuel mass and the 
+\gls{SNF} mass than the other metrics because the VOYGR takes in more 
+and discharges more fuel than the Xe-100 per unit time and energy. 
+The 
+increased impact of the VOYGR build share on these metrics leads to 
+the decreased impact of the Xe-100 burnup, relative to the 
+\gls{HALEU}-related metrics. 
+
+
+\subsubsection{Quadratic surrogate model}
 When using the quadratic fit, the R$^2$ values range between 0.94-0.95. 
 These values are consistent with the R$^2$ values for the other 
 quadratic models in this work. The data from this quadratic model,
@@ -367,6 +456,15 @@ compared with the input data in Figure \ref{fig:s7_voygr_quadratic},
 shows that it does not fully reach the maximum of the input data
 and under-predicts some of the minimum values. These trends have 
 been observed in all of the quadratic models created for this analysis. 
+These trends are a result of the model fitting a second-order 
+polynomial to data that does not follow a second order polynomial. This 
+mis-fit between the data and the model fit leads to the lower R$^2$ value 
+than the Gaussian surrogate models and the inability to properly fit 
+to the extremes in the data. Therefore, one would expect the 
+Gaussian models to be more accurate in calculating the Sobol' 
+indices. The consistency between the values and trends of the 
+indices from both models suggests that the quadratic models are 
+still sufficient for these purposes. 
 
 \begin{figure}
     \centering 
@@ -376,16 +474,20 @@ been observed in all of the quadratic models created for this analysis.
     \label{fig:s7_voygr_quadratic}
 \end{figure}
 
-The Sobol' indices from this model, given in Table \ref{tab:s7_sobol_voygr_quadratic},
+The Sobol' indices from this model, reported in Table 
+\ref{tab:s7_sobol_voygr_quadratic},
 have the same pattern as the Sobol' indices from the Gaussian model created. 
-This data does not provide any new insights into how each input parameter
-affects the output metrics of this transition scenario. 
+The Xe-100 burnup is the most impactful input parameter on all of the 
+output metrics, followed by the VOYGR build share and the \gls{LWR} lifetime. 
+The transition start time and the \gls{MMR} burnup have a negligible effect 
+on the results of the metrics. 
 
 \begin{table}
     \centering
     \caption{Sobol' indices for the quadratic model when varying the VOYGR 
     build share. The first number is the main index, the second is the total 
-    index.}
+    index. Highlighted 
+    values indicate a total Sobol' indices of above 0.5.}
     \label{tab:s7_sobol_voygr_quadratic}
     \begin{tabular}{c c c c c c c}
         \hline
@@ -406,5 +508,3 @@ affects the output metrics of this transition scenario.
     \end{tabular}
 \end{table}
 
-
-\subsection{Scenario 14}
