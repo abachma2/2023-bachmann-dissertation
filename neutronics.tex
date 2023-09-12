@@ -160,7 +160,7 @@ and a 10 cm thick beryllium-oxide reflector on the outside of the
 graphite blocks of the core, illustrated by the green material in 
 Figure \ref{fig:mmr_core}. While Hawari and Venneri \cite{hawari_development_2018}
 define both of these reflectors in their model, they only 
-define the thickness of the beryllium-oxide reflector.Therefore we 
+define the thickness of the beryllium-oxide reflector. Therefore we 
 assumed a graphite reflector thickness of 20 cm to provide 3-5 mean 
 free paths of material. 
 The input files for this model can be found at \textbf{create zenodo 
@@ -186,7 +186,7 @@ object}.
         \label{fig:mmr_core}
 \end{figure}
 
-For the \gls{MMR}-like model we modeled depletion of the core across the 
+For the \gls{MMR}-like model, we modeled depletion of the core across the 
 expected 20 year lifetime of the \gls{MMR}, because the core is not 
 meant to undergo refueling during those 20 years and the lack of 
 fuel movement and replacement in this model aligns with the operational 
@@ -298,7 +298,7 @@ For the Sangamon200, these metrics are only compared in an equilibrium state
 of the reactor. For the \gls{MMR}-like reactor these metrics 
 are compared at \gls{BOL} (0 MWd/kg burnup), \gls{MOL} (40.52 MWd/kg burnup), 
 and \gls{EOL} (81.04 MWd/kg burnup). The two-group structure for 
-the neutron flux is based ont he default two-group structure in Serpent, 
+the neutron flux is based on the default two-group structure in Serpent, 
 with the thermal neutrons being between 0-0.625 eV and the fast 
 neutrons being above 0.625 eV. Each metric provides a 
 measurement of the performance of 
@@ -387,7 +387,7 @@ is smaller than when using the pure fuel, a difference that is
 statistically significant. The pure fuel results in 
 a larger \betaEff than the impure fuels because the other uranium isotopes 
 present in the impure fuels breed into fissile material that has 
-a smaller \betaEff than $^{235}$U, and the depletion modeled to 
+a smaller \betaEff than $^{235}$U. The depletion modeled to 
 obtain compositions of pebbles at different numbers of passes captures 
 this breeding of fissile material. The additional fissile material is not 
 present in the pure fuel because it's the material that is bred in from 
@@ -661,19 +661,34 @@ However based on the values of each material feedback coefficient,
 the coolant temperature has a much smaller effect and impact on the 
 total feedback coefficient than the other materials. 
 
-The work by Mulder and Boyes \cite{mulder_neutronics_2020}, reports 
-the Doppler coefficient (the spectral effect of fuel temperature changes 
-without accounting for the change in fuel density), the moderator coefficient, 
-and the total coefficient as between -5.6e-5 -- -3.2e-5 $\Delta$ 
-\keff/\textdegree C
--4.2e-5 -- -0.4e-4 $\Delta$ \keff/\textdegree C, and -6.1e-5 -- -2e-5 
-$\Delta$ \keff/\textdegree C, respectively, for temperatures between 100-900
+The work by Mulder and Boyes \cite{mulder_neutronics_2020}, reported 
+the reactivity coefficients reported in Table \ref{tab:mulder_coeffs}
+for temperatures between 100-900
 \textdegree C. The feedback coefficients are within the ranges reported 
 by Mulder and Boyes, despite the differences in the reactor models used.
 The consistency between the feedback coefficient values from the impure 
 fuels in this work and the values reported by Mulder and Boyes suggests that 
 the impurities in the fuel do not greatly impact this reactor operation 
 metric.  
+
+\begin{table}[ht]
+        \centering 
+        \caption{Reactivity temperature feedback coefficient maximum and 
+        minimum values reported by Mulder and Boyes for the Xe-100 between 
+        100-900 \textdegree C \protect\cite{mulder_neutronics_2020}.}
+        \label{tab:mulder_coeffs}
+        \begin{tabular}{c c c}
+                \hline 
+                Reactivity coefficient & Minimum ($\Delta$ \keff/\textdegree C) 
+                & Maximum ($\Delta$ \keff/\textdegree C)\\
+                \hline
+                Fuel Doppler & -5.6e-5  & -3.2e-5 \\
+                Moderator & -4.2e-5 & -0.4e-5 \\
+                Total & -6.1e-5 & -2.0e-5\\
+                \hline
+
+        \end{tabular}
+\end{table}
 
 \subsection{MMR reactor}
 The following four sections report and analyze the results of the 
@@ -720,8 +735,8 @@ of the uranium in the core than in the Xe-100-like model.
 
 The effect of of the impurities on this reactor model are significant on the 
 \keff; the differences exceed the error on the values. However, 
-even at the last burnup step, which is at the end of life for the reactor 
-core, the \keff is still above 1. Therefore the effect of the impurities 
+even at the last burnup step the \keff is still above 1. Therefore the 
+effect of the impurities 
 is not great enough to cause the reactor to reach a subcritical state 
 during its operation. The super-critical \keff throughout the duration 
 of the burn cycle suggests that the lifetime of the reactor will not be 
@@ -874,7 +889,7 @@ using the pure fuel at this burnup step.
 The axial fluxes at \gls{BOL} (Figures \ref{fig:mmr_thermal_axial_bol} and 
 \ref{fig:mmr_fast_axial_bol}) show the effect of the graphite moderators at 
 the top and bottom of the core. The thermal flux has a small peak in the 
-moderator wile the fast flux has a small exponential decrease in the 
+moderator while the fast flux has a small exponential decrease in the 
 moderator. The fluxes also show that using the impure fuels results in 
 a slightly smaller flux at the bottom of the core and a slightly higher 
 flux at the top of the core. The differences between the 
@@ -882,7 +897,7 @@ fluxes is 1-2 orders of magnitude smaller than the flux, but is
 still one order of magnitude larger than the error of the fluxes.
 
 Figure \ref{fig:mmr_mc} shows the different fluxes in the \gls{MMR}-like 
-reactor at \gls{MOL}. The trends at mic-cycle in the radial fluxes are 
+reactor at \gls{MOL}. The trends at mid-cycle in the radial fluxes are 
 similar to those observed at the \gls{BOL}: the radial fluxes have the 
 greatest difference near the fuel pins in the core. In the axial fluxes 
 however, there is a noticeable difference between the flux from the \gls{EBR} 
