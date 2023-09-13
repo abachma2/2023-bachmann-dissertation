@@ -1,11 +1,43 @@
 % General Summary
 
-%Once-through analysis
+
+The goal of this work is to investigate the impacts of deploying reactors 
+fueled 
+by \gls{HALEU} in the United States, including the impacts that the reactors 
+have on the \gls{NFC} and the impacts the \gls{NFC} has on the reactors. 
+The results of this work are intended to
+aid and guide policy makers and key stake holders on how to best establish a 
+fuel cycle to support the deployment of \gls{HALEU}-fueled reactors. 
+Within this primary goal, there are three specific objectives:
+\vspace{0.2cm} 
+\noindent
+\begin{enumerate}
+\item Quantify potential material requirements for the transition 
+from \glspl{LWR} to advanced reactors in open and closed 
+fuel cycles.
+
+\item Understand the impacts of fuel cycle parameters on the material 
+requirements and design optimized transition scenarios.
+
+\item Identify potential limitations in using downblended \gls{HEU} 
+on reactor performance.
+
+\end{enumerate}
+
+These goals were met by designing and modeling various transitions 
+to advanced reactors, considering a once-through and a closed 
+fuel cycle. The once through fuel cycles were then investigated 
+further by performing sensitivity analysis and optimization. Finally, 
+models of two different \gls{HALEU}-fueled advanced reactors were 
+created to investigate the impact of different uranium isotopic 
+compositions of the \gls{HALEU} fuel on reactor performance. 
+
+% Once-through analysis
 
 % Closed fuel cycle analysis
 
 % Sensitivity analysis
-The analysis in this chapter examined the effects of different input parameters for 
+Chapter 6 examined the effects of different input parameters for 
 their effects on different output metrics for the fuel cycle transition from 
 \glspl{LWR} to different advanced reactors. The \gls{OAT} analysis identified the 
 trends from varying each input parameter independently, and how the deployment 
@@ -24,7 +56,55 @@ such that the Xe-100 burnup is the most impactful parameter when varying any
 of the three advanced reactor build shares. 
 
 % Optimization
+Chapter 7 demonstrated a methodology to optimize the once-through 
+transitions and identified transitions that minimize different 
+fuel cycle metrics. Results from this chapter show that minimizing the 
+\gls{SWU} capacity to produce \gls{HALEU} requires maximizing the number of 
+VOYGRs built, minimizing the mass of \gls{SNF} requires maximizing the number 
+of Xe-100s built, and minimizing both of these fuel cycle metrics is a 
+balance between deploying Xe-100s and VOYGRs. The results from the optimization 
+work was consistent with the results of the sensitivity analysis, but 
+they did not fully meet expectations. The input parameters identified that 
+were not subject to a linear constraint (i.e., not the advanced reactor 
+build shares) matched expectations based on the trends of the sensitivity 
+analysis and intuition. However, The methodology employed for this 
+analysis did not adhere well to the linear constraint of the advanced reactor 
+build shares in all three of the problems. Therefore, the 
+results from the optimization work can not be taken at face value 
+and are better used to identifying a relationship between the advanced 
+reactor build shares than a specific set of parameters. 
+
 
 % Neutronics
-
+ 
 \section{Future Work}
+The work performed here provides a foundation for continued analysis and 
+exploration of the fuel cycle impacts of deploying \gls{HALEU}-fueled reactors. 
+Potential areas of future work include modeling non-fuel materials needed 
+to support these transitions, such as the amount of reactor-grade graphite 
+to be the moderators in the Xe-100 and \gls{MMR}. This analysis would 
+provide insight into other supply chain requirements that equally 
+impactful on establishing these fuel cycles. Additionally, the 
+results of this work can be used to determine facility sizes, throughputs, 
+and numbers. This information aids in developing the supply chains 
+to support these transitions, but also in designing and evaluating 
+safeguards for these transitions. Potential safeguards measures may 
+limit the facility sizes and the amount of material that can move from 
+one facility to another, which affects how the transition can be 
+implemented. By 
+incorporating facility information into the fuel cycle model, the 
+sensitivity analysis and optimization methodologies can be used 
+to identify ways to adjust the transition to better account for 
+the facility limitations and safeguards needs. 
+
+The analysis of the downblended \gls{HEU} on the reactor performance
+can also be expanded. For example, consider other \gls{HALEU}-fueled 
+reactors, such as the Oklo Aurora, that have announced an intent to 
+use \gls{HALEU} created from these stockpiles. Additionally, expand 
+the analysis to other metrics, such as power peaking factors and 
+power distributions in the core, or 
+increase the fidelity of the models. Ways to increase the model 
+fidelities include incorporating burnable poisons, control rods, 
+and couple with heat transfer calculations to create a multi-physics model. 
+These incorporations into the models will provide greater 
+accuracy to the results. 
