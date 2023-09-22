@@ -1,0 +1,32 @@
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[node distance=0.8cm]
+        \node (mine) [facility] {\tiny Uranium Mine};
+        \node (enrichment) [facility, below of=mine]{\tiny Enrichment};
+        \node (reactor) [facility, below of=enrichment]{\tiny Reactor};
+        \node (wetstorage) [facility, below of=reactor]{\tiny Wet Storage};
+        \node (sinkhlw) [facility, below of=wetstorage, xshift=1cm]{\tiny HLW Sink};
+        \node (sinkllw) [facility, left of=enrichment, xshift=-0.5cm]{\tiny LLW Sink};
+        \node (separation) [transition, right of=wetstorage,xshift=1cm]{\tiny Separations};
+        \node (fuelfab) [transition, above of=separation]{\tiny Fuel Fab};
+        \node (fr_enrichment) [transition, right of=enrichment,xshift=2.5cm]{\tiny FR Enrichment};
+        \node (sfr) [transition, below of=fr_enrichment]{\tiny Fast Reactor};
+        
+        \draw [arrow] (mine) -- (enrichment);
+        \draw [arrow] (mine) -| (fr_enrichment);
+        \draw [arrow] (enrichment) -- (reactor);
+        \draw [arrow] (enrichment) -- (sinkllw);
+        \draw [arrow] (reactor) -- (wetstorage);
+        \draw [arrow] (wetstorage) |- (sinkhlw);
+        \draw [arrow] (separation) -- (fuelfab);
+        \draw [arrow] (separation) -- (sinkhlw);
+        \draw [arrow] (fuelfab) -- (sfr);
+        \draw [dashed, ->] (wetstorage) -- (separation);
+        \draw [arrow] (sfr) |- (separation);
+        \draw [arrow] (fr_enrichment) -- (sfr);
+
+        \end{tikzpicture}
+    \caption{Fuel cycle facilities and material flow between facilities for 
+    the continuous recycling scenarios.}
+    \label{fig:continuous_fuel_cycle}
+\end{figure}
