@@ -83,9 +83,9 @@ enriched uranium mass required by these scenarios. Scenario 14 requires
 less enriched uranium than Scenario 7, despite having the same 
 advanced reactor deployment schedule, because of the change in the 
 fuel cycle. By reprocessing spent fuel, the average \gls{HALEU} 
-mass required drops by 21.3\%. However, the metrics of Scenario 15 
-highlight how the types of materials available for reprocessing 
-affects the impact of the fuel cycle option. 
+mass required drops by 21.3\%. A similar decrease in cumulative 
+\gls{HALEU} needs is seen in Scenario 15, but the removal of 
+\gls{TRISO} reprocessing  results in a smaller decrease. 
 
 \begin{table}[h!]
     \centering 
@@ -98,7 +98,7 @@ affects the impact of the fuel cycle option.
         & Maximum (MT) & Cumulative (MT) \\
         \hline 
         14 & 28.01 & 27.16 & 87.01 & 21,920 \\
-        15 & & & & \\
+        15 & 30.05 & 29.20 & 143.8 & 23,407\\
         16 & 0 & 0 & 0 & 0\\
         \hline
         
@@ -161,7 +161,7 @@ needed in Scenarios 14 and 15.
         Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
         \hline 
         14 & 7.351 & 53.81 & 5,727 \\
-        15 & & &  \\
+        15 & 4.506 & 81.59 & 3,510 \\
         16 & 72.70 & 241.9 & 56,630 \\
         \hline
         
@@ -224,7 +224,7 @@ uranium fuel for reactors is shown in Figure \ref{fig:nogrowth_recycle_feed}.
         Maximum (MT) & Cumulative (MT) \\
         \hline 
         14 & 842.9 & 836.4 & 2,628 & 656,582 \\
-        15 & & & & \\
+        15 & 903.9 & 897.4 & 4,450 & 704,106\\
         16 & 0 & 0 & 0 & 0\\
         \hline
         
@@ -265,7 +265,7 @@ uranium fuel for reactors is shown in Figure \ref{fig:nogrowth_recycle_feed}.
         Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
         \hline 
         14 & 6.256 & 45.80 & 4,874 \\
-        15 & & &  \\
+        15 & 3.835 & 69.44 & 2,987 \\
         16 & 55.68 & 185.3 & 43,372 \\
         \hline
         
@@ -311,7 +311,7 @@ uranium fuel for reactors is shown in Figure \ref{fig:nogrowth_recycle_feed}.
          & Maximum (MT-SWU) \\
         \hline 
         14 & 971.6 & 965.9 & 3,032 \\
-        15 & & &  \\
+        15 & 1,042 & 1,036 & 5,142 \\
         16 & 0 & 0 & 0 \\
         \hline
         
@@ -329,7 +329,7 @@ scenario.
 
 \subsection{1\% growth scenarios}
 
-\section{Spent nuclear fuel and High Level Waste}
+\section{Spent nuclear fuel and high level waste}
 This section provides the results of the \gls{SNF} and \gls{HLW} sent 
 to disposal in the closed fuel cycles. The once-through scenario 
 results only defined the \gls{SNF} sent for disposal because all 
@@ -345,7 +345,86 @@ This section presents the results of the \gls{SNF} and
 material sink in the no growth recycle scenarios. 
 \subsubsection{Spent nuclear fuel}
 
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{nogrowth_recycle_snf.pdf}
+        \caption{Monthly mass of SNF sent for disposal 
+        at each time step between 2025-2090.}
+        \label{fig:nogrowth_recycle_snf_all}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{nogrowth_recycle_snf_cumulative.pdf}
+        \caption{Cumulative mass of SNF sent for disposal 
+        at each time step between 2025-2090.}
+        \label{fig:nogrowth_recycle_snf_cumulative}
+    \end{subfigure}
+       \caption{\gls{SNF} disposed of in Scenarios 14-16.}
+       \label{fig:nogrowth_recycle_snf}
+\end{figure}
+
+The values for Scenario 15 are under-reported because the \gls{SNF} from 
+the Xe-100 reactors is not sent from the cooling facility 
+to the repository. It is unclear why this occurred in the simulations, 
+and further investigation is needed to determine the cause. 
+
+\begin{table}[h!]
+    \centering 
+    \caption{Mass of SNF disposed of between 2025-2090 in 
+    Scenarios 14-16.}
+    \label{tab:snf_14-16}
+    \begin{tabular}{c c c c}
+        \hline 
+        Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
+        \hline
+        14 & 7.835 & 41.33 & 6,103\\
+        15 & 5.860 & 105.8 & 4,564\\
+        16 & 0 & 0 & 0 \\
+        \hline
+    \end{tabular}
+\end{table}
+
 \subsubsection{High level waste}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{nogrowth_recycle_hlw.pdf}
+        \caption{Monthly mass of HLW sent for disposal 
+        at each time step between 2025-2090.}
+        \label{fig:nogrowth_recycle_hlw_all}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{nogrowth_recycle_hlw_cumulative.pdf}
+        \caption{Cumulative mass of HLW sent for disposal 
+        at each time step between 2025-2090.}
+        \label{fig:nogrowth_recycle_snf_cumulative}
+    \end{subfigure}
+       \caption{\gls{HLW} disposed of in Scenarios 14-16.}
+       \label{fig:nogrowth_recycle_hlw}
+\end{figure}
+
+\begin{table}[h!]
+    \centering 
+    \caption{Mass of HLW disposed of between 2025-2090 in 
+    Scenarios 14-16.}
+    \label{tab:hlw_14-16}
+    \begin{tabular}{c c c c}
+        \hline 
+        Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
+        \hline
+        14 & 94.21 & 440.2 & 73,389\\
+        15 & 67.73 & 440.2 & 52,764\\
+        16 & 5.011 & 10.09 & 3,903\\
+        \hline
+    \end{tabular}
+\end{table}
 
 
 \subsection{1\% growth scenarios}
@@ -353,5 +432,36 @@ This section presents the results of the \gls{SNF} and
 \gls{HLW} masses that are sent for disposal in a 
 material sink in the 1\% growth recycle scenarios. 
 \subsubsection{Spent nuclear fuel}
+\begin{table}[h!]
+    \centering 
+    \caption{Mass of SNF disposed of between 2025-2090 in 
+    Scenarios 17-19.}
+    \label{tab:snf_17-19}
+    \begin{tabular}{c c c c}
+        \hline 
+        Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
+        \hline
+        17 & & & \\
+        18 & & & \\
+        19 & & & \\
+        \hline
+    \end{tabular}
+\end{table}
+
 
 \subsubsection{High level waste}
+\begin{table}[h!]
+    \centering 
+    \caption{Mass of HLW disposed of between 2025-2090 in 
+    Scenarios 17-19.}
+    \label{tab:hlw_17-19}
+    \begin{tabular}{c c c c}
+        \hline 
+        Scenario & Average (MT/month) & Maximum (MT) & Cumulative (MT) \\
+        \hline
+        17 & & & \\
+        18 & & & \\
+        19 & & & \\
+        \hline
+    \end{tabular}
+\end{table}
