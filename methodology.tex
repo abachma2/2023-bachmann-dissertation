@@ -9,9 +9,8 @@ quantifies the
 resources required to support the transition. 
 This work considers a variety of transition scenarios, primarily grouped 
 into once-through and recycle scenarios. Sections \ref{sec:once-through-methods}
-and \ref{sec:recycle-methods} describe more specific details of the 
-scenarios. There are multiple details that apply to all of 
-the scenarios, which are described here. 
+and \ref{sec:recycle-methods} describe details specific to each 
+fuel cycle type.
 
 We used \Cyclus \cite{huff_fundamental_2016} to model the transitions, 
 with archetypes from the \Cycamore library \cite{carlsen_cycamore_2014}
@@ -102,9 +101,8 @@ advanced reactors in tandem affects the material requirements of the transition.
     \end{tabular}
 \end{table}
 
-The refueling scheme for each reactor includes 
-the cycle time, the refueling time, and the mass of fuel put into the reactor 
-at each refueling. The fuel mass required by 
+The refueling scheme for each reactor includes the cycle time, the 
+refueling time, and the refueling mass. The enriched uranium mass required by 
 each reactor type was calculated based on the reactor thermal power, 
 cycle length, and burnup:
 
@@ -114,9 +112,8 @@ cycle length, and burnup:
     \label{eq:fuel_mass}
 \end{equation}
 
-\noindent Eq. \ref{eq:fuel_mass} calculates the mass of uranium required 
-in the core. To calculate the total mass of the fuel (including the non-heavy 
-metal in the fuel) this value was divided by the mass fraction of 
+\noindent To calculate the total mass of the fuel (including the non-heavy 
+metal in the fuel), the enriched uranium mass was divided by the mass fraction of 
 uranium in the fuel form for the reactor. Any non-uranium bonded components 
 of the fuel, such as silicon-carbide in \gls{TRISO} particles, were 
 not considered in the mass. This methodology assumes that the 
@@ -137,7 +134,7 @@ replacement of 1/6th of the core mass every seven months.
 The VOYGR contains 37 fuel assemblies, with three different enrichment 
 levels \cite{nuscale_chapter_2020-1}. Each refueling replaces 13 fuel 
 assemblies, with the middle assembly replaced at every refueling. 
-Therefore 13/37th of the core mass is replaced at each refueling. 
+Therefore, 13/37th of the core mass is replaced at each refueling. 
 The fuel enrichment used is an average of the assembly enrichments 
 presented in \cite{nuscale_chapter_2020-1}. NuScale reports that a refueling 
 outage for the VOYGR will take ten days \cite{nuscale_nuscale_2022}. 
@@ -341,15 +338,24 @@ current fleet of \glspl{LWR} to the X-energy Xe-100, the \gls{USNC} \gls{MMR},
 and the NuScale VOYGR, the same as in scenarios 7 and 13. Therefore, 
 the advanced reactor deployment schedules for these two scenarios are applied 
 to the limited recycling scenarios for the appropriate energy growth model. 
-This combination 
-of reactors is considered for this step of the work, and not all of the 
+We use this combination 
+of reactors for the limited recycle fuel cycles, and not all of the 
 combinations considered for the once-through scenarios, to limit the scope 
-of the work but providing some comparison between the 
+of the work. Using this deployment combination provides some comparison between the 
 once-through and recycle transition scenarios. Because these scenarios 
 use the same advanced reactor deployment schedule, the number of 
 advanced reactors and the energy supplied are not examined in the 
 results because they will be the same for each of these scenarios. Instead, 
 the results of these scenarios will focus on the material requirements. 
+
+Continuous recycle 
+requires a fast reactor, but all of the reactors considered in this 
+work so far have a thermal neutron energy spectrum. Therefore, the advanced 
+reactors used in the other scenarios are replaced with a \gls{SFR}. Section 
+\ref{sec:continuius} provides more information about how we 
+modeled a fast reactor for these fuel cycles. The continuous recycle 
+scenarios (Scenarios 16 and 19) deploy only the fast reactor, and no 
+thermal advanced reactors (i.e., no Xe-100s, VOYGRs, or \glspl{MMR}).
 
 For this work, the \glspl{LWR} and \gls{MMR} are modeled using the 
 \Cycamore \texttt{Reactor} archetype. Each of these reactors use the 
@@ -381,11 +387,12 @@ and reduced run times compared with the full depletion chain.
 \subsection{Limited recycle scenarios}
 Figure \ref{fig:limited_recycle_flow} shows the fuel cycle and material flows 
 for the scenarios with limited recycling (Scenarios 14, 15, 17, and 18). 
-In Scenarios 15 and 18 only the spent fuel from the 
-VOYGRs is sent to the reprocessing facility, but in Scenarios 14 and 17, 
-all spent fuel from the advanced reactors is sent to the 
-reprocessing facility. Only the Xe-100 and VOYGRs receive \gls{MOX} fuel, 
-but not the \glspl{MMR} to simplify the fuel cycle.
+In Scenarios 14 and 17, all spent fuel from the advanced reactors is sent 
+to the reprocessing facility.
+In Scenarios 15 and 18, only the spent fuel from the 
+VOYGRs is sent to the reprocessing facility.  The Xe-100 and VOYGRs can receive 
+\gls{UOX} or \gls{MOX} fuel. The \glspl{MMR} can only receive 
+\gls{UOX}.
 
 \input{limited-recycling-flow}
 
@@ -431,12 +438,9 @@ combines the separated plutonium and natural uranium material
 streams in the constant ratios required to produce the \gls{MOX} fuel
 that corresponds to composition for each reactor. 
 
-\subsection{Continuous recycle scenarios}
+\subsection{Continuous recycle scenarios} \label{sec:continuous}
 Figure \ref{fig:continuous_recycle_flow} shows the facilities and material 
-flow for the continuous recycle fuel cycle (Scenarios 16 and 19). Continuous recycle 
-requires a fast reactor, but all of the reactors considered in this 
-work so far have a thermal neutron energy spectrum. Therefore, the advanced 
-reactors used in the other scenarios are replaced with a \gls{SFR}. 
+flow for the continuous recycle fuel cycle (Scenarios 16 and 19). 
 The fast reactor is modeled based on the PRISM design from 
 \gls{GEH} in the \gls{UNF} Recycle mode \cite{triplett_prism:_2012}, because of 
 the availability of open-source information to accurately model the design
@@ -551,7 +555,7 @@ commodity called ``power'', and the total output of each reactor facility
 is reported at each time step that they produce it. 
 \Cyclus reports the time step that each facility in the simulation enters 
 (commissions) and exits (decommissions) the simulation. Based on 
-this information the total number of each type of reactor is 
+this information, the total number of each type of reactor is 
 determined. 
 
 The other results in this work are calculated based on commodity 
@@ -686,7 +690,7 @@ resources to run a simulation with this archetype.
 
 \subsection{Material handling}
 The material handling of the OpenMCyclus DepleteReactor archetype 
-includes how material is transferred within different inventories 
+encompasses how material is transferred within different inventories 
 in the archetype, how the archetype interacts with the \gls{DRE}, 
 and how these interactions are recorded to the database. 
 
