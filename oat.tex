@@ -9,7 +9,7 @@ the relative change in each metric for each parameter varied. The minimum,
 average, and maximum value for each metric is provided in Table 
 \ref{tab:oat_values}.
 
-\begin{table}
+\begin{table}[ht]
     \centering
     \caption{Minimum, average, and maximum value of each metric caused 
     by the variation of each parameter.}
@@ -80,7 +80,7 @@ Chapter \ref{ch:once_through_results}, the VOYGR needs a larger fuel mass,
 and thus discharges more \gls{SNF} than the Xe-100 and \gls{MMR}. Therefore, 
 these two metrics increase for this particular transition start time. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{ts.pdf}
     \caption{Change in each metric as a function of transition start 
@@ -93,7 +93,7 @@ increasing gap between energy supplied and energy demand as the transition
 start time is delayed. All of these scenarios have a constant demand 
 of 87.20 GWe-yr beginning in January 2025. By delaying the transition start 
 time to after September 2025 (the observed initial deployment time of advanced 
-reactors in Section \ref{sec:nogrowth_reactors}) there is a difference
+reactors in Section \ref{sec:nogrowth_reactors}), there is a difference
 between the energy supplied and the energy demand. The largest gap observed 
 is 36.7
 GWe-yr, when reactors are deployed starting in January 2040. This difference 
@@ -110,7 +110,7 @@ of changes in the number of each advanced reactor deployed, as previously
 discussed. The \gls{SNF} mass decreases more than the other metrics across 
 this parameter space, ranging between 19.5-26.7 MTU.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{lwr.pdf}
     \caption{Change in each metric as a function of percent of LWR fleet  
@@ -140,7 +140,7 @@ least decreases the speed of the transition, because the \glspl{LWR}
 are sufficient to meet the energy demand for a longer period of time.
 In addition to causing greater change in the metrics, the energy demand 
 is always met when varying the \gls{LWR} lifetimes, which suggests that 
-extending the lifetimes of the \glspl{LWR} is a better parameter to vary 
+extending the lifetimes of the \glspl{LWR} is a preferable parameter to vary 
 if one wishes to decrease material requirements of this transition. 
 
 \subsection{Xe-100 build share}
@@ -160,7 +160,7 @@ build share is 0\%. This effect of the deployment scheme indicates that
 varying this parameter highlights trade-offs between the Xe-100 and 
 VOYGR reactors.
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{xe100.pdf}
     \caption{Change in each metric as a function of Xe-100 build share, 
@@ -168,7 +168,7 @@ VOYGR reactors.
     \label{fig:xe100_scenario7}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.7]{xe100_combined_reactors.pdf}
     \caption{Number of Xe-100s (top left), MMRs (top right), and VOYGRs
@@ -187,21 +187,21 @@ required for a 0\% Xe-100 build share. This stagnant behavior of the total
 by Scenarios 3-7 in Section \ref{sec:nogrowth_swu}, when either the Xe-100 or 
 VOYGR are primarily deployed. These results highlight the trade-off between the
 \gls{HALEU}-related metrics and the total fuel mass and \gls{SNF} mass in deploying 
-the Xe-100 versus the VOYGR. Both reactors require similar \gls{SWU} capacities, 
-but because of the different product assays required the cascade configuration 
-will vary. The \gls{HALEU}-related metrics increase to up to 538.2\% of the 
+the Xe-100 versus the VOYGR. Both reactors require similar \gls{SWU} capacities 
+but because of the different product assays required, the cascade configuration 
+will vary. The \gls{HALEU}-related metrics increase up to 638\% of the 
 mass required 
 for a 0\% Xe-100 build share. The total fuel mass and \gls{SNF} mass decrease 
 to up to 44.11\% of the mass required for 1 0\% Xe-100 build share. 
 
 \subsection{MMR build share}
-As the \gls{MMR} build share increases all of the metrics increase, as shown 
+All of the metrics increase with increasing \gls{MMR} share, as shown 
 in Figure \ref{fig:mmr_scenario7}. The total \gls{SWU}, \gls{HALEU} \gls{SWU}, 
 and \gls{HALEU} feed have the greatest relative increase because more of the 
 advanced reactor fleet uses the highest enrichment level of the three 
 advanced reactors as the \gls{MMR} build share increases. The \gls{HALEU} mass 
 increases with the \gls{MMR} build share because of the replacement of Xe-100s 
-with \glspl{MMR} with increasing build share (see Figure \ref{fig:mmr_reactors_s7}).
+with \glspl{MMR} (see Figure \ref{fig:mmr_reactors_s7}).
 The \gls{MMR} requires a greater fuel mass than the Xe-100, causing the increase 
 in the \gls{HALEU} mass. The larger fuel mass required by the \gls{MMR}, compared 
 with the Xe-100, compounds with the higher enrichment required by the \gls{MMR} 
@@ -216,7 +216,7 @@ Based on the replacement of Xe-100s with \glspl{MMR} as the \gls{MMR}
 build share increases, these results highlight the effects of deploying the
 \gls{MMR} over the Xe-100. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{mmr.pdf}
     \caption{Change in each metric as a function of MMR build share, 
@@ -225,7 +225,7 @@ build share increases, these results highlight the effects of deploying the
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.7]{mmr_combined_reactors.pdf}
     \caption{Number of Xe-100s (top left), MMRs (top right), and 
@@ -236,8 +236,9 @@ build share increases, these results highlight the effects of deploying the
 
 
 \subsection{VOYGR build share}
-When varying VOYGR build share, the impact on the metrics was 
-opposite the effects of varying the Xe-100 build share (Figure 
+Varying the VOYGR build share causes trends that are opposite 
+to the effects observed from varying the Xe-100 build share. 
+(Figure 
 \ref{fig:voygr_scenario7}). The total fuel mass and \gls{SNF} mass 
 increase, the \gls{HALEU}-related metrics decrease, and the total 
 \gls{SWU} capacity remains relatively constant. This reversal 
@@ -245,7 +246,7 @@ of trends occurs because there is a replacement of Xe-100s with VOYGRs
 with increasing build share (Figure \ref{fig:voygr_reactors_s7}), 
 the opposite of what happens with an increasing Xe-100 build share. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{voygr.pdf}
     \caption{Change in each metric as a function of VOYGR build share, 
@@ -253,7 +254,7 @@ the opposite of what happens with an increasing Xe-100 build share.
     \label{fig:voygr_scenario7}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.7]{voygr_combined_reactors.pdf}
     \caption{Number of Xe-100s (top left), MMRs (top right), and 
@@ -271,7 +272,7 @@ up to 313.9\% of the mass required for a 0\% VOYGR build share, and the
 for a 0\% VOYGR build share. The \gls{SNF} and total fuel masses increase 
 because the VOYGR requires more fuel than the Xe-100, largely stemming from 
 the difference in discharge burnup of these two reactors. The \gls{HALEU}-related 
-metrics all decrease because the VOYGR does not require \gls{HALEU}, so as the 
+metrics all decrease because the VOYGR does not require \gls{HALEU}. As the 
 VOYGR build share increases a smaller portion of the advanced reactor fleet 
 requires \gls{HALEU}. While the trends from varying the VOYGR build share 
 mirrors the trends from varying the Xe-100 build share, the magnitude of the 
@@ -282,16 +283,17 @@ parameter variations cover adjacent but not overlapping design spaces.
 When varying the burnup of fuel discharged from Xe-100s, the metrics decrease 
 as the burnup increases (Figure \ref{fig:xe100_bu_s7}). The material 
 requirements decrease because as 
-the burnup is increased the fuel is going through the core more times or the 
-length of each pass is longer. Therefore, the Xe-100s in the simulation are receiving 
+the fuel is going through the core more times or the 
+length of each pass is longer as the burnup increases. 
+Therefore, the Xe-100s in the simulation are receiving 
 less fuel at each refueling or receiving fuel less often as the burnup increases. 
 Varying the burnup of the Xe-100 has a large impact on the metrics, up to fives times 
-the material requirements compared with a burnup of 168 MWd/kgU, because most of 
+the material requirements compared with a burnup of 168 MWd/kgU. Most of 
 the energy produced in these scenarios comes from Xe-100s, so their fuel needs 
 drive the total fuel cycle needs. Therefore, changes to the Xe-100 refueling is 
 magnified because of their greater build share. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{xe100_bu.pdf}
     \caption{Change in metrics from varying the burnup of fuel 
@@ -300,7 +302,7 @@ magnified because of their greater build share.
 \end{figure}
 
 \subsection{MMR burnup}
-When the \gls{MMR} discharge burnup is varied the metrics all decrease, similar 
+When varying the \gls{MMR} discharge burnup, all of the metrics decrease, similar 
 to what was observed by varying the Xe-100 discharge burnup. One difference in 
 the trends observed between varying these two parameters is the magnitude of 
 the relative changes. Varying the \gls{MMR} burnup has a smaller relative effect 
@@ -312,7 +314,7 @@ Therefore the impact on the cumulative metrics
 when the \gls{MMR} burnup is low, compared with the \gls{SNF} having the 
 greatest relative increase with the Xe-100 burnup is low. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.8]{mmr_bu.pdf}
     \caption{Change in metrics from varying the burnup of fuel 
@@ -334,13 +336,13 @@ Figure \ref{fig:bu_constant} shows the relative change in each metric as a resul
 of varying the \gls{MMR} (Figure \ref{fig:mmr_bu_constant}) and Xe-100 
 (Figure \ref{fig:xe100_bu_constant}) discharge burnup with the constant build 
 share. Changing the \gls{MMR} burnup has a greater impact with the specified 20\% 
-build share then when the build share was not specified. This change is because 
+build share than when the build share was not specified. This change is because 
 more \glspl{MMR} are deployed with a 20\% build share than when the build share is 
 not specified. Conversely, the Xe-100 burnup has a smaller impact on the metrics 
 with a 20\% build share than when a build share isn't specified because fewer 
 Xe-100s are deployed. 
 
-\begin{figure}
+\begin{figure}[ht]
     \centering
     \begin{subfigure}{0.48\textwidth}
         \centering
