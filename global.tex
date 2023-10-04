@@ -5,23 +5,24 @@ time, percent of \glspl{LWR} operating for 80 years, the Xe-100 discharge
 burnup, \gls{MMR} burnup, and build share of one advanced reactor were 
 varied. We decided to perform this analysis three separate times instead of 
 varying all seven variables to prevent unwanted combinations of the 
-advanced reactor build shares that result in large oversupplies or 
-undersupplies of power. 
+advanced reactor build shares that result in an oversupply or 
+undersupply of power. 
 
-To assist in calculating the Sobol' indices we created surrogate 
+To assist in calculating the Sobol' indices, we created surrogate 
 models for each of the iterations. These models are approximations 
 of the relationships between the input and output parameters, and 
 are computationally inexpensive \cite{adams_dakota_2021}. To generate 
 each of the surrogate models (one for each advanced reactor build share 
-variation) we ran 4000 different fuel cycle transitions based on guidance 
+variation), we ran 4000 different fuel cycle transitions based on guidance 
 to run 
 
 \begin{equation}
     100\times P\times(R+2)
 \end{equation}
 
-number of cases to build the surrogate model \cite{adams_dakota_2021}. In this 
-equation $P$ is the number of input parameters and $R$ is the number out response 
+\noindent number of cases to build the surrogate model 
+\cite{adams_dakota_2021}. In this 
+equation, $P$ is the number of input parameters and $R$ is the number out response 
 metrics. In these
 transitions, we allowed all of the input parameters vary freely 
 within a given range (defined in Table \ref{tab:global_ranges}), except 
@@ -65,7 +66,7 @@ We randomly sampled (using the Latin Hypercube Sampling
 method in Dakota) each variable based on the possible values and 
 calculated the metrics for these samples. 
 
-When creating the surrogate model we once again used the Latin Hypercube sampling 
+When creating the surrogate model, we once again used the Latin Hypercube sampling 
 for all of the variables, but allowed all of the input parameters to be continuous 
 variables. 
 We used both the quadratic and Gaussian fits to the data 
@@ -127,7 +128,8 @@ than if the variance decomposition were performed on the input data.
 
 Table \ref{tab:s7_sobol_xe100_gaussian} reports the main and total Sobol' indices 
 for each input parameter on each output metric. The highlighted cells have 
-a total Sobol' index of at least 0.5. 
+a total Sobol' index of at least 0.5, to indicate parameters that have a large 
+effect on the metrics. 
 The transition start time 
 has little effect on any of the metrics, which is consistent with the 
 results of the \gls{OAT} and synergistic analysis. The \gls{LWR} lifetimes 
@@ -262,7 +264,7 @@ to the input data provided. Unlike the models predicted based on input data when
 varying the Xe-100 build share, this model does not result in any negative 
 mass values. However, it still results in mass values lower than what is 
 present in the input data which suggests that this model also extrapolates 
-on some of the data. It also does ot fully predict some of the outliers in 
+on some of the data. It also does not fully predict some of the outliers in 
 the data, such as the maximum \gls{HALEU} mass at a burnup at 128 MWd/kg.
 
 \begin{figure}

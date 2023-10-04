@@ -1,3 +1,4 @@
+\chapter{Appendix A: Synergistic sensitivity analysis}\label{app:s7_synergistic}
 This appendix contains the plots with results for the synergistic 
 sensitivity analysis of Scenario 7. Any plots shown in Section 
 \ref{sec:synergistic} are not duplicated here.
@@ -7,9 +8,9 @@ of varying the transition start time and the percent of \glspl{LWR}
 operating for 80 years. The transition starts later and the percent of 
 \glspl{LWR} increases all of the metrics decrease, which is consistent 
 with the results of the \gls{OAT} analysis. Increasing the percent of 
-\glspl{LWR} has a great effect than delaying the transition start time, 
-which can also be gleaned from the \gls{OAT} analysis, but is easier 
-to visualize in these results. Additionally, these results show that 
+\glspl{LWR} has a greater effect than delaying the transition start time, 
+which is consistent with the \gls{OAT} analysis results.
+Additionally, these results show that 
 the combined effect of varying these parameters together is minimal. 
 This result is because increasing the number of \glspl{LWR} that 
 operate for 80 years inherently delays the transition start time 
@@ -234,7 +235,7 @@ transition start time and the Xe-100 discharge burnup on all six
 metrics. These two parameters impact all six of the metrics in 
 a similar matter: the metrics decrease as the Xe-100 burnup increases 
 and are not greatly impacted by the transition start time. The 
-Xe-100 burnup has a more pronounced on the metrics because Xe-100s 
+Xe-100 burnup has a more pronounced effect on the metrics because Xe-100s 
 comprise most of the advanced reactors. 
 
 \begin{figure}
@@ -370,7 +371,8 @@ mass (Figure \ref{fig:lwr_xe100_share_waste}) both exhibit a different trend
 than the \gls{HALEU}-related metrics. These two parameters have a similar 
 effect on these metrics: as the parameter values increase, the metric value 
 decreases. Therefore, by increasing both of these parameters, there is a 
-larger effect on the 
+larger effect on the total and spent fuel masses than varying each on 
+separately. 
 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
@@ -591,11 +593,11 @@ the highest Sobol' indices.
 
 Figure \ref{fig:lwr_mmr_burnup} shows the effects of varying the percent 
 of \gls{LWR} operating for 80 years and the \gls{MMR} discharge burnup. 
-Varying these parameters has the same effect on each of the metrics: 
+Varying these parameters has the same effect on all of the metrics: 
 increasing these parameters decreases the metrics. The \gls{LWR} lifetime 
 has a greater effect on the metrics than the \gls{MMR} burnup because 
-\glspl{MMR} supply a small of the energy supplied by the advanced reactors.
-
+\glspl{MMR} supply a small share of the energy demand, compared with 
+the other advanced reactors. 
 \begin{figure}
     \begin{subfigure}[t]{0.48\textwidth}
         \centering
@@ -711,7 +713,7 @@ but the \gls{MMR} requiring more materials than Xe-100 to meet the same
 energy demand. These two parameters have a 
 compounding effect, such that as the \gls{MMR} build share increases 
 the variations in the burnup have a greater impact on the metrics because 
-more of the advanced reactors deployed are \glspl{MMR}. All of the metrics 
+\glspl{MMR} comprise more of the advanced reactor fleet. All of the metrics 
 are at a minimum when the \gls{MMR} build share is 0\%, independent of 
 the \gls{MMR} burnup. This result is because if there are no \glspl{MMR} 
 deployed in the transition, then the discharge burnup of the fuel that 
@@ -782,8 +784,8 @@ different trends in each of the metrics as the Xe-100 build share increases
 is a result of the difference in the two reactor designs. 
 In each of 
 the metrics, the impact of the Xe-100 burnup increases as the 
-Xe-100 build share increases because more of the advanced reactor fleet 
-is comprised of Xe-100s. Additionally, the metrics have a constant value 
+Xe-100 build share increases because Xe-100s comprise more of 
+the advanced reactor fleet. Additionally, the metrics have a constant value 
 as a function of Xe-100 burnup when the build share is 0\% because none 
 of the advanced reactors deployed are Xe-100s. 
 

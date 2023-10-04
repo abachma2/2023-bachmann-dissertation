@@ -24,9 +24,9 @@ interaction of the two parameters affects the results. Finally, the global
 analysis varies more than two input parameters to provide a holistic 
 view of how multiple parameters interact and affect the output metrics. 
 
-The input parameters varied include the transition 
+The input parameters varied included are: the transition 
 start time, the build share of each type of advanced reactor, 
-the \gls{LWR} lifetime, and the discharge burnup of fuel from the 
+the \gls{LWR} lifetimes, and the discharge burnup of fuel from the 
 \gls{HALEU}-fueled reactors. The transition start time ranges from January 
 2025 to January 2040 in three-month intervals, but the same energy demand 
 is specified for all perturbations (87.20 GWe-yr). The build share 
@@ -60,23 +60,22 @@ fleet operating for 80
 years, while the other \glspl{LWR} operate for 60 years. The 
 \glspl{LWR} do not all start operation at the same time, so the 
 selection of the \glspl{LWR} that operate for 80 years affects the results, 
-even if the number is the same. Therefore, reactors are selected for 
-operation to 80 years in 
-descending order of power output, reflecting the greater likelihood of 
+even if the number is the same. Therefore, reactors are prioritized based 
+on their power outputs for the lifetime extensions, reflecting the greater likelihood of 
 larger units receiving a license extension. Previous sensitivity analysis of 
 fuel cycle transitions considered the impact of the transition start time 
 and the \gls{LWR} lifetimes \cite{chee_sensitivity_2019,feng_sensitivity_2020},
 which forms the basis for why these input parameters were selected for this 
 work.
 
-We also varied the discharge burnup of the two \gls{HALEU}-fueled 
+Furthermore, we varied the discharge burnup of the two \gls{HALEU}-fueled 
 reactors in this work (the Xe-100 and \gls{MMR}) because these two reactors 
 are reaching burnup levels larger than the \gls{NRC}-approved 62 MWd/kgHM 
 \cite{noauthor_higher_2023}. Therefore, it is possible that these 
 reactors would need to be operated under different conditions until the 
 higher burnups are approved by the \gls{NRC}.
 Therefore, inclusion of this variable explores the impact 
-on resource needs for if these reactors are not able to achieve their 
+on resource needs if these reactors are not able to achieve their 
 reported burnup values. This analysis is not performed for the VOYGR because this 
 design aims to achieve a burnup that is within the \gls{NRC} limit. 
 
@@ -91,15 +90,14 @@ constant. The goal of the second system is to cause a small change in the
 discharge burnup to examine how a smaller change in the burnup affects 
 the resource needs. This system results in burnup values of 151 and 185 MWd/kgU, 
 which are about $\pm$10\% of the stated discharge burnup of 168 MWd/kgU. 
-To vary the burnup of the \gls{MMR} we varied the cycle time, and thus lifetime, of 
+To vary the \gls{MMR} burnup, we varied the cycle time (and thus lifetime) of 
 the reactor while the total mass of uranium was held constant. 
 Cycle times of 10, 15, and 20 years were considered, resulting in burnup 
 values of 41, 62, and 82 MWd/kgU. Additionally, the lifetime was varied to 
 result in burnup values $\pm$10\% and $\pm$5\% around the stated burnup of 
 82 MWd/kg, resulting in burnup values of 74, 78, 86, and 90 MWd/kgU. 
 
-The output metrics of 
-interest for this analysis include the amount of waste generated that 
+This analysis focuses on the following metrics: the amount of waste generated that 
 must be sent to a repository (\gls{SNF} mass), the mass of enriched uranium, 
 the mass of \gls{HALEU},
 the amount of \gls{SWU} capacity required to produce all enriched uranium, the 
