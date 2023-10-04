@@ -11,7 +11,7 @@
         \item Higher burnup 
     \end{itemize}
     \item<2-> The US does not have any commercial supplies of \gls{HALEU}
-    \item<3-> To meet the \gls{HALEU} demand, the U.S. \gls{DOE} has proposed two methods \cite{griffith_overview_2020}:
+    \item<3-> There are two methods to produce \gls{HALEU}:
     \begin{itemize}
         \item Enrichment of natural uranium
         \item Recovery and downblending of \gls{HEU}
@@ -51,13 +51,15 @@
         \item Process to increase the relative abundance of specific
               isotopes of an element
         \pause
-        \item The throughput of a facility is based on the product 
+        \item Enrichment facility designs are based on the product 
               mass, product assay, and the \gls{SWU} capacity
     \end{itemize}
     \pause
     \vspace{-0.2cm}
     \begin{columns}
         \column{6.5cm}
+            \input{enrichment}
+            \pause
             \begin{align*}
                     & F = P + T \\
                     & x_fF = x_pP + x_tT\\
@@ -66,8 +68,8 @@
                     & V(x_i) = (2x_i - 1)*\ln\left(\frac{x_i}{1-x_i}\right)
             \end{align*}
             \vspace{-0.5cm}
-            \input{enrichment}
-    \column{3.5cm}
+            
+    \column{3.75cm}
     \begin{table}
         \centering
         \vspace{-0.3cm}
@@ -89,6 +91,20 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Downblending HEU}
+    If we downblend \gls{HEU} to produce \gls{HALEU}:
+    \begin{itemize}
+        \item Spent fuel from \gls{EBR} can produce 10 MT of \gls{HALEU}
+              \cite{nuclear_energy_institute_establishing_2022}
+        \item \gls{HEU} from \gls{SRS} can produce 4-20 MT of \gls{HALEU}
+              \cite{nuclear_energy_institute_establishing_2022,regalbuto_addressing_2020}
+        \item<2-> The fuel will have uranium impurities that are not typically 
+              in enriched fuel or considered for reactor modeling 
+              \cite{nelson_foreign_2010,vaden_isotopic_2018}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Efforts to estimate HALEU needs}
     Efforts are underway to estimate potential \gls{HALEU} needs:
     \begin{itemize}
@@ -99,7 +115,14 @@
               \gls{HALEU}-fueled reactors to estimate \gls{HALEU} needs 
               to meet current net-zero carbon goals in 2050 \cite{dixon_estimated_2022}
     \end{itemize}
-    This previous work is all based on announced advanced reactor projects.
+    \pause
+    Limitations of this previous work:
+    \begin{itemize}
+        \item All based on announced advanced reactor projects.
+        \item Very prescriptive in reactor deployment
+        \item<3-> Mostly concerned with \gls{HALEU} mass, don't consider 
+              other fuel cycle needs for \gls{HALEU}-fueled reactors
+    \end{itemize}
 \end{frame}
 
 \subsection{Objectives}

@@ -10,60 +10,17 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Recycle scenario definitions}
-    \begin{table}[ht]
-        \centering
-        \caption{Summary of the recycle fuel cycle transition scenarios.
-        Energy growth is relative to energy from \glspl{LWR} in 2025.}
-        \label{tab:scenarios_recycle}
-        \begin{tabular}{c l l l}
-            \hline
-            Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
-            \rowcolor{lightorange}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
-            \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
-            \rowcolor{lightorange}16 & SFR& No growth & Continuous \\
-            \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR& 1\% growth & Limited \\
-            \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
-            \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
-            \hline
-    \end{tabular}
-    \end{table}
-        %<2-> \tikz[overlay, remember picture]{\draw{draw=red,thick, double, fillopacity=0.2] ($(infrastructure)+(-0.5,0.4)$) rectangle ($(infrastructure)+(6,-0.2)$);}} 
-\end{frame}
-
-\begin{frame}
-    \frametitle{Recycle scenario definitions}
-        \begin{table}[ht]
-            \centering
-            \caption{Summary of the recycle fuel cycle transition scenarios.
-            Energy growth is relative to energy from \glspl{LWR} in 2025.}
-            \label{tab:scenarios_recycle}
-            \begin{tabular}{c l l l}
-                \hline
-                Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
-                \rowcolor{lightorange}\marktopleft{a3}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
-                \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
-                \rowcolor{lightorange}16 & SFR& No growth & Continuous \markbottomright{a3}\\
-                \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR& 1\% growth & Limited \\
-                \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
-                \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
-                \hline
-        \end{tabular}
-        \end{table}
-        %<2-> \tikz[overlay, remember picture]{\draw{draw=red,thick, double, fillopacity=0.2] ($(infrastructure)+(-0.5,0.4)$) rectangle ($(infrastructure)+(6,-0.2)$);}} 
-\end{frame}
-
-\begin{frame}
     \frametitle{Recycling needs accurate spent fuel compositions}
     \begin{itemize}
-    \item The compositions of spent fuel impact numerous fuel cycle considerations:
+    \item \gls{SNF} compositions impact numerous fuel cycle considerations:
     \begin{itemize}
         \item decay heat
         \item criticality safety
         \item amount of plutonium and transuranic elements
     \end{itemize}
-    \item The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
-    \item Other \Cyclus reactor archetypes require export controlled software 
+    \item<2-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
+    \item<3-> Other \Cyclus reactor archetypes can dynamically model 
+          fuel depletion, but they require export controlled software 
           or are reactor design specific
 \end{itemize}
 \end{frame}
@@ -83,18 +40,37 @@
 \begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
-        \column[t]{4cm}
+        \column[t]{3.5cm}
+        \begin{itemize}
+            \item Separated plutonium masses differ because of 
+                  different depletion methodologies
+        \end{itemize}
+        \column[t]{6.5cm}
+        \begin{figure}
+            \centering 
+            \includegraphics[scale=0.45, trim=0 30 0 30,clip]{comparison_pu_cumulative.pdf}
+            \caption{Comparison of cumulative separated plutonium in benchmark between 
+            OpenMCyclus and \Cycamore \texttt{Reactor}.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benchmark Results (I)}
+    \begin{columns}
+        \column[t]{3.5cm}
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
             \item Temporarily changing OpenMCyclus method to better 
                   match with \Cycamore shows better agreement
         \end{itemize}
-        \column[t]{6cm}
+        \column[t]{6.5cm}
         \begin{figure}
             \centering 
-            \includegraphics[scale=0.4]{comparison_pu_cumulative_discharge.pdf}
-            \caption{Comparison of cumulative separated plutonium.}
+            \includegraphics[scale=0.45, trim=0 30 0 30,clip]{comparison_pu_cumulative_discharge.pdf}
+            \caption{Comparison of cumulative separated plutonium in benchmark between 
+            OpenMCyclus and \Cycamore \texttt{Reactor}.}
         \end{figure}
     \end{columns}
 \end{frame}
@@ -124,6 +100,51 @@
 
 \end{frame}
 
+\begin{frame}
+    \frametitle{Recycle scenario definitions}
+    \begin{table}[ht]
+        \centering
+        \caption{Summary of the recycle fuel cycle transition scenarios.
+        Energy growth is relative to energy from \glspl{LWR} in 2025.}
+        \label{tab:scenarios_recycle}
+        \begin{tabular}{c l l l}
+            \hline
+            Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
+            \rowcolor{lightorange}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
+            \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
+            \rowcolor{lightorange}16 & SFR& No growth & Continuous \\
+            \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR & 1\% growth & Limited \\
+            \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
+            \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
+            \hline
+    \end{tabular}
+    \end{table}
+        %<2-> \tikz[overlay, remember picture]{\draw{draw=red,thick, double, fillopacity=0.2] ($(infrastructure)+(-0.5,0.4)$) rectangle ($(infrastructure)+(6,-0.2)$);}} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Recycle scenario definitions}
+        \begin{table}[ht]
+            \centering
+            \caption{Summary of the recycle fuel cycle transition scenarios.
+            Energy growth is relative to energy from \glspl{LWR} in 2025.}
+            \label{tab:scenarios_recycle}
+            \begin{tabular}{c l l l}
+                \hline
+                Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
+                \rowcolor{lightorange}\marktopleft{a3}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
+                \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
+                \rowcolor{lightorange}16 & SFR& No growth & Continuous \markbottomright{a3}\\
+                \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR& 1\% growth & Limited \\
+                \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
+                \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
+                \hline
+        \end{tabular}
+        \end{table}
+\end{frame}
+
+
+
 
 \begin{frame}
     \frametitle{Limited recycle fuel cycle assumptions}
@@ -134,9 +155,11 @@
     \input{limited-flow}
 
         \column[t]{4.5cm}
-        Model transitions using \Cyclus \cite{huff_fundamental_2016}
         \begin{itemize}
-            \item Use the same deployment schedule as Scenarios 7, 14
+            \item U-based fuel is reprocessed, Pu-based fuel is disposed
+            \item Reactors prefer Pu-based fuel over U-based fuel
+            \item Separations remove Pu
+            \item<2-> Use the same deployment schedule as Scenarios 7, 14
             \item<2-> Modeled Xe-100 and VOYGR with OpenMCyclus
             \item<2-> Calculate MOX compositions based on plutonium
                       equivalence
@@ -156,12 +179,13 @@
     \input{continuous-flow}
 
         \column[t]{4.5cm}
-        Model transitions using \Cyclus \cite{huff_fundamental_2016}
         \begin{itemize}
             \item Introduce a \gls{SFR} for transition, modeled through 
                   OpenMCyclus
+            \item Can accept U/TRU fuel (preferred) or \gls{HALEU}
+            \item Separations remove U, Np, Pu, Am
             \item<2-> Use the same deployment scheme for the \gls{SFR}
-            \item<2-> Calculate HALEU composition based on plutonium
+            \item<2-> Calculate \gls{HALEU} composition based on plutonium
                       equivalence
             \item<3-> Assume natural uranium is enriched to produce all 
                   fuel
@@ -185,7 +209,6 @@
                 \hline
                 Design Criteria & PRISM \cite{triplett_prism:_2012,fichtlscherer_assessing_2019}\\
                 \hline
-                Reactor type & Sodium Fast Reactor\\
                 Power Output (MWth) & 840 \\
                 Capacity Factor & 90\%\tnote{1} \\
                 Enrichment (wt\% fissile Pu) &  11.3/13.5\\

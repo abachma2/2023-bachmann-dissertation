@@ -1,13 +1,14 @@
 \begin{frame}
     \frametitle{Transition analysis}
-    To meet the first objective, I model the transition from the current 
+    To meet the second objective, I model the transition from the current 
     \gls{LWR} fleet to advanced reactors
     \begin{itemize}
-        \item Use fuel cycle simulators to model the transition
-        \item Model the deployment and decommissioning of fuel cycle facilities 
-        \item Model material transactions between facilities
-        \item Quantify material requirements to understand potential \gls{HALEU}
-              demand
+        \item<2-> Use \Cyclus \cite{huff_fundamental_2016}, 
+              a fuel cycle simulator, to model the transition
+        \item<3-> Model the deployment and decommissioning of fuel cycle facilities 
+        \item<3-> Model material transactions between facilities
+        \item<4-> Quantify material requirements to understand potential material
+              demands
     \end{itemize}
 
 \end{frame}
@@ -21,7 +22,6 @@
     \input{once-through-flow}
 
         \column[t]{4.5cm}
-        Model transitions using \Cyclus \cite{huff_fundamental_2016}
         \begin{itemize}
             \item Simulations model reactor deployment from 1965-2090
             \item Transitions begin in 2025

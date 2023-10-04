@@ -1,12 +1,12 @@
-\begin{figure}[t]
+\begin{figure}
     \centering
     \begin{tikzpicture}[node distance=1cm]
         \node (mine) [agent] {Mine};
-        \node (mill) [agent, right of=mine] {Mill};
-        \node (conversion) [agent, right of=mill, xshift=0.5cm] {Conversion};
-        \node (enrichment) [agent, right of=conversion, xshift=1cm]{Enrichment};
-        \node (fabrication) [agent, right of=enrichment, xshift=1.5cm]{Fuel Fabrication};
-        \node (reactor) [agent, below of=fabrication, yshift=-1.5cm]{Reactor};
+        \node (mill) [agent, right of=mine, xshift=0.5cm] {Mill};
+        \node (conversion) [agent, right of=mill, xshift=1cm] {Conversion};
+        \node (enrichment) [agent, right of=conversion, xshift=1.5cm]{Enrichment};
+        \node (fabrication) [agent, below of=enrichment, yshift=-1.5cm]{Fuel Fabrication};
+        \node (reactor) [agent, left of=fabrication, xshift=-1.5cm]{Reactor};
         \node (storage) [agent,  left of=reactor, xshift=-1cm]{Storage};
         \node (sinkhlw) [agent, left of=storage, xshift=-1cm]{Repository};
 
@@ -19,13 +19,13 @@
         \draw [arrow] (reactor) -- (storage);
         \draw [arrow] (storage) -- (sinkhlw);
         \pause
-        \node (reprocessing) [transition, above of=storage]{Reprocessing};
+        \node (reprocessing) [transition, above of=storage, yshift=0.5cm]{Reprocessing};
         
         \draw [arrow] (storage) -- (reprocessing);
         \draw [arrow] (reprocessing) -- (fabrication);
         \draw [arrow] (reprocessing) -- (sinkhlw);
         \pause
-        \node (downblending) [region, above of=fabrication]{Downblending};
+        \node (downblending) [region, below of=fabrication, yshift=-1cm]{Downblending};
         \draw [arrow] (downblending) -- (fabrication);
 
         \end{tikzpicture}
