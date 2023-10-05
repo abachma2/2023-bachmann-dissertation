@@ -2,19 +2,30 @@
 \begin{frame}
     \frametitle{Sensitivity analysis provides more insight into 
     the fuel cycles.}
-    To meet the third objective, I perform sensitivity analysis 
-    on Scenario 7, comparing the impact of different model parameters
+    To meet the third objective, I performed sensitivity analysis 
+    on Scenario 7 (once-through, Xe-100 + VOYGR + MMR), 
+    comparing the impact of different model parameters
     \begin{itemize}
         \item Couple \Cyclus with Dakota \cite{adams_dakota_2021}
-        \item Parameters include:
+        \item<2-> Input parameters include:
         \begin{itemize}
-            \item Transition start time
-            \item Percent of \glspl{LWR} operating for 80 years
-            \item Build share of Xe-100, VOYGR, MMR
-            \item Discharge burnup of Xe-100 and MMR
+            \item<2-> Transition start time
+            \item<2-> Percent of \glspl{LWR} operating for 80 years
+            \item<2-> Build share of Xe-100, VOYGR, MMR
+            \item<2-> Discharge burnup of Xe-100 and MMR
         \end{itemize}
-        \item Vary these parameters individually
-        \item Vary these parameters in different combinations
+        \item<3-> Output metrics include:
+        \begin{itemize}
+            \item<3-> Total enriched uranium mass
+            \item<3-> HALEU mass
+            \item<3-> Total SWU capacity
+            \item<3-> SWU capacity to produce HALEU
+            \item<3-> Feed uranium to produce HALEU
+            \item<3-> \gls{SNF} mass
+        \end{itemize}
+        \item<4-> Modify deployment scheme to prioritize reactor with 
+              specified build share, then deploy others in the same 
+              manner as before
     \end{itemize}
 
 \end{frame}
@@ -55,7 +66,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Effects of varying Xe-100 and MMR burnup}
+    \frametitle{Effects of varying Xe-100 build share and MMR burnup}
     \begin{columns}
 
         \column[t]{4cm}
@@ -83,7 +94,7 @@
 
 \begin{frame}
     \frametitle{Varying multiple parameters shows importance of the 
-    Xe-100 burnup}
+    Xe-100 characteristics}
     \begin{table}
         \centering
         \caption{Sobol' indices for the Gaussian model when varying the 
@@ -93,7 +104,7 @@
         \begin{tabular}{c c c c c c c}
             \hline
             & \multicolumn{6}{c}{Output Metric} \\
-            Parameter & Fuel Mass & HALEU Mass & SWU & HALEU SWU & Feed & SNF Mass \\
+            Parameter & Fuel & HALEU & SWU & HALEU SWU & Feed & SNF \\
             \hline
             Transition Start & 0.003 & 0.007 & 0.009 &
                                0.009 & 0.009 & 0.003\\
@@ -108,16 +119,15 @@
             \hline        
         \end{tabular}
     \end{table}
-        %<2-> \tikz[overlay, remember picture]{\draw{draw=red,thick, double, fillopacity=0.2] ($(infrastructure)+(-0.5,0.4)$) rectangle ($(infrastructure)+(6,-0.2)$);}} 
 \end{frame}
 
 \subsection{Optimization}
 \begin{frame}
     \frametitle{Use the \Cyclus-Dakota coupling to optimize the transition}
     \begin{itemize}
-        \item Use the Genetic algorithm in Dakota (single-objective or 
+        \item Use the genetic algorithms in Dakota (single-objective or 
         multi-objective) to perform optimization.
-        \item Use the parameters considered for sensitivity analysis, 
+        \item Consider the input parameters considered for sensitivity analysis, 
               except the transition start time
         \item Apply a linear constraint for the advanced reactor build shares
         \item Goal is to minimize the SWU capacity needed to 
@@ -132,7 +142,7 @@
         \begin{itemize}
             \item Optimizing for these metrics is a trade-off between 
                  building Xe-100s and VOYGRs
-            \item Genetic algorithm struggles with linear constraint for 
+            \item<2-> Genetic algorithm struggles with linear constraint for 
                   the three build shares
         \end{itemize}
 
