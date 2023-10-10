@@ -15,8 +15,8 @@ reactors.
 We model the transition from \glspl{LWR} to different 
 advanced reactors, considering once-through and closed 
 fuel cycles. We use \Cyclus and open-source 
-information about \glspl{LWR}, the X-energy Xe-100, 
-\gls{USNC} \gls{MMR}, and NuScale VOYGR to model these 
+information about \glspl{LWR}, the X-energy Xe-100, the
+\gls{USNC} \gls{MMR}, and the NuScale VOYGR to model these 
 transitions. To more accurately model the closed fuel 
 cycles, we develop a new \Cyclus archetype, called OpenMCyclus, 
 that couples with OpenMC to dynamically model fuel depletion in a 
@@ -43,7 +43,7 @@ because of how the deployment scheme affects the number of
 Xe-100s built no matter which advanced reactor build share is 
 specified. 
 
-We then use the \Cyclus-Dakota to optimize a once-through transitions, 
+We then use the \Cyclus-Dakota to optimize a once-through transition, 
 using the genetic algorithms in Dakota. In single-objective problems to 
 minimize the \gls{SWU} capacity required to produce \gls{HALEU} and 
 minimize the amount of spent nuclear fuel, the algorithm finds 
@@ -61,7 +61,7 @@ evaluate the performance of downblended \gls{HEU} in these
 two reactor designs. We compare the performance of the downblended 
 \gls{HEU} to nominally enriched fuel, based on the 
 \keff, \betaEff, energy- and spatially-dependent neutron 
-fluxes, and the fuel, moderator, coolant, and total reactivity 
+fluxes, as well as the fuel, moderator, coolant, and total reactivity 
 temperature feedback coefficients. The differences in the fuel 
 compositions leads to differences in each of the metrics. 
 However, these differences are within error or would not prevent the 
