@@ -3,7 +3,7 @@ scenarios (Scenarios 14-19) described
 in Section \ref{sec:recycle-methods}. The primary results considered 
 for these fuel cycle transitions are the uranium resources needed, 
 the \gls{SWU} capacity requried, the separated plutonium masses, 
-and the mass of material disposed of. This chapter does not focus 
+and the mass of disposed material. This chapter does not focus 
 as much on the number of reactors or the energy supplied by 
 the reactors because most of the scenarios use the same 
 deployment scheme as Scenarios 7 or 14 (depending on 
@@ -17,44 +17,56 @@ because the \gls{SFR} has a larger power output than the other
 advanced reactors (311 MWe compared with 80 MWe for the Xe-100).
 
 \section{Uranium resources}
-The uranium resources described here are divided into two primary 
+We divide the uranium resources described here into two primary 
 components: the heavy metal mass and the natural uranium 
-required to produce fuel. The heavy metal mass is further 
-broken into two parts: the mass of enriched uranium and the 
-mass of heavy metals in plutonium-based fuel. Enriched uranium 
-is in the 
+required to produce fuel. We further divide the heavy metal 
+mass into two parts: the enriched uranium and the 
+heavy metals in plutonium-based fuel (\gls{MOX} or U/TRU fuel). 
+Enriched uranium is in the 
 \gls{HALEU}, \gls{UOX}, and UCO fuels. Heavy metals in plutonium-based 
 fuels include the natural uranium, plutonium, and transuranic 
 elements in 
-the \gls{MOX} and U/TRU fuels. The separation of these metrics 
-stems from the different processes and resources needed to 
-produce each fuel type. The natural uranium masses are also 
-broken into two parts: feed uranium to produce enriched uranium 
-and the mass of natural uranium required to produce 
-plutonium-based fuel (\gls{MOX} or U/TRU fuel). This separation 
-of this metric provides more detailed insights into for 
-what the resources are needed as well as how much are needed. 
+the \gls{MOX} and U/TRU fuels. We separate these metrics 
+because of the different processes and resources needed to 
+produce each fuel type. We also divide the natural uranium 
+masses into two parts: the feed uranium to produce enriched uranium 
+and the natural uranium required to produce 
+plutonium-based fuel. Dividing this metric provides more details 
+on the resources needed to support these fuel cycles. 
 
 \subsection{No growth scenarios}
 This section presents the results of the uranium resources required 
 in the no growth, closed fuel cycle scenarios (Scenarios 14-16). 
-These results are split into the fuel masses (enriched uranium 
+We divide these results into the heavy metal masses (enriched uranium 
 and heavy metals in plutonium-based fuel) and the natural 
 uranium masses (feed uranium and natural uranium to produce 
-plutonium-based fuels).
+plutonium-based fuels). We compare each of these material requirements 
+based on monthly averages, maximum values, 
+and cumulative masses. We also compare the enriched uranium and feed uranium 
+masses based on the monthly average for \gls{HALEU}. 
 
-\subsubsection{Fuel masses}
-The mass of enriched uranium required by the no growth 
-closed fuel cycles are shown in Figure \ref{fig:nogrowth_recycle_uranium}.
+\subsubsection{Heavy metal masses}
+Figure \ref{fig:nogrowth_recycle_uranium} shows 
+the mass of enriched uranium required by Scenarios 14-16. 
 Scenario 15 requires the most enriched uranium, followed by 
-Scenario 14, then Scenario 16. 
+Scenario 14, then Scenario 16. Scenario 15 requires the most enriched 
+uranium because less material is available for reprocessing, leading to 
+less separated plutonium and less plutonium-based fuel available. The reactors 
+in these scenarios prefer plutonium-based fuel over uranium-based fuel. 
+Therefore, a larger supply of plutonium-based fuel means than less 
+uranium-based fuel is needed.
+The annual average mass of enriched uranium in Scenarios 14 and 15 increases 
+in 2043 because the plutonium-based fuel stockpiled up from 
+reprocessed \gls{LWR} \gls{SNF} is used up and there is not as much 
+plutonium from the advanced reactor \gls{SNF} to produce more 
+plutonium-based fuel. 
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_total_fuel.pdf}
-        \caption{Monthly mass of enriched uranium sent to all reactors 
+        \caption{Monthly mass sent to all reactors 
         between 1965-2090.}
         \label{fig:nogrowth_recycle_all_uranium}
     \end{subfigure}
@@ -62,15 +74,14 @@ Scenario 14, then Scenario 16.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_Uaverages.pdf}
-        \caption{Annual average mass of enriched uranium sent to 
+        \caption{Annual average mass sent to 
         advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_AR_uranium}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_Ucumulative.pdf}
-        \caption{Cumulative mass of enriched 
-        uranium sent to advanced reactors between 2025-2090.}
+        \caption{Cumulative mass sent to advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_uranium_cumulative}
     \end{subfigure}
        \caption{Mass of enriched uranium required by reactors
@@ -78,46 +89,41 @@ Scenario 14, then Scenario 16.
        \label{fig:nogrowth_recycle_uranium}
 \end{figure}
 
-Scenario 15 requires the most enriched 
-uranium because less material is available for reprocessing, leading to 
-less separated plutonium and less \gls{MOX} fuel available. 
-The annual average mass of enriched uranium in Scenarios 14 and 15 increases 
-in 2043 because the \gls{MOX} stockpiled up from the \gls{LWR} \gls{SNF} 
-is used up and there is not as much plutonium from the advanced reactor 
-\gls{SNF} to produce more \gls{MOX} fuel. 
-
 Scenario 16 does not require any uranium-based fuel to support the 
 advanced reactors. This result stems from a few key differences between 
-these fuel cycles. The first difference is that all of the advanced 
+Scenario 16 and the other no growth closed fuel cycle scenarios. The 
+first difference is that all of the advanced 
 reactors in Scenario 16 can accept reprocessed fuel, while the \glspl{MMR} 
 in Scenarios 14 and 15 will only accept \gls{UOX}. This modeling 
 decision for the \gls{MMR} means that any fuel cycle that 
 deploys the \gls{MMR} will always require some amount of uranium-based 
-fuel. The second is the reprocessing scheme.  
+fuel. Therefore, the lack of \gls{MMR} deployment in Scenario 16 allows 
+the possibility for this scenario to not require enriched uranium. 
+The second difference is the reprocessing scheme.  
 In Scenario 16, the spent fuel can be reprocessed an infinite number 
 of times while in Scenarios 14 and 15 the spent uranium-based fuel can 
 only be reprocessed once and the plutonium-based fuel can not be 
 reprocessed. This difference is inherent to the type of fuel cycle 
-(limited vs. continuous recycle). Additionally, the reprocessing 
+(limited vs. continuous recycle), and increases the amount of 
+\gls{SNF} available for reprocessing. Additionally, the reprocessing 
 step in Scenario 16 removes the uranium, neptunium, plutonium, 
 and americium from the spent fuel, compared with only plutonium 
-being separated out in Scenarios 14 and 15. The unlimited number of 
-times the spent fuel can be reprocessed and the additional 
-elements separated out in Scenario 16 increases the amount of 
-reprocessed fuel available.
+being separated out in Scenarios 14 and 15. Allowing more material 
+to be separated out of the \gls{SNF} in Scenario 16 leads to more 
+separated actinide material to create the plutonium-based fuel. 
 
 Table \ref{tab:s14-16_uranium} reports the average enriched uranium mass, 
 average \gls{HALEU} mass, maximum enriched uranium mass, and cumulative 
-enriched uranium mass required by these scenarios. Scenario 14 requires 
+enriched uranium mass required in Scenarios 14-16. Scenario 14 requires 
 less enriched uranium than Scenario 7, despite having the same 
 advanced reactor deployment schedule, because of the change in the 
 fuel cycle. By reprocessing spent fuel, the average \gls{HALEU} 
 mass required drops by 21.3\%. A similar decrease in cumulative 
-\gls{HALEU} needs is seen in Scenario 15, but the removal of 
+\gls{HALEU} needs is seen in Scenario 15. However, the removal of 
 \gls{TRISO} reprocessing results in a smaller decrease (15.1\%
 decrease). By reprocessing the \gls{TRISO}-based fuels in 
-Scenario 14, this scenario needs to a 6.35\% reduction in the 
-cumulative enriched uranium needs from Scenario 15. 
+Scenario 14, this scenario needs 6.35\% less enriched uranium, 
+cumulative, than Scenario 15. 
 
 \begin{table}[h!]
     \centering 
@@ -137,37 +143,32 @@ cumulative enriched uranium needs from Scenario 15.
     \end{tabular}
 \end{table}
 
+Scenarios 14, 15, and 16 require a cumulative enriched uranium 
+mass of 3,162, 2,667, and 0 MT, respectively, by 2050. These values 
+are smaller than the needs of the once-through fuel cycles 
+(Table \ref{tab:nogrowth_haleu}) and the estimated 5,350 MT from 
+Dixon et al. \cite{dixon_estimated_2022}. The closed fuel cycle 
+scenarios require less \gls{HALEU} than the once-through 
+fuel cycles because of the inclusion of reprocessing and use 
+of plutonium-based fuel in the advanced reactors. 
+
 In addition to the enriched uranium, the advanced 
 reactors receive heavy metals for the plutonium-based 
 fuels. Figure 
 \ref{fig:nogrowth_recycle_mox} shows that Scenario 16 requires more 
 plutonium-based fuel than the other scenarios. This result is consistent 
 with the reactors in Scenarios 16 not receiving any enriched 
-uranium. As Table 
-\ref{tab:s14-16_mox} reports, Scenario 16 needs a monthly average 
-of plutonium-based fuel that is larger than the maximum mass 
-needed in Scenarios 14 and 15. More heavy metal for plutonium-based fuel
-is sent to advanced reactor in Scenario 14 than  
-in Scenario 15 because of the greater availability of 
-\gls{MOX} fuel from the additional reprocessing of 
-\gls{TRISO}-based fuel. The heavy metals for plutonium fuels 
-in Scenarios 14 and 15 show a decrease in 2043, corresponding 
-to the increase in enriched uranium sent to reactors in these 
-scenarios. After the initial stock of \gls{MOX} from 
-\gls{LWR} spent fuel is used in Scenarios 14 and 15, an 
-average of 5.26 MT/month and 1.49 MT/month, respectively. These 
-values are both smaller than the average values reported 
-in Table \ref{tab:s14-16_mox}, highlighting the importance 
-of a stockpile of \gls{MOX} from \gls{LWR} spent fuel in 
-providing \gls{MOX} for advanced reactors in these fuel 
-cycles. 
+uranium. Scenario 14 uses the next largest mass of heavy metals for 
+plutonium-based fuel, followed by Scenario 15. However, the 
+magnitude of the masses between Scenario 16 and Scenarios 14-15 is 
+different. 
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_MOX.pdf}
-        \caption{Monthly masses of plutonium-based fuel sent to 
+        \caption{Monthly masses sent to 
         advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_AR_mox}
     \end{subfigure}
@@ -175,7 +176,7 @@ cycles.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_MOXcumulative.pdf}
-        \caption{Cumulative mass of plutonium-based fuel
+        \caption{Cumulative mass 
         sent to advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_mox_cumulative}
     \end{subfigure}
@@ -183,6 +184,30 @@ cycles.
         in Scenarios 14-16.}
        \label{fig:nogrowth_recycle_mox}
 \end{figure}
+
+As Table \ref{tab:s14-16_mox} reports, the average and cumulative 
+masses of plutonium-based fuel heavy metals in Scenario 16 and 
+Scenario 14-15 differ by an oder of magnitude. This large difference 
+is a result of the different reprocessing schemes, as previously 
+described. 
+Scenario 16 needs a monthly average 
+of plutonium-based fuel heavy metal that is more than the maximum mass 
+needed in Scenario 14. More heavy metal for plutonium-based fuel
+is sent to advanced reactor in Scenario 14 than  
+in Scenario 15 because of the greater availability of 
+plutonium-based fuel because of the reprocessing of 
+\gls{TRISO}-based fuel in Scenario 14. The heavy metals for plutonium fuels 
+in Scenarios 14 and 15 show a decrease in 2043, corresponding 
+to the increase in enriched uranium sent to reactors in these 
+scenarios. After the initial stock of plutonium-based fuel 
+from \gls{LWR} spent fuel is used in Scenarios 14 and 15, these 
+scenarios use an 
+average of 5.26 MT/month and 1.49 MT/month, respectively. These 
+values are both smaller than the average values reported 
+in Table \ref{tab:s14-16_mox}, highlighting the importance 
+of a stockpile of plutonium-based fuel from \gls{LWR} spent 
+fuel in providing plutonium-based fuel for advanced reactors in these fuel 
+cycles. 
 
 \begin{table}[h!]
     \centering 
@@ -209,20 +234,24 @@ result stems from the different discharge burnups of the reactors. The
 meets most of the demand in Scenarios 14 and 15) has a burnup of 168 MWd/kg U. 
 The Xe-100 gets more energy out of each unit mass of fuel, which leads to 
 Scenarios 14 and 15 requiring less fuel than Scenario 16. Scenario 16 is most 
-similar to Scenario 2 in the amount of heavy metals required. This result 
-stems from the \gls{SFR} and \gls{MMR} having similar discharge burnups.
+similar to Scenario 2 in the amount of heavy metals required, because
+the \gls{SFR} and \gls{MMR} have similar discharge burnups (87.51 MWd/kg 
+compared with 82.6 MWd/kg).
 
 \subsubsection{Natural uranium}
-The natural uranium required as feed uranium to produce enriched 
-uranium fuel for reactors is shown in Figure \ref{fig:nogrowth_recycle_feed}, 
-and the metrics reported in Table \ref{tab:s14-16_feed}. Scenario 15 requires 
+Figure \ref{fig:nogrowth_recycle_feed} shows 
+the natural uranium required as feed uranium to produce enriched 
+uranium fuel for advanced reactors in Scenarios 14-16.  
+Scenario 15 requires 
 the most feed uranium, followed by Scenarios 14 and 16. This pattern follows 
-with the enriched uranium mass in each scenario. Scenario 15 requires the 
-most feed mass because less spent fuel is reprocessed, leading to more 
-enriched uranium required, leading to more feed uranium needed. Scenario 
+with the enriched uranium mass in each scenario, because the enriched 
+uranium mass dictates the amount of feed uranium needed.
+Scenario 15 requires the 
+most feed mass because less \gls{SNF} is available for reprocessing, 
+leading to more 
+enriched uranium required. Scenario 
 16 does not requires any feed uranium because it does not require any 
-enriched uranium. The cumulative feed uranium needed in Scenarios 14 and 
-15 are both less than the cumulative feed uranium needed in Scenario 7.
+enriched uranium. 
 
 \begin{figure}[h!]
     \centering
@@ -230,7 +259,7 @@ enriched uranium. The cumulative feed uranium needed in Scenarios 14 and
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_feed.pdf}
         \caption{Monthly mass 
-        for all reactors between 1965-2090.}
+        to support all reactors between 1965-2090.}
         \label{fig:nogrowth_recycle_all_feed}
     \end{subfigure}
     \hfill
@@ -238,19 +267,26 @@ enriched uranium. The cumulative feed uranium needed in Scenarios 14 and
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_feed_average.pdf}
         \caption{Annual average  mass 
-        for all reactors between 2025-2090.}
+        to support advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_AR_feed}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_feed_cumulative.pdf}
-        \caption{Cumulative mass sent to advanced reactors between 2025-2090.}
+        \caption{Cumulative mass to support advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_feed_cumulative}
     \end{subfigure}
-       \caption{Mass of enriched uranium required by reactors
+       \caption{Mass of feed uranium required by reactors
         in Scenarios 14-16.}
        \label{fig:nogrowth_recycle_feed}
 \end{figure}
+
+Table \ref{tab:s14-16_feed} reports the metrics for the feed uranium 
+required in Scenarios 14-16. The cumulative feed uranium needed in 
+Scenarios 14 and 15 are both less than the cumulative feed uranium 
+needed in Scenario 7. The decrease in feed uranium needed demonstrates 
+how using a closed fuel cycle can reduce the feed uranium needs in 
+addition to reducing the fuel mass needs. 
 
 \begin{table}[h!]
     \centering 
@@ -286,7 +322,7 @@ plutonium-based fuel.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_natU.pdf}
-        \caption{Monthly masses sent to 
+        \caption{Monthly mass to support
         advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_AR_natu}
     \end{subfigure}
@@ -294,7 +330,7 @@ plutonium-based fuel.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_natU_cumulative.pdf}
-        \caption{Cumulative mass of between 2025-2090.}
+        \caption{Cumulative mass to support advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_natu_cumulative}
     \end{subfigure}
        \caption{Mass of natural uranium for plutonium-based fuel required 
@@ -304,15 +340,24 @@ plutonium-based fuel.
 \end{figure}
 
 Table \ref{tab:s14-16_natU} reports the metrics fo the natural uranium 
-required for Scenarios 14-16. The cumulative natural uranium mass 
+required for Scenarios 14-16. The metrics for Scenario 16 are one order 
+of magnitude greater than the metrics for Scenarios 14-15, the same as 
+the metrics of the plutonium-based fuel heavy metal. 
+The cumulative natural uranium mass 
 needed by Scenario 16 is more than one order of magnitude smaller than 
-the cumulative feed uranium masses in Scenarios 14 and 15. This 
-decrease in masses is because using natural uranium for plutonium-based 
-fuels does not have the same process losses as using the 
-material as feed material for enrichment. This result suggests that 
-using a closed fuel cycle, and more specifically using a continuous 
-reprocessing fuel cycle, is ideal for limiting the natural uranium 
-needed in a fuel cycle. 
+the cumulative feed uranium masses in Scenarios 14 and 15, because of the 
+difference in process losses in each use of natural uranium. Using natural 
+uranium as fill material in plutonium-based fuel has relatively small 
+process losses because the material is used in its direct form. However, 
+using natural uranium as feed for enrichment has large material losses 
+(referred to as the tails material stream)
+because of the low enrichment of natural uranium (0.711\%). Based on 
+Eq. \ref{eq:enrichment}, the process losses increase with increased 
+product mass demand and with increased product assay. The different 
+masses of natural uranium for use in plutonium-based fuel and 
+for enrichment suggests that fuel cycle that maximizes 
+the amount of plutonium-based fuel and minimizes the amount of 
+enriched uranium required helps to minimize natural uranium requirements. 
 
 \begin{table}[h!]
     \centering 
@@ -334,31 +379,34 @@ needed in a fuel cycle.
 \subsection{1\% growth scenarios}
 This section presents the results of the uranium resources required 
 in the 1\% growth, closed fuel cycle scenarios (Scenarios 17-19). 
-These results are split into the fuel masses (enriched uranium 
+We divide these results into the fuel masses (enriched uranium 
 and heavy metals in plutonium-based fuel) and the natural 
 uranium masses (feed uranium and natural uranium to produce 
 plutonium-based fuels).
 
 \subsubsection{Fuel masses}
-The first fuel mass we consider is the enriched uranium mass, 
+The first fuel mass considered is the enriched uranium mass, 
 shown in Figure \ref{fig:1percent_recycle_uranium}. These results 
 show the same pattern as this metric for the no growth scenarios:
 Scenario 18 requires the most enriched uranium and Scenario 19 
 does not require any enriched uranium. In Scenarios 17 and 18 the 
 increase in enriched uranium need occurs closer to 2040 and is a 
-more gradual increase. These results stem from the growth in energy 
-demand, and subsequently reactor deployment, leading to the stockpile 
-of \gls{MOX} from \gls{LWR} spent fuel to be used up sooner. 
-Additionally, the change in reactor deployment leads to different 
-proportions of the advanced reactors, which leads to the more gradual 
-increase in the enriched uranium needs.
+more gradual increase than the observed increase in Scenarios 14-15. 
+These results stem from differences in the growth in energy 
+demand, and subsequent differences in reactor deployment, leading to the stockpile 
+of plutonium-based fuel from \gls{LWR} \gls{SNF} to be used up sooner. 
+The differences in energy demand and reactor deployment lead to different 
+proportions of the advanced reactors, specifically the artificially
+inflated number of \gls{MMR} deployed in these scenarios. These differences 
+then leads to the more gradual increase in the enriched uranium needs
+because of the slow increase in the number of \glspl{MMR} deployed.
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_total_fuel.pdf}
-        \caption{Monthly mass of enriched uranium sent to all reactors 
+        \caption{Monthly mass sent to all reactors 
         between 1965-2090.}
         \label{fig:1percent_recycle_all_uranium}
     \end{subfigure}
@@ -366,15 +414,14 @@ increase in the enriched uranium needs.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_Uaverages.pdf}
-        \caption{Annual average mass of enriched uranium sent to 
+        \caption{Annual average mass sent to 
         advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_AR_uranium}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_Ucumulative.pdf}
-        \caption{Cumulative mass of enriched 
-        uranium sent to advanced reactors between 2025-2090.}
+        \caption{Cumulative mass sent to advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_uranium_cumulative}
     \end{subfigure}
        \caption{Mass of enriched uranium required by reactors
@@ -411,16 +458,20 @@ needed.
 
 Next is the mass of plutonium-based fuels sent to the advanced reactors 
 in Scenarios 17-19, shown in Figure \ref{fig:1percent_recycle_mox}.
-Similar to the no growth scenarios, Scenario 19 requires the most 
+Similar to the patterns of the no growth scenarios, Scenario 19 
+requires the most 
 plutonium-based fuel of the three scenarios and Scenario 17 
 requires more than Scenario 18. Scenarios 17 and 18 show the 
-initial stockpile of \gls{MOX} from \gls{LWR} spent fuel that 
+initial stockpile of plutonium-based fuel from \gls{LWR} \gls{SNF} that 
 gets used by 2040. The plutonium-based fuel mass in Scenario 18 
 drops to near zero after 2060, because all of the spent fuel from 
-the \glspl{LWR} has been processed and used to create \gls{MOX}, 
+the \glspl{LWR} has been processed and used to create plutonium-based 
+fuel, 
 and there are so few VOYGRs (the only advanced reactor spent fuel 
 reprocessed in this scenario) to produce more separated plutonium 
-and more \gls{MOX}. 
+and more \gls{MOX}. The differences in the plutonium-based fuel 
+heavy metal masses in these three scenarios is primarily 
+a function of the reprocessing scheme of each scenario. 
 
 \begin{figure}[h!]
     \centering
@@ -478,10 +529,11 @@ much fuel is required for a fuel cycle.
 
 \subsubsection{Natural uranium}
 The next two metrics are related to the natural uranium requirements of 
-the 1\% growth scenarios. The first of these two metrics is the 
+Scenarios 17-19. The first of these two metrics is the 
 natural uranium needed as feed material for enrichment, shown in 
 Figure \ref{fig:1percent_recycle_feed}. The feed uranium masses follow with 
-the enriched uranium masses in these scenarios. Scenario 18 requires 
+the enriched uranium masses in these scenarios, because of 
+the relationship between these two metrics. Scenario 18 requires 
 the most feed uranium, and Scenario 19 requires no feed uranium. 
 There is increased demand for feed uranium with time in Scenarios 17 
 and 18, resulting from the increased energy demand 
@@ -492,7 +544,7 @@ and the increased demand of uranium-based fuel in the scenarios.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_feed.pdf}
-        \caption{Monthly mass for all reactors 
+        \caption{Monthly mass to support all reactors 
         between 1965-2090.}
         \label{fig:1percent_recycle_all_feed}
     \end{subfigure}
@@ -500,14 +552,14 @@ and the increased demand of uranium-based fuel in the scenarios.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_feed_average.pdf}
-        \caption{Annual average mass for 
+        \caption{Annual average mass to support
         advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_AR_feed}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_feed_cumulative.pdf}
-        \caption{Cumulative mass for advanced reactors between 2025-2090.}
+        \caption{Cumulative mass to support advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_feed_cumulative}
     \end{subfigure}
        \caption{Masses of feed uranium required by reactors
@@ -550,13 +602,17 @@ required to produce plutonium-based fuels in Scenarios 17-19. Scenario
 followed by Scenario 17, then Scenario 18. The masses of plutonium-based 
 fuel drives the demand for this natural uranium, therefore these 
 results follow the same patterns seen in Figure \ref{fig:1percent_recycle_mox}.
+Scenario 19 requires the most natural uranium for plutonium-based 
+fuels because the advanced reactors in this scenario only receive 
+plutonium-based fuel, and the \gls{SFR} requires more fuel than 
+the Xe-100. 
 
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_natU.pdf}
-        \caption{Monthly mass sent to all reactors 
+        \caption{Monthly mass to support advanced reactors 
         between 1965-2090.}
         \label{fig:1percent_recycle_AR_natu}
     \end{subfigure}
@@ -564,12 +620,12 @@ results follow the same patterns seen in Figure \ref{fig:1percent_recycle_mox}.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_natU_cumulative.pdf}
-        \caption{Cumulative mass  sent to 
+        \caption{Cumulative mass to support
         advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_natu_cumulative}
     \end{subfigure}
-       \caption{Mass of natural uranium required by reactors
-        in Scenarios 17-19.}
+       \caption{Mass of natural uranium required by reactors in 
+       plutonium-based fuels in Scenarios 17-19.}
        \label{fig:1percent_recycle_natU}
 \end{figure}
 
@@ -578,12 +634,13 @@ natural uranium for plutonium-based fuels in Scenarios 17-19.
 These metric follow the same pattern observed for the 
 no growth scenarios (Scenarios 14-16). Despite Scenario 19 
 requiring the most natural uranium for plutonium-based 
-fuels, this total is still less than the feed uranium 
-masses required in Scenarios 17 and 18. The decreased total 
+fuels, this total is still less than the cumulative feed uranium 
+masses required in Scenarios 17 and 18 by almost a factor 
+of two. The decreased total 
 natural uranium mass in Scenario 19, compared with Scenarios 
 17 and 18, is a result of the lack of (or minimal) material loss in 
 using natural uranium for plutonium-based fuel, compared with 
-the losses fro using natural uranium as feed material for 
+the losses from using natural uranium as feed material for 
 enrichment. 
 
 \begin{table}[h!]
@@ -615,25 +672,27 @@ Figure \ref{fig:nogrowth_recycle_swu} shows \gls{SWU} capacity required
 in Scenarios 14-16. For Scenarios 14 and 15 the required \gls{SWU} 
 capacity for the advanced reactors is relatively small, then increases 
 around 2043, corresponding with the increased need for enriched uranium 
-for reactors in these scenarios. 
+for reactors observed in Figure \ref{fig:nogrowth_recycle_uranium}. Scenario 
+16 does not require any \gls{SWU} capacity because the advanced reactors 
+in this scenario do not receive any enriched uranium. 
+
 \begin{figure}[h!]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_swu.pdf}
-        \caption{Monthly SWU capacity required to produce 
-        enriched uranium for all reactors between 2025-2090.}
+        \caption{Monthly SWU capacity to support all reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_swu_all}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{nogrowth_recycle_AR_swu.pdf}
-        \caption{Monthly SWU capacity required to produce 
-        enriched uranium for advanced reactors between 2025-2090.}
+        \caption{Annual average to support advanced reactors between 2025-2090.}
         \label{fig:nogrowth_recycle_swu_AR}
     \end{subfigure}
-       \caption{\gls{SWU} capacity required in Scenarios 14-16.}
+       \caption{\gls{SWU} capacity required to support 
+       reactors in Scenarios 14-16.}
        \label{fig:nogrowth_recycle_swu}
 \end{figure}
 
@@ -643,13 +702,14 @@ average \gls{SWU} capacities than Scenarios 2-7, and require a
 smaller average \gls{SWU} capacity to produce \gls{HALEU} than 
 Scenarios 2, 3, 4, 6, and 7. Scenario 5 requires less \gls{SWU} 
 capacity to produce \gls{HALEU} because this scenario 
-primarily deploys VOYGRs. Scenario 16 requires the least 
-\gls{SWU} capacity of any of the no growth transitions 
-modeled in this work, because the \glspl{SFR} in this scenario
-do not receive any enriched uranium. The differences in the 
+primarily deploys VOYGRs and requires less \gls{HALEU} than 
+any of the no growth scenarios that require \gls{HALEU}. 
+The differences in the 
 \gls{SWU} capacity needed by these scenarios is a function of 
 the reactors deployed and the amount of material available for 
-reprocessing.
+reprocessing. These parameters drive the amount of enriched 
+uranium needed in each scenario, which drives the needed 
+\gls{SWU} capacity.
 
 \begin{table}[h!]
     \centering 
@@ -672,12 +732,15 @@ reprocessing.
 The results of these scenarios identify recycling \gls{SNF} as a way 
 to reduce the \gls{SWU} capacity required in a fuel cycle. Additionally, 
 increasing the amount of \gls{SNF} available for reprocessing further 
-reduces the \gls{SWU} capacity required. However, the US does not have 
-any facilities for reprocessing commercial fuel, meaning that new 
-infrastructure must be developed and build for any fuel recycling to 
-occur in the US. Therefore, this method of reducing the 
-required \gls{SWU} capacity is not going to help in meeting initial 
-fuel demands for \gls{HALEU}-fueled reactors in the US. 
+reduces the \gls{SWU} capacity required. The lack of needed 
+\gls{SWU} capacity in Scenario 16 indicates that developing this 
+fuel cycle would not require any new enrichment capacity to be developed 
+in the US.  However, the US does not have 
+any facilities for reprocessing commercial fuel. Therefore, reprocessing
+fuel does not assist in meeting initial \gls{HALEU} demand because 
+the US would need to develop new infrastructure to support any 
+of these transitions, whether it is enrichment facilities, 
+reprocessing facilities, or both.
 
 \subsection{1\% growth scenarios}
 Figure \ref{fig:1percent_recycle_swu} shows the \gls{SWU} capacity 
@@ -692,29 +755,39 @@ not need any \gls{SWU} capacity to support the advanced reactors.
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_swu.pdf}
-        \caption{Monthly SWU capacity required to produce 
-        enriched uranium for all reactors between 2025-2090.}
+        \caption{Monthly SWU capacity to support all reactors between 2025-2090.}
         \label{fig:1percent_recycle_swu_all}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{1percent_recycle_AR_swu.pdf}
-        \caption{Monthly SWU capacity required to produce 
-        enriched uranium for advanced reactors between 2025-2090.}
+        \caption{Annual average SWU capacity to support 
+        advanced reactors between 2025-2090.}
         \label{fig:1percent_recycle_swu_AR}
     \end{subfigure}
-       \caption{\gls{SWU} capacity required in Scenarios 14-16.}
+       \caption{\gls{SWU} capacity required to support reactors in Scenarios 14-16.}
        \label{fig:1percent_recycle_swu}
 \end{figure}
 
 Table \ref{tab:s17-19_swu} reports the metrics for the \gls{SWU} capacities 
 required in Scenarios 17-19. Scenarios 17 and 18 require less 
-\gls{SWU} capacity than Scenario 13, because of use of 
-reprocessing and plutonium-based fuel decreasing the need for 
+\gls{SWU} capacity than Scenario 13, because the use of 
+reprocessing and plutonium-based fuel decreases the need for 
 enriched uranium. Scenarios 17 and 18 require more \gls{SWU} 
 capacity than Scenarios 9 and 12, because of the difference in 
-the advanced reactors deployed between these scenarios. 
+the advanced reactors deployed between these scenarios. These results 
+vary from the results of the no growth scenarios, in which the 
+average \gls{SWU} of the closed fuel cycles were smaller than the 
+average capacity in the once-through fuel cycles. This difference 
+between the energy demand curves is a result of the deployment 
+scheme artificially inflating the number of \glspl{MMR} built. This 
+extra deployment of \glspl{MMR} in the 1\% growth scenarios that 
+deploy the \gls{MMR} increases the \gls{SWU} capacity because the 
+\gls{MMR} requires more enriched uranium and a higher enrichment 
+level than the Xe-100 and VOYGR. Therefore, the deployment scheme 
+of the reactors affects the metrics of the transition when changing 
+the energy demand. 
 
 \begin{table}[h!]
     \centering 
@@ -738,7 +811,7 @@ the advanced reactors deployed between these scenarios.
 The next metric of interest is the separated actinide mass sent 
 from the separations facility to the fuel fabrication facility. 
 The separated actinide masses include any actinides separated 
-from \gls{SNF} (i.e., the uranium, neptunium, plutonium, and 
+from \gls{SNF} (i.e., uranium, neptunium, plutonium, and 
 americium). 
 This metric provides context on how much material is available for 
 producing plutonium-based fuels, and has implications on 
@@ -753,12 +826,12 @@ plutonium of the three scenarios, which is consistent with the other
 results of these scenarios. Scenarios 14 and 15 have very little 
 separated plutonium compared with Scenario 16. The primary reason 
 for this large difference is the elements separated out in 
-each scenario. In scenario 16, four different actinide elements 
+each scenario. In Scenario 16, four different actinide elements 
 are separated out from the fission products (uranium, neptunium,
 plutonium, and americium), but in Scenarios 14 and 15 only plutonium 
 is separated out. The inclusion of other elements to separate out 
 in Scenario 16 (primarily the uranium, which consists of up to 
-93\% of \gls{SNF}), increases the mass of material that can be 
+93\% of \gls{SNF}), increases the mass of material  
 separated out from the \gls{SNF}. 
 
 \begin{figure}[h!]
@@ -784,9 +857,11 @@ separated out from the \gls{SNF}.
 Table \ref{tab:s14-16_sep_pu} reports the metrics of the separated 
 plutonium in Scenarios 14-16. All three scenarios experience a 
 maximum amount of separated actinides at the same time, in 
-December of 2031. This timing corresponds with \gls{SNF} discharged 
-from \glspl{LWR} in December of 2025 and fuel from advanced reactors
-discharged in October 2031. 
+November 2031. This timing corresponds with \gls{SNF} discharged 
+from \glspl{LWR} in November 2025 and fuel from advanced reactors
+discharged in October 2031. This consistency in the maximum 
+for these three scenarios emphasizes the importance of reprocessing 
+the \gls{SNF} from \glspl{LWR} in these metrics.  
 
 \begin{table}[h!]
     \centering 
@@ -819,14 +894,15 @@ this fuel cycle. Between 2060-2090 (after all spent fuel from
 \glspl{LWR} is processed) the \glspl{SFR} require an 
 average of 90.3 MT/month of U/TRU fuel, and an average of 95.2 
 MT/month of separated actinides. Therefore, the \gls{SFR} could 
-still sustain themselves using reprocessed fuel.
+still sustain producing enough plutonium-based 
+fuel from reprocessing \gls{SFR} \gls{SNF}.
 
 Scenario 16 models the reprocessed uranium as being part of 
 the fresh reprocessed fuel. Therefore, it is likely that 
 fabricating the reprocessed fuel would not need the natural
 uranium masses defined in Table \ref{tab:s14-16_natU}. If this 
 production method is possible, then the natural uranium needs 
-of the fuel cycle would drop to practically zero, further 
+of the fuel cycle would drop to near-zero, further 
 emphasizing how a closed fuel cycle can help minimize
 natural uranium needs. 
 
@@ -837,7 +913,8 @@ scenarios, Scenario 19 has a much greater mass of separated
 actinide material than Scenarios 17 and 18. The greater mass in 
 Scenario 19 is a result of multiple actinide elements being 
 separated out from the \gls{SNF}, compared with only 
-plutonium separated in Scenarios 17 and 18. 
+plutonium separated in Scenarios 17 and 18, as well as more fuel 
+being reprocessed in Scenario 19. 
 
 \begin{figure}[h!]
     \centering
@@ -861,10 +938,12 @@ plutonium separated in Scenarios 17 and 18.
 \end{figure}
 
 Table \ref{tab:s17-19_sep_pu} reports the metrics of the separated 
-actinide masses on Scenarios 17-19. Each of these scenarios has more 
-separated actinide material than the corresponding 
-no growth scenario, as expected based on these scenarios deploying 
-more reactors than the no growth scenarios. 
+actinide masses on Scenarios 17-19. Scenarios 17 and 18 have the 
+maximum separated plutonium mass in November 2031, the same time 
+as the maximum in Scenarios 14 and 15. The consistency in the 
+maximum separated actinide mass in all four of the limited 
+recycle scenarios emphasizes the importance of reprocessing the 
+\gls{LWR} \gls{SNF} in these scenarios. 
 
 \begin{table}[h!]
     \centering 
@@ -882,10 +961,7 @@ more reactors than the no growth scenarios.
     \end{tabular}
 \end{table}
 
-Scenarios 14, 15, 17, 
-and 18 all have the same maximum separated actinide mass, occurring in 
-November 2031. The consistency is a result of these scenarios getting 
-most of the separated actinides from \gls{LWR} \gls{SNF}. Figure 
+Figure 
 \ref{fig:recycle_sep_pu} shows the annual average and cumulative 
 separated actinide mass in Scenarios 14, 15, 17, and 18. All four of 
 these scenarios have the same separated actinide masses until 
@@ -929,7 +1005,11 @@ of the materials needing disposal in those scenarios are \gls{SNF}.
 With the addition of the separation step, the \gls{SNF} discharged 
 from reactors gets separated into two different material streams, 
 one of the separated plutonium and one of \gls{HLW} that is sent 
-for disposal.
+for disposal. \gls{SNF} 
+is the spent fuel from each of the reactors that is disposed 
+with reprocessing. \gls{HLW} is 
+the waste (e.g., fission products) separated out from the 
+reprocessed \gls{SNF}. 
 
 \subsection{No growth scenarios}
 This section presents the results of the \gls{SNF} and 
@@ -937,15 +1017,17 @@ This section presents the results of the \gls{SNF} and
 material sink in the no growth recycle scenarios. 
 
 \subsubsection{Spent nuclear fuel}
-Figure \ref{fig:nogrowth_recycle_snf} shows the monthly and 
-cumulative masses of advanced reactor \gls{SNF} disposed of 
+Figure \ref{fig:nogrowth_recycle_snf} shows the 
+masses of advanced reactor \gls{SNF} disposed of 
 in Scenarios 14-16. In Scenario 14 only the spent \gls{MOX} 
 fuel is disposed of, in Scenario 15 the spent \gls{MOX} as 
 well as the spent \gls{MMR} and Xe-100 fuels are disposed of, 
 and no \gls{SNF} is disposed of in Scenario 16. The disposal of 
 \gls{MMR} \gls{SNF} in Scenario 15 leads to the single times 
 with larger disposal masses, because of the single-batch 
-fueling scheme of the \gls{MMR}. 
+fueling scheme of the \gls{MMR}. The additional fuel that 
+is disposed of in Scenario 15, compared with Scenarios 
+14 and 16, increases the amount of \gls{SNF} disposed. 
 
 \begin{figure}[h!]
     \centering
@@ -964,20 +1046,16 @@ fueling scheme of the \gls{MMR}.
         at each time step between 2025-2090.}
         \label{fig:nogrowth_recycle_snf_cumulative}
     \end{subfigure}
-       \caption{\gls{SNF} disposed of in Scenarios 14-16.}
+       \caption{Spent nuclear fuel disposed of in Scenarios 14-16.}
        \label{fig:nogrowth_recycle_snf}
 \end{figure}
 
 Table \ref{tab:s14-16_snf} reports the metrics for the \gls{SNF} disposal 
-in Scenarios 14-16. Based on these values and the results in 
-Figure \ref{fig:nogrowth_recycle_snf}, including more fuel for 
-reprocessing can greatly reduce the mass of \gls{SNF}. All three of 
-these scenarios have a cumulative \gls{SNF} mass smaller than 
-that of all of the once-through scenarios. Additionally, 
-the \gls{SNF} from advanced reactors in all three of these scenarios 
-is less than the 70,000 MT limit for Yucca Mountain. The reduction in 
-\gls{SNF} mass compared with the once-through scenarios highlights 
-an advantage of closed fuel cycles. 
+in Scenarios 14-16. The values in this table are smaller than 
+the \gls{SNF} masses in the once-through scenarios (Table 
+\ref{tab:nogrowth_waste}). This decrease in \gls{SNF} disposal is 
+a result of the reprocessing in Scenarios 14-16, and is an 
+advantage of a closed fuel cycle. 
 
 \begin{table}[h!]
     \centering 
@@ -995,8 +1073,18 @@ an advantage of closed fuel cycles.
     \end{tabular}
 \end{table}
 
+Based on these values and the results in 
+Figure \ref{fig:nogrowth_recycle_snf}, including more fuel for 
+reprocessing can greatly reduce the mass of \gls{SNF}. All three of 
+these scenarios have a cumulative \gls{SNF} mass smaller than 
+that of all of the once-through scenarios. Additionally, 
+the \gls{SNF} from advanced reactors in all three of these scenarios 
+is less than the 70,000 MT limit for Yucca Mountain. The reduction in 
+\gls{SNF} mass compared with the once-through scenarios highlights 
+an advantage of closed fuel cycles. 
+
 \subsubsection{High level waste}
-Finally, Figure \ref{fig:nogrowth_recycle_hlw} shows the 
+Figure \ref{fig:nogrowth_recycle_hlw} shows the 
 \gls{HLW} masses for disposal in Scenarios 14-16. Scenario 
 14 results in the most \gls{HLW}, because more 
 material is reprocessed in this scenario than in Scenario 15, 
@@ -1006,7 +1094,7 @@ near-zero level around 2060, because all of the \gls{LWR}
 \gls{SNF} is reprocessed by this time which leaves only
 the VOYGR \gls{SNF} available for reprocessing. A 
 maximum of 7 VOYGRs are deployed at a time in Scenario 
-15, so there is very little material reprocessed and 
+15, so there is very little \gls{SNF} reprocessed and 
 little \gls{HLW} generated after 2060. 
 
 \begin{figure}[h!]
@@ -1033,17 +1121,18 @@ little \gls{HLW} generated after 2060.
 Table \ref{tab:s14-16_hlw} reports the metrics for the \gls{HLW} 
 in Scenarios 14-16. Scenario 16 generates very little 
 \gls{HLW} because the actinide material separated out 
-comprises most of the mass of the waste material. The \gls{HLW} 
+comprises most of the mass of the \gls{SNF}. The \gls{HLW} 
 masses for Scenarios 14 and 15 are larger than the \gls{SNF} 
 masses for these scenarios, and are larger than the \gls{SNF} 
-masses of the no growth, once-through scenarios. The increase 
+masses of the no growth, once-through scenarios, except 
+Scenario 5. The increase 
 comes from the inclusion of \gls{LWR} \gls{SNF} for reprocessing 
 in these scenarios. Including this \gls{SNF} increases the 
 disposed material mass because this metric is not solely focused 
-on material from the advanced reactors. The average for 
+on material from the advanced reactors like it was for 
+the once-through scenarios. The average for 
 Scenario 14 is similar to the average \gls{SNF} disposed of 
-between 2025-2055 in Scenario 1 (94.27 MT/month), but these 
-values consider different time frames. 
+between 2025-2055 in Scenario 1 (94.27 MT/month). 
 
 \begin{table}[h!]
     \centering 
@@ -1070,7 +1159,7 @@ capacities. The \gls{HLW} in Scenario 14 is more than
 the 70,000 MT limit of Yucca Mountain, so a second 
 repository would be needed to disposal of both waste 
 streams. The \gls{SNF} and \gls{HLW} materials in 
-Scenario 15 sum to 77,917 MY, meaning that a second 
+Scenario 15 sum to 77,917 MT, meaning that a second 
 repository would be needed to support this scenario 
 as well. These material streams sum to 3,903 MT in 
 Scenario 16, which means that the Yucca Mountain 
@@ -1088,7 +1177,10 @@ Figure \ref{fig:nogrowth_recycle_snf} shows the mass of \gls{SNF}
 disposed of in Scenarios 17-19. These results follow a similar 
 pattern to the no growth scenarios; Scenario 18 disposes of 
 the most \gls{SNF}, followed by Scenario 17, and Scenario 
-19 does not have any \gls{SNF} disposed of. 
+19 does not have any \gls{SNF} disposed of. This pattern 
+emerges because of the material available for reprocessing 
+in each scenario. The more \gls{SNF} reprocessed, the less 
+\gls{SNF} disposed. 
 
 \begin{figure}[h!]
     \centering
@@ -1112,7 +1204,14 @@ the most \gls{SNF}, followed by Scenario 17, and Scenario
 Table \ref{tab:s17-19_snf} reports the metrics of the \gls{SNF} 
 disposed of in Scenarios 17-19. Scenarios 17 and 19 dispose of 
 less \gls{SNF} than Scenarios 8-13, but Scenario 18 disposes of 
-more \gls{SNF} than Scenario 9. The \gls{SNF} mass comparisons 
+more \gls{SNF} than Scenario 9. Scenario 9 only deploys the 
+Xe-100, while Scenario 18 has an artificially inflated number of 
+\glspl{MMR} deployed, and the Xe-100 uses less fuel than the 
+\gls{MMR}. We observe this effect in Scenario 18 and not 
+Scenario 17, because \gls{MMR} \gls{SNF} is reprocessed in 
+Scenario 17 but not in Scenario 18. Therefore the \gls{MMR} 
+\gls{SNF} in Scenario 17 get split between the 
+\gls{HLW} and plutonium-based fuel material streams. The \gls{SNF} mass comparisons 
 between the closed and once-through fuel cycles are consistent 
 with the other results: reprocessing fuel reduces material metrics, 
 but the reactors deployed are the primary driver of the metrics. 
@@ -1187,7 +1286,7 @@ of these fuel cycles.
 \end{table}
 
 The cumulative \gls{HLW} mass in Scenario 17 is larger than the 70,000
-MT limit for the first US repository. The cumulative \gls{HLW} mass 
+MT limit for Yucca Mountain. The cumulative \gls{HLW} mass 
 in Scenario 18 is less than the 70,000 MT limit, but combining this with 
 the 43,113 MT of \gls{SNF} pushes the total waste over the 70,000 MT 
 limit. Therefore, a second repository would be needed to support 
