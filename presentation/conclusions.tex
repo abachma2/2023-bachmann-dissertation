@@ -3,25 +3,19 @@
       \begin{itemize}
         \item This work investigates the impacts of deploying \gls{HALEU}-fueled 
               reactors on the nuclear fuel cycle.
-        \item The material requirements of the transitions modeled are governed 
-              by the enrichment level and fuel utilization of the advanced 
-              reactors deployed
-            \begin{itemize}
-              \item Deploying only \glspl{MMR} has the largest feed uranium and
-                    \gls{SWU} requirements
-              \item Deploying primarily VOYGRs has the largest enriched uranium 
-                    requriements
-            \end{itemize}
-        \item More work is needed to complete this Investigation
-        \begin{itemize}
-            \item Model the transition to advanced reactors assuming a recycle fuel cycle
-            \item Perform sensitivity analysis to investigate and quantify the effect 
-                  of model parameters on the material requirements
-            \item Identify optimized transition scenarios based on minimizng material 
-                  requirements
-            \item Investigate any potential limits in using downblended \gls{HEU} 
-                  in advanced reactors
-        \end{itemize}
+        \item<2-> The material requirements of the transitions modeled are governed 
+              by the design characteristics of the reactors deployed
+        \item<2-> Closing the fuel cycle decreases material needs, but the 
+              decrease is governed by the recycling scheme and the 
+              material available for reprocessing
+        \item<3-> Sensitivity analysis showed more details on how the 
+              advanced reactor characteristics affect the material requirements, and 
+              the importance of the Xe-100 burnup
+        \item<3-> Found optimized transitions, but other algorithms should 
+              be used when using a linear constraint
+        \item<4-> The impurities from downblending \gls{HEU} affect 
+              reactor parameters, but won't necessarily prevent key design 
+              parameters from being met
       \end{itemize}
 \end{frame}
 
@@ -40,6 +34,12 @@
                     safeguards
             \begin{itemize}
                   \item<4-> Incorporate potential safeguards measures into models
+            \end{itemize}
+            \item<5-> Expand analysis on impurities in \gls{HALEU}
+            \begin{itemize}
+                  \item<6-> Consider power-peaking factors
+                  \item<6-> Model burnable poisons and control rods 
+                  \item<6-> Model core in non-isothermal state
             \end{itemize}
       \end{itemize} 
 \end{frame}

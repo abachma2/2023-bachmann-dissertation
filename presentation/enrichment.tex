@@ -4,7 +4,7 @@
         \node (conversion) [agent] {\small Conversion};
         \node (enrichment) [agent, right of=conversion, xshift=1.25cm]{\small Enrichment};
         \node (fabrication) [agent, right of=enrichment, xshift=1.5cm]{\small Fuel Fabrication};
-        \node (sink) [agent, below of=enrichment]{\small Tails Sink};
+        \node (sink) [agent, below of=enrichment]{\small Disposal};
         
         \draw [arrow] (conversion) -- node[anchor=south]{F} (enrichment);
         \draw [arrow] (enrichment) -- node[anchor=south]{P}(fabrication);

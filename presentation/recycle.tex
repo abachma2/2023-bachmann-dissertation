@@ -38,6 +38,22 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Benchmark description}
+    \begin{columns}
+        \column[t]{5cm}
+        \begin{itemize}
+            \item Reactors prefer MOX over UOX
+            \item Ran with \Cycamore \texttt{Reactor} twice, toggling 
+                  the \texttt{decom\_transmute\_all} setting
+            \item Used OpenMC to get spent fuel compositions for use with 
+                  \Cycamore
+        \end{itemize}
+        \column[t]{5cm}
+        \input{../comparison.tex}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
         \column[t]{3.5cm}
@@ -48,7 +64,7 @@
         \column[t]{6.5cm}
         \begin{figure}
             \centering 
-            \includegraphics[scale=0.45, trim=0 30 0 30,clip]{comparison_pu_cumulative.pdf}
+            \includegraphics[scale=0.45, trim=0 0 0 30,clip]{comparison_pu_cumulative.pdf}
             \caption{Comparison of cumulative separated plutonium in benchmark between 
             OpenMCyclus and \Cycamore \texttt{Reactor}.}
         \end{figure}
@@ -68,7 +84,7 @@
         \column[t]{6.5cm}
         \begin{figure}
             \centering 
-            \includegraphics[scale=0.45, trim=0 30 0 30,clip]{comparison_pu_cumulative_discharge.pdf}
+            \includegraphics[scale=0.45, trim=0 0 0 30,clip]{comparison_pu_cumulative_discharge.pdf}
             \caption{Comparison of cumulative separated plutonium in benchmark between 
             OpenMCyclus and \Cycamore \texttt{Reactor}.}
         \end{figure}
@@ -109,7 +125,7 @@
         \label{tab:scenarios_recycle}
         \begin{tabular}{c l l l}
             \hline
-            Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
+            Scenario & Advanced Reactors & Energy demand & Recycle scheme\\\hline
             \rowcolor{lightorange}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
             \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
             \rowcolor{lightorange}16 & SFR& No growth & Continuous \\
@@ -156,6 +172,7 @@
 
         \column[t]{4.5cm}
         \begin{itemize}
+            \item Separations start in 2020
             \item U-based fuel is reprocessed, Pu-based fuel is disposed
             \item Reactors prefer Pu-based fuel over U-based fuel
             \item Separations remove Pu
@@ -175,13 +192,14 @@
     \begin{columns}
         
     \column[t]{6cm}
-    \vspace{-0.9cm}
+    \vspace{-0.5cm}
     \input{continuous-flow}
 
         \column[t]{4.5cm}
         \begin{itemize}
             \item Introduce a \gls{SFR} for transition, modeled through 
                   OpenMCyclus
+            \item Separation start 2020
             \item Can accept U/TRU fuel (preferred) or \gls{HALEU}
             \item Separations remove U, Np, Pu, Am
             \item<2-> Use the same deployment scheme for the \gls{SFR}
@@ -196,7 +214,7 @@
 
 \begin{frame}
     \frametitle{Advanced reactors}
-    \vspace{-0.2cm}
+    \vspace{-0.7cm}
     \begingroup
         \renewcommand{\arraystretch}{1.5}
         \begin{table}
@@ -207,15 +225,16 @@
             \label{tab:fast_rx}
             \begin{tabular}{l l}
                 \hline
-                Design Criteria & PRISM \cite{triplett_prism:_2012,fichtlscherer_assessing_2019}\\
+                Design Criteria & SFR \cite{triplett_prism:_2012,fichtlscherer_assessing_2019}\\
                 \hline
                 Power Output (MWth) & 840 \\
+                Power Output (MWe) & 311 \\
                 Capacity Factor & 90\%\tnote{1} \\
                 Enrichment (wt\% fissile Pu) &  11.3/13.5\\
                 Cycle Length (yrs) & 1 \\
                 Number of cycles &  4\\
                 Fuel form &  Metallic \\
-                Discharge fuel burnup (GWd/MTU) & 87.51 \\
+                Discharge fuel burnup (MWd/kg) & 87.51 \\
                 Reactor Lifetime (yrs)&  60\\
                 \hline
             \end{tabular}
