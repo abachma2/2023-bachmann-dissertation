@@ -471,7 +471,7 @@ facility that produces \gls{MOX} with a pre-defined composition for the
 advanced reactors. To determine the plutonium fraction in the 
 \gls{MOX} fuel, we calculated the plutonium equivalence of the $^{235}$U 
 based on the cross section data generated for the Xe-100 and VOYGR and 
-Eq. \ref{eq:pu_equivalence}.
+Eq. \ref{eq:pu_equivalence} \cite{baker_comparison_1963}.
 
     \begin{equation}
         N_{Pu239} = N_{U235}*\frac{p_{U235} - p_{U238}}{p_{Pu239} - p_{U238}},
@@ -479,7 +479,7 @@ Eq. \ref{eq:pu_equivalence}.
     \end{equation}
 in which:
     \begin{align*}
-        &p_i = \nu*\sigma_f - \sigma_a \text{ for nuclide } i \\
+        &p_i = \nu\sigma_f - \sigma_a \text{ for nuclide } i \\
         &N \text{ is the atom fraction of nuclide } i \\
         &\nu \text{ is the average number of neutrons per fission} \\
         &\sigma_f \text{ is the fission microscopic cross section for the nuclide} \\
@@ -845,7 +845,7 @@ not produce any power. If the core is not full and within the operating
 cycle, then it does not produce any power. After the refueling period 
 ends, the facility enters back into the operating cycle and repeats 
 this process until it is retired or until the simulation ends. Figure
-\ref{fig:openmcyclus_flow} shows the movement of materials 
+\ref{fig:openmcyclus-flow} shows the movement of materials 
 between each of the material inventories of the archetype and 
 the \Cyclus \gls{DRE}. 
 
