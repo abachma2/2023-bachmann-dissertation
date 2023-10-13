@@ -7,17 +7,18 @@ reactors require fuel at a higher enrichment level (5-20\% $^{235}$U,
 referred to as \acrfull{HALEU}) than current \acrfull{LWR} technology 
 (less than 5\% $^{235}$U). Using a higher enrichment level provides 
 numerous benefits to reactor operation, such as longer cycle 
-times and higher fuel burnup. However, there is currently no way 
+times and higher fuel burnup. However, there is currently no 
+domestic way 
 to produce commercial \gls{HALEU}, which has prompted investigations 
 into how to develop supply chains for \gls{HALEU}
 \cite{regalbuto_addressing_2020,dixon_estimated_2022}. Potential 
 methods to produce \gls{HALEU} include the enrichment of natural 
 uranium and the downblending of \acrfull{HEU}, with each 
-methods having limitations. Enriching natural 
+method having limitations. Enriching natural 
 uranium is limited by the facilities available to perform 
 the enrichment, and downblending \gls{HEU} is limited by the 
 amount of material available for downblending. Using either (or 
-both) of these methods will cause changes in the US \gls{NFC}. 
+both) of these methods will lead to changes in the US \gls{NFC}. 
 
 
 The goal of this work was to investigate the impacts of deploying reactors 
@@ -53,13 +54,14 @@ compositions of the \gls{HALEU} fuel on reactor performance (Chapter
 
 Chapter 3 provided an overview of the methodology used for the fuel 
 cycle analysis of this work. The methodology includes the 
-advanced reactors and fuel cycles considered and the 
+advanced reactors. advanced reactor design specifications,
+fuel cycles considered, and the 
 advanced reactor deployment scheme. This chapter also 
 describes OpenMCyclus, a new archetype that couples \Cyclus with 
-OpenMC to perform real-time depletion of fuel during a simulation. 
-This archetype extends the capabilities of real-time depletion in 
-\Cyclus by providing a coupling to an open-source code, and by 
-not making the depletion specific to a single reactor design. 
+OpenMC to dynamically perform depletion of fuel during a simulation. 
+This archetype extends the depletion capabilities in 
+\Cyclus by providing a coupling to an open-source code, and 
+allowing the depletion to be reactor-agnostic. 
 Benchmarking against the \Cycamore \texttt{Reactor} archetype, 
 a recipe-based archetype, shows generally good agreement with 
 regards to when materials are traded away. There 
@@ -71,7 +73,9 @@ fuel is irradiated while OpenMCyclus performs depletion on a
 single-cycle basis. This methodology difference leads to different 
 amounts of separated plutonium available, which propagates 
 to different amounts of \gls{MOX} fuel available for the 
-reactors. 
+reactors. The methodology in OpenMCyclus leads to less 
+separated plutonium available than the \Cycamore 
+\texttt{Reactor} methodology. 
 
 % Once-through analysis
 Chapter 4 presented the results of modeling the transition from 
@@ -94,11 +98,16 @@ Chapter 5 presented the results of modeling the transition from
 The results of this chapter show how the amount of material 
 available for reprocessing impacts the masses of separated 
 actinide material and the availability of plutonium-based 
-fuels. The amount of plutonium-based fuels impacts the 
+fuels (\gls{MOX} or U/TRU fuel). The amount of plutonium-based 
+fuels impacts the 
 mass of enriched uranium, feed uranium, and \gls{SWU} 
-capacity required. Additionally, the actinide elements 
+capacity required, because the plutonium-based fuel displaces 
+uranium-based fuel needed by the advanced reactors. Additionally,
+the actinide elements 
 separated from \gls{SNF} impacts the masses of \gls{HLW} and separated 
-actinide material. The separation of uranium from the 
+actinide material. The more actinide elements separated out from 
+\gls{SNF}, the more separated material available and more 
+plutonium-based fuel available. The separation of uranium from the 
 \gls{SNF} is the primary driver of this impact, as 
 \gls{SNF} is mostly uranium by mass. Finally, this chapter 
 showed how using a closed fuel cycle can reduce \gls{HALEU} 
@@ -116,13 +125,19 @@ Chapter 6 examined the effects of different input parameters for
 their effects on different output metrics for the fuel cycle transition from 
 \glspl{LWR} to different advanced reactors by performing sensitivity 
 analysis. We performed this analysis by coupling \Cyclus with Dakota 
-and perturbing input parameters based on the results of Chapters 4 and 
-5. The \acrfull{OAT} analysis identified the 
+and perturbing input parameters. We selected input parameters based 
+on the results in Chapter 4, specifically how the 
+relative number of each advanced reactor built and the burnup from 
+each reactor drove many of the transition metrics. 
+The \acrfull{OAT} analysis identified the 
 trends from varying each input parameter independently, and how the deployment 
-scheme for this work impacts each of the results. The analysis also 
-identified tradeoffs between different reactor designs, such as how the Xe-100 
-needs more \gls{HALEU} than the VOYGR, but a smaller fuel mass. We identified 
-the transition start time as not impactful on 
+scheme modeled in this work impacts each of the results. The analysis also 
+highlighted tradeoffs between different reactor designs based on 
+the results of the metrics and the number of each advanced reactor 
+built for a given input parameter. An example of the tradeoffs between 
+advanced reactors is the Xe-100 
+needing more \gls{HALEU} than the VOYGR, but a smaller total fuel mass. We identified 
+the transition start time as not as impactful on 
 the results as the other parameters. The synergistic 
 analysis identified how some of the input parameters interact to affect the output 
 metrics. Some of the combinations of input parameters (e.g., varying 
@@ -148,16 +163,18 @@ build shares.
 Chapter 7 demonstrated a methodology to optimize the once-through 
 transitions and identified transitions that minimize different 
 fuel cycle metrics. We used the same \Cyclus-Dakota coupling used 
-for the sensitivity analysis, using the sinlge- and multi-objective 
-genetic algorithms in Dakota. Results from this chapter show that minimizing the 
+for the sensitivity analysis, but changed the Dakota inputs 
+to apply the the sinlge- and multi-objective 
+genetic algorithms in Dakota to perform optimization. 
+Results from this chapter show that minimizing the 
 \gls{SWU} capacity to produce \gls{HALEU} requires maximizing the number of 
 VOYGRs built and minimizing the mass of \gls{SNF} requires maximizing the number 
 of Xe-100s built. Minimizing both of these fuel cycle metrics is a 
 balance between deploying Xe-100s and VOYGRs. The results of  
-these optimization problems show agreement in maximizing the number 
+all three optimization problems show agreement in maximizing the number 
 of \glspl{LWR} operating for 80 years, maximizing the Xe-100 burnup,
 and minimizing the \gls{MMR} build share. The \gls{MMR} burnup becomes
-irrelevant if no \glspl{MMR} are built, so the optimization 
+irrelevant if no \glspl{MMR} are built, so the results 
 identified multiple values for this input parameter. The results 
 from the optimization 
 work was consistent with the results of the sensitivity analysis, but 
@@ -166,10 +183,14 @@ were not subject to a linear constraint (i.e., not the advanced reactor
 build shares) matched expectations based on the trends of the sensitivity 
 analysis and intuition. However, the genetic algorithms we used 
 did not adhere well to the linear constraint of the advanced reactor 
-build shares in all three of the problems. Therefore, the 
-results from the optimization work can not be taken at face value 
-and are better used to identifying a relationship between the advanced 
-reactor build shares than a specific set of parameters. Additionally, 
+build shares in all three of the problems. The parameters valued 
+considered in each populations did not always adhere to the constraint, 
+which led to the solution not meeting the constraint. Therefore, the 
+results from the optimization work can not be taken at face value. 
+The results are better used to identifying a relationship between the advanced 
+reactor build shares than a specific set of parameters, because the 
+optimization solutions aligned well with intuition and the sensitivity 
+analysis results even if the linear constraint is not met. Additionally, 
 we limited the number of evaluations for each optimization problem,
 based on limited computational resources. Allowing the 
 algorithm to run more evaluations may produce results that better 
@@ -194,14 +215,18 @@ The energy-dependent flux shows a decrease in the thermal flux
 around 0.1 eV and an increase in the fast flux above 20 MeV 
 when using the downblended \gls{HEU}. The spatially-dependent 
 flux shows a decrease in the thermal (below 0.625 eV) and 
-fast (above 0.625 eV) fluxes when using the impure fuels. 
+fast (above 0.625 eV) fluxes when using the impure fuels, 
+across the radial and axial directions. 
 The fluxes also showed an asymmetry 
-in the axial fluxes for both energy groups that is 
-a result of the distribution of pebbles at different burnup levels 
-throughout the height of the core. The reactivity temperature 
+in the axial fluxes for both energy groups. This asymmetry 
+is a result of the distribution of pebbles at different 
+burnup steps, but the decrease in the thermal axial 
+flux is a result of the \gls{HALEU} composition.
+ The reactivity temperature 
 feedback coefficients from each fuel composition are within 
-error of the coefficients from the pure fuel or are consistent 
-with published results \cite{mulder_neutronics_2020}.
+error of the coefficients from the pure fuel or are within 
+the ranges presented by Mulder and Boyes 
+\cite{mulder_neutronics_2020}.
 
 The results of the \gls{MMR}-like model at \gls{BOL}, \gls{MOL}, 
 and \gls{EOL} show that the different \gls{HALEU} compositions 
@@ -218,7 +243,7 @@ flux showed that the downblended \gls{HEU} mostly affects
 the fast (above 0.625 eV) flux, causing a small increase in 
 the flux. The spatially-dependent flux showed some 
 asymmetry in the axial direction from one of the downblended 
-\gls{HEU} compositions at \gls{MOL}, but no other large 
+\gls{HEU} compositions at \gls{MOL}, but we observed no other large 
 effects. The reactivity temperature feedback coefficients 
 are mostly within error of the coefficients from the pure fuel. 
 The coolant reactivity feedback coefficients from the downblended 
@@ -228,7 +253,7 @@ reactivity feedback coefficients and operate on a much
 longer time scale. Based on the performance metrics of 
 both reactor designs with the different \gls{HALEU} 
 compositions, the impurities present in the downblended 
-\gls{HEU} may lead to small adjustments in performance, but do 
+\gls{HEU} may lead to small perturbations in performance, but do 
 not lead to large changes in operation or prevent the 
 reactors from operating in a safe state. 
  
@@ -237,6 +262,9 @@ The work performed here provides a foundation for continued analysis and
 exploration of the fuel cycle impacts of deploying \gls{HALEU}-fueled reactors. 
 One limitation of this work is that is explores the impacts of 
 deploying \gls{HALEU}-fueled reactors at a very macroscopic level. 
+We investigated and compared the material requirements across the 
+modeled time period as an aggregate, with an unlimited amount 
+of resources, and without facility constraints.
 Potential future work to address this limitation would model and 
 explore the impacts of these reactors on a more microscopic level. 
 This includes translating potential demands to facility capacities, 
@@ -261,12 +289,13 @@ cores. Another area of future work includes modeling non-fuel
 materials needed to support these transitions, such as the amount 
 of reactor-grade graphite 
 to be the moderators in the Xe-100 and \gls{MMR}. This analysis would 
-provide insight into other supply chain requirements that are  
+provide insight into other potentially limiting supply chain 
+requirements that are  
 impactful on establishing these fuel cycles. The fuel cycle modeling 
-methodology employed in this work could provide a foundation 
+methodology employed in this work provides a foundation 
 for how to carry out this analysis. Additionally, this work 
 focused on waste materials that need a repository for disposal. 
-But there are other waste forms, \acrfull{LLW}, that also need 
+But there are other waste forms, like \acrfull{LLW}, that also need 
 disposal. The methodology of this work can be expanded to 
 include \gls{LLW} material streams, and potential disposal 
 needs for these streams. 
@@ -275,30 +304,70 @@ A third limitation of this work is the disregard for nonproliferation
 safeguards in the fuel cycle modeling. Nonproliferation safeguards 
 are an important part of ensuring the peaceful uses of nuclear 
 power, and are implemented across fuel cycle facilities. To 
-address this limitation, potential future work would develop 
-a method to incorporate safeguards into fuel cycle modeling. 
-Incorporating safeguards into fuel cycle modeling could 
-restrict facility throughputs, minimize idle \gls{SWU} 
+address this limitation, one could develop 
+a method to incorporate safeguards into the fuel cycle modeling
+methodology demonstrated here. 
+Examples of incorporating safeguards into fuel cycle modeling could 
+be to restrict facility throughputs, minimize idle \gls{SWU} 
 capacity, and limit the amount of material that can be transported 
 at once. Each of these restrictions can affect the ability 
-to produce enough fuel for the deployed reactors, and investigation 
-of the effects of safeguards on the fuel cycle provides more 
+to produce enough fuel for the deployed reactors. Investigating 
+the effects of safeguards on the fuel cycle provides more 
 detailed metrics of how to develop and support a fleet of 
 \gls{HALEU}-fueled reactors. 
 
+The fuel cycle 
+
+OpenMCyclus provides a foundation for expanding the fuel depletion 
+capabilities in \Cyclus, but it does leave space for future work. 
+One area of future work is to benchmark this archetype against 
+other fuel cycle simulators that also perform real-time 
+depletion. This additional benchmark would help to identify 
+how differences in material handling and depletion 
+propagate together between the codes, and identify potential 
+areas of improvement for this archetype. 
+
+Additionally, this archetype focuses on the back-end of 
+the fuel cycle, but the back-end of the fuel cycle connects 
+to the front-end when modeling reprocessing. Therefore, an 
+extension of this work would be the
+exploration of how the transport capabilities in OpenMC can 
+be used to determine fresh fuel compositions, such as 
+how \gls{DYMOND} has a method to perform a criticality search 
+\cite{richards_application_2021}, 
+and development of a fuel fabrication archetype in this library. 
+This capability would prevent the user from having to determine 
+\gls{MOX} or U/TRU fuel compositions \textit{a priori}.  
+
+
+
+With respect to the optimization, the methodology used here is 
+limited by the optimization algorithms used. Specifically, the 
+genetic algorithms struggled with adhering to the linear constraint 
+on the advanced reactor build shares. Future work to address this 
+limitation could apply other algorithms in Dakota that strictly 
+adhere to linear constraints, like the derivative-free methods 
+\cite{adams_dakota_2021}, or allow the genetic algorithms to 
+run for more evaluations. Another avenue of future work could 
+also change the input parameters to only consider one advanced 
+reactor build share, which would remove the linear constraint. 
+
 Future work can also expand upon the analysis of the downblended 
 \gls{HEU} on the reactor performance. For example, modeling other 
-\gls{HALEU}-fueled reactors, such as the Oklo Aurora, that 
+\gls{HALEU}-fueled reactors that 
 have announced an intent to use \gls{HALEU} created from the identified 
-\gls{HEU} stockpiles. Additionally, expand 
+\gls{HEU} stockpiles, like the Oklo Aurora, would provide more 
+practical analysis. Additionally, future work could expand 
 the analysis to include other metrics, such as power peaking factors and 
 power distributions in the core. 
-Expanding the analysis to include these parameters would provided 
+Expanding the analysis to include these parameters would provide 
 more details on how the impurities from the \gls{HEU} may 
-affect reactor operation. One can also increase the 
+affect reactor operation, such as the amount of various reactivity 
+control mechanisms needed. One can also increase the 
 model fidelity by varying temperatures across the core, 
 adding burnable absorbers to the materials, or altering the 
-geometry to better match with updated information. These 
+geometry to better match with vendor information as it is made 
+publicly available. These 
 updates to the models would provide information 
 about how the \gls{HALEU} composition would affect the 
 reactor performance in a more realistic simulation. 
