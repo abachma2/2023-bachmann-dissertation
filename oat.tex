@@ -1,13 +1,14 @@
 \section{One-at-a-time}\label{sec:ot_oat}
 This section discusses the results of the \gls{OAT} sensitivity analysis 
-as applied to Scenario 7. A subsection of this analysis is presented 
+as applied to Scenario 7. A subset of this analysis is presented 
 in \cite{bachmann_sensitivity_2022}, but the analysis presented here has 
 an expanded scope and updated methodology to address the non-consistent 
 replacement of advanced reactors in the previously published work.
-The results discuss
-the relative change in each metric for each parameter varied. The minimum, 
-average, and maximum value for each metric is provided in Table 
-\ref{tab:oat_values}.
+The results in this subsection focus on 
+the relative change in each metric for each parameter varied, because 
+of the large range of the metric values. To that end, Table 
+\ref{tab:oat_values} reports the minimum, 
+average, and maximum value for each metric.
 
 \begin{table}[ht!]
     \centering
@@ -17,48 +18,48 @@ average, and maximum value for each metric is provided in Table
     \begin{tabular}{llrrr}       
         \hline 
         Parameter &     Metric &      Minimum &      Average &      Maximum \\\hline
-        Transition Start &  Fuel Mass & 2.832004e+07 & 3.001442e+07 & 3.085691e+07 \\
-                         & HALEU Mass & 2.777396e+07 & 2.931392e+07 & 3.005491e+07 \\ 
-                         &  Total SWU & 9.727160e+08 & 1.035603e+09 & 1.067644e+09 \\ 
-                         & HALEU SWU & 9.690305e+08 & 1.030876e+09 & 1.062295e+09 \\
-                         &        SNF & 2.600173e+07 & 2.743657e+07 & 2.812741e+07 \\  
-                         & HALEU Feed & 8.406729e+08 & 8.936249e+08 & 9.204018e+08 \\\hline
-        LWR Lifetimes &  Fuel Mass & 2.226230e+07 & 2.574361e+07 & 2.933547e+07 \\
-                      & HALEU Mass & 2.186991e+07 & 2.527842e+07 & 2.884623e+07 \\
-                      &  Total SWU & 7.779876e+08 & 8.972582e+08 & 1.021053e+09 \\
-                      &  HALEU SWU & 7.753394e+08 & 8.941187e+08 & 1.017751e+09 \\
-                      &        SNF & 1.955625e+07 & 2.305043e+07 & 2.668538e+07 \\
-                      & HALEU Feed & 6.715754e+08 & 7.746336e+08 & 8.819633e+08 \\\hline 
-        Xe-100 Build Share &  Fuel Mass & 8.228834e+07 & 1.130189e+08 & 1.471439e+08 \\
-                           & HALEU Mass & 2.826681e+06 & 1.077601e+07 & 1.803929e+07 \\
-                           &  Total SWU & 1.082813e+09 & 1.089912e+09 & 1.101530e+09 \\
-                           &  HALEU SWU & 1.275350e+08 & 3.998760e+08 & 6.501138e+08 \\
-                           &        SNF & 7.510853e+07 & 1.032204e+08 & 1.344031e+08 \\
-                           & HALEU Feed & 1.081440e+08 & 3.448436e+08 & 5.622094e+08 \\\hline 
-        MMR Build Share &  Fuel Mass & 3.701890e+07 & 4.917833e+07 & 6.134049e+07 \\
-                        & HALEU Mass & 2.670288e+07 & 3.851759e+07 & 5.039230e+07 \\
-                        &  Total SWU & 9.901021e+08 & 1.599871e+09 & 2.211838e+09 \\
-                        &  HALEU SWU & 9.204794e+08 & 1.527922e+09 & 2.137948e+09 \\
-                        &        SNF & 3.439781e+07 & 4.065525e+07 & 4.688864e+07 \\
-                        & HALEU Feed & 7.995188e+08 & 1.309634e+09 & 1.821949e+09 \\\hline 
-        VOYGR Build Share &  Fuel Mass & 3.044985e+07 & 6.435525e+07 & 9.510189e+07 \\
-                          & HALEU Mass & 1.515573e+07 & 2.233175e+07 & 3.044985e+07 \\
-                          &  Total SWU & 1.076518e+09 & 1.082445e+09 & 1.092329e+09 \\
-                          &  HALEU SWU & 5.527729e+08 & 7.988284e+08 & 1.079883e+09 \\
-                          &        SNF & 2.764653e+07 & 5.870293e+07 & 8.679207e+07 \\
-                          & HALEU Feed & 4.774801e+08 & 6.913159e+08 & 9.353306e+08 \\\hline 
-        Xe-100 Burnup &  Fuel Mass & 2.760515e+07 & 5.887765e+07 & 1.591116e+08 \\
-                      & HALEU Mass & 2.681265e+07 & 5.808515e+07 & 1.583191e+08 \\
-                      &  Total SWU & 9.558796e+08 & 2.033879e+09 & 5.489061e+09 \\
-                      &  HALEU SWU & 9.505310e+08 & 2.028530e+09 & 5.483713e+09 \\
-                      &        SNF & 2.486320e+07 & 5.613569e+07 & 1.563697e+08 \\
-                      & HALEU Feed & 8.233245e+08 & 1.759663e+09 & 4.760799e+09 \\\hline 
-        MMR Burnup &  Fuel Mass & 3.064950e+07 & 3.123978e+07 & 3.292776e+07 \\
-                   & HALEU Mass & 2.985700e+07 & 3.044728e+07 & 3.213526e+07 \\
-                   &  Total SWU & 1.058714e+09 & 1.085347e+09 & 1.161506e+09 \\
-                   &  HALEU SWU & 1.053366e+09 & 1.079998e+09 & 1.156157e+09 \\
-                   &        SNF & 2.790754e+07 & 2.849783e+07 & 3.018581e+07 \\
-                   & HALEU Feed & 9.128300e+08 & 9.354133e+08 & 9.999926e+08 \\
+        Transition Start &  Fuel Mass & 2.832e+07 & 3.001e+07 & 3.086e+07 \\
+                         & HALEU Mass & 2.777e+07 & 2.931e+07 & 3.005e+07 \\ 
+                         &  Total SWU & 9.727e+08 & 1.036e+09 & 1.068+09 \\ 
+                         & HALEU SWU & 9.690e+08 & 1.031e+09 & 1.062e+09 \\
+                         &        SNF & 2.600e+07 & 2.744e+07 & 2.813e+07 \\  
+                         & HALEU Feed & 8.406e+08 & 8.936e+08 & 9.204e+08 \\\hline
+        LWR Lifetimes &  Fuel Mass & 2.226e+07 & 2.574e+07 & 2.934e+07 \\
+                      & HALEU Mass & 2.186e+07 & 2.528e+07 & 2.885e+07 \\
+                      &  Total SWU & 7.780e+08 & 8.973e+08 & 1.021e+09 \\
+                      &  HALEU SWU & 7.753+08 & 8.941e+08 & 1.018e+09 \\
+                      &        SNF & 1.956e+07 & 2.305e+07 & 2.669e+07 \\
+                      & HALEU Feed & 6.716e+08 & 7.746e+08 & 8.820e+08 \\\hline 
+        Xe-100 Build Share &  Fuel Mass & 8.230e+07 & 1.130e+08 & 1.471e+08 \\
+                           & HALEU Mass & 2.827e+06 & 1.078e+07 & 1.804e+07 \\
+                           &  Total SWU & 1.083e+09 & 1.090e+09 & 1.102e+09 \\
+                           &  HALEU SWU & 1.275e+08 & 3.999e+08 & 6.501e+08 \\
+                           &        SNF & 7.511e+07 & 1.032e+08 & 1.344e+08 \\
+                           & HALEU Feed & 1.081e+08 & 3.448e+08 & 5.622e+08 \\\hline 
+        MMR Build Share &  Fuel Mass & 3.702e+07 & 4.918e+07 & 6.134e+07 \\
+                        & HALEU Mass & 2.670e+07 & 3.852e+07 & 5.039e+07 \\
+                        &  Total SWU & 9.901e+08 & 1.600e+09 & 2.212e+09 \\
+                        &  HALEU SWU & 9.205e+08 & 1.528e+09 & 2.138e+09 \\
+                        &        SNF & 3.440e+07 & 4.066e+07 & 4.689e+07 \\
+                        & HALEU Feed & 7.995e+08 & 1.310e+09 & 1.822e+09 \\\hline 
+        VOYGR Build Share &  Fuel Mass & 3.045e+07 & 6.436e+07 & 9.510e+07 \\
+                          & HALEU Mass & 1.516e+07 & 2.233e+07 & 3.045e+07 \\
+                          &  Total SWU & 1.077e+09 & 1.082e+09 & 1.092e+09 \\
+                          &  HALEU SWU & 5.528e+08 & 7.988e+08 & 1.080e+09 \\
+                          &        SNF & 2.765e+07 & 5.870e+07 & 8.679e+07 \\
+                          & HALEU Feed & 4.775e+08 & 6.913e+08 & 9.353e+08 \\\hline 
+        Xe-100 Burnup &  Fuel Mass & 2.761e+07 & 5.888e+07 & 1.591e+08 \\
+                      & HALEU Mass & 2.681e+07 & 5.809e+07 & 1.583e+08 \\
+                      &  Total SWU & 9.559e+08 & 2.034e+09 & 5.489e+09 \\
+                      &  HALEU SWU & 9.505e+08 & 2.029e+09 & 5.484e+09 \\
+                      &        SNF & 2.486e+07 & 5.614e+07 & 1.564e+08 \\
+                      & HALEU Feed & 8.233e+08 & 1.760e+09 & 4.761e+09 \\\hline 
+        MMR Burnup &  Fuel Mass & 3.065e+07 & 3.124e+07 & 3.293e+07 \\
+                   & HALEU Mass & 2.986e+07 & 3.045e+07 & 3.214e+07 \\
+                   &  Total SWU & 1.059e+09 & 1.085e+09 & 1.162e+09 \\
+                   &  HALEU SWU & 1.054e+09 & 1.080e+09 & 1.156e+09 \\
+                   &        SNF & 2.791e+07 & 2.850e+07 & 3.019e+07 \\
+                   & HALEU Feed & 9.128e+08 & 9.354e+08 & 1.000e+9 \\
         \hline
     \end{tabular}
 \end{table}
@@ -68,10 +69,11 @@ average, and maximum value for each metric is provided in Table
 Delays in the transition start time generally decrease all of the output 
 metrics, as shown in Figure \ref{fig:ts_scenario7}. This result matches 
 expectations, because if the advanced reactors are deployed for less time, 
-then they require fewer resources. However, there are some increases in 
+then they require fewer resources. However, there are some oscillations in 
 the output metrics between individual time steps. For example, a transition 
 start time of October 2029 increases the fuel mass and \gls{SNF} mass 
-relative to July 2029. This increase results from changes in the number 
+relative to July 2029, the start time previous. This increase results 
+from changes in the number 
 of each advanced reactor deployed, because of differences in the gap 
 between energy produced and energy demand that must initially be filled when 
 advanced reactors are deployed. By waiting until October 2029, more VOYGRs 
