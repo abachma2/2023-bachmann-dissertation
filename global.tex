@@ -269,8 +269,9 @@ on the metrics.
 The two surrogate models result in different Sobol' indices for each 
 input parameter/output metric pair. These differences are likely a result 
 of how the models fit the data. The Gaussian model fits 
-better the the extremes and trends in the input data points, but the 
-quadratic model does fit to the noise in the input data as much. 
+better the the extremes and trends in the input data points and does not 
+assume a specific form for the data, but the 
+quadratic model does not fit to the noise in the input data as much. 
 However, the two models are consistent in 
 their relative comparison of how much each input parameter affects the output 
 metrics, and are consistent with the results from the \gls{OAT} and 
