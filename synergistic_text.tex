@@ -3,10 +3,12 @@ The synergistic analysis in this work varied two parameters at a time to
 investigate some of the combined effects of the input parameters. Synergistic 
 sensitivity analysis helps to identify if the combined effect of two parameters 
 has a greater impact on the metrics that when varying a single parameter. 
+It also helps to compare the effect of two different input parameters. 
 We ran synergistic 
 analysis on all combinations of two input parameters studied in the \gls{OAT} 
-analysis, except combinations of two reactor build shares. The
-results presented here are only a small subsection of the analysis performed, 
+analysis, except combinations of two reactor build shares to limit 
+the scope of this work. The
+results presented here are only a subset of the analysis performed, 
 with the remaining results in Appendix \ref{app:s7_synergistic}.
 
 \subsection{LWR lifetime and VOYGR build share}
@@ -26,7 +28,7 @@ interact with each other to cause a greater effect on the metric.
 The other \gls{HALEU} metrics, the \gls{HALEU} \gls{SWU} 
 and \gls{HALEU} feed, also decrease in a similar manner as the \gls{HALEU} mass. 
 
-\begin{figure}[ht]
+\begin{figure}[h!]
     \centering
     \includegraphics[scale=0.7,trim=120 0 120 30, clip]{lwr_voygr_share_haleu.pdf}
     \caption{Effect of the LWR lifetime and VOYGR build share on the HALEU mass.}
@@ -41,7 +43,7 @@ suggests some interaction between these two parameters on this
 output metric because the effects are not uniform across the parameter 
 space. 
 
-\begin{figure}[ht]
+\begin{figure}[h!]
     \centering
     \includegraphics[scale=0.7,trim=120 0 120 30, clip]{lwr_voygr_share_enr_u.pdf}
     \caption{Effect of the LWR lifetime and VOYGR build share on 
@@ -60,8 +62,8 @@ reaches its minimum and the Xe-100 build share reaches its maximum. This
 effect stems from a larger portion of the advanced reactor fleet 
 using its fuel less efficiently as this corner of the input space is 
 reached. This result suggests that the discharge burnup of an advanced 
-reactor should be considered when determining the build share of a reactor
-type, if this metric is important. 
+reactor should be considered when determining the build share of an
+advanced reactor, if this metric is important. 
 
 \begin{figure}[h!]
     \centering
@@ -69,6 +71,15 @@ type, if this metric is important.
     \caption{Effect of Xe-100 discharge burnup and Xe-100 build share 
     on HALEU mass.}
     \label{fig:xe100_share_xe100_burnup_haleu}
+\end{figure}
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.7, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_enr_u.pdf}
+    \caption{Effect of Xe-100 discharge burnup and Xe-100 build share 
+    on total fuel mass.}
+    \label{fig:xe100_share_xe100_burnup_enr_u}
 \end{figure}
 
 The total fuel mass (shown in Figure \ref{fig:xe100_share_xe100_burnup_enr_u})
@@ -83,21 +94,17 @@ greatly affect the fuel mass required when the Xe-100 has a discharge
 burnup of 28 MWd/kgU (the lowest value used in this work) because at this 
 burnup level, the Xe-100 requires a similar amount of enriched uranium as 
 the VOYGR for each 18 month period. Therefore, as the VOYGRs are replaced 
-with Xe-100s, from increasing the Xe-100 build share, the cumulative total 
+with Xe-100s as a consequence of increasing the Xe-100 build share, the 
+cumulative total 
 fuel mass required does not change much. 
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[scale=0.7, trim=120 0 120 30, clip]{xe100_share_xe100_burnup_enr_u.pdf}
-    \caption{Effect of xe-100 discharge burnup and Xe-100 build share 
-    on total fuel mass.}
-    \label{fig:xe100_share_xe100_burnup_enr_u}
-\end{figure}
 
 \subsection{MMR build share and Xe-100 burnup}
 When the \gls{MMR} build share and Xe-100 burnup are varied together, 
 the effect on the metrics is not as consistent as the results from varying 
-other pairs of parameters. As the Xe-100 burnup increases, the fuel mass 
+other pairs of parameters, as Figure \ref{fig:mmr_share_xe100_burnup_enr_u}
+shows. As the Xe-100 burnup increases, the fuel mass required by 
+all of the advanced reactors 
 decreases. However, the effect of increasing the \gls{MMR} build share 
 is dependent on the Xe-100 discharge burnup. At smaller Xe-100 discharge 
 burnup values, the fuel mass decreases with increasing \gls{MMR} build share. 
@@ -112,30 +119,23 @@ total mass of fuel required in the transition decreases. However, as
 the Xe-100 burnup increases, the Xe-100 requires less fuel than the 
 \gls{MMR}. Therefore, requiring more of the advanced reactor fleet to be 
 \glspl{MMR} increases the total fuel mass required by advanced reactors in 
-the transition. These results highlight how these two fuel cycle parameters 
-interact to affect the output metrics. This pattern of results is observed 
-for all six metrics considered in this work. 
+the transition. These results identify how these two input parameters 
+interact to affect the output metrics. We observe the at small Xe-100 
+burnup values increasing the \gls{MMR} build share decreases the metric, but at high Xe-100 burnup 
+values increasing the \gls{MMR} build share increases the metric in 
+all six metrics considered in this work (see Appendix 
+\ref{app:s7_synergistic}).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[scale=0.7, trim=120 0 120 30, clip]{mmr_share_xe100_burnup_enr_u.pdf}
-    \caption{Effect of xe-100 discharge burnup and MMR build share 
+    \caption{Effect of Xe-100 discharge burnup and MMR build share 
     on total fuel mass.}
     \label{fig:mmr_share_xe100_burnup_enr_u}
 \end{figure}
 
 
 \subsection{Transition start and Xe-100 build share}
-As Figure \ref{fig:ts_xe100_share_enr_u} shows, as the Xe-100 build 
-share increases, the total fuel mass decreases. However, there is little 
-effect in the total fuel mass as the transition start time is delayed 
-because the magnitude of the effect on the fuel mass 
-from varying the Xe-100 build share is greater than the magnitude of 
-the effect from varying the transition start time. This is consistent 
-with the results from the \gls{OAT} analysis, and is observed for five 
-of the metrics considered in this work. This result suggests that the 
-transition start time is not as important as the other parameters when 
-trying to minimize or maximize certain metrics. 
 
 \begin{figure}[h!]
     \centering
@@ -145,15 +145,6 @@ trying to minimize or maximize certain metrics.
     \label{fig:ts_xe100_share_enr_u}
 \end{figure}
 
-The effect of varying these two parameters is the opposite when the total 
-\gls{SWU} capacity is considered: varying the transition start time has 
-a greater impact on the metric than varying the Xe-100 build share. This 
-result stems from the similar \gls{SWU} capacities needed for the Xe-100 
-and VOYGR leading to little change in the total \gls{SWU} capacity when 
-varying the Xe-100 build share. Therefore, the transition start time has 
-more impact on this metric than the Xe-100 build share, and there is little 
-of a combined effect observed because of the small impact from each parameter 
-on this metric. 
 
 \begin{figure}[h!]
     \centering
@@ -162,3 +153,27 @@ on this metric.
     on total fuel mass.}
     \label{fig:ts_xe100_share_swu}
 \end{figure}
+
+As Figure \ref{fig:ts_xe100_share_enr_u} shows, as the Xe-100 build 
+share increases, the total fuel mass decreases. However, there is little 
+effect in the total fuel mass as the transition start time is delayed. 
+The magnitude of the effect on the fuel mass 
+from varying the Xe-100 build share is greater than the magnitude of 
+the effect from varying the transition start time. This is consistent 
+with the results from the \gls{OAT} analysis, and is observed for five 
+of the metrics considered in this work. This result suggests that the 
+transition start time is not as important as the other parameters when 
+trying to minimize or maximize certain metrics. 
+
+The effect of varying these two parameters is the opposite when the total 
+\gls{SWU} capacity is considered: varying the transition start time has 
+a greater impact on the metric than varying the Xe-100 build share 
+as shown in Figure \ref{fig:ts_xe100_share_swu}. This 
+result stems from the similar \gls{SWU} capacities needed for the Xe-100 
+and VOYGR and the replacement of VOYGRs with Xe-100s with 
+increasing Xe-100 build share, leading to little change in the total 
+\gls{SWU} capacity required  when 
+varying the Xe-100 build share. Therefore, the transition start time has 
+more impact on this metric than the Xe-100 build share, and there is little 
+of a combined effect observed because of the small impact from each parameter 
+on this metric. 
