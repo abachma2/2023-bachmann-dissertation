@@ -581,7 +581,11 @@ By applying the hyperparameters to an optimization problem to minimize the
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
 found a minimum with the model input parameters defined in Table 
 \ref{tab:soga_ot_waste}. The minimum waste mass determined through the 
-optimization is 1,736 MT. 
+optimization is 1,736 MT. This \gls{SNF} mass is smaller than the minimum 
+values presented in the once-through transition 
+analysis (Table \ref{tab:nogrowth_waste}) and the \gls{OAT} analysis 
+(Table \ref{tab:oat_values}), suggesting that the algorithm finds 
+a well-optimized solution. 
 
 \begin{table}[h!]
     \centering 
@@ -606,9 +610,10 @@ optimization is 1,736 MT.
 
 From Table \ref{tab:soga_ot_waste}, it is clear that more than 100\% build share
 is defined, which artificially increases the \gls{SNF} mass generated from 
-advanced reactors in this fuel cycle, but is consistent with the results of 
-the other single-objective problem for this fuel cycle. However, the build share 
-percentages suggest 
+advanced reactors in this fuel cycle. This result is consistent with the results of 
+the other single-objective problem for this fuel cycle, but suggests 
+that the fuel cycle can be further-optimized for the \gls{SNF} mass. 
+The advanced reactor build share percentages suggest 
 a build out of Xe-100 reactors to reduce the \gls{SNF} mass generated, which 
 is supported by the sensitivity analysis in Chapter \ref{ch:sa}. Additionally, 
 the optimization algorithm points to a maximum in the percent of \glspl{LWR} 
