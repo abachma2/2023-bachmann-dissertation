@@ -15,51 +15,52 @@ average, and maximum value for each metric.
     \caption{Minimum, average, and maximum value of each metric caused 
     by the variation of each parameter.}
     \label{tab:oat_values}
-    \begin{tabular}{llrrr}       
+    \begin{tabular}{llrrrl}       
         \hline 
-        Parameter &     Metric &      Minimum &      Average &      Maximum \\\hline
-        Transition Start &  Fuel Mass & 2.832e+07 & 3.001e+07 & 3.086e+07 \\
-                         & HALEU Mass & 2.777e+07 & 2.931e+07 & 3.005e+07 \\ 
-                         &  Total SWU & 9.727e+08 & 1.036e+09 & 1.068+09 \\ 
-                         & HALEU SWU & 9.690e+08 & 1.031e+09 & 1.062e+09 \\
-                         &        SNF & 2.600e+07 & 2.744e+07 & 2.813e+07 \\  
-                         & HALEU Feed & 8.406e+08 & 8.936e+08 & 9.204e+08 \\\hline
-        LWR Lifetimes &  Fuel Mass & 2.226e+07 & 2.574e+07 & 2.934e+07 \\
-                      & HALEU Mass & 2.186e+07 & 2.528e+07 & 2.885e+07 \\
-                      &  Total SWU & 7.780e+08 & 8.973e+08 & 1.021e+09 \\
-                      &  HALEU SWU & 7.753+08 & 8.941e+08 & 1.018e+09 \\
-                      &        SNF & 1.956e+07 & 2.305e+07 & 2.669e+07 \\
-                      & HALEU Feed & 6.716e+08 & 7.746e+08 & 8.820e+08 \\\hline 
-        Xe-100 Build Share &  Fuel Mass & 8.230e+07 & 1.130e+08 & 1.471e+08 \\
-                           & HALEU Mass & 2.827e+06 & 1.078e+07 & 1.804e+07 \\
-                           &  Total SWU & 1.083e+09 & 1.090e+09 & 1.102e+09 \\
-                           &  HALEU SWU & 1.275e+08 & 3.999e+08 & 6.501e+08 \\
-                           &        SNF & 7.511e+07 & 1.032e+08 & 1.344e+08 \\
-                           & HALEU Feed & 1.081e+08 & 3.448e+08 & 5.622e+08 \\\hline 
-        MMR Build Share &  Fuel Mass & 3.702e+07 & 4.918e+07 & 6.134e+07 \\
-                        & HALEU Mass & 2.670e+07 & 3.852e+07 & 5.039e+07 \\
-                        &  Total SWU & 9.901e+08 & 1.600e+09 & 2.212e+09 \\
-                        &  HALEU SWU & 9.205e+08 & 1.528e+09 & 2.138e+09 \\
-                        &        SNF & 3.440e+07 & 4.066e+07 & 4.689e+07 \\
-                        & HALEU Feed & 7.995e+08 & 1.310e+09 & 1.822e+09 \\\hline 
-        VOYGR Build Share &  Fuel Mass & 3.045e+07 & 6.436e+07 & 9.510e+07 \\
-                          & HALEU Mass & 1.516e+07 & 2.233e+07 & 3.045e+07 \\
-                          &  Total SWU & 1.077e+09 & 1.082e+09 & 1.092e+09 \\
-                          &  HALEU SWU & 5.528e+08 & 7.988e+08 & 1.080e+09 \\
-                          &        SNF & 2.765e+07 & 5.870e+07 & 8.679e+07 \\
-                          & HALEU Feed & 4.775e+08 & 6.913e+08 & 9.353e+08 \\\hline 
-        Xe-100 Burnup &  Fuel Mass & 2.761e+07 & 5.888e+07 & 1.591e+08 \\
-                      & HALEU Mass & 2.681e+07 & 5.809e+07 & 1.583e+08 \\
-                      &  Total SWU & 9.559e+08 & 2.034e+09 & 5.489e+09 \\
-                      &  HALEU SWU & 9.505e+08 & 2.029e+09 & 5.484e+09 \\
-                      &        SNF & 2.486e+07 & 5.614e+07 & 1.564e+08 \\
-                      & HALEU Feed & 8.233e+08 & 1.760e+09 & 4.761e+09 \\\hline 
-        MMR Burnup &  Fuel Mass & 3.065e+07 & 3.124e+07 & 3.293e+07 \\
-                   & HALEU Mass & 2.986e+07 & 3.045e+07 & 3.214e+07 \\
-                   &  Total SWU & 1.059e+09 & 1.085e+09 & 1.162e+09 \\
-                   &  HALEU SWU & 1.054e+09 & 1.080e+09 & 1.156e+09 \\
-                   &        SNF & 2.791e+07 & 2.850e+07 & 3.019e+07 \\
-                   & HALEU Feed & 9.128e+08 & 9.354e+08 & 1.000e+9 \\
+        Parameter &     Metric &      Minimum &      Average &      Maximum & Units\\
+        \hline
+        Transition Start &  Fuel Mass & 2.832e+07 & 3.001e+07 & 3.086e+07 & kg \\
+                         & HALEU Mass & 2.777e+07 & 2.931e+07 & 3.005e+07 & kg\\ 
+                         &  Total SWU & 9.727e+08 & 1.036e+09 & 1.068e+09 & kg-SWU\\ 
+                         & HALEU SWU & 9.690e+08 & 1.031e+09 & 1.062e+09 & kg-SWU\\
+                         &        SNF & 2.600e+07 & 2.744e+07 & 2.813e+07 & kg\\  
+                         & HALEU Feed & 8.406e+08 & 8.936e+08 & 9.204e+08 & kg\\\hline
+        LWR Lifetimes &  Fuel Mass & 2.226e+07 & 2.574e+07 & 2.934e+07 & kg\\
+                      & HALEU Mass & 2.186e+07 & 2.528e+07 & 2.885e+07 & kg\\
+                      &  Total SWU & 7.780e+08 & 8.973e+08 & 1.021e+09 & kg-SWU\\
+                      &  HALEU SWU & 7.753e+08 & 8.941e+08 & 1.018e+09 & kg-SWU\\
+                      &        SNF & 1.956e+07 & 2.305e+07 & 2.669e+07 & kg\\
+                      & HALEU Feed & 6.716e+08 & 7.746e+08 & 8.820e+08 & kg\\\hline 
+        Xe-100 Build Share &  Fuel Mass & 8.230e+07 & 1.130e+08 & 1.471e+08 & kg\\
+                           & HALEU Mass & 2.827e+06 & 1.078e+07 & 1.804e+07 & kg\\
+                           &  Total SWU & 1.083e+09 & 1.090e+09 & 1.102e+09 & kg-SWU\\
+                           &  HALEU SWU & 1.275e+08 & 3.999e+08 & 6.501e+08 & kg-SWU\\
+                           &        SNF & 7.511e+07 & 1.032e+08 & 1.344e+08 & kg\\
+                           & HALEU Feed & 1.081e+08 & 3.448e+08 & 5.622e+08 & kg\\\hline 
+        MMR Build Share &  Fuel Mass & 3.702e+07 & 4.918e+07 & 6.134e+07 & kg\\
+                        & HALEU Mass & 2.670e+07 & 3.852e+07 & 5.039e+07 & kg\\
+                        &  Total SWU & 9.901e+08 & 1.600e+09 & 2.212e+09 & kg-SWU\\
+                        &  HALEU SWU & 9.205e+08 & 1.528e+09 & 2.138e+09 & kg-SWU\\
+                        &        SNF & 3.440e+07 & 4.066e+07 & 4.689e+07 & kg\\
+                        & HALEU Feed & 7.995e+08 & 1.310e+09 & 1.822e+09 & kg\\\hline 
+        VOYGR Build Share &  Fuel Mass & 3.045e+07 & 6.436e+07 & 9.510e+07 & kg\\
+                          & HALEU Mass & 1.516e+07 & 2.233e+07 & 3.045e+07 & kg\\
+                          &  Total SWU & 1.077e+09 & 1.082e+09 & 1.092e+09 & kg-SWU\\
+                          &  HALEU SWU & 5.528e+08 & 7.988e+08 & 1.080e+09 & kg-SWU\\
+                          &        SNF & 2.765e+07 & 5.870e+07 & 8.679e+07 & kg\\
+                          & HALEU Feed & 4.775e+08 & 6.913e+08 & 9.353e+08 & kg\\\hline 
+        Xe-100 Burnup &  Fuel Mass & 2.761e+07 & 5.888e+07 & 1.591e+08 & kg\\
+                      & HALEU Mass & 2.681e+07 & 5.809e+07 & 1.583e+08 & kg\\
+                      &  Total SWU & 9.559e+08 & 2.034e+09 & 5.489e+09 & kg-SWU\\
+                      &  HALEU SWU & 9.505e+08 & 2.029e+09 & 5.484e+09 & kg-SWU\\
+                      &        SNF & 2.486e+07 & 5.614e+07 & 1.564e+08 & kg\\
+                      & HALEU Feed & 8.233e+08 & 1.760e+09 & 4.761e+09 & kg\\\hline 
+        MMR Burnup &  Fuel Mass & 3.065e+07 & 3.124e+07 & 3.293e+07 & kg\\
+                   & HALEU Mass & 2.986e+07 & 3.045e+07 & 3.214e+07 & kg\\
+                   &  Total SWU & 1.059e+09 & 1.085e+09 & 1.162e+09 & kg-SWU\\
+                   &  HALEU SWU & 1.054e+09 & 1.080e+09 & 1.156e+09 & kg-SWU\\
+                   &        SNF & 2.791e+07 & 2.850e+07 & 3.019e+07 & kg\\
+                   & HALEU Feed & 9.128e+08 & 9.354e+08 & 1.000e+9 & kg\\
         \hline
     \end{tabular}
 \end{table}
