@@ -82,14 +82,15 @@ Chapter 4 presented the results of modeling the transition from
 \glspl{LWR} to different combinations of advanced reactors in 
 a once-through fuel cycle. 
 The results identify how 
-the reactors deployed and their relative deployment numbers drives 
+the reactors deployed and their relative deployment numbers, obtained 
+through the deployment scheme of this work, drives 
 the enriched uranium mass required by a transition. The discharge
 burnup of the reactors deployed drives the enriched uranium 
 mass needed by each transition. The \gls{SWU} capacity and 
 feed uranium requirements are driven by the amount of fuel required 
 by the reactors and the enrichment level of the fuel. The results 
 show how the increased fuel requirements of a reactor demand can 
-be offset by the decrease in the enrichment level to lead to 
+be offset by the decrease in the enrichment level, leading to 
 negligible changes in the \gls{SWU} capacity required. 
 
 % Closed fuel cycle analysis
@@ -268,37 +269,39 @@ of resources, and without facility constraints.
 Potential future work to address this limitation would model and 
 explore the impacts of these reactors on a more microscopic level. 
 This includes translating potential demands to facility capacities, 
-numbers, and designs. For example, designing and comparing the 
+numbers, and designs or comparing the material requirements across 
+different time periods. For example, designing and comparing the 
 centrifuge cascades required to produce the enriched uranium for 
 each of the advanced reactors. This work could account for the 
 different \gls{NRC} facility classifications based on the 
 enrichment level of the handled material. This future work 
 would also explore how to 
 most efficiently develop and use different facilities to produce the 
-enriched uranium. Additionally,
-the macroscopic approach of this work neglects the 
-time requirements 
+enriched uranium. Another example would be comparing the \gls{HALEU} mass 
+required in the first five years of deploying \gls{HALEU}-fueled 
+reactors compared with demand after all \glspl{LWR} decommission. This 
+analysis would provide more detailed information on material requirements 
+during the cycle cycle transition and during equilibrium of the new 
+fuel cycle. A third potential area of work could model the time requirements 
 of different processes (e.g. time to fabricate a fuel assembly). 
 More accurate modeling of the time requirements for each step would 
 provide details of required lead times and how these requirements 
 may impact material availability. 
 
 Futhermore, this work also focused on the uranium and heavy metals for 
-the fuel, but these are not the only component of fuel or reactor 
+the fuel, but these are not the only fuel components or reactor 
 cores. Another area of future work includes modeling non-fuel 
 materials needed to support these transitions, such as the amount 
 of reactor-grade graphite 
 to be the moderators in the Xe-100 and \gls{MMR}. This analysis would 
 provide insight into other potentially limiting supply chain 
 requirements that are  
-impactful on establishing these fuel cycles. The fuel cycle modeling 
-methodology employed in this work provides a foundation 
-for how to carry out this analysis. Additionally, this work 
+impactful on establishing these fuel cycles. Additionally, this work 
 focused on waste materials that need a repository for disposal. 
 But there are other waste forms, like \acrfull{LLW}, that also need 
-disposal. The methodology of this work can be expanded to 
-include \gls{LLW} material streams, and potential disposal 
-needs for these streams. 
+disposal. The fuel cycle modeling 
+methodology employed in this work provides a foundation 
+for how to carry out both of these analyses. 
 
 A third limitation of this work is the disregard for nonproliferation 
 safeguards in the fuel cycle modeling. Nonproliferation safeguards 
@@ -308,7 +311,8 @@ address this limitation, one could develop
 a method to incorporate safeguards into the fuel cycle modeling
 methodology demonstrated here. 
 Examples of incorporating safeguards into fuel cycle modeling could 
-be to restrict facility throughputs, minimize idle \gls{SWU} 
+be to restrict facility throughputs, minimize stockpiles of 
+enriched uranium at a facility, minimize idle \gls{SWU} 
 capacity, and limit the amount of material that can be transported 
 at once. Each of these restrictions can affect the ability 
 to produce enough fuel for the deployed reactors. Investigating 
@@ -316,32 +320,30 @@ the effects of safeguards on the fuel cycle provides more
 detailed metrics of how to develop and support a fleet of 
 \gls{HALEU}-fueled reactors. 
 
-The fuel cycle 
-
-OpenMCyclus provides a foundation for expanding the fuel depletion 
-capabilities in \Cyclus, but it does leave space for future work. 
+A key component of this work is the development of OpenMCyclus 
+to expand the dynamic depletion capabilities in \Cyclus. The 
+continued development of OpenMCyclus would support this expansion.  
 One area of future work is to benchmark this archetype against 
 other fuel cycle simulators that also perform real-time 
 depletion. This additional benchmark would help to identify 
 how differences in material handling and depletion 
 propagate together between the codes, and identify potential 
 areas of improvement for this archetype. 
-
-Additionally, this archetype focuses on the back-end of 
+Additionally, OpenMCyclus focuses on the back-end of 
 the fuel cycle, but the back-end of the fuel cycle connects 
 to the front-end when modeling reprocessing. Therefore, an 
 extension of this work would be the
 exploration of how the transport capabilities in OpenMC can 
 be used to determine fresh fuel compositions, such as 
 how \gls{DYMOND} has a method to perform a criticality search 
-\cite{richards_application_2021}, 
-and development of a fuel fabrication archetype in this library. 
+\cite{richards_application_2021}, and subsequent development 
+of a fuel fabrication archetype in this library. 
 This capability would prevent the user from having to determine 
-\gls{MOX} or U/TRU fuel compositions \textit{a priori}.  
+\gls{MOX} or U/TRU fuel compositions \textit{a priori} while 
+still providing accurate compositions for fresh fuel in a 
+reactor that meets key design criteria.  
 
-
-
-With respect to the optimization, the methodology used here is 
+The optimization methodology demonstrated in this work is 
 limited by the optimization algorithms used. Specifically, the 
 genetic algorithms struggled with adhering to the linear constraint 
 on the advanced reactor build shares. Future work to address this 
@@ -351,6 +353,12 @@ adhere to linear constraints, like the derivative-free methods
 run for more evaluations. Another avenue of future work could 
 also change the input parameters to only consider one advanced 
 reactor build share, which would remove the linear constraint. 
+This avenue would allow the defined advanced reactor build share to 
+vary across integer values in a given range, then deploy the other 
+advanced reactors as needed to meet any 
+remaining energy demand. Removing the linear constraint is 
+expected to yield a solution that does not have unneeded installed 
+capacity from advanced reactors. 
 
 Future work can also expand upon the analysis of the downblended 
 \gls{HEU} on the reactor performance. For example, modeling other 
