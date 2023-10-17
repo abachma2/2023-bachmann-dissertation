@@ -1,0 +1,21 @@
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[node distance=4cm]
+        \node (dre) [facility] {Dynamic resource exchange};
+        \node (fresh) [facility, below of=dre, xshift=-4cm,text width=1.5cm]{Fresh fuel inventory};
+        \node (core) [facility, below of=dre, text width=1.5cm]{Core inventory};
+        \node (spent) [facility, below of=dre, xshift=4cm,text width=1.5cm]{Spent fuel inventory};
+    
+        \draw [arrow] (dre) -- node[anchor=east]{Fresh fuel} (fresh);
+        \draw [arrow] (dre) -- node[anchor=east]{Fresh fuel} (core);
+        \draw [arrow] (fresh) -- node[anchor=south]{Fresh fuel} (core);
+        \draw [arrow] (core) -- node[anchor=south]{Depleted fuel} (spent);
+        \draw [arrow] (spent) -- node[anchor=west]{Spent fuel} (dre);
+       
+        \end{tikzpicture}
+    \caption{Material handling pathways between different material 
+    inventories in OpenMCyclus and the \gls{DRE} of \Cyclus. 
+    Depletion occurs to material in the core, just before it moves 
+    to the spent fuel inventory.}
+    \label{fig:openmcyclus-flow}
+\end{figure}

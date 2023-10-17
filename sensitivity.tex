@@ -1,5 +1,5 @@
-Sensitivity analysis identifies how the variation of model input
-parameters affect select performance 
+Sensitivity analysis identifies how and the extent to which variations 
+in model input parameters affect select performance 
 metrics of the fuel cycle. Additionally, it reveals the combined effect 
 of varying multiple parameters on 
 an output metric. This information can then be used to design 
@@ -9,40 +9,52 @@ changed to obtain desired results (e.g., minimizing \gls{HALEU} requirements
 of a transition). 
 
 \section{Methodology}
-We performed sensitivity analysis on Scenario 7 using a coupling 
-between \Cyclus with Dakota \cite{adams_dakota_2021}, an 
-open-source code developed by \gls{SNL} for uncertainty quantification, 
+We performed sensitivity analysis on Scenario 7 (once-through fuel cycle 
+transition to Xe-100, VOYGR, and \gls{MMR} with a no growth energy demand) 
+using a coupling between \Cyclus with Dakota \cite{adams_dakota_2021}, an 
+open-source code developed by \acrfull{SNL} for uncertainty quantification, 
 sensitivity analysis, and optimization. This coupling mirrors  
 the scripts in the \texttt{dcwrapper} GitHub repository 
-\cite{chee_arfcdcwrapper_2019}. Three different types 
-of sensitivity analysis were performed: \acrfull{OAT}, synergistic, 
+\cite{chee_arfcdcwrapper_2019}. We performed three different types 
+of sensitivity analysis: \acrfull{OAT}, synergistic, 
 and global. \gls{OAT} analysis varies a single input parameter to 
 investigate the effect of each parameter individually. In the context of 
 this work, synergistic 
 analysis varies two input parameters at once to investigate how the 
 interaction of the two parameters affects the results. Finally, the global 
+sensitivity
 analysis varies more than two input parameters to provide a holistic 
 view of how multiple parameters interact and affect the output metrics. 
-
-The input parameters varied included are: the transition 
+For this work, we considered variations in the transition 
 start time, the build share of each type of advanced reactor, 
 the \gls{LWR} lifetimes, and the discharge burnup of fuel from the 
-\gls{HALEU}-fueled reactors. The transition start time ranges from January 
+\gls{HALEU}-fueled reactors. 
+
+The transition start time ranges from January 
 2025 to January 2040 in three-month intervals, but the same energy demand 
-is specified for all perturbations (87.20 GWe-yr). The build share 
-variable is performed three times (for varying the build share of each 
-type of advanced reactor) with build share percentages ranging from 0-50\% 
+is specified for all perturbations (87.20 GWe-yr). We consider this parameter 
+to provide a relaxation of the aggressive 2025 transition start date 
+used in the transition analysis of Chapters \ref{ch:once_through_results} and
+\ref{ch:recycle_results}.
+
+We consider three 
+iterations of the build share, once for each advanced reactor, with 
+build share percentages ranging from 0-50\% 
 in increments of 5\%. To account for the build share of an advanced reactor,
 we adjusted the deployment scheme described in Section \ref{sec:once-through-methods}.
 Instead of the reactor type with the largest power output 
 deployed first, the reactor with the specified build share is deployed first 
-until the build share is met. Then the remaining two reactor types are 
+until the build share is met. Then the remaining two advanced reactor types are 
 deployed in the manner described in Section \ref{sec:once-through-methods},
 with the larger of the two remaining reactors preferentially deployed and 
-the smaller reactor deployed last to meet the power demand. Figure 
+the smaller reactor deployed last to meet or exceed the power demand. Figure 
 \ref{fig:build-share-deploy} illustrates how we applied this deployment 
 scheme to meet a fictional demand of 530 MWe and a VOYGR build share of 
-50\%. 
+50\%. We vary this parameter of the transition because of the large effect 
+of the advanced reactors deployed in each of the transition scenarios. 
+Unless an advanced reactor build share is specified, this analysis 
+applies the same advanced reactor deployment schedule as Scenario 7
+(see Section \ref{sec:nogrowth_reactors}).
 
 \begin{figure}
     \centering 
@@ -54,10 +66,14 @@ scheme to meet a fictional demand of 530 MWe and a VOYGR build share of
 \end{figure}
 
 The \gls{LWR} lifetimes are varied based 
-on the percent of the fleet that operate for 60 and 80 years. This 
+on the percent of the fleet that operate for 80 years. This 
 variable varies between 0-50\%, in increments of 5\%, of the \gls{LWR} 
 fleet operating for 80 
-years, while the other \glspl{LWR} operate for 60 years. The 
+years, while the other \glspl{LWR} operate for 60 years. This input 
+parameter reflects the effects of different numbers of \glspl{LWR} 
+receiving license extensions to 80 years. Various utilities are exploring 
+and pursuing license extensions for \glspl{LWR}, so including this parameter 
+reflects this occurrence. The 
 \glspl{LWR} do not all start operation at the same time, so the 
 selection of the \glspl{LWR} that operate for 80 years affects the results, 
 even if the number is the same. Therefore, reactors are prioritized based 
@@ -65,31 +81,37 @@ on their power outputs for the lifetime extensions, reflecting the greater likel
 larger units receiving a license extension. Previous sensitivity analysis of 
 fuel cycle transitions considered the impact of the transition start time 
 and the \gls{LWR} lifetimes \cite{chee_sensitivity_2019,feng_sensitivity_2020},
-which forms the basis for why these input parameters were selected for this 
+which provides some basis for why these input parameters were selected for this 
 work.
 
-Furthermore, we varied the discharge burnup of the two \gls{HALEU}-fueled 
+Finally, we varied the discharge burnup of the two \gls{HALEU}-fueled 
 reactors in this work (the Xe-100 and \gls{MMR}) because these two reactors 
 are reaching burnup levels larger than the \gls{NRC}-approved 62 MWd/kgHM 
 \cite{noauthor_higher_2023}. Therefore, it is possible that these 
-reactors would need to be operated under different conditions until the 
+reactors would need to be operated under different conditions until
 higher burnups are approved by the \gls{NRC}.
 Therefore, inclusion of this variable explores the impact 
-on resource needs if these reactors are not able to achieve their 
+on resource needs if these reactors are prohibited from achieving 
+their 
 reported burnup values. This analysis is not performed for the VOYGR because this 
 design aims to achieve a burnup that is within the \gls{NRC} limit. 
 
-To vary the burnup of the Xe-100, two different systems were enacted. The 
-first was to vary the number of passes each pebbles goes through the core
+To vary the burnup of the Xe-100, we considered two difference approaches. The 
+first approach was to vary the number of passes through the core for each pebble 
 while keeping the length of each pass and the total mass of uranium 
-in the core constant. Varying the number of passes between one and six 
+in the core constant (i.e., reducing the number of batches). Varying the 
+number of passes between one and six 
 results in discharge burnup values of 28, 56, 84, 112, 140, and 168 MWd/kgU, 
-using Eq. \ref{eq:fuel_mass}. The second system was to vary the length 
-of each pass while keeping the number of passes and the total mass of uranium 
-constant. The goal of the second system is to cause a small change in the 
-discharge burnup to examine how a smaller change in the burnup affects 
-the resource needs. This system results in burnup values of 151 and 185 MWd/kgU, 
+using Eq. \ref{eq:fuel_mass}. This approach provides a coarse grid 
+for the burnup values that reflects possible changes to meet current 
+\gls{NRC} regulations. The second approach varies the length 
+of each pass by one month, while keeping the number of passes and the 
+total mass of uranium 
+constant. This approach provides a more fine grid around the declared 
+burnup value, reflecting potential small variations in reactor operation. 
+The second approach results in burnup values of 151 and 185 MWd/kgU, 
 which are about $\pm$10\% of the stated discharge burnup of 168 MWd/kgU. 
+
 To vary the \gls{MMR} burnup, we varied the cycle time (and thus lifetime) of 
 the reactor while the total mass of uranium was held constant. 
 Cycle times of 10, 15, and 20 years were considered, resulting in burnup 
@@ -97,17 +119,17 @@ values of 41, 62, and 82 MWd/kgU. Additionally, the lifetime was varied to
 result in burnup values $\pm$10\% and $\pm$5\% around the stated burnup of 
 82 MWd/kg, resulting in burnup values of 74, 78, 86, and 90 MWd/kgU. 
 
-This analysis focuses on the following metrics: the amount of waste generated that 
+The sensitivity analysis focuses on the effects of these input parameters 
+on the following metrics: the amount of waste generated that 
 must be sent to a repository (\gls{SNF} mass), the mass of enriched uranium, 
 the mass of \gls{HALEU},
 the amount of \gls{SWU} capacity required to produce all enriched uranium, the 
 \gls{SWU} capacity required to produce \gls{HALEU}, and the feed uranium 
-required to produce \gls{HALEU}. Each metric will be evaluated based on the 
-cumulative sum required, starting at the transition start time. Previous 
-sensitivity analysis of fuel cycle transitions considered the waste 
-discharged, \gls{SWU} 
-capacity required, and natural uranium requirements
-\cite{,feng_sensitivity_2020,richards_application_2021} 
+required to produce \gls{HALEU}. We considered each of these metrics 
+within the transition analysis, allowing for comparison between Chapters 
+\ref{ch:once_through_results}, \ref{ch:recycle_results}, and this chapter. 
+We compare each metric based on the cumulative sum required, starting 
+at the transition start time. 
 
 \input{oat.tex}
 
