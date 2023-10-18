@@ -40,16 +40,43 @@
 \begin{frame}
     \frametitle{Benchmark description}
     \begin{columns}
-        \column[t]{5cm}
+        \column[t]{4.5cm}
         \begin{itemize}
+            \item Closed fuel cycle with 1 reactor type, modeled with 
+                  either \Cycamore or OpenMCyclus
             \item Reactors prefer MOX over UOX
-            \item Ran with \Cycamore \texttt{Reactor} twice, toggling 
+            \item Reactors deployed at time steps 1, 50, 100, 150, with a 
+                  60 time step lifetime
+            \item<2-> Ran with \Cycamore \texttt{Reactor} twice, toggling 
                   the \texttt{decom\_transmute\_all} setting
-            \item Used OpenMC to get spent fuel compositions for use with 
-                  \Cycamore
+            \item<3-> Used OpenMC to get spent fuel compositions and cross section data
         \end{itemize}
-        \column[t]{5cm}
-        \input{../comparison.tex}
+        \column[t]{6.3cm}
+        \begin{figure}
+            \centering
+            \small
+            \begin{tikzpicture}[node distance=1cm]
+                \node (mine) [facility] {Uranium Mine};
+                \node (enrichment) [facility, below of=mine]{Enrichment};
+                \node (reactor) [facility, below of=enrichment]{Reactor};
+                \node (sinkhlw) [facility, below of=reactor, xshift=1.5cm, yshift=-0.5cm]{Repository};
+                \node (separation) [facility, right of=reactor, xshift=2.2cm]{Separations};
+                \node (mox_fab) [facility, above of=separation, yshift=0.4cm]{MOX Fuel Fab};
+                
+                \draw [arrow] (mine) -- node[anchor=east]{Natural uranium} (enrichment);
+                \draw [arrow] (enrichment) -- node[anchor=east]{Fresh UOX}(reactor);
+                \draw [arrow] (reactor) -- node[anchor=north]{Spent UOX}(separation);
+                \draw [arrow] (separation) -- node[anchor=west, text width=0.5cm]{Separated Pu}(mox_fab);
+                \draw [arrow] (separation) |- node[anchor=west, text width=0.5cm, pos=0.3]{Fission products}(sinkhlw);
+                \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural uranium} (mox_fab);
+                \draw [arrow] (reactor) |- node[anchor=east, pos=0.3]{Spent MOX} (sinkhlw);
+                \draw [arrow] (mox_fab) -- node[anchor=south, sloped]{Fresh MOX} (reactor);
+                \end{tikzpicture}
+            \caption{Fuel cycle facilities and material flow between facilities for the 
+            sample fuel cycle scenarios used to compare the results of the \Cycamore Reactor 
+            and OpenMCyclus DepleteReactor archetypes. }
+            \label{fig:comparison}
+        \end{figure}
     \end{columns}
 \end{frame}
 
@@ -167,7 +194,7 @@
     \begin{columns}
         
     \column[t]{6cm}
-    \vspace{-0.9cm}
+    %\vspace{-0.9cm}
     \input{limited-flow}
 
         \column[t]{4.5cm}
@@ -176,11 +203,11 @@
             \item U-based fuel is reprocessed, Pu-based fuel is disposed
             \item Reactors prefer Pu-based fuel over U-based fuel
             \item Separations remove Pu
-            \item<2-> Use the same deployment schedule as Scenarios 7, 14
+            \item<2-> Use the same deployment schedule as Scenarios 7, 13
             \item<2-> Modeled Xe-100 and VOYGR with OpenMCyclus
             \item<2-> Calculate MOX compositions based on plutonium
                       equivalence
-            \item<3-> Assume natural uranium is enriched to produce all 
+            \item<3-> Assume natural uranium is enriched to produce  
                   fuel
         \end{itemize}
 
@@ -192,7 +219,7 @@
     \begin{columns}
         
     \column[t]{6cm}
-    \vspace{-0.5cm}
+    %\vspace{-0.5cm}
     \input{continuous-flow}
 
         \column[t]{4.5cm}
@@ -205,7 +232,7 @@
             \item<2-> Use the same deployment scheme for the \gls{SFR}
             \item<2-> Calculate \gls{HALEU} composition based on plutonium
                       equivalence
-            \item<3-> Assume natural uranium is enriched to produce all 
+            \item<3-> Assume natural uranium is enriched to produce 
                   fuel
         \end{itemize}
 
@@ -225,7 +252,7 @@
             \label{tab:fast_rx}
             \begin{tabular}{l l}
                 \hline
-                Design Criteria & SFR \cite{triplett_prism:_2012,fichtlscherer_assessing_2019}\\
+                Design Criteria & SFR \cite{fichtlscherer_assessing_2019,triplett_prism:_2012}\\
                 \hline
                 Power Output (MWth) & 840 \\
                 Power Output (MWe) & 311 \\

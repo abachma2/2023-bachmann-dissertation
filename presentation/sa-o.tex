@@ -31,37 +31,37 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Varying the Xe-100 build share has a mixed effect}
+    \frametitle{Increasing MMR build share increases all metrics}
     \begin{columns}
 
         \column[t]{4.5cm}
         \begin{itemize}
-            \item HALEU-related metrics all increase
-            \item Total fuel mass and the SNF mass decrease
-            \item Total SWU capacity is relatively constant
-            \item Results are a function of the number of
+            \item All of the materials increase
+            \item Enrichment-related metrics increase the most
+            \item<2-> Results are a function of the number of
                   each advanced reactor deployed
         \end{itemize}
 
     \column[t]{5.5cm}
+    \vspace{-0.5cm}
     \begin{figure}
         \centering 
-            \includegraphics[scale=0.4]{xe100.pdf}
-            \caption{Relative effect of varying Xe-100 build share}
-            \label{fig:xe100_effects}
+            \includegraphics[scale=0.23]{mmr.pdf}
+            \caption{Relative effect of varying MMR build share}
+            \label{fig:mmr_effects}
     \end{figure}
 
 \end{columns}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Effects of varying Xe-100 build share}
+    \frametitle{Effects of varying MMR build share}
     \begin{figure}
         \centering
-        \includegraphics[scale=0.5]{xe100_combined_reactors.pdf}
+        \includegraphics[scale=0.5]{mmr_combined_reactors.pdf}
         \caption{Number of Xe-100s (top left), MMRs (top right), and VOYGRs
-        (bottom left) as a function of Xe-100 build share.}
-        \label{fig:xe100_s7_combined_reactors}
+        (bottom left) as a function of MMR build share.}
+        \label{fig:mmr_s7_combined_reactors}
     \end{figure}
 \end{frame}
 
@@ -84,8 +84,8 @@
     \begin{figure}
         \centering 
             \includegraphics[scale=0.5, trim=180 45 70 50,clip]{mmr_share_xe100_burnup_haleu.pdf}
-            \caption{Effects of varying the MMR build share and 
-            Xe-100 discharge burnup on HALEU mass}
+            \caption{Effects of varying the Xe-100 burnup and MMR build 
+            share on HALEU mass requirements. }
             \label{fig:mmr_share_xe100_bu}
     \end{figure}
 
@@ -94,28 +94,28 @@
 
 \begin{frame}
     \frametitle{Varying multiple parameters shows importance of the 
-    Xe-100 characteristics}
-    \begin{table}
+    Xe-100 burnup}
+    \begin{table}[h!]
         \centering
-        \caption{Sobol' indices for the Gaussian model when varying the 
-        Xe-100 build share. Highlighted 
+        \caption{Sobol' indices for the Gaussian model when varying the MMR 
+        build share. Highlighted 
         values indicate a total Sobol' indices of above 0.5.}
-        \label{tab:s7_sobol_xe100_gaussian}
-        \begin{tabular}{c c c c c c c}
+        \label{tab:s7_sobol_mmr_gaussian}
+        \begin{tabular}{c c c c c c c }
             \hline
             & \multicolumn{6}{c}{Output Metric} \\
-            Parameter & Fuel & HALEU & SWU & HALEU SWU & Feed & SNF \\
+            Parameter & Fuel & HALEU & SWU & HALEU SWU & Feed & SNF\\
             \hline
-            Transition Start & 0.003 & 0.007 & 0.009 &
-                               0.009 & 0.009 & 0.003\\
-            LWR Lifetime & 0.280 & 0.021 & 0.095 &
-                           0.022 & 0.022 & 0.314\\
-            Xe-100 Share & \cellcolor{green!25}0.533 & \cellcolor{green!25}0.513 & 0.283 &
-            \cellcolor{green!25}0.511 & \cellcolor{green!25}0.512 & 0.474\\
-            Xe-100 Burnup & 0.247 & \cellcolor{green!25}0.571 & \cellcolor{green!25}0.775 & 
-            \cellcolor{green!25}0.568 & \cellcolor{green!25}0.568 & 0.280\\
-            MMR Burnup & 0.002 & 0.004 & 0.006 & 
-                         0.005 & 0.005 & 0.002\\
+            Transition Start & 0.006 & 0.004 & 0.001 &
+                               0.001 & 0.001 & 0.006\\
+            LWR Lifetime & 0.068 & 0.063 & 0.071 &
+                           0.069 & 0.069 & 0.071\\
+            MMR Share & 0.107 & 0.107 & 0.203 &
+                              0.204 & 0.193 & 0.055\\
+            Xe-100 Burnup & \cellcolor{green!25}0.846 & \cellcolor{green!25}0.858 & \cellcolor{green!25}0.732 &
+            \cellcolor{green!25}0.734 & \cellcolor{green!25}0.747 & \cellcolor{green!25}0.900\\
+            MMR Burnup & 0.049 & 0.050 & 0.071 &
+                         0.071 & 0.069 & 0.053\\
             \hline        
         \end{tabular}
     \end{table}
@@ -127,32 +127,51 @@
     \begin{itemize}
         \item Use the genetic algorithms in Dakota (single-objective or 
         multi-objective) to perform optimization.
-        \item Consider the input parameters considered for sensitivity analysis, 
+        \item Consider the same input parameters as the sensitivity analysis, 
               except the transition start time
-        \item Apply a linear constraint for the advanced reactor build shares
-        \item Goal is to minimize the SWU capacity needed to 
-             produce HALEU, the mass of SNF, or both
+        \item<2-> Apply a linear constraint for the advanced reactor build shares
+        \item<3-> Goal is to minimize the SWU capacity needed to 
+             produce HALEU, the mass of SNF, or both in a multi-objective 
+             problem
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Multi-objetive optimization isn't perfect}
+    \frametitle{Single-objective optimization isn't perfect}
     \begin{columns}
         \column[t]{5cm}
         \begin{itemize}
-            \item Optimizing for these metrics is a trade-off between 
-                 building Xe-100s and VOYGRs
+            \item Want to maximize Xe-100 build share, LWR lifetimes,
+                  and Xe-100 burnup
+            \item Find a solution that has less SNF mass than the 
+                  transition scenarios and the OAT analysis
             \item<2-> Genetic algorithm struggles with linear constraint for 
                   the three build shares
+            \item<3-> Results provide guidance, but should explore 
+                  other optimization algorithms
         \end{itemize}
 
-        \column[t]{5cm}
-        \begin{figure}
+        \column[t]{5.5cm}
+        \begin{table}[h!]
             \centering 
-            \includegraphics[scale=0.4]{once_through_pareto.pdf}
-            \caption{Pareto front for multi-objective optimization}
-            \label{fig:pareto}
-        \end{figure}
+            \caption{Values resulting in a minimum waste mass disposed of for 
+                      a once-through transition scenario.}
+            \label{tab:soga_ot_waste}
+            \begin{tabular}{c c}
+                \hline
+                Variable & Value \\
+                \hline
+                LWR Lifetime & 50\%\\
+                Xe-100 build share & 100\%\\
+                MMR build share & 7\%\\
+                VOYGR build share & 11\%\\
+                Xe-100 burnup & 185 MWd/kgU\\
+                MMR burnup & 90 MWd/kgU\\
+                \hline
+                SNF mass & 1,736 MT \\
+                \hline
+            \end{tabular}
+        \end{table}
     \end{columns}
     
 \end{frame}

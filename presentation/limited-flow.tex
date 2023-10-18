@@ -8,8 +8,8 @@
         \node (wetstorage) [facility, below of=reactor]{\tiny Wet Storage};
         \node (drystorage) [facility, below of=wetstorage]{\tiny Dry Storage};
         \node (cooling) [transition, below of=adv_reactor]{\tiny Cooling Pool};
-        \node (sinkhlw) [facility, below of=drystorage, xshift=1cm]{\tiny HLW Sink};
-        \node (sinkllw) [facility, left of=enrichment, xshift=-1cm]{\tiny LLW Sink};
+        \node (sinkhlw) [facility, below of=drystorage, xshift=1cm]{\tiny Repository};
+        \node (sinkllw) [facility, left of=enrichment, xshift=-1cm]{\tiny Tails Sink};
         \node (separation) [transition, below of=cooling]{\tiny Separations};
         \node (fuelfab) [transition, below of=adv_reactor,xshift=1.3cm]{\tiny Fuel Fab};
         

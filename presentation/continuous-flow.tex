@@ -5,8 +5,8 @@
         \node (enrichment) [facility, below of=mine]{\tiny Enrichment};
         \node (reactor) [facility, below of=enrichment]{\tiny Reactor};
         \node (wetstorage) [facility, below of=reactor]{\tiny Wet Storage};
-        \node (sinkhlw) [facility, below of=wetstorage, xshift=1cm]{\tiny HLW Sink};
-        \node (sinkllw) [facility, left of=enrichment, xshift=-0.5cm]{\tiny LLW Sink};
+        \node (sinkhlw) [facility, below of=wetstorage, xshift=1cm]{\tiny Repository};
+        \node (sinkllw) [facility, left of=enrichment, xshift=-0.5cm]{\tiny Tails Sink};
         \node (separation) [transition, right of=wetstorage,xshift=1cm]{\tiny Separations};
         \node (fuelfab) [transition, above of=separation]{\tiny Fuel Fab};
         \node (fr_enrichment) [transition, right of=enrichment,xshift=2.5cm]{\tiny FR Enrichment};
