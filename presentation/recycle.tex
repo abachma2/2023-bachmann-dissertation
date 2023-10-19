@@ -30,9 +30,9 @@
     \begin{itemize}
         \item Developed a reactor archetype that couples \Cyclus with 
               stand-alone depletion solver in OpenMC
-        \item Performs depletion on each assembly for each cycle
+        \item Performs depletion on each assembly on a per cycle basis
         \item Publicly available on GitHub \cite{bachmann_openmcyclus_2023}
-        \item Benchmarked against the \Cycamore \texttt{Reactor} in a 
+        \item Compared against the \Cycamore \texttt{Reactor} in a 
               simple closed fuel cycle
     \end{itemize}
 \end{frame}
@@ -63,12 +63,12 @@
                 \node (separation) [facility, right of=reactor, xshift=2.2cm]{Separations};
                 \node (mox_fab) [facility, above of=separation, yshift=0.4cm]{MOX Fuel Fab};
                 
-                \draw [arrow] (mine) -- node[anchor=east]{Natural uranium} (enrichment);
+                \draw [arrow] (mine) -- node[anchor=east]{Natural U} (enrichment);
                 \draw [arrow] (enrichment) -- node[anchor=east]{Fresh UOX}(reactor);
                 \draw [arrow] (reactor) -- node[anchor=north]{Spent UOX}(separation);
                 \draw [arrow] (separation) -- node[anchor=west, text width=0.5cm]{Separated Pu}(mox_fab);
                 \draw [arrow] (separation) |- node[anchor=west, text width=0.5cm, pos=0.3]{Fission products}(sinkhlw);
-                \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural uranium} (mox_fab);
+                \draw [arrow] (mine) -| node[anchor=south, pos=0.4]{Natural U} (mox_fab);
                 \draw [arrow] (reactor) |- node[anchor=east, pos=0.3]{Spent MOX} (sinkhlw);
                 \draw [arrow] (mox_fab) -- node[anchor=south, sloped]{Fresh MOX} (reactor);
                 \end{tikzpicture}
