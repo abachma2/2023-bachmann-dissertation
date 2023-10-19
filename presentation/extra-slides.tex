@@ -18,7 +18,7 @@
     \frametitle{Recycle SNF}
     \begin{figure}
         \centering
-        \includegraphics[scale=0.3]{nogrowth_recycle_snf.pdf}
+        \includegraphics[scale=0.5]{nogrowth_recycle_snf.pdf}
     \end{figure}
 \end{frame}
 
@@ -26,7 +26,7 @@
     \frametitle{Recycle SWU}
     \begin{figure}
         \centering
-        \includegraphics[scale=0.3]{nogrowth_recycle_swu.pdf}
+        \includegraphics[scale=0.5]{nogrowth_recycle_swu.pdf}
     \end{figure}
 \end{frame}
 
@@ -34,16 +34,56 @@
     \frametitle{Effects of varying VOYGR build share}
     \begin{figure}
         \centering
-        \includegraphics[scale=0.5]{voygr.pdf}
+        \includegraphics[scale=0.3]{voygr.pdf}
     \end{figure}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Effects of varying MMR build share}
+    \frametitle{Effects of varying Xe-100 build share}
     \begin{figure}
         \centering
-        \includegraphics[scale=0.3]{mmr.pdf}
+        \includegraphics[scale=0.3]{xe100.pdf}
     \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Effects of varying LWR lifetimes}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{lwr.pdf}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Effects of varying transition start time}
+    \begin{figure}
+        \centering
+        \includegraphics[scale=0.5]{ts.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{HALEU SWU Optimization}
+    
+\begin{table}[h!]
+    \centering 
+    \caption{Values resulting in a minimum \gls{HALEU} \gls{SWU} capacity for 
+              a once-through transition scenario.}
+    \label{tab:soga_ot_haleu}
+    \begin{tabular}{c c}
+        \hline
+        Variable & Value \\
+        \hline
+        LWR Lifetime & 36\%\\
+        Xe-100 build share & 0\%\\
+        MMR build share & 2\%\\
+        VOYGR build share & 100\%\\
+        Xe-100 burnup & 151 MWd/kgU\\
+        MMR burnup & 90 MWd/kgU\\
+        \hline
+        HALEU SWU & 4.812 $\times 10^7$ kg-SWU\\
+        \hline
+    \end{tabular}
+\end{table}
+    
 \end{frame}
 
 \begin{frame}

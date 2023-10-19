@@ -12,13 +12,17 @@
 \begin{frame}
     \frametitle{Recycling needs accurate spent fuel compositions}
     \begin{itemize}
-    \item \gls{SNF} compositions impact numerous fuel cycle considerations:
+    \item \Gls{SNF} compositions impact numerous fuel cycle considerations:
     \begin{itemize}
         \item decay heat
         \item criticality safety
         \item amount of plutonium and transuranic elements
     \end{itemize}
-    \item<2-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
+    \item<2-> \Cyclus uses archetypes to model reactors, and the physics 
+         of a reactor
+    \item<2-> Different reactor archetypes use different methodologies 
+         to model fuel depletion
+    \item<3-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
     \item<3-> Other \Cyclus reactor archetypes can dynamically model 
           fuel depletion, but they require export controlled software 
           or are reactor design specific
@@ -27,14 +31,39 @@
 
 \begin{frame}
     \frametitle{OpenMCyclus: an open source coupling with OpenMC}
+    \begin{columns}
+        \column[t]{5cm}
     \begin{itemize}
         \item Developed a reactor archetype that couples \Cyclus with 
               stand-alone depletion solver in OpenMC
-        \item Performs depletion on each assembly on a per cycle basis
         \item Publicly available on GitHub \cite{bachmann_openmcyclus_2023}
-        \item Compared against the \Cycamore \texttt{Reactor} in a 
+        \item<2-> Compared against the \Cycamore \texttt{Reactor} in a 
               simple closed fuel cycle
     \end{itemize}
+
+    \column[t]{6.5cm}\begin{figure}[h!]
+        \centering
+        \small
+        \begin{tikzpicture}[node distance=2cm]
+            \node (dre) [facility] {Dynamic resource exchange};
+            \node (fresh) [facility, below of=dre, xshift=-2.5cm,text width=1cm]{Fresh fuel inventory};
+            \node (core) [facility, below of=dre, text width=1cm]{Core inventory};
+            \node (spent) [facility, below of=dre, xshift=2.5cm,text width=1cm]{Spent fuel inventory};
+            \node (openmc) [facility, below of=core]{OpenMC};
+
+            \draw [arrow] (dre) -- node[anchor=east, text width=1cm]{Fresh fuel} (fresh);
+            \draw [arrow] (dre) -- node[anchor=east, text width=1cm,pos=0.7]{Fresh fuel} (core);
+            \draw [arrow] (fresh) -- node[anchor=north, text width=1cm]{Fresh fuel} (core);
+            \draw [arrow] (core) -- node[anchor=north, text width=1cm]{Depleted fuel} (spent);
+            \draw [arrow] (spent) -- node[anchor=west, text width=1cm]{Spent fuel} (dre);
+            \draw [<->] (core) -- node[anchor=west, text width=1cm]{Compositions} (openmc);
+            \end{tikzpicture}
+        \caption{Material handling pathways between different material 
+        inventories in OpenMCyclus and the \gls{DRE} of \Cyclus. }
+        \label{fig:openmcyclus-flow}
+    \end{figure}
+
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -87,6 +116,11 @@
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
+            \begin{itemize}
+                \item<2-> \Cycamore \texttt{Reactor} applies the same 
+                          SNF composition
+                \item<2-> OpenMCyclus depletes fuel on a per cycle basis
+            \end{itemize}
         \end{itemize}
         \column[t]{6.5cm}
         \begin{figure}
@@ -101,10 +135,15 @@
 \begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
-        \column[t]{3.5cm}
+        \column[t]{4cm}
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
+                  \begin{itemize}
+                    \item \Cycamore \texttt{Reactor} applies the same 
+                          SNF composition
+                    \item OpenMCyclus depletes fuel on a per cycle basis
+                  \end{itemize}
             \item Temporarily changing OpenMCyclus method to better 
                   match with \Cycamore shows better agreement
         \end{itemize}
@@ -174,10 +213,10 @@
             \label{tab:scenarios_recycle}
             \begin{tabular}{c l l l}
                 \hline
-                Scenario & Advanced Reactors & Energy demand & Recycle type\\\hline
+                Scenario & Advanced Reactors & Energy demand & Recycle scheme\\\hline
                 \rowcolor{lightorange}\marktopleft{a3}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
                 \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
-                \rowcolor{lightorange}16 & SFR& No growth & Continuous \markbottomright{a3}\\
+                \rowcolor{lightorange}16 & SFR& No growth & Continuous~~~~~~~~\markbottomright{a3}\\
                 \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR& 1\% growth & Limited \\
                 \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
                 \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
@@ -198,17 +237,15 @@
     \input{limited-flow}
 
         \column[t]{4.5cm}
+        \vspace{-0.5cm}
         \begin{itemize}
-            \item Separations start in 2020
-            \item U-based fuel is reprocessed, Pu-based fuel is disposed
-            \item Reactors prefer Pu-based fuel over U-based fuel
-            \item Separations remove Pu
+            \item Reprocess uranium-based fuel, dispose plutonium-based fuel
+            \item Reactors prefer plutonium-based fuel over uranium-based fuel
+            \item Separations remove only plutonium (aqueous reprocessing)
             \item<2-> Use the same deployment schedule as Scenarios 7, 13
             \item<2-> Modeled Xe-100 and VOYGR with OpenMCyclus
-            \item<2-> Calculate MOX compositions based on plutonium
-                      equivalence
-            \item<3-> Assume natural uranium is enriched to produce  
-                  fuel
+            \item<3-> Separations start in 2020
+            \item<3-> Vary if \gls{TRISO} \gls{SNF} is reprocessed
         \end{itemize}
 
 \end{columns}
@@ -224,11 +261,12 @@
 
         \column[t]{4.5cm}
         \begin{itemize}
+            \item Reprocess all \gls{SNF} 
             \item Introduce a \gls{SFR} for transition, modeled through 
                   OpenMCyclus
             \item Separation start 2020
-            \item Can accept U/TRU fuel (preferred) or \gls{HALEU}
-            \item Separations remove U, Np, Pu, Am
+            \item Can accept plutonium-based fuel (preferred) or \gls{HALEU}
+            \item Separations remove U, Np, Pu, Am (electrochemical reprocessing)
             \item<2-> Use the same deployment scheme for the \gls{SFR}
             \item<2-> Calculate \gls{HALEU} composition based on plutonium
                       equivalence
