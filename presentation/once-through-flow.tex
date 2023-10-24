@@ -5,13 +5,11 @@
         \node (enrichment) [agent, below of=mine]{Enrichment};
         \node (reactor) [agent, below of=enrichment]{LWR};
         \node (adv_reactor) [transition, below of=enrichment, xshift=2cm]{Advanced Reactor};
-        \node (wetstorage) [agent, below of=reactor]{Wet Storage};
+        \node (wetstorage) [agent, below of=reactor]{Cooling Pool};
         \node (sinkhlw) [agent, below of=wetstorage, xshift=0.75cm]{Repository};
-        \node (sinkllw) [agent, left of=enrichment,xshift=-1cm]{Tails Sink};
-        \node (adv_rx_cooling) [transition, below of=adv_reactor]{Wet Storage};
+        \node (adv_rx_cooling) [transition, below of=adv_reactor]{Cooling Pool};
 
         \draw [arrow] (mine) --  (enrichment); 
-        \draw [arrow] (enrichment) -- (sinkllw);
         \draw [arrow] (enrichment) -- (reactor);
         \draw [arrow] (enrichment) -- (adv_reactor);
         \draw [arrow] (reactor) -- (wetstorage);

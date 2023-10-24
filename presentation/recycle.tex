@@ -135,7 +135,7 @@
 \begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
-        \column[t]{4cm}
+        \column[t]{3.5cm}
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
@@ -233,7 +233,7 @@
     \begin{columns}
         
     \column[t]{6cm}
-    %\vspace{-0.9cm}
+    \vspace{-0.6cm}
     \input{limited-flow}
 
         \column[t]{4.5cm}
@@ -256,20 +256,18 @@
     \begin{columns}
         
     \column[t]{6cm}
-    %\vspace{-0.5cm}
+    \vspace{-0.5cm}
     \input{continuous-flow}
 
         \column[t]{4.5cm}
         \begin{itemize}
             \item Reprocess all \gls{SNF} 
-            \item Introduce a \gls{SFR} for transition, modeled through 
+            \item Introduce a fast reactor for transition, modeled through 
                   OpenMCyclus
             \item Separation start 2020
             \item Can accept plutonium-based fuel (preferred) or \gls{HALEU}
             \item Separations remove U, Np, Pu, Am (electrochemical reprocessing)
-            \item<2-> Use the same deployment scheme for the \gls{SFR}
-            \item<2-> Calculate \gls{HALEU} composition based on plutonium
-                      equivalence
+            \item<2-> Use the same deployment scheme for the fast reactor
             \item<3-> Assume natural uranium is enriched to produce 
                   fuel
         \end{itemize}
@@ -281,7 +279,7 @@
     \frametitle{Advanced reactors}
     \vspace{-0.7cm}
     \begingroup
-        \renewcommand{\arraystretch}{1.5}
+        \renewcommand{\arraystretch}{1.2}
         \begin{table}
             \centering
             \begin{threeparttable}
@@ -290,22 +288,19 @@
             \label{tab:fast_rx}
             \begin{tabular}{l l}
                 \hline
-                Design Criteria & SFR \cite{fichtlscherer_assessing_2019,triplett_prism:_2012}\\
+                Design Criteria & Fast Reactor\cite{fichtlscherer_assessing_2019,triplett_prism:_2012}\\
                 \hline
+                Reactor type & \acrfull{SFR} \\
+                Fuel form &  Metallic \\
                 Power Output (MWth) & 840 \\
                 Power Output (MWe) & 311 \\
-                Capacity Factor & 90\%\tnote{1} \\
                 Enrichment (wt\% fissile Pu) &  11.3/13.5\\
                 Cycle Length (yrs) & 1 \\
-                Number of cycles &  4\\
-                Fuel form &  Metallic \\
-                Discharge fuel burnup (MWd/kg) & 87.51 \\
+                Number of cycles &  4 \\
                 Reactor Lifetime (yrs)&  60\\
+                Burnup (MWd/kg) & 87.51 \\
                 \hline
             \end{tabular}
-            \begin{tablenotes}
-                \item [1] Assumed value
-            \end{tablenotes}
         \end{threeparttable}
         \end{table} 
     \endgroup
