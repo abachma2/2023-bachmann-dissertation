@@ -10,22 +10,24 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Recycling needs accurate spent fuel compositions}
+    \frametitle{Reactor models account for fuel depletion}
     \begin{itemize}
-    \item \Gls{SNF} compositions impact numerous fuel cycle considerations:
+    \item \Cyclus uses archetypes to model reactors, and the physics 
+        of a reactor
+    \item Different reactor archetypes use different methodologies 
+        to model fuel depletion
+   \item<2-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
+   \item<2-> Other \Cyclus reactor archetypes can dynamically model 
+         fuel depletion, but they require export controlled software 
+         or are reactor design specific
+    \item<3-> \Gls{SNF} compositions impact numerous fuel cycle considerations:
     \begin{itemize}
-        \item decay heat
-        \item criticality safety
-        \item amount of plutonium and transuranic elements
+        \item<3-> decay heat
+        \item<3-> criticality safety
+        \item<3-> amount of plutonium and transuranic elements
     \end{itemize}
-    \item<2-> \Cyclus uses archetypes to model reactors, and the physics 
-         of a reactor
-    \item<2-> Different reactor archetypes use different methodologies 
-         to model fuel depletion
-    \item<3-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
-    \item<3-> Other \Cyclus reactor archetypes can dynamically model 
-          fuel depletion, but they require export controlled software 
-          or are reactor design specific
+
+
 \end{itemize}
 \end{frame}
 
@@ -74,11 +76,11 @@
             \item Closed fuel cycle with 1 reactor type, modeled with 
                   either \Cycamore or OpenMCyclus
             \item Reactors prefer MOX over UOX
-            \item Reactors deployed at time steps 1, 50, 100, 150, with a 
-                  60 time step lifetime
-            \item<2-> Ran with \Cycamore \texttt{Reactor} twice, toggling 
+            \item<2-> 2 reactors deployed at time step 1, then 1 deployed at 
+                  time steps 50, 100, 150
+            \item<2-> Reactors have 60 time step lifetime
+            \item<3-> Ran with \Cycamore \texttt{Reactor} twice, toggling 
                   the \texttt{decom\_transmute\_all} setting
-            \item<3-> Used OpenMC to get spent fuel compositions and cross section data
         \end{itemize}
         \column[t]{6.3cm}
         \begin{figure}
@@ -112,7 +114,7 @@
 \begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
-        \column[t]{3.5cm}
+        \column[t]{3.8cm}
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
@@ -135,7 +137,7 @@
 \begin{frame}
     \frametitle{Benchmark Results (I)}
     \begin{columns}
-        \column[t]{3.5cm}
+        \column[t]{3.8cm}
         \begin{itemize}
             \item Separated plutonium masses differ because of 
                   different depletion methodologies
@@ -144,8 +146,9 @@
                           SNF composition
                     \item OpenMCyclus depletes fuel on a per cycle basis
                   \end{itemize}
-            \item Temporarily changing OpenMCyclus method to better 
-                  match with \Cycamore shows better agreement
+            \item Temporarily changing OpenMCyclus method shows better agreement
+            \item<2-> Results suggests \Cycamore \texttt{Reactor} overestimates 
+                  separated plutonium inventory
         \end{itemize}
         \column[t]{6.5cm}
         \begin{figure}
@@ -192,12 +195,12 @@
         \begin{tabular}{c l l l}
             \hline
             Scenario & Advanced Reactors & Energy demand & Recycle scheme\\\hline
-            \rowcolor{lightorange}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
-            \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
-            \rowcolor{lightorange}16 & SFR& No growth & Continuous \\
+            \rowcolor{lightgray}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
+            \rowcolor{lightgray}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
+            \rowcolor{lightgray}16 & Fast reactor & No growth & Continuous \\
             \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR & 1\% growth & Limited \\
             \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
-            \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
+            \rowcolor{lightpink}19 & Fast reactor & 1\% growth & Continuous\\
             \hline
     \end{tabular}
     \end{table}
@@ -210,16 +213,16 @@
             \centering
             \caption{Summary of the recycle fuel cycle transition scenarios.
             Energy growth is relative to energy from \glspl{LWR} in 2025.}
-            \label{tab:scenarios_recycle}
+            \label{tab:scenarios_recycle_box}
             \begin{tabular}{c l l l}
                 \hline
                 Scenario & Advanced Reactors & Energy demand & Recycle scheme\\\hline
-                \rowcolor{lightorange}\marktopleft{a3}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
-                \rowcolor{lightorange}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
-                \rowcolor{lightorange}16 & SFR& No growth & Continuous~~~~~~~~\markbottomright{a3}\\
+                \rowcolor{lightgray}\marktopleft{a3}14 & Xe-100, MMR, VOYGR & No growth & Limited \\
+                \rowcolor{lightgray}15 & Xe-100, MMR, VOYGR & No growth & Limited, no TRISO\\
+                \rowcolor{lightgray}16 & Fast reactor& No growth & Continuous~~~~~~~~\markbottomright{a3}\\
                 \rowcolor{lightpink}17 & Xe-100, MMR, VOYGR& 1\% growth & Limited \\
                 \rowcolor{lightpink}18 & Xe-100, MMR, VOYGR & 1\% growth & Limited, no TRISO\\
-                \rowcolor{lightpink}19 & SFR & 1\% growth & Continuous\\
+                \rowcolor{lightpink}19 & Fast reactor & 1\% growth & Continuous\\
                 \hline
         \end{tabular}
         \end{table}
@@ -267,9 +270,8 @@
             \item Separation start 2020
             \item Can accept plutonium-based fuel (preferred) or \gls{HALEU}
             \item Separations remove U, Np, Pu, Am (electrochemical reprocessing)
-            \item<2-> Use the same deployment scheme for the fast reactor
-            \item<3-> Assume natural uranium is enriched to produce 
-                  fuel
+            \item<2-> Use the same deployment scheme to determine how many fast 
+                  reactors to deploy
         \end{itemize}
 
 \end{columns}
@@ -292,8 +294,8 @@
                 \hline
                 Reactor type & \acrfull{SFR} \\
                 Fuel form &  Metallic \\
-                Power Output (MWth) & 840 \\
                 Power Output (MWe) & 311 \\
+                Power Output (MWth) & 840 \\
                 Enrichment (wt\% fissile Pu) &  11.3/13.5\\
                 Cycle Length (yrs) & 1 \\
                 Number of cycles &  4 \\

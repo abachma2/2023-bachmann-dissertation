@@ -1,8 +1,8 @@
 \begin{figure}
     \centering
     \begin{tikzpicture}[node distance=1cm]
-        \node (mine) [agent] {Mine};
-        \node (mill) [agent, right of=mine, xshift=0.5cm] {Mill};
+        \node (mine) [agent] {Mining};
+        \node (mill) [agent, right of=mine, xshift=0.5cm] {Milling};
         \node (conversion) [agent, right of=mill, xshift=1cm] {Conversion};
         \node (enrichment) [agent, right of=conversion, xshift=1.5cm]{Enrichment};
         \node (fabrication) [agent, below of=enrichment, yshift=-1.5cm]{Fuel Fabrication};

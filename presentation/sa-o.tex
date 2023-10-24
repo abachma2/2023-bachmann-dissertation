@@ -126,8 +126,7 @@
 \begin{frame}
     \frametitle{Use the \Cyclus-Dakota coupling to optimize the transition}
     \begin{itemize}
-        \item Use the genetic algorithms in Dakota (single-objective or 
-        multi-objective) to perform optimization.
+        \item Use the genetic algorithms in Dakota to perform optimization.
         \item Consider the same input parameters as the sensitivity analysis, 
               except the transition start time
         \item<2-> Apply a linear constraint for the advanced reactor build shares
@@ -142,8 +141,8 @@
     \begin{columns}
         \column[t]{5cm}
         \begin{itemize}
-            \item Want to maximize Xe-100 build share, LWR lifetimes,
-                  and Xe-100 burnup
+            \item Maximize Xe-100 build share, LWR lifetimes,
+                  and Xe-100 burnup to minimize \gls{SNF} mass
             \item Find a solution that has less SNF mass than the 
                   transition scenarios and the OAT analysis
             \item<2-> Genetic algorithm struggles with linear constraint for 

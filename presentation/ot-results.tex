@@ -1,12 +1,9 @@
 \subsection{Once-through results}
 
 \begin{frame}
-    \frametitle{Number of reactors}
-    %\begin{columns}
-        %\column[t]{4.3cm}
+    \frametitle{Reactor numbers scales with the power 
+    output of the reactors}
             \begin{itemize}
-                \item Number of reactors deployed scales with the power 
-                      output of each reactor type
                 \item Scenario 2 (MMR) deploys the most reactors
                 \item Scenario 3 (Xe-100) deploys the fewest reactors
                 \item Similar number of Xe-100s and VOYGRs are deployed
@@ -14,8 +11,7 @@
                       (Xe-100+VOYGR+MMR) mostly deploy Xe-100s 
                 \item Scenario 5 (MMR+VOYGR) mostly deploys VOYGRs
             \end{itemize}
-        %\column[t]{5.7cm}
-        %\vspace{-0.5cm}
+        \vspace{0.2cm}
         \begin{figure}
         \begin{subfigure}{0.48\textwidth}
                 \centering
@@ -30,7 +26,6 @@
         \caption{Number of advanced reactors deployed in Scenarios 2-7 (left)
         and Scenarios 3-7 (right).}
         \end{figure}
-    %\end{columns}
 \end{frame}
 
 \begin{frame}
@@ -56,37 +51,6 @@
 
         \end{figure}
     \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Advanced reactor designs}
-    \begingroup
-        \renewcommand{\arraystretch}{1.5}
-        \begin{table}
-            \small
-            \caption{Advanced reactor design specifications}
-            \label{tab:reactor_summary}
-            \begin{tabular}{ c c c c }
-                \hline
-                Design Criteria & MMR 
-                    \cite{noauthor_usnc_2021} & 
-                    Xe-100 \cite{mulder_overview_2021} & 
-                    VOYGR \cite{nuscale_chapter_2020-1,reyes_nuscale_2021,reyes_correction_2022}\\\hline
-                Power (MWe) & 5 & 80 & 77\\
-                Power (MWth) & 15 & 200 & 250\\
-                Enrichment (\% $^{235}U$) & 19.75 & 15.5 & 4.09 \\
-                Cycle Length (yr) & 20 & Online & 1.5 \\
-                Number of cycles & 1 & 6 & 3\\
-                Reactor Lifetime (yr) & 20 & 60 & 60\\
-                Burnup ($\frac{MWd}{kg U}$) & 82 & 168 & 45\\
-                \hline
-            \end{tabular}
-        \end{table}   
-    \endgroup
-    \begin{equation*}
-        \text{mass (kg)} = \frac{\text{Power (MWth) * cycle length (d)*number of cycles}}{\text{Burnup (MWd/kg)}}
-        \label{eq:fuel_mass}
-    \end{equation*}
 \end{frame}
 
 \begin{frame}
