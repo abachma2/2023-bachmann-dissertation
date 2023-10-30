@@ -43,17 +43,19 @@ by the late 2020's.
 One important question that has arisen from the \gls{ARDP} is how to
 develop supply chains to support the nuclear fuel cycles of 
 advanced reactors. One design parameter that is different from \glspl{LWR} 
-and almost every advanced reactor is the fuel form. \glspl{LWR} require 
-a ceramic uranium dioxide fuel, while advanced reactors require fuel 
-forms such as \gls{TRISO} fuel kernels with uranium oxycarbide, uranium 
-dissolved in molten 
+and almost every advanced reactor is the fuel form. \glspl{LWR} use 
+a ceramic uranium dioxide fuel, while advanced reactors typically use
+fuel forms such as \gls{TRISO} fuel kernels with uranium oxycarbide, 
+uranium dissolved in molten 
 salts, and metallic alloy fuels \cite{hussain_advances_2018}.
 Additionally, many advanced reactor designs require  
 \acrfull{HALEU}, which is uranium enriched between 5\% and 20\% $^{235}$U,
-compared with the 3-5\% $^{235}$U that is required for \gls{LWR} 
+compared with the 3-5\% $^{235}$U that is used in \gls{LWR} 
 fuel. There is presently no commercial supply of \gls{HALEU} in the US that can 
 provide fuel for the \gls{ARDP} projects or for a potential future fleet of 
-advanced reactors. Therefore, the \gls{DOE} is investigating how to develop 
+advanced reactors. Recent international events limit the possibility of 
+obtaining \gls{HALEU} from abroad. Therefore, the \gls{DOE} is investigating 
+how to develop 
 a supply chain and \gls{NFC} for uranium enriched to this 
 increased level \cite{regalbuto_addressing_2020,dixon_estimated_2022}. 
 
@@ -67,9 +69,9 @@ natural uranium to produce \gls{HALEU} \cite{nuclear_energy_institute_addressing
 the amount of available natural uranium and facility capacities, such 
 as the material throughputs and \acrfull{SWU} capacity.
 There are three potential sources of \gls{HEU} that can be downblended 
-to produce \gls{HALEU}: the spent \gls{EBR} fuel stockpiles at \gls{INL} 
-\cite{patterson_haleu_2019}, stockpiles at \gls{SRS} \cite{regalbuto_addressing_2020}, 
-and stockpiles at Y-12 National Security Complex 
+to produce \gls{HALEU}: the used \gls{EBR} fuel at \gls{INL} 
+\cite{patterson_haleu_2019}, inventory at \gls{SRS} \cite{regalbuto_addressing_2020}, 
+and inventory at Y-12 National Security Complex 
 \cite{robinson_establishment_2020}. The size of each stockpile limits the amount 
 of \gls{HALEU} produced through downblending, and the first two stockpiles 
 are capable of producing no more than 20 MT of \gls{HALEU}
@@ -120,7 +122,7 @@ assumptions about transition parameters
 and others use energy projections to determine the parameters 
 \cite{dixon_estimated_2022}. Both are valid methods to determine 
 transition parameters, but only considering a select set of parameters may 
-not capture all of the possible material demands of a transitions. 
+not capture all of the possible material demands of a transition. 
 Therefore, fuel cycle modelers often perform sensitivity analysis on 
 the transition to understand the potential range of material 
 requirements and how their assumptions affect demand. 
@@ -169,7 +171,7 @@ impact the material requirements.
 Material requirements considered for this objective include  
 the mass of \gls{HALEU}, the feed uranium and \gls{SWU} capacity 
 required to produce enriched uranium for advanced reactors, and 
-the amount of \gls{SNF} that requires disposal. 
+the amount of \gls{UNF} that requires disposal. 
 
 \item \textbf{Understand the impacts of fuel cycle parameters on the material 
 requirements and design optimized transition scenarios.} 
@@ -189,10 +191,9 @@ on reactor performance.}  This objective aims at understanding
 how this \gls{HALEU} production method may affect reactor operation 
 and limit the use of this method in supporting the transition to 
 \gls{HALEU}-fueled reactors. The performance of the reactor is based on 
-reactor physics parameters. Potential limitations include if 
-there are too many neutron poisons in the fuel to support a critical 
-reactor for a cycle length or if reactor physics parameters 
-would break current regulations.
+reactor physics parameters. Potential limitations include 
+the impact of residual uranium isotopes from the downblending 
+process impacting reactor physics performance. 
 
 
 \end{enumerate}
@@ -201,7 +202,7 @@ These goals will be met by completing the following steps:
 \noindent
 \begin{enumerate}
 \item \textbf{Model the transition from \glspl{LWR} to advanced reactors.} 
-Transition scenarios to multiple fuel cycles with \gls{HALEU}-fueled 
+Example transition scenarios to multiple fuel cycles with \gls{HALEU}-fueled 
 reactors will 
 be modeled using the \gls{NFC} simulator \Cyclus \cite{huff_fundamental_2016}. 
 Multiple transitions will be modeled, with each one varying based on the type
@@ -209,7 +210,9 @@ of advanced reactors deployed, energy demand, and fuel cycle option
 (open or closed). This 
 step will quantify and compare the material requirements of each transition 
 scenario to understand how the reactors deployed, energy demand, and fuel cycle
-options affect material requirements. 
+options affect material requirements. This step also includes the 
+development of OpenMCyclus, a coupling between \Cyclus and OpenMC, to 
+provide dynamic modeling of fuel depletion within a fuel cycle model. 
 
 \item \textbf{Perform sensitivity analysis and optimize select transition scenarios.}
 Sensitivity analysis will be performed on one of the transition scenarios
@@ -218,7 +221,8 @@ for uncertainty quantification and sensitivity analysis. This step
 will identify the most impactful model parameters on 
 the material requirements of the transition. These results will then be 
 used to determine optimized transition scenarios to minimize specific 
-material requirements. 
+material requirements, thereby demonstrating an effective application of 
+this methodology. 
 
 \item \textbf{Neutronics analysis of \gls{HALEU} created from impure \gls{HEU}.}
 The neutronics of the \gls{HALEU}-fueled reactors in the transition scenarios 
@@ -258,7 +262,7 @@ scenarios modeled, we compared them based on the number of reactors
 deployed and material requirements, such as the total mass of enriched 
 uranium, mass of \gls{HALEU}, 
 feed mass to enrich uranium, the \gls{SWU} capacity required to enrich 
-uranium, and the mass of \gls{SNF} discharged from the reactors. 
+uranium, and the mass of \gls{UNF} discharged from the reactors. 
 
 Chapter 6 provides results 
 and analysis of the sensitivity analysis performed for select once-through 
@@ -274,7 +278,7 @@ Chapter 7 provides
 results and discussion of the optimization of select once-through and 
 closed fuel cycle transitions. The fuel cycles are optimized for minimizing 
 the \gls{SWU} capacity required to produce \gls{HALEU}, minimize the 
-mass of \gls{SNF} disposed of, and both in a multi-objective problem. This 
+mass of \gls{UNF} disposed, and both in a multi-objective problem. This 
 portion of the work is done by coupling \Cyclus with Dakota, 
 and the discussion includes analysis of the results 
 and the performance of this methodology for optimizing \glspl{NFC}. 

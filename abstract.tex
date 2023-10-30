@@ -20,15 +20,16 @@ fuel cycles to determine material requirements for supporting
 these fuel cycles. 
 Material requirements of interest across this work include the 
 mass of enriched uranium, mass of \gls{HALEU}, feed uranium, 
-\gls{SWU} capacity, and the mass of spent fuel sent for disposal.
+\gls{SWU} capacity, and the mass of used fuel sent for disposal.
 We use \Cyclus and publicly-available 
 information about Light Water Reactors, the X-energy Xe-100, the
 Ultra Safe Nuclear Corporation Micro Modular Reactor, and the 
-NuScale VOYGR to model these 
-transitions. To more accurately model the closed fuel 
+NuScale VOYGR to model potential transition scenarios and demonstrate 
+the methodologies developed in this work.
+To more accurately model the closed fuel 
 cycles, we develop a new \Cyclus archetype, called OpenMCyclus, 
 that couples with OpenMC to dynamically model fuel depletion in a 
-reactor and provide more accurate spent fuel compositions.
+reactor and provide more accurate used fuel compositions.
 The results of this transition analysis show how the 
 characteristics of the advanced reactors deployed drive 
 the materials required to support the fuel cycle. Closing the 
@@ -43,7 +44,7 @@ analysis on one of the once-through transitions by coupling
 \Cyclus with Dakota. The results of 
 the sensitivity analysis highlight some of the trade-offs between 
 different reactor designs. One such tradeoff is the increased 
-\gls{HALEU} demand but decreased spent fuel discharged when increasing 
+\gls{HALEU} demand but decreased used fuel discharged when increasing 
 the Xe-100 deployment and decreasing the VOYGR deployment. Additionally, 
 these results identify the Xe-100 discharge burnup as consistently 
 being one of the most impactful input parameters for this transition, 
@@ -55,23 +56,26 @@ To identify potential transitions that minimize material requirements,
 we then use the \Cyclus-Dakota to optimize a once-through transition
 using the genetic algorithms in Dakota. In single-objective problems to 
 minimize the \gls{SWU} capacity required to produce \gls{HALEU} and 
-minimize the amount of spent nuclear fuel, the algorithm finds 
+minimize the amount of used nuclear fuel, the algorithm finds 
 solutions that are consistent with the results of the 
 sensitivity analysis. The results cannot be taken at face 
 value, because the algorithm did not fully converge and the genetic 
-algorithms do not strictly enforce the 
+algorithms do not enforce the applied
 linear constraint for the advanced reactor build shares to sum to 
-100\% we applied. However, the results provide guidance on how to 
+100\%. However, the results provide guidance on how to 
 adjust the 
-input parameters to optimize the transition such as maximizing the 
+input parameters to optimize the transition for a minimal \gls{HALEU} 
+\gls{SWU} or the used fuel mass. Parameter adjustments include 
+maximizing the 
 number of Light Water Reactors that receive license extensions to 
 operate for 80 years. Similar results occur when using 
-this method for a multi-objective problem to minimize both objectives 
-previously considered. 
+this method for a multi-objective problem to minimize both the 
+\gls{HALEU} \gls{SWU} capacity and the used fuel mass. 
 
-Finally, we use models of the Xe-100 and Micro Modular Reactor 
+Finally, we use neutronics models of the Xe-100 and Micro Modular Reactor 
 reactor designs to 
-evaluate the performance of downblended \gls{HEU} in these 
+evaluate the steady-state reactor physics performance of downblended 
+\gls{HEU} in these 
 two designs. We compare the performance of the downblended 
 \gls{HEU} to nominally enriched fuel, based on the 
 \keff, \betaEff, energy- and spatially-dependent neutron 
@@ -86,10 +90,12 @@ in a safe state.
 The work completed in this dissertation develops and demonstrates a 
 methodology for modeling fuel cycle transitions and  
 understanding the effects of deploying \gls{HALEU}-fueled reactors 
-in the US. The effects investigated here include various materials and 
+in the US. The effects investigated in these example scenarios 
+include various materials and 
 resources required to support these reactors, and how the 
-parameters of the transition affect these requirements. This 
-information can be used to develop the necessary infrastructure 
+parameters of the transition affect these requirements. The 
+information generated from this new methodology can be used 
+to develop the necessary infrastructure 
 and supply chains for support a transition to \gls{HALEU}-fueled 
 reactors. Futhermore, this work explores how the 
 \gls{HALEU} production method (enriching compared with downblending)

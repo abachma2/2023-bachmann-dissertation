@@ -100,17 +100,17 @@ The results of this chapter show how the amount of material
 available for reprocessing impacts the masses of separated 
 actinide material and the availability of plutonium-based 
 fuels (\gls{MOX} or U/TRU fuel). The amount of plutonium-based 
-fuels impacts the 
+fuels available impacts the 
 mass of enriched uranium, feed uranium, and \gls{SWU} 
 capacity required, because the plutonium-based fuel displaces 
 uranium-based fuel needed by the advanced reactors. Additionally,
 the actinide elements 
-separated from \gls{SNF} impacts the masses of \gls{HLW} and separated 
+separated from \gls{UNF} impacts the masses of \gls{HLW} and separated 
 actinide material. The more actinide elements separated out from 
-\gls{SNF}, the more separated material available and more 
+\gls{UNF}, the more separated material available and more 
 plutonium-based fuel available. The separation of uranium from the 
-\gls{SNF} is the primary driver of this impact, as 
-\gls{SNF} is mostly uranium by mass. Finally, this chapter 
+\gls{UNF} is the primary driver of this impact, as 
+\gls{UNF} is mostly uranium by mass. Finally, this chapter 
 showed how using a closed fuel cycle can reduce \gls{HALEU} 
 needs, but the lack of existing reprocessing infrastructure 
 in the US means that using a closed fuel cycle will not help 
@@ -122,8 +122,8 @@ fuel cycle are dependent on multiple variables and parameters
 of the fuel cycle. 
 
 % Sensitivity analysis
-Chapter 6 examined the effects of different input parameters for 
-their effects on different output metrics for the fuel cycle transition from 
+Chapter 6 examined the effects of different input parameters 
+on different output metrics for the fuel cycle transition from 
 \glspl{LWR} to different advanced reactors by performing sensitivity 
 analysis. We performed this analysis by coupling \Cyclus with Dakota 
 and perturbing input parameters. We selected input parameters based 
@@ -169,14 +169,14 @@ to apply the the sinlge- and multi-objective
 genetic algorithms in Dakota to perform optimization. 
 Results from this chapter show that minimizing the 
 \gls{SWU} capacity to produce \gls{HALEU} requires maximizing the number of 
-VOYGRs built and minimizing the mass of \gls{SNF} requires maximizing the number 
+VOYGRs built and minimizing the mass of \gls{UNF} requires maximizing the number 
 of Xe-100s built. Minimizing both of these fuel cycle metrics is a 
 balance between deploying Xe-100s and VOYGRs. The results of  
 all three optimization problems show agreement in maximizing the number 
 of \glspl{LWR} operating for 80 years, maximizing the Xe-100 burnup,
 and minimizing the \gls{MMR} build share. The \gls{MMR} burnup becomes
-irrelevant if no \glspl{MMR} are built, so the results 
-identified multiple values for this input parameter. The results 
+irrelevant if no \glspl{MMR} are built, so the results identified 
+identified different values for this input parameter. The results 
 from the optimization 
 work was consistent with the results of the sensitivity analysis, but 
 they did not fully meet expectations. The input parameters identified that 
@@ -188,7 +188,7 @@ build shares in all three of the problems. The parameters valued
 considered in each populations did not always adhere to the constraint, 
 which led to the solution not meeting the constraint. Therefore, the 
 results from the optimization work can not be taken at face value. 
-The results are better used to identifying a relationship between the advanced 
+The results are better used for identifying a relationship between the advanced 
 reactor build shares than a specific set of parameters, because the 
 optimization solutions aligned well with intuition and the sensitivity 
 analysis results even if the linear constraint is not met. Additionally, 
@@ -198,11 +198,15 @@ algorithm to run more evaluations may produce results that better
 meet expectations and the linear constraint. 
 
 % Neutronics
-Finally, Chapter 8 described the Xe-100-like and 
-\gls{MMR}-like reactor models developed and 
-used to analyze the performance of \gls{HALEU} produced from 
-downblended \gls{HEU}. The downblended \gls{HEU} compositions 
-were compared against the performance of \gls{HALEU} with only 
+Finally, Chapter 8 described the analysis of the effects of 
+downblended \gls{HEU} in the Xe-100 and \gls{MMR}. This 
+chapter presents the  Xe-100-like and 
+\gls{MMR}-like reactor models developed for this work,
+which we also used to assist in obtaining spent fuel 
+compositions for the transition analysis. 
+We compared the downblended \gls{HEU} compositions from \gls{EBR} 
+and Y-12 National Security Complex \gls{HEU} stockpiles  
+against the performance of \gls{HALEU} with only 
 $^{235}$U and $^{238}$U, referred to as the ``pure'' fuel. 
 Performance metrics considered include the 
 \keff, \betaEff, energy- and spatially-dependent flux, and 
@@ -225,8 +229,8 @@ burnup steps, but the decrease in the thermal axial
 flux is a result of the \gls{HALEU} composition.
  The reactivity temperature 
 feedback coefficients from each fuel composition are within 
-error of the coefficients from the pure fuel or are within 
-the ranges presented by Mulder and Boyes 
+error of the coefficients from the pure fuel or are 
+consistent with ranges presented by Mulder and Boyes 
 \cite{mulder_neutronics_2020}.
 
 The results of the \gls{MMR}-like model at \gls{BOL}, \gls{MOL}, 
@@ -346,7 +350,7 @@ reactor that meets key design criteria.
 The optimization methodology demonstrated in this work is 
 limited by the optimization algorithms used. Specifically, the 
 genetic algorithms struggled with adhering to the linear constraint 
-on the advanced reactor build shares. Future work to address this 
+on the advanced reactor build shares we applied. Future work to address this 
 limitation could apply other algorithms in Dakota that strictly 
 adhere to linear constraints, like the derivative-free methods 
 \cite{adams_dakota_2021}, or allow the genetic algorithms to 
