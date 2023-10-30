@@ -15,14 +15,14 @@ commentary about the methodology.
 We developed three different optimization problems to apply to 
 Scenario 7 (no growth, once-through transition to the \gls{MMR}, Xe-100, 
 and VOYGR): minimizing the \gls{SWU} capacity to 
-produce \gls{HALEU}, minimizing the mass of \gls{SNF} for disposal, 
-and minimizing both the \gls{HALEU} \gls{SWU} and the \gls{SNF} 
-mass. Both the \gls{HALEU} \gls{SWU} and \gls{SNF} mass are important 
+produce \gls{HALEU}, minimizing the mass of \gls{UNF} for disposal, 
+and minimizing both the \gls{HALEU} \gls{SWU} and the \gls{UNF} 
+mass. Both the \gls{HALEU} \gls{SWU} and \gls{UNF} mass are important 
 parameters for decision makers. Minimizing the \gls{HALEU} \gls{SWU} 
 minimizes the new enrichment infrastructure needed to support the 
 fuel cycle. The US does not have an operating geologic 
-repository for commercial \gls{SNF}, so minimizing this metric 
-minimizes the amount of commercial \gls{SNF} kept at reactor 
+repository for commercial \gls{UNF}, so minimizing this metric 
+minimizes the amount of commercial \gls{UNF} kept at reactor 
 sites. 
 
 To optimize these transitions, we consider six different 
@@ -33,7 +33,7 @@ the discharge burnup of the Xe-100, and the discharge burnup of the
 \gls{MMR}. The sensitivity analysis in Chapter \ref{ch:sa} considered 
 all of these variables and the transition start time. That analysis 
 showed that the transition start time has
-very little effect on the \gls{HALEU} \gls{SWU} and \gls{SNF},
+very little effect on the \gls{HALEU} \gls{SWU} and \gls{UNF},
 and delaying the transition 
 can lead to unfulfilled energy demand. Therefore, this parameter is 
 not considered in the optimization of each scenario. 
@@ -320,7 +320,7 @@ must be selected such that all values on the Pareto front are contained in
 the hypervolume. 
 
 We tuned the hyperparameters based on minimizing the \gls{SWU} capacity 
-to produce \gls{HALEU} and minimizing the mass of \gls{SNF} in Scenario 7.
+to produce \gls{HALEU} and minimizing the mass of \gls{UNF} in Scenario 7.
 The multi-objective genetic algorithm in Dakota outputs the Pareto front 
 for a problem, which we then use to calculate a hypervolume with a 
 reference point. We selected the reference point after plotting the 
@@ -480,7 +480,7 @@ of the problem space.
 \section{Single-objective optimization}
 This section presents the results of the two single-objective 
 problems: minimizing \gls{SWU} capacity required to produce 
-\gls{HALEU} and minimizing the \gls{SNF} mass. We used the hyperparametes 
+\gls{HALEU} and minimizing the \gls{UNF} mass. We used the hyperparametes 
 defined in Table \ref{tab:soga_tuning_results} and a maximum 
 of 1000 evaluations for both problems. 
 
@@ -581,7 +581,7 @@ By applying the hyperparameters to an optimization problem to minimize the
 \gls{HALEU} \gls{SWU} capacity needed by this transition scenario, Dakota
 found a minimum with the model input parameters defined in Table 
 \ref{tab:soga_ot_waste}. The minimum waste mass determined through the 
-optimization is 1,736 MT. This \gls{SNF} mass is smaller than the minimum 
+optimization is 1,736 MT. This \gls{UNF} mass is smaller than the minimum 
 values presented in the once-through transition 
 analysis (Table \ref{tab:nogrowth_waste}) and the \gls{OAT} analysis 
 (Table \ref{tab:oat_values}), suggesting that the algorithm finds 
@@ -603,18 +603,18 @@ a well-optimized solution.
         Xe-100 burnup & 185 MWd/kgU\\
         MMR burnup & 90 MWd/kgU\\
         \hline
-        SNF mass & 1,736 MT \\
+        UNF mass & 1,736 MT \\
         \hline
     \end{tabular}
 \end{table}
 
 From Table \ref{tab:soga_ot_waste}, it is clear that more than 100\% build share
-is defined, which artificially increases the \gls{SNF} mass generated from 
+is defined, which artificially increases the \gls{UNF} mass generated from 
 advanced reactors in this fuel cycle. This result is consistent with the results of 
 the other single-objective problem for this fuel cycle, but suggests 
-that the fuel cycle can be further-optimized for the \gls{SNF} mass. 
+that the fuel cycle can be further-optimized for the \gls{UNF} mass. 
 The advanced reactor build share percentages suggest 
-a build out of Xe-100 reactors to reduce the \gls{SNF} mass generated, which 
+a build out of Xe-100 reactors to reduce the \gls{UNF} mass generated, which 
 is supported by the sensitivity analysis in Chapter \ref{ch:sa}. Additionally, 
 the optimization algorithm points to a maximum in the percent of \glspl{LWR} 
 receiving license extensions, Xe-100 discharge burnup, and \gls{MMR} burnup. 
@@ -634,7 +634,7 @@ in the solution.
 
 \section{Multi-objective optimization}
 The multi-objective problem of minimizes the \gls{SWU} to produce 
-\gls{HALEU} and minimizes the \gls{SNF} mass. In solving 
+\gls{HALEU} and minimizes the \gls{UNF} mass. In solving 
 this problem, Dakota identified a pareto front 
 of 217 points, shown in Figure \ref{fig:once_through_pareto}. The points 
 on this figure identify different values of each objective that are equally 
