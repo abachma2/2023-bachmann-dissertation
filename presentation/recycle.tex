@@ -16,11 +16,11 @@
         of a reactor
     \item Different reactor archetypes use different methodologies 
         to model fuel depletion
-   \item<2-> The \Cycamore \texttt{Reactor} uses recipes to define spent fuel compositions
+   \item<2-> The \Cycamore \texttt{Reactor} uses recipes to define used fuel compositions
    \item<2-> Other \Cyclus reactor archetypes can dynamically model 
          fuel depletion, but they require export controlled software 
          or are reactor design specific
-    \item<3-> \Gls{SNF} compositions impact numerous fuel cycle considerations:
+    \item<3-> \Gls{UNF} compositions impact numerous fuel cycle considerations:
     \begin{itemize}
         \item<3-> decay heat
         \item<3-> criticality safety
@@ -120,7 +120,7 @@
                   different depletion methodologies
             \begin{itemize}
                 \item<2-> \Cycamore \texttt{Reactor} applies the same 
-                          SNF composition
+                          UNF composition
                 \item<2-> OpenMCyclus depletes fuel on a per cycle basis
             \end{itemize}
         \end{itemize}
@@ -143,7 +143,7 @@
                   different depletion methodologies
                   \begin{itemize}
                     \item \Cycamore \texttt{Reactor} applies the same 
-                          SNF composition
+                          UNF composition
                     \item OpenMCyclus depletes fuel on a per cycle basis
                   \end{itemize}
             \item Temporarily changing OpenMCyclus method shows better agreement
@@ -172,12 +172,12 @@
             \centering
             \begin{subfigure}{0.48\textwidth}
                 \includegraphics[width=\linewidth]{comparison_spentuox.pdf}
-                \caption{Comparison of Spent UOX fuel discharged.}
+                \caption{Comparison of Used UOX fuel discharged.}
             \end{subfigure}
             \hfill
             \begin{subfigure}{0.48\textwidth}
                 \includegraphics[width=\linewidth]{comparison_spentmox.pdf}
-                \caption{Comparison of Spent MOX fuel discharged.}
+                \caption{Comparison of Used MOX fuel discharged.}
             \end{subfigure}
             \caption{Spent fuel transactions in OpenMCyclus/\Cycamore benchmark}
             \label{fig:spentfuel_benchmark}
@@ -248,7 +248,7 @@
             \item<2-> Use the same deployment schedule as Scenarios 7, 13
             \item<2-> Modeled Xe-100 and VOYGR with OpenMCyclus
             \item<3-> Separations start in 2020
-            \item<3-> Vary if \gls{TRISO} \gls{SNF} is reprocessed
+            \item<3-> Vary if \gls{TRISO} \gls{UNF} is reprocessed
         \end{itemize}
 
 \end{columns}
@@ -264,7 +264,7 @@
 
         \column[t]{4.5cm}
         \begin{itemize}
-            \item Reprocess all \gls{SNF} 
+            \item Reprocess all \gls{UNF} 
             \item Introduce a fast reactor for transition, modeled through 
                   OpenMCyclus
             \item Separation start 2020

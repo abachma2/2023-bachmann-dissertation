@@ -21,7 +21,7 @@
             \item<3-> Total SWU capacity
             \item<3-> SWU capacity to produce HALEU
             \item<3-> Feed uranium to produce HALEU
-            \item<3-> \gls{SNF} mass
+            \item<3-> \gls{UNF} mass
         \end{itemize}
         \item<4-> Varied parameters individually and multiple combinations
         \item<4-> Modify deployment scheme to prioritize reactor with 
@@ -105,7 +105,7 @@
         \begin{tabular}{c c c c c c c }
             \hline
             & \multicolumn{6}{c}{Output Metric} \\
-            Parameter & Fuel & HALEU & SWU & HALEU SWU & Feed & SNF\\
+            Parameter & Fuel & HALEU & SWU & HALEU SWU & Feed & UNF\\
             \hline
             Transition Start & 0.006 & 0.004 & 0.001 &
                                0.001 & 0.001 & 0.006\\
@@ -131,7 +131,7 @@
               except the transition start time
         \item<2-> Apply a linear constraint for the advanced reactor build shares
         \item<3-> Goal is to minimize the SWU capacity needed to 
-             produce HALEU, the mass of SNF, or both in a multi-objective 
+             produce HALEU, the mass of \gls{UNF}, or both in a multi-objective 
              problem
     \end{itemize}
 \end{frame}
@@ -142,8 +142,8 @@
         \column[t]{5cm}
         \begin{itemize}
             \item Maximize Xe-100 build share, LWR lifetimes,
-                  and Xe-100 burnup to minimize \gls{SNF} mass
-            \item Find a solution that has less SNF mass than the 
+                  and Xe-100 burnup to minimize \gls{UNF} mass
+            \item Find a solution that has less UNF mass than the 
                   transition scenarios and the OAT analysis
             \item<2-> Genetic algorithm struggles with linear constraint for 
                   the three build shares
@@ -169,7 +169,7 @@
                 Xe-100 burnup & 185 MWd/kgU\\
                 MMR burnup & 90 MWd/kgU\\
                 \hline
-                SNF mass & 1,736 MT \\
+                UNF mass & 1,736 MT \\
                 \hline
             \end{tabular}
         \end{table}
