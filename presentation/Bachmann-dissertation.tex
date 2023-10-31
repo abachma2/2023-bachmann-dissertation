@@ -4,14 +4,14 @@
 %\title[short title]{long title}
 \title[HALEU Transitions]{Investigation of Impacts of Deploying 
 Reactors Fueled by High Assay Low Enriched Uranium}
-\subtitle{Preliminary Exam}
+\subtitle{Final Defense}
 \author[Amanda M. Bachmann]{Amanda M. Bachmann\\ Advanced Reactors and Fuel Cycles Group}
 %\author[Kathryn D. Huff]{Kathryn D. Huff\\Advanced Reactors and Fuel Cycles Group}
-\date[09.08.2022]{September 8, 2022}
+\date[11.02.2023]{November 2, 2023}
 \institute[UIUC]{University of Illinois at Urbana-Champaign}
 
 
-%\usepackage[table]{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{xspace}
@@ -21,6 +21,10 @@ Reactors Fueled by High Assay Low Enriched Uranium}
 \usepackage{booktabs} % nice rules for tables
 \usepackage{microtype} % if using PDF
 \usepackage{bigints}
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+\usepackage{threeparttable}
 
 \graphicspath{{../images/}}
 
@@ -28,6 +32,8 @@ Reactors Fueled by High Assay Low Enriched Uranium}
 \newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
 \newcommand{\Cyclus}{\textsc{Cyclus}\xspace} %
 \newcommand{\Cycamore}{\textsc{Cycamore}\xspace} %
+\newcommand{\keff}{$k_{eff}$\xspace}
+\newcommand{\betaEff}{$\beta_{eff}$\xspace}
 \DeclareMathOperator{\erf}{erf}
 %I need some complimentary error functions... 
 \DeclareMathOperator{\erfc}{erfc}
@@ -130,15 +136,17 @@ Reactors Fueled by High Assay Low Enriched Uranium}
 
 \section{Introduction}
 \input{intro}
-\section{Transition Analysis}
-\input{transition_analysis}
-\section{Results}
-\input{results}
-\input{updates}
-\section{Proposed Work}
-\input{proposed-work}
-%\section{Conclusions}
-%\input{conclusions}
+\section{Transition analysis}
+\input{once-through}
+\input{ot-results}
+\input{recycle}
+\input{recycle-results}
+\section{Sensitivity analysis \& Optimization}
+\input{sa-o}
+\section{Effects of impurities}
+\input{impurities}
+\section{Conclusions}
+\input{conclusions}
 \input{acknowledgements}
 
 
@@ -147,30 +155,12 @@ Reactors Fueled by High Assay Low Enriched Uranium}
     \bibliographystyle{plain}
     {\footnotesize \bibliography{../bibliography} }
   
-  \end{frame}
-\begin{frame}
-    \frametitle{Summary}
-    \begin{columns}
-      \column[t]{5cm}
-      \begin{itemize}
-        \item Investigating the transition to \gls{HALEU}-fueled reactors
-        \item Results show primarily deploying VOYGRs increases the mass 
-              of enriched uranium required
-        \item Feed uranium required is similar order of magnitude to \gls{LWR}
-              requirements unless transitioning to only \gls{MMR}
-        \item Expand work to include closed fuel cycles, sensitivity 
-              analysis, and neutronics effects of downblened \gls{HEU}
-      \end{itemize}
-
-      \column[t]{5cm}
-        \begin{figure}[t]
-          \includegraphics[scale=0.35]{nogrowth_AR_uranium.pdf}
-        \end{figure}
-        
-    \end{columns}
-    
 \end{frame}
 
+\begin{frame}
+    \centering
+    \includegraphics[scale=0.25,trim=0 600 0 700,clip]{LittleR.jpg}
+\end{frame}
 
 \input{extra-slides}
 
