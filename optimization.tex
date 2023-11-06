@@ -48,7 +48,9 @@ on different cycle lengths or
 the number of passes pebbles go through the core.
 
 We coupled \Cyclus \cite{huff_fundamental_2016} with Dakota 
-\cite{adams_dakota_2021} to perform this optimization. For the 
+\cite{adams_dakota_2021} to perform this optimization, similar to 
+the coupling used for the sensitivity analysis (Chapter \ref{ch:sa}). 
+For the 
 single-objective problems, we used the ``soga'' solve method in 
 Dakota, which is a single-objective genetic algorithm. For the 
 multi-objective problem, we used the ``moga'' solve method in 
@@ -613,12 +615,11 @@ is defined, which artificially increases the \gls{UNF} mass generated from
 advanced reactors in this fuel cycle. This result is consistent with the results of 
 the other single-objective problem for this fuel cycle, but suggests 
 that the fuel cycle can be further-optimized for the \gls{UNF} mass. 
-The advanced reactor build share percentages suggest 
-a build out of Xe-100 reactors to reduce the \gls{UNF} mass generated, which 
-is supported by the sensitivity analysis in Chapter \ref{ch:sa}. Additionally, 
-the optimization algorithm points to a maximum in the percent of \glspl{LWR} 
-receiving license extensions, Xe-100 discharge burnup, and \gls{MMR} burnup. 
-These results are also consistent with the sensitivity analysis 
+These results suggest that to minimize the \gls{UNF} mass, the 
+\gls{LWR} lifetimes, Xe-100 burnup, and the Xe-100 build share should 
+be maximized. If \glspl{MMR} are deployed, then maximizing the \gls{MMR} 
+build share contributes to minimizing the \gls{UNF} mass. 
+This guidance is consistent with the sensitivity analysis 
 for minimizing this metric. The results of the 
 \gls{LWR} lifetime, \gls{MMR} burnup, and Xe-100 burnup demonstrate that this 
 algorithm can perform well with respect to variables that do not have a 
@@ -633,7 +634,7 @@ of maximizing the the \gls{LWR} lifetime and Xe-100 burnup parameter
 in the solution. 
 
 \section{Multi-objective optimization}
-The multi-objective problem of minimizes the \gls{SWU} to produce 
+The multi-objective problem in this work minimizes the \gls{SWU} to produce 
 \gls{HALEU} and minimizes the \gls{UNF} mass. In solving 
 this problem, Dakota identified a pareto front 
 of 217 points, shown in Figure \ref{fig:once_through_pareto}. The points 
@@ -667,7 +668,11 @@ single-objective optimization for each problem. The \gls{MMR} discharge
 burnup varies 
 across the range of possible values in this work because the discharge 
 burnup becomes irrelevant if none of these reactors are deployed in the
-transition.
+transition. This results identify that maximizing the \gls{LWR} 
+lifetimes, maximizing the Xe-100 burnup, and minimizing the 
+\gls{MMR} are all ways to minimize the \gls{HALEU} \gls{SWU} 
+capacity and the \gls{UNF} mass, independent of the weighting 
+of these two objectives. 
 
 The Xe-100 and VOYGR build shares vary across the pareto front. The Xe-100 
 build share varies between 11-100\% and the VOYGR build share varies 
@@ -678,6 +683,9 @@ the pareto front because they have the most effect on the results. The effect of
 these parameters explains why the pareto front is linear: each of these 
 build shares has a linear relationship with the objectives (see Section 
 \ref{sec:ot_oat}). Therefore, their combined effect remains linear.
+The exact balance between the Xe-100 and VOYGR build share to optimize 
+for these metrics will be based on the relative priority of 
+each objective. 
 
 Examining the Xe-100, VOYGR, and total build shares also identifies 
 weaknesses in using this tool and methodology. Neither of the two reactor 

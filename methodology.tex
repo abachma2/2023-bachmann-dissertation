@@ -692,9 +692,17 @@ disposal requirements to \gls{UNF}. Therefore, understanding the
 of the disposal requirements of these facilities. 
 
 \section{OpenMCyclus}\label{sec:openmcyclus}
-To address gaps in the dynamic depletion modeling in \Cyclus
-(Section \ref{sec:depletion}), we 
-developed OpenMCyclus. 
+Current capabilities to model fuel depletion in \Cyclus 
+(Section \ref{sec:depletion})
+either use stagnant recipes (the \Cycamore \texttt{Reactor}), require 
+export controlled codes (CyBORG \cite{skutnik_cyborg_2016}), or 
+are reactor design specific (ann\_pwr \cite{bae_deep_2020}). 
+Using recipes for fuel compositions is not as accurate as 
+dynamically modeling fuel depletion in a closed fuel 
+cycle \cite{sunny_transition_2015}, and the other capabilities 
+have limited accessibility and applicability in fuel cycle 
+modeling. 
+To address these gaps we developed OpenMCyclus. 
 OpenMCyclus is an archetype library that holds the DepleteReactor 
 archetype, and is open-source and permissively licensed 
 \cite{bachmann_openmcyclus_2023}. 
@@ -891,7 +899,7 @@ time step, three batches per core, one assembly per batch, a power output of
  
 To obtain a used fuel composition for the \Cycamore \texttt{Reactor} 
 archetype and cross section data for the DepleteReactor archetype, we 
-used the pin cell example model in OpenMC \cite{noauthor_modeling_nodate}. 
+used the \gls{PWR} pin cell example model in OpenMC \cite{noauthor_modeling_nodate}. 
 Using the pin-cell model is a simplifying assumption about the size of 
 the reactors to provide a minimal working example, 
 and led to the small power level and assembly mass of the prototypes. 
