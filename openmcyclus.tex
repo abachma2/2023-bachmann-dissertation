@@ -1,0 +1,38 @@
+This chapter details the methodology and structure of the ``OpenMCyclus'' 
+reactor archetype to couple the depletion solver in OpenMC 
+\cite{romano_depletion_2021} with 
+\Cyclus. Previous efforts have been made to include depletion calculations 
+in a \Cyclus archetype \cite{skutnik_cyborg_2016,bae_deep_2020}. However, these efforts 
+have strong disadvantages, such as requiring export-controlled software 
+or requiring access to specific neural networks to perform the depletion. 
+By using the depletion solver in OpenMC \cite{romano_depletion_2021}, OpenMCyclus 
+has the ability to incorporate depletion into a reactor facility model without 
+the restrictions of export controlled or proprietary material. The full 
+repository for this archetype can be found at \hl{Create Zenodo object}.
+
+\section{Methodology}
+OpenMCyclus was built in python, using the python API for both \Cyclus 
+and OpenMC. the \Cyclus interface was modeled after the \Cycamore Reactor archetype
+
+
+
+
+Using the IndependentOperator in OpenMC, performs depletion without transport. 
+We use this class in 
+OpenMC because it's faster than using the CoupledOperator, which performs a full 
+transport calculation with the depletion. Required to create the 1-group cross 
+sections, don't update the cross sections. Effects of not updating the cross 
+sections cite Olek's work when out. 
+
+\section{Demonstration}
+We demonstrated the new archetype using two problems: a once-through scenario with one 
+type of reactor and a closed fuel cycle with two types of reactors. The first 
+reactor type is a \gls{PWR} that produces 1000 MWe and requires fuel every 
+18 months. The second reactor type is an \gls{HTGR} that produces 500 MWe and requires 
+fuel every 12 months. In both scenarios, 2000 MWe is required. The results from each 
+scenario include the plutonium inventory as a function of time at the reprocessing 
+facility and the plutonium output from the reactors. 
+
+\subsection{Problem 1 results}
+
+\subsection{Problem 2 results}

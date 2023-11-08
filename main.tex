@@ -5,11 +5,16 @@
 \usepackage[acronym,toc]{glossaries}
 \input{acros}
 
+\usepackage[toc, titletoc, title]{appendix}
+
 \usepackage{xspace}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{threeparttable}
 \newcommand{\Cycamore}{\textsc{Cycamore}\xspace}
 \newcommand{\Cyclus}{\textsc{Cyclus}\xspace}
+\newcommand{\keff}{$k_{eff}$\xspace}
+\newcommand{\betaEff}{$\beta_{eff}$\xspace}
 
 
 \usepackage{placeins}
@@ -17,7 +22,7 @@
 \usepackage{microtype} % improves typography for PDF
 
 \usepackage[hyphens]{url}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{hhline}
 \usepackage{amsmath}
 \usepackage{color}
@@ -31,6 +36,7 @@
 \usepackage{soul}
 \usepackage{booktabs}
 \newcommand\tab[1][1cm]{\hspace*{#1}}
+\usepackage[table]{xcolor}
 
 
 \usepackage{threeparttable, tablefootnote}
@@ -74,8 +80,8 @@
 
 \tikzstyle{empty} =  [rectangle, rounded corners, minimum width=2.5cm, minimum height=0.7cm,text centered, draw=black, fill=white!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
-\tikzstyle{facility} = [rectangle, rounded corners, minimum width=2cm, minimum height=0.75cm,text centered, draw=black, fill=blue!30]
-\tikzstyle{transition} = [rectangle, rounded corners, minimum width=2cm, minimum height=0.75cm,text centered, draw=black, fill=red!30]
+\tikzstyle{facility} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=0.7cm,text centered, draw=black, fill=blue!30]
+\tikzstyle{transition} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=0.7cm,text centered, draw=black, fill=red!30]
 \tikzstyle{centrifuge} = [rectangle, minimum width=2cm, minimum height=0.75cm,text centered, draw=black, fill=none]
 \tikzstyle{sfr} = [ellipse, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=green!30]
 
@@ -83,17 +89,17 @@
 
 \title{Investigation of the impacts of deploying reactors fueled by high-assay low enriched uranium}
 \author{Amanda M. Bachmann}
-\department{Nuclear, Plasma, Radiological Engineering}
+\department{Nuclear, Plasma, and Radiological Engineering}
 \schools{B.S., University of Tennessee, Knoxville, 2019 \\ M.S., University of Tennessee, Knoxville, 2020}
 \phdthesis
 \advisor{Madicken Munk}
-\degreeyear{2022}
-\committee{Research Scientist Dr. Madicken Munk, Advisor \\
+\degreeyear{2023}
+\protect\committee{Dr. Madicken Munk, Chair \\
            Associate Professor Tomasz Kozlowski \\
            Professor James F. Stubbins \\
            Professor John R. Abelson \\
-           Dr. Bo Feng, Argonne National Lab\\
-           }
+           Dr. Bo Feng, Argonne National Laboratory\\
+}\space
 
 
 \begin{document}
@@ -108,9 +114,9 @@
 
 \end{abstract}
 
-%\chapter*{Acknowledgments}
+\chapter*{Acknowledgments}
 
-%\input{acks}
+\input{acks}
 
 %% The thesis format requires the Table of Contents to come
 %% before any other major sections, all of these sections after
@@ -144,21 +150,38 @@
 \input{background}
 
 \chapter{Fuel cycle modeling methodology} \label{ch:fc_methods}
-\input{methodology.tex}
+\input{methodology}
 
 \chapter{Once-through transition results} \label{ch:once_through_results}
-\input{once-through-results.tex}
+\input{once-through-results}
 
-\chapter{Summary and Proposed Work} \label{ch:summary}
-\input{summary.tex}
+\chapter{Recycling transition results} \label{ch:recycle_results}
+\input{recycling-results}
 
-%\chapter*{Appendix}
-%\input{appendix}
+\chapter{Sensitivity analysis} \label{ch:sa}
+\input{sensitivity}
+
+\chapter{Optimization}\label{ch:optimization}
+\input{optimization}
+
+\chapter{Effects of uranium impurities} \label{ch:neutronics}
+\input{neutronics}
+
+\chapter{Conclusions} \label{ch:conclusions}
+\input{conclusions}
+
+%\mainmatterWithoutReset
+%\appendix
+%\chapter{}
+
 
 \backmatter
 
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEtran}
 \bibliography{bibliography}
+
+\appendix
+  \include{synergistic.tex}
 
 \end{document}
 \endinput
