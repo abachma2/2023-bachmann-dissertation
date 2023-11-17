@@ -651,9 +651,9 @@ using the same reference point. This result suggests that these hyperparameters
 performed well in this problem. 
 
 
-\begin{figure}[h!][h!][h!]
+\begin{figure}[h!]
     \centering 
-    \includegraphics{once_through_pareto.pdf}
+    \includegraphics[scale=0.9]{once_through_pareto.pdf}
     \caption{Pareto front resulting from the multi-objective optimization 
     of the once-through transition.}
     \label{fig:once_through_pareto}
@@ -694,7 +694,7 @@ space were not fully explored. Additionally, 73 of the 217 (34\%) points
 on the pareto front have a total build share above 150\%. Intuition 
 suggests that both objectives would be minimized with a lower total 
 build share. Therefore, the total build shares further suggests that the 
-genetic algorithm, with the selected hyperparameters does not fully 
+genetic algorithm, with the selected hyperparameters, does not fully 
 explore the parameter space. 
 However, there is degeneracy in the build share of different reactors. 
 Because the reactors must be built in whole numbers, multiple values of 
@@ -705,5 +705,5 @@ advanced reactor is a result of the degeneracy of the build
 shares. The degeneracy of the build shares is why setting a strict 
 linear constraint of the build shares summing to 100\% results in 
 so few points on the pareto front. However, the results of this work 
-suggest that an upper limit should be applied to the linear constraint 
-(instead of setting it to infinity). 
+suggest that a non-infinite upper limit should be applied to the linear 
+constraint.
