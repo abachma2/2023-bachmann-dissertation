@@ -1,3 +1,9 @@
+# Bachmann 2023 Dissertaiton
+This repo is for the dissertation and defense presentation for Amanda M. Bachmann. 
+To cite this dissertation: 
+
+    A. M. Bachmann. Investigation of the impacts of deploying reactors fueled by high-assay low enriched uranium. PhD thesis, University of Illinois Urbana-Champaign, Urbana, IL Nov. 2023. URL: https://www.ideals.illinois.edu/items/129177
+
 # ms-thesis-template
 This repo holds the template for UIUC master's thesis. 
 When you use this repository as a template, please name your repository
