@@ -1,0 +1,167 @@
+\documentclass[9pt,xcolor={table}]{beamer}
+\setbeamertemplate{caption}[numbered]
+\usetheme[white]{Illinois}
+%\title[short title]{long title}
+\title[HALEU Transitions]{Investigation of Impacts of Deploying 
+Reactors Fueled by High Assay Low Enriched Uranium}
+\subtitle{Final Defense}
+\author[Amanda M. Bachmann]{Amanda M. Bachmann\\ Advanced Reactors and Fuel Cycles Group}
+%\author[Kathryn D. Huff]{Kathryn D. Huff\\Advanced Reactors and Fuel Cycles Group}
+\date[11.02.2023]{November 2, 2023}
+\institute[UIUC]{University of Illinois at Urbana-Champaign}
+
+
+\usepackage[table]{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs} % nice rules for tables
+\usepackage{microtype} % if using PDF
+\usepackage{bigints}
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
+
+\usepackage{threeparttable}
+
+\graphicspath{{../images/}}
+
+\newcommand{\units}[1] {\:\text{#1}}%
+\newcommand{\SN}{S$_N$}%{S$_\text{N}$}%{$S_N$}%
+\newcommand{\Cyclus}{\textsc{Cyclus}\xspace} %
+\newcommand{\Cycamore}{\textsc{Cycamore}\xspace} %
+\newcommand{\keff}{$k_{eff}$\xspace}
+\newcommand{\betaEff}{$\beta_{eff}$\xspace}
+\DeclareMathOperator{\erf}{erf}
+%I need some complimentary error functions... 
+\DeclareMathOperator{\erfc}{erfc}
+%Those icons in the references are terrible looking
+\setbeamertemplate{bibliography item}[text]
+
+%%%% Acronym support
+
+\usepackage[acronym,toc]{glossaries}
+\input{../acros}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, backgrounds}
+\usetikzlibrary{positioning, arrows, decorations, shapes, matrix, fit, tikzmark}
+
+\tikzstyle{agent} = [rectangle, rounded corners, minimum width=0.1cm, minimum height=0.2cm,text centered, draw=black, fill=blue!30]
+\tikzstyle{transition} = [rectangle, rounded corners, minimum width=0.1cm, minimum height=0.2cm,text centered, draw=black, fill=red!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\tikzstyle{region} = [rectangle, rounded corners, minimum width=0.1cm, minimum height=0.2cm,text centered, draw=black, fill=green!30]
+\tikzstyle{institution} = [rectangle, rounded corners, minimum width=0.1cm, minimum height=0.2cm,text centered, draw=black, fill=red!30]
+\tikzstyle{facility} = [rectangle, rounded corners, minimum width=0.1cm, minimum height=0.2cm,text centered, draw=black, fill=blue!30]
+\tikzstyle{connect} = [thick,-]
+
+\def\firstcircle{(0,0) circle (2cm)}
+\def\secondcircle{(60:3cm) circle (2cm)}
+\def\thirdcircle{(0:3cm) circle (2cm)}
+\makeglossaries
+
+%try to get rid of header on title page\dots
+\makeatletter
+    \newenvironment{withoutheadline}{
+        \setbeamertemplate{headline}[default]
+        \def\beamer@entrycode{\vspace*{-\headheight}}
+    }{}
+\makeatother
+
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+    \rightline{\insertframenumber{} / \inserttotalframenumber\hspace*{1ex}}
+  }%
+  \vskip0pt%
+}
+\makeatletter
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% From uw-beamer Here's a handy bit of code to place at 
+%% the beginning of your presentation (after \begin{document}):
+\newcommand*{\alphabet}{ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz}
+\newlength{\highlightheight}
+\newlength{\highlightdepth}
+\newlength{\highlightmargin}
+\setlength{\highlightmargin}{2pt}
+\settoheight{\highlightheight}{\alphabet}
+\settodepth{\highlightdepth}{\alphabet}
+\addtolength{\highlightheight}{\highlightmargin}
+\addtolength{\highlightdepth}{\highlightmargin}
+\addtolength{\highlightheight}{\highlightdepth}
+\newcommand*{\Highlight}{\rlap{\textcolor{HighlightBackground}{\rule[-\highlightdepth]{\linewidth}{\highlightheight}}}}
+\colorlet{lightblue}{blue!40!}
+\definecolor{lightorange}{HTML}{FAA21A}
+\colorlet{lightpink}{red!20!}
+
+\tikzset{   
+        every picture/.style={remember picture,baseline},
+        every node/.style={anchor=base,align=center,outer sep=1.5pt},
+        every path/.style={thick},
+        }
+
+\newcommand\marktopleft[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-a) at (.1em,.3em) {};%
+}
+\newcommand\markbottomright[1]{%
+    \tikz[overlay,remember picture] 
+        \node (marker-#1-b) at (.1em,.3em) {};%
+    \tikz[overlay,remember picture,inner sep=3pt]
+        \node[draw=red,rounded corners,fit=(marker-#1-a.north west) (marker-#1-b.south east)] {};%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%--------------------------------%%
+\begin{withoutheadline}
+    \frame{
+      \titlepage
+    }
+    \end{withoutheadline}
+
+%%--------------------------------%%
+\AtBeginSection[]{
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+\end{frame}
+}
+
+
+\section{Introduction}
+\input{intro}
+\section{Transition analysis}
+\input{once-through}
+\input{ot-results}
+\input{recycle}
+\input{recycle-results}
+\section{Sensitivity analysis \& Optimization}
+\input{sa-o}
+\section{Effects of impurities}
+\input{impurities}
+\section{Conclusions}
+\input{conclusions}
+\input{acknowledgements}
+
+
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+    \bibliographystyle{plain}
+    {\footnotesize \bibliography{../bibliography} }
+  
+\end{frame}
+
+\begin{frame}
+    \centering
+    \includegraphics[scale=0.25,trim=0 600 0 700,clip]{LittleR.jpg}
+\end{frame}
+
+\input{extra-slides}
+
+\end{document}

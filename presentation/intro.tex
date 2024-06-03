@@ -1,0 +1,152 @@
+\subsection{Motivation}
+\begin{frame}
+    \frametitle{The US is looking to develop supplies of HALEU}
+    \begin{columns}
+        \column[t]{5cm}
+    \begin{itemize}
+    \item Multiple new reactor designs require \gls{HALEU} fuel, which allows for: 
+    \begin{itemize}
+        \item Longer cycle time
+        \item Increased capacity factor
+        \item Higher burnup 
+    \end{itemize}
+    \item<2-> The US does not have any commercial supplies of \gls{HALEU}
+    \item<3-> There are two methods to produce \gls{HALEU}:
+    \begin{itemize}
+        \item Enrichment of natural uranium
+        \item Recovery and downblending of \gls{HEU}
+    \end{itemize}
+    
+    \end{itemize}
+
+    \column[t]{5cm}
+    \begin{table}
+        \centering
+        \caption{Categories of uranium enrichment by weight fraction of 
+        $^{235}$U.}
+        \label{tab:enrichemnt}
+        \begin{tabular}{l c c}
+            \hline
+            Category & Weight fraction (\%)\\\hline
+            Depleted & $<$0.711 \\
+            Natural & 0.711 \\
+            LEU & 0.711-20 \\
+            \gls{HALEU} & 5-20 \\
+            \gls{HEU} & $\ge$20 \\
+            \hline
+        \end{tabular}
+    \end{table}
+    \end{columns}
+\end{frame}
+
+\subsection{Background}
+\begin{frame}
+    \frametitle{The nuclear fuel cycle}
+    \input{fuel-cycle}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Enriching natural uranium to produce HALEU}
+    \begin{itemize}
+        \item Increase the relative abundance $^{235}$U in the fuel
+        \item Enrichment facility designs are based on product 
+              mass, product assay, and the \gls{SWU} capacity
+    \end{itemize}
+    \pause
+    \vspace{-0.2cm}
+    \begin{columns}
+        \column{6cm}
+            \input{enrichment}
+            \pause
+            \begin{align*}
+                    & F = P + T \\
+                    & x_fF = x_pP + x_tT\\
+                    & SWU = \left[P\times V(x_p) +T*V(x_t) - F*V(x_f)\right]*t\\
+                    & \text{in which:}\\
+                    & V(x_i) = (2x_i - 1)*\ln\left(\frac{x_i}{1-x_i}\right)
+            \end{align*}
+            \vspace{-0.5cm}
+            
+    \column{4.5cm}
+    \begin{table}
+        \centering
+        \vspace{-0.3cm}
+        \begin{tabular}{c m{2.5cm}}
+            \hline
+            Variable & Definition \\
+            \hline
+            F & Feed mass \\
+            P & Product mass \\
+            T & Tails mass\\
+            x$_i$ & Assay of material stream $i$\\
+            SWU & Separative work units\\
+            V(x$_i$) & Separation potential function\\
+            t & Time\\
+            \hline
+        \end{tabular}
+    \end{table}
+
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Downblending HEU to produce HALEU}
+    If we downblend \gls{HEU} to produce \gls{HALEU}:
+    \begin{itemize}
+        \item Spent fuel from \gls{EBR} can produce 10 MT of \gls{HALEU}
+              \cite{nuclear_energy_institute_establishing_2022}
+        \item \gls{HEU} from \gls{SRS} can produce 4-20 MT of \gls{HALEU}
+              \cite{nuclear_energy_institute_establishing_2022,regalbuto_addressing_2020}
+        \item<2-> The fuel will have uranium impurities that are not typically 
+              in enriched fuel or considered for reactor modeling 
+              \cite{nelson_foreign_2010,vaden_isotopic_2018}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Efforts to estimate HALEU needs}
+    Efforts are underway to estimate potential \gls{HALEU} needs:
+    \begin{itemize}
+        \item \gls{NEI} surveyed multiple reactor design companies
+              to estimate \gls{HALEU} needs between now and 2035 
+              \cite{korsnick_updated_2021,nuclear_energy_institute_establishing_2022}
+        \item National labs modeled the transition to some 
+              \gls{HALEU}-fueled reactors to estimate \gls{HALEU} needs 
+              to meet current net-zero carbon goals in 2050 \cite{dixon_estimated_2022}
+    \end{itemize}
+    \pause
+    Limitations of this previous work:
+    \begin{itemize}
+        \item All start from announced advanced reactor projects
+        \item Very prescriptive in reactor deployment
+        \item<3-> Mostly concerned with \gls{HALEU} mass, don't consider 
+              other fuel cycle needs for \gls{HALEU}-fueled reactors
+    \end{itemize}
+\end{frame}
+
+\subsection{Objectives}
+\begin{frame}
+    \frametitle{Technical gaps \& objectives}
+    \begin{block}{Technical Gaps}
+        \begin{itemize}
+            \item Understand changes to the US nuclear fuel cycle to 
+                  commercially supply \gls{HALEU}
+            \item Understand limitations of using downblended \gls{HEU} 
+                  in advanced reactors         
+        \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{Objectives}
+        \begin{itemize}
+        \item<2-> Explore how the deployment of \gls{HALEU}-fueled reactors 
+        affects the US nuclear fuel cycle 
+        \item<2-> Quantify potential material requirements for the transition from 
+              \glspl{LWR} to advanced reactors in a once-through and recycling 
+              fuel cycle
+        \item<2-> Understand the impacts of fuel cycle parameters on the 
+              material requirements and design optimized transition scenarios
+        \item<2-> Identify potential limitations in using downblended \gls{HEU} 
+              in advanced reactors
+        \end{itemize}
+    \end{block}
+\end{frame}
