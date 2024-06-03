@@ -542,9 +542,9 @@ design parameters of the \gls{SFR} in these scenarios.
     \end{tabular}
     \begin{tablenotes}
         \item [1] Assumed value
-        \item [2] The PRISM in UNF Recycle mode has two different drive fuel compositions,
-                  which are averaged based on the number of each assembly type to determine 
-                  the fresh fuel composition for this reactor.
+        \item [2] The PRISM in UNF Recycle mode has two different driver fuel compositions.
+                  We performed a weighted average of the two compositions to determine 
+                  the fresh fuel composition.
     \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -570,8 +570,8 @@ in \cite{fichtlscherer_assessing_2019}, we ran the model
 through OpenMC again to obtain the one-group cross section data 
 for this core in an equilibrium state. We calculated
 the \gls{HALEU} composition required for this fuel cycle based on the
-one-group cross section data and plutonium equivalence of 
-uranium in this system (Eq. \ref{eq:pu_equivalence}).
+one-group cross section data and plutonium equivalence in this 
+system (Eq. \ref{eq:pu_equivalence}).
 
 \begin{figure}[h!]
     \centering
@@ -692,9 +692,17 @@ disposal requirements to \gls{UNF}. Therefore, understanding the
 of the disposal requirements of these facilities. 
 
 \section{OpenMCyclus}\label{sec:openmcyclus}
-To address gaps in the dynamic depletion modeling in \Cyclus
-(Section \ref{sec:depletion}), we 
-developed OpenMCyclus. 
+Current capabilities to model fuel depletion in \Cyclus 
+(Section \ref{sec:depletion})
+either use stagnant recipes (the \Cycamore \texttt{Reactor}), require 
+export controlled codes (CyBORG \cite{skutnik_cyborg_2016}), or 
+are reactor design specific (ann\_pwr \cite{bae_deep_2020}). 
+Using recipes for fuel compositions is not as accurate as 
+dynamically modeling fuel depletion in a closed fuel 
+cycle \cite{sunny_transition_2015}, and the other capabilities 
+have limited accessibility and applicability in fuel cycle 
+modeling. 
+To address these gaps we developed OpenMCyclus. 
 OpenMCyclus is an archetype library that holds the DepleteReactor 
 archetype, and is open-source and permissively licensed 
 \cite{bachmann_openmcyclus_2023}. 
@@ -891,7 +899,7 @@ time step, three batches per core, one assembly per batch, a power output of
  
 To obtain a used fuel composition for the \Cycamore \texttt{Reactor} 
 archetype and cross section data for the DepleteReactor archetype, we 
-used the pin cell example model in OpenMC \cite{noauthor_modeling_nodate}. 
+used the \gls{PWR} pin cell example model in OpenMC \cite{noauthor_modeling_nodate}. 
 Using the pin-cell model is a simplifying assumption about the size of 
 the reactors to provide a minimal working example, 
 and led to the small power level and assembly mass of the prototypes. 
@@ -1065,7 +1073,7 @@ of the used fuel assemblies than when all of the assemblies are transmuted.
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu_cumulative.pdf}
+        \includegraphics[width=\textwidth]{comparison_pu_cumulative.pdf}
         \caption{Cumulative plutonium mass}
         \label{fig:comparison_pu_cumulative}
     \end{subfigure}
@@ -1111,7 +1119,7 @@ is depleted each cycle instead of upon discharge.
     \hfill
     \begin{subfigure}[b]{0.48\textwidth}
         \centering
-        \includegraphics[trim=0 0 30 20,clip,width=\textwidth]{comparison_pu_cumulative_discharge.pdf}
+        \includegraphics[width=\textwidth]{comparison_pu_cumulative_discharge.pdf}
         \caption{Cumulative plutonium mass}
         \label{fig:comparison_pu_cumulative_discharge}
     \end{subfigure}
